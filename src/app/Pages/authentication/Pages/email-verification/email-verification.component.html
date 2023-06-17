@@ -1,0 +1,14 @@
+<app-toastr #toastr *ngIf="false"></app-toastr>
+<div class="page-container">
+  <div class="inner-container padding-10 flex justify-center align-center flex-column">
+    <div class="email-verification-container">
+      <div class="image-container flex justify-center align-center padding-tb-10">
+        <img src="./assets/Images/Email Verification {{!isTokenValid? 'Faild' : 'Succeeded'}}.png" alt="">
+      </div>
+      <div class="text-container flex justify-center align-center flex-column padding-tb-30">
+        <p class="title text-center font-black size-large">Email Verification</p>
+        <p class="sub-title text-center font-medium size-medium margin-t-10" [ngClass]="{'red-dark' : !isTokenValid, 'green-dark' : isTokenValid}">{{isTokenValid? 'Verified' : 'Not Verified'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
+<div class="page-container">
+  <div class="inner-container padding-10 flex justify-center align-center flex-column">
+    <div class="box-container padding-20 flex justify-start align-center flex-column relative">
+      <div class="box-row padding-tb-10 flex justify-center align-center flex-column">
+        <p class="title black text-center font-bold size-semi-large">New Store</p>
+      </div>
+      <div class="box-row stepper-container padding-tb-10 margin-b-20 flex justify-center align-center flex-column">
+        <app-stepper [steps]="steps" [activeStep]="activeStep" [stepsConfig]="stepperConfig"></app-stepper>
+      </div>
+
+      <div class="box-row inner-content-container padding-tb-10 ">
+        <router-outlet (activate)="setActiveStep($event)"></router-outlet>
+      </div>
+
+      <div class="box-row button-container flex justify-center align-center absolute">
+        <app-button #signupButton [value]="steps == activeStep? 'Signup' : 'Next'" [config]="buttonConfig" (click)="nextOrSignup()"></app-button>
+      </div>
+    </div>
+
+    <div class="login-container flex justify-center align-center padding-t-30">
+      <p class="text-center size-regular font-regular white">Already have an account? <span class="login cyan-light" (click)="login()">Login</span> </p>
+    </div>
+  </div>
+</div>

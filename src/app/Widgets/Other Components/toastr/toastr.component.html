@@ -1,0 +1,11 @@
+<div class="toastr-container fixed" [ngClass]="{'display': toastrConfig.display}">
+  <div class="toastr-inner-container flex justify-start align-center">
+    <div class="text-container padding-20 flex justify-start align-center flex-column">
+      <p class="toastr-title text-start font-semi-bold size-regular" [ngClass]="{'red-super-dark': toastrConfig.danger, 'green-super-dark': toastrConfig.success, 'orange-dark': toastrConfig.warning}">{{toastrConfig.title}}</p>
+      <p class="toastr-sub-title black text-start font-regular size-regular">{{toastrConfig.message}}</p>
+    </div>
+    <div class="close-container flex justify-center align-center padding-lr-13 padding-t-1">
+      <mat-icon class="icon gray-dark" svgIcon="x-mark" (click)="close()"></mat-icon>
+    </div>
+  </div>
+</div>

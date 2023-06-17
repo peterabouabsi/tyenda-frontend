@@ -1,0 +1,20 @@
+<div class="stepper-container">
+  <div class="stepper-inner-container padding-10 flex justify-start align-start flex-column">
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Store name'" [formControl]="storeInfoForm.controls['storeName']" (onInputEvent)="setValue('storeName', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Owner name'" [formControl]="storeInfoForm.controls['ownerName']" (onInputEvent)="setValue('ownerName', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Owner email'" [formControl]="storeInfoForm.controls['ownerEmail']" (onInputEvent)="setValue('ownerEmail', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <p class="size-small red-light font-regular">*optional</p>
+      <app-text-field [placeholder]="'Website'" [formControl]="storeInfoForm.controls['website']" (onInputEvent)="setValue('website', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-text-area [placeholder]="'Description'" [formControl]="storeInfoForm.controls['description']" (onInputEvent)="setValue('description', $event)"></app-text-area>
+    </div>
+  </div>
+</div>

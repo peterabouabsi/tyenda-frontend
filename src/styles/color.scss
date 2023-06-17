@@ -1,0 +1,148 @@
+:root{
+  --blue-light: #4A88FF;
+  --blue: #2A6FF4;
+  --blue-dark: #004CDF;
+  --blue-super-dark: #0042C1;
+
+  --cyan-light: #47CBF4;
+  --cyan: #30BCE8;
+  --cyan-dark: #009ED0;
+  --cyan-super-dark: #0088B4;
+  --cyan-gray-light: #F8FDFF;
+  --cyan-gray: #F1F6F8;
+  --cyan-gray-dark: #E7EFF2;
+  --cyan-gray-super-dark: #D9E7EC;
+
+  --gray-light: #ECECEC;
+  --gray: #D6D6D6;
+  --gray-dark: #BBBBBB;
+  --gray-super-dark: #A4A4A4;
+
+  --red-light: #F83F3F;
+  --red: #F42424;
+  --red-dark: #EC0C0C;
+  --red-super-dark: #D90000;
+
+  --orange-light: #F3A100;
+  --orange: #FFB72D;
+  --orange-dark: #FFA800;
+  --orange-super-dark: #FFCC68;
+
+  --green-light: #68FF77;
+  --green: #27FF3D;
+  --green-dark: #00FF1A;
+  --green-super-dark: #00DF16;
+
+  --white: #FFFFFF;
+
+  --black: #2F2F2F;
+
+  --blue-gradient: linear-gradient(180deg, var(--blue) 0%, var(--blue-dark) 50%, var(--blue-super-dark) 100%);
+  --white-gradient: linear-gradient(180deg, #FFFFFF 10.94%, #FBFBFB 50.52%, #F4F4F4 100%);
+}
+
+//BLUE
+.blue-light{
+  color: var(--blue-light);
+}
+.blue{
+  color: var(--blue);
+}
+.blue-dark{
+  color: var(--blue-dark);
+}
+.blue-super-dark{
+  color: var(--blue-super-dark);
+}
+
+//CYAN
+.cyan-light{
+  color: var(--cyan-light);
+}
+.cyan{
+  color: var(--cyan);
+}
+.cyan-dark{
+  color: var(--cyan-dark);
+}
+.cyan-super-dark{
+  color: var(--cyan-super-dark);
+}
+.cyan-gray-light{
+  color: var(--cyan-gray-light);
+}
+.cyan-gray{
+  color: var(--cyan-gray);
+}
+.cyan-gray-dark{
+  color: var(--cyan-gray-dark);
+}
+.cyan-gray-super-dark{
+  color: var(--cyan-gray-super-dark);
+}
+
+//ORANGE
+.orange-light{
+  color: var(--orange-light);
+}
+.orange{
+  color: var(--orange);
+}
+.orange-dark{
+  color: var(--orange-dark);
+}
+.orange-super-dark{
+  color: var(--orange-super-dark);
+}
+
+//GREEN
+.green-light{
+  color: var(--green-light);
+}
+.green{
+  color: var(--green);
+}
+.green-dark{
+  color: var(--green-dark);
+}
+.green-super-dark{
+  color: var(--green-super-dark);
+}
+
+//RED
+.red-light{
+  color: var(--red-light);
+}
+.red{
+  color: var(--red);
+}
+.red-dark{
+  color: var(--red-dark);
+}
+.red-super-dark{
+  color: var(--red-super-dark);
+}
+
+//GRAY
+.gray-light{
+  color: var(--gray-light);
+}
+.gray{
+  color: var(--gray);
+}
+.gray-dark{
+  color: var(--gray-dark);
+}
+.gray-super-dark{
+  color: var(--gray-super-dark);
+}
+
+//WHITE
+.white{
+  color: var(--white);
+}
+
+//BLACK
+.black{
+  color: var(--black);
+}

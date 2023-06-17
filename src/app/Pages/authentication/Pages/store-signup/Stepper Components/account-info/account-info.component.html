@@ -1,0 +1,16 @@
+<div class="stepper-container">
+  <div class="stepper-inner-container padding-10 flex justify-start align-start flex-column">
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Email'" [formControl]="accountInfoForm.controls['email']" (onInputEvent)="setValue('email', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Phone number'" [formControl]="accountInfoForm.controls['phoneNumber']" (onInputEvent)="setValue('phoneNumber', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-text-field [placeholder]="'Username'" [formControl]="accountInfoForm.controls['username']" (onInputEvent)="setValue('username', $event)"></app-text-field>
+    </div>
+    <div class="input-form padding-t-15">
+      <app-password-field [placeholder]="'Password'" [formControl]="accountInfoForm.controls['password']" (onInputEvent)="setValue('password', $event)"></app-password-field>
+    </div>
+  </div>
+</div>

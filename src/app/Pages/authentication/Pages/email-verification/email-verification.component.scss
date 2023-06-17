@@ -1,0 +1,19 @@
+.page-container{
+  .inner-container{
+    background: var(--white-gradient);
+    .email-verification-container{
+      border-radius: 15px;
+      width: 100%;
+      height: fit-content;
+      .image-container{
+        width: 100%;
+        height: auto;
+        img{
+          width: 300px;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

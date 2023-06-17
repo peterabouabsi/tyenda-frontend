@@ -1,0 +1,37 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
+<div class="page-container">
+  <div class="inner-container padding-10 flex justify-center align-center flex-column">
+    <div class="box-container padding-20 flex justify-start align-center flex-column">
+      <div class="box-row padding-tb-10 flex justify-center align-center flex-column">
+        <p class="title black text-center font-bold size-semi-large">New Customer</p>
+      </div>
+      <div class="box-row padding-tb-10 flex justify-center align-center flex-column">
+        <div class="input-form padding-tb-10">
+          <app-text-field [placeholder]="'Firstname'" [formControl]="signupForm.controls['firstname']" (onInputEvent)="setValue('firstname', $event)"></app-text-field>
+        </div>
+        <div class="input-form padding-tb-10">
+          <app-text-field [placeholder]="'Lastname'" [formControl]="signupForm.controls['lastname']" (onInputEvent)="setValue('lastname', $event)"></app-text-field>
+        </div>
+        <div class="input-form padding-tb-10">
+          <app-text-field [placeholder]="'Email'" [formControl]="signupForm.controls['email']" (onInputEvent)="setValue('email', $event)"></app-text-field>
+        </div>
+        <div class="input-form padding-tb-10">
+          <app-text-field [placeholder]="'Phone number'" [formControl]="signupForm.controls['phoneNumber']" (onInputEvent)="setValue('phoneNumber', $event)"></app-text-field>
+        </div>
+        <div class="input-form padding-tb-10">
+          <app-text-field [placeholder]="'Username'" [formControl]="signupForm.controls['username']" (onInputEvent)="setValue('username', $event)"></app-text-field>
+        </div>
+        <div class="input-form padding-tb-10">
+          <app-password-field [placeholder]="'Password'" [formControl]="signupForm.controls['password']" (onInputEvent)="setValue('password', $event)"></app-password-field>
+        </div>
+      </div>
+      <div class="box-row button-container flex justify-center align-center relative">
+        <app-button #signupButton [value]="'Signup'" [config]="buttonConfig" (click)="signup()"></app-button>
+      </div>
+    </div>
+
+    <div class="login-container flex justify-center align-center padding-t-30">
+      <p class="text-center size-regular font-regular white">Already have an account? <span class="login cyan-light" (click)="login()">Login</span> </p>
+    </div>
+  </div>
+</div>

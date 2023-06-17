@@ -1,0 +1,30 @@
+<div class="stepper-container">
+  <div class="stepper-inner-container padding-10 flex justify-start align-start flex-column">
+    <div class="branch-container margin-b-30" *ngFor="let storeBranchForm of storeBranchForms; let i = index">
+      <div class="branch-info-container relative">
+        <div class="country-city-container flex justify-start align-center flex-wrap">
+          <p class="text text-start font-medium size-small black">{{storeBranchForm.controls['country'].valid? storeBranchForm.controls['country'].value.value : '[Country]'}} - {{storeBranchForm.controls['city'].valid? storeBranchForm.controls['city'].value.value : '[City]'}}</p>
+        </div>
+        <div class="address-details-container flex justify-start align-center flex-wrap">
+          <p class="text text-start font-regular size-small gray">{{storeBranchForm.controls['addressDetails'].valid? storeBranchForm.controls['addressDetails'].value : '[Address details]'}}</p>
+        </div>
+        <div class="remove-container absolute" *ngIf="i > 0" (click)="removeBranch(i)">
+          <mat-icon class="icon red" svgIcon="circle-minus"></mat-icon>
+        </div>
+      </div>
+      <div class="inputs-container flex justify-start align-start flex-column">
+        <div class="input-form padding-t-15">
+          <app-select-field [placeholder]="'Select country'" [data]="countries" [formControl]="storeBranchForm.controls['country']" (onSelectEvent)="setValue('country', $event, i)"></app-select-field>
+        </div>
+        <div class="input-form padding-t-15">
+          <app-select-field [placeholder]="'Select city'" [data]="cities" [formControl]="storeBranchForm.controls['city']"  (onSelectEvent)="setValue('city', $event, i)"></app-select-field>
+        </div>
+        <div class="input-form padding-t-15">
+          <app-text-field [placeholder]="'Address details'" [formControl]="storeBranchForm.controls['addressDetails']" (onInputEvent)="setValue('addressDetails', $event, i)"></app-text-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-branch-container flex justify-center align-center blue-dark padding-b-1 font-bold size-regular uppercase" (click)="addNewBranch()">+ Add Branch</div>
+  </div>
+</div>

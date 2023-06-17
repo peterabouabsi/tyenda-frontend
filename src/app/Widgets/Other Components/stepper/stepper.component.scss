@@ -1,0 +1,55 @@
+.stepper-container{
+  width: 100%;
+  .stepper-inner-container{
+    width: fit-content;
+    height: 100%;
+    .step-container{
+      width: fit-content;
+      height: 100%;
+      .circle-container{
+        width: 22px;
+        height: 22px;
+        border-radius: 50px;
+        cursor: pointer;
+        background-color: var(--gray-light);
+        transition: 0.3s ease-in-out;
+
+        &.active{
+          border: none;
+          background-color: var(--blue);
+          transition: 0.3s ease-in-out;
+          .step{
+            color: var(--white);
+          }
+        }
+      }
+      .line-container{
+        width: fit-content;
+        .line{
+          width: 40px;
+          height: 2px;
+          border-radius: 50px;
+          background-color: var(--gray-light);
+          transition: 0.3s ease-in-out;
+
+          &.active{
+            background-color: var(--blue);
+            transition: 0.3s ease-in-out;
+          }
+        }
+
+
+      }
+      .note-container{
+        top: 24px;
+        left: -20px;
+        width: fit-content;
+        background-color: var(--gray-light);
+        border: 1px solid var(--gray);
+        border-radius: 3px;
+        display: none;
+        animation: fade-in 0.3s ease-in-out;
+      }
+    }
+  }
+}

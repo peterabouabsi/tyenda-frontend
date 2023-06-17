@@ -1,0 +1,60 @@
+.button {
+  width: fit-content;
+  min-width: 160px;
+  border-radius: 50px;
+  height: 37px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  &.blue-button{
+    background-color: var(--blue-dark);
+    color: var(--white);
+    .spinner-container{
+      .spinner {
+        border-top: 0.3px solid transparent;
+        border-bottom: 2.2px solid var(--white);
+      }
+    }
+  }
+  &.white-button{
+    background-color: var(--white);
+    color: var(--blue-dark);
+    border: 2px solid var(--blue-dark);
+    .spinner-container{
+      .spinner {
+        border-top: 0.3px solid transparent;
+        border-bottom: 2.2px solid var(--blue-dark);
+      }
+    }
+  }
+  .text-container{
+    width: 100%;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+    &.loading{
+      transition: 0.3s ease-in-out;
+      right: 100%;
+      opacity: 0;
+    }
+  }
+  .spinner-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+    &.loading{
+      transition: 0.3s ease-in-out;
+      top: 0;
+      opacity: 1;
+    }
+    .spinner{
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}

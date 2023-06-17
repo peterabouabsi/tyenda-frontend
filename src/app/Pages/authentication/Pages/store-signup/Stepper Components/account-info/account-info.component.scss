@@ -1,0 +1,11 @@
+.stepper-container{
+  width: 100%;
+  height: auto;
+  animation: translate-right-left 0.3s ease-in-out;
+  .stepper-inner-container{
+    width: 100%;
+    .input-form{
+      width: 100%;
+    }
+  }
+}

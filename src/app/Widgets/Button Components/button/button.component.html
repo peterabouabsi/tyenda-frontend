@@ -1,0 +1,8 @@
+<div class="button flex justify-center align-center" [ngClass]="{'blue-button': config.isBlue, 'white-button': config.isWhite}" (click)="onClick()">
+  <div class="text-container padding-b-1 flex justify-center align-center" [ngClass]="{'loading': loading}">
+    <p class="value text-center size-regular font-medium capitalize">{{value}}</p>
+  </div>
+  <div class="spinner-container padding-t-1 flex justify-center align-center" [ngClass]="{'loading': loading}">
+    <div class="spinner"></div>
+  </div>
+</div>

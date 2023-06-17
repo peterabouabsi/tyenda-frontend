@@ -1,0 +1,15 @@
+.chip {
+  min-width: fit-content;
+  border-radius: 50px;
+  height: 32px;
+  background-color: var(--blue-dark);
+  .delete-container{
+    width: 25px;
+    height: 100%;
+    .icon{
+      width: 12px;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="stepper-container">
+  <div class="stepper-inner-container padding-3 flex justify-center align-center flex-wrap">
+    <div class="step-container relative flex" *ngFor="let data of stepsList">
+      <div class="circle-container flex justify-center align-center" [ngClass]="{'active':activeStep >= data.step}" (click)="onStepClick(data.step)" (mouseover)="onStepHover(data.step)" (mouseout)="onStepLeave(data.step)">
+        <p class="step padding-b-2 gray-super-dark text-center font-regular size-small">{{data.step}}</p>
+      </div>
+      <div class="line-container padding-lr-6 flex justify-center align-center" *ngIf="data.step != steps">
+        <div class="line" [ngClass]="{'active':activeStep > data.step}"></div>
+      </div>
+
+      <div #noteContainer class="note-container absolute padding-tb-3 padding-lr-6 justify-center align-center">
+        <p class="note padding-b-2 gray-super-dark text-center font-regular size-extra-small">{{data.note}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
+<div class="page-container">
+  <div class="inner-container padding-10 flex justify-center align-center flex-column">
+    <div class="email-activation-container">
+      <div class="image-container flex justify-center align-center margin-b-10">
+        <img src="./assets/Images/Email Box.png" alt="">
+      </div>
+      <div class="text-container flex justify-center align-start flex-column">
+        <p class="title text-center white size-medium font-semi-bold padding-t-10">Email Confirmation</p>
+        <p class="sub-title text-center gray-light size-regular font-regular padding-t-10">We have sent an email to <b class="white">{{email}}</b> to confirm the validity of our email address. After receiving the email, follow the link provided to complete your registration.</p>
+        <p class="note text-center white size-regular font-medium padding-t-20">If you haven't got any email.<br><span *ngIf="!loading" class="font-medium cyan-light" (click)="sendActivationEmail()">Resend confirmation email</span></p>
+        <p class="note text-center white size-regular font-medium padding-t-20">Account activated?<br><span class="font-medium cyan-light" (click)="login()">Login</span></p>
+      </div>
+    </div>
+  </div>
+</div>

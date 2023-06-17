@@ -1,0 +1,75 @@
+.page-container{
+  .inner-container{
+    background: var(--blue-gradient);
+    .box-container{
+      width: 550px;
+      height: 430px;
+      border-radius: 50px;
+      box-shadow: 0 0 100px 10px #34343443;
+      background-color: var(--white);
+      animation: fade-in 0.2s ease-in-out;
+      .box-row{
+        .image{
+          width: 150px;
+          height: auto;
+          object-fit: cover;
+        }
+        .sub-title{
+          span{
+            cursor: pointer;
+          }
+        }
+        &.input-forms{
+          width: 330px;
+          height: auto;
+          min-height: 40%;
+          .input-form{
+            width: 100%;
+            height: auto;
+          }
+        }
+        &.forget-password-container{
+          width: 330px;
+          .forget-password{
+            width: 100%;
+            cursor: pointer;
+          }
+        }
+        &.button-container{
+          width: 100%;
+          height: auto;
+          top: 80px;
+        }
+      }
+    }
+
+    .sign-up-container{
+      width: 100%;
+      .sign-up{
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+@media (max-width: 600px) {
+  .page-container{
+    .inner-container{
+      .box-container{
+        width: 100%;
+        .box-row{
+          .image{
+            width: 130px;
+          }
+          &.input-forms{
+            width: 100%;
+          }
+          &.forget-password-container{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

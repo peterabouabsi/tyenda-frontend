@@ -1,0 +1,17 @@
+<div class="field-container">
+  <div tabindex="1" class="select relative padding-lr-10 padding-t-7" [ngClass]="{'active' : isSelectFieldOpened, 'danger': formControl.dirty && !formControl.valid}" (click)="openCloseSelectField()" (focusout)="closeSelectField()">
+
+      <div class="text-container">
+          <p class="text text-start size-small" [ngClass]="{'gray-dark font-regular':!formControl.value, 'black font-medium':formControl.value}">{{formControl.value? selectedOption.value : placeholder}}</p>
+      </div>
+      <div class="icon-container absolute">
+        <mat-icon class="icon" svgIcon="arrow-right" [ngClass]="{'active' : isSelectFieldOpened}"></mat-icon>
+      </div>
+      <div class="select-options-container" *ngIf="data.length > 0">
+          <div class="option-container padding-10 font-regular size-small" *ngFor="let option of data" (click)="setOption(option)">
+              {{option.value}}
+          </div>
+      </div>
+  </div>
+</div>
+

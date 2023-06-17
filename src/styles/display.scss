@@ -1,0 +1,144 @@
+$base-px: 1px;
+
+@function calculate-padding-margin($value) {
+  @return $value * $base-px;
+}
+
+:root {
+  @for $i from 0 through 100 {
+    --padding-#{$i}: #{calculate-padding-margin($i)};
+    --margin-#{$i}: #{calculate-padding-margin($i)};
+  }
+}
+
+@for $i from 0 through 100 {
+  .padding-#{$i} {
+    padding: var(--padding-#{$i});
+  }
+  .padding-t-#{$i} {
+    padding-top: var(--padding-#{$i});
+  }
+  .padding-b-#{$i} {
+    padding-bottom: var(--padding-#{$i});
+  }
+  .padding-l-#{$i} {
+    padding-left: var(--padding-#{$i});
+  }
+  .padding-r-#{$i} {
+    padding-right: var(--padding-#{$i});
+  }
+  .padding-lr-#{$i} {
+    padding-left: var(--padding-#{$i});
+    padding-right: var(--padding-#{$i});
+  }
+  .padding-tb-#{$i} {
+    padding-top: var(--padding-#{$i});
+    padding-bottom: var(--padding-#{$i});
+  }
+
+  .margin-#{$i} {
+    margin: var(--padding-#{$i});
+  }
+  .margin-t-#{$i} {
+    margin-top: var(--padding-#{$i});
+  }
+  .margin-b-#{$i} {
+    margin-bottom: var(--padding-#{$i});
+  }
+  .margin-l-#{$i} {
+    margin-left: var(--padding-#{$i});
+  }
+  .margin-r-#{$i} {
+    margin-right: var(--padding-#{$i});
+  }
+  .margin-lr-#{$i} {
+    margin-left: var(--padding-#{$i});
+    margin-right: var(--padding-#{$i});
+  }
+  .margin-tb-#{$i} {
+    margin-top: var(--padding-#{$i});
+    margin-bottom: var(--padding-#{$i});
+  }
+}
+
+//Positions
+.static{
+  position: static;
+}
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+}
+.fixed{
+  position: fixed;
+}
+.sticky{
+  position: sticky;
+}
+
+
+//Flex
+.flex{
+  display: flex;
+}
+
+//Justify content
+.justify-start{
+  justify-content: flex-start;
+}
+.justify-center{
+  justify-content: center;
+}
+.justify-end{
+  justify-content: flex-start;
+}
+.justify-space-between{
+  justify-content: space-between;
+}
+.justify-space-around{
+  justify-content: space-around;
+}
+.justify-space-evenly{
+  justify-content: space-evenly;
+}
+
+//Align items
+.align-start{
+  align-items: flex-start;
+}
+.align-center{
+  align-items: center;
+}
+.align-end{
+  align-items: flex-end;
+}
+
+//Flex wrap
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.flex-no-wrap{
+  flex-wrap: nowrap;
+}
+
+//Flex direction
+.flex-column{
+  flex-direction: column;
+}
+.flex-row{
+  flex-direction: row;
+}
+
+//Dimension
+.page-container{
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  .inner-container{
+    width: 100%;
+    width: 100%;
+    min-height: 100vh;
+  }
+}

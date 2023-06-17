@@ -1,0 +1,142 @@
+:root {
+  --extra-small: 10px;
+  --small: 12px;
+  --regular: 14px;
+  --medium: 16px;
+  --semi-large: 20px;
+  --large: 24px;
+  --extra-large: 28px;
+  --super-large: 32px;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}
+
+//Fonts
+.font-thin{
+  font-family: 'tyenda-thin';
+}
+.font-light{
+  font-family: 'tyenda-light';
+}
+.font-extra-light{
+  font-family: 'tyenda-extra-light';
+}
+.font-regular{
+  font-family: 'tyenda-regular';
+}
+.font-medium{
+  font-family: 'tyenda-medium';
+}
+.font-semi-bold{
+  font-family: 'tyenda-semi-bold';
+}
+.font-bold{
+  font-family: 'tyenda-bold';
+}
+.font-extra-bold{
+  font-family: 'tyenda-extra-bold';
+}
+.font-black{
+  font-family: 'tyenda-black';
+}
+
+//Text align
+.text-start{
+  text-align: start;
+}
+.text-center{
+  text-align: center;
+}
+.text-end{
+  text-align: end;
+}
+
+//Text transform
+.uppercase{
+  text-transform: uppercase;
+}
+.lowercase{
+  text-transform: lowercase;
+}
+.capitalize{
+  text-transform: capitalize;
+}
+
+//Text decoration
+.underline{
+  text-decoration: underline;
+}
+.line-through{
+  text-decoration: line-through
+}
+.overline{
+  text-decoration: overline;
+}
+
+//Font size
+.size-extra-small{
+  font-size: var(--extra-small);
+}
+.size-small{
+  font-size: var(--small);
+}
+.size-medium{
+  font-size: var(--medium);
+}
+.size-regular{
+  font-size: var(--regular);
+}
+.size-semi-large{
+  font-size: var(--semi-large);
+}
+.size-large{
+  font-size: var(--large);
+}
+.size-extra-large{
+  font-size: var(--extra-large);
+}
+.size-super-large{
+  font-size: var(--super-large);
+}
+
+//Text ellipse
+.ellipse-1{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ellipse-2{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ellipse-3{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ellipse-4{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ellipse-5{
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ellipse-6{
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
