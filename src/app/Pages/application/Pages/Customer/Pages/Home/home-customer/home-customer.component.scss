@@ -1,0 +1,46 @@
+.parent-container{
+  .inner-container{
+    display: grid;
+    grid-template-columns: 27% 73%;
+    grid-gap: 10px;
+    .left-container{
+      width: 100%;
+      .section{
+        .item-container{
+          width: 100%;
+          height: fit-content;
+          .store-container{
+            width: 100%;
+            .info-container{
+              width: 100%;
+            }
+          }
+          .info-container{
+            width: 100%;
+            .image-container{
+              width: 100%;
+              height: fit-content;
+              max-height: 300px;
+              border-radius: 10px;
+              img{
+                border-radius: 10px;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+              }
+              .badge-rate-container{
+                top: 20px;
+                right: 20px;
+              }
+              .badge-discount-price-container{
+                bottom: 20px;
+                left: 20px;
+                width: fit-content;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Services
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
 @Component({
   selector: 'app-auth-main',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthMainComponent implements OnInit{
 
-  constructor() {
+  constructor(private router: Router,
+              private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
+  }
+
+  public isAuthenticated(){
+    this.globalService.isAuthenticated().then((data) => {
+      if(data.isAuth){
+        this.router.navigate(['/application/'+data.role.toLowerCase()]);
+      }
+    });
   }
 }

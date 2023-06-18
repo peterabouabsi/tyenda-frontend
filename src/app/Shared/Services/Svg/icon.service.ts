@@ -20,5 +20,13 @@ export class IconService {
         'circle-minus',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/circle-minus.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'bell',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/bell.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'bag-shopping',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/bag-shopping.svg')
+      );
     }
 }

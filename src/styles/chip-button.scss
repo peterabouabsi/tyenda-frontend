@@ -1,0 +1,48 @@
+.chip-button{
+  width: auto;
+  min-width: 100px;
+  height: 32px;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 0 1rem;
+  &.gray{
+    background-color: var(--gray-light);
+    transition: 0.3s ease-in-out;
+    border: 1px solid transparent;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--black);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      background-color: var(--gray-dark-alpha);
+      transition: 0.3s ease-in-out;
+    }
+    &:active{
+      border: 1px solid var(--gray);
+      transition: 0.3s ease-in-out;
+    }
+  }
+  &.black{
+    background-color: var(--black);
+    transition: 0.3s ease-in-out;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--white);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      transition: 0.3s ease-in-out;
+      background-color: var(--black-light);
+    }
+  }
+
+}

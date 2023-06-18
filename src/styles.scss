@@ -21,6 +21,7 @@ $tyenda-theme: mat.define-light-theme((
 @import './styles/font.scss';
 @import './styles/animation.scss';
 @import './styles/scrollbar.scss';
+@import './styles/chip-button.scss';
 
 *{
   margin: 0;

@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit{
           if(response.error){
             this.toastrRef.onDanger('Login', response.message, 5);
           }else{
-            //this means you received your tokens and ready to move on
+            //This means you received your tokens and ready to move on
             if(response.isActive == undefined){
               this.globalService.setStorage(Constants.STORAGE_SESSION, response);
               this.globalService.getAccountRole().subscribe((response: any) => {
@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit{
                   if(response.role == Constants.ROLE_STORE) this.router.navigate(['/application/store']);
                 }
               });
+            //This means the account is not activated yet
             }else{
               this.router.navigate(['/authentication/email-activation'], {queryParams: {email: response.email}});
             }

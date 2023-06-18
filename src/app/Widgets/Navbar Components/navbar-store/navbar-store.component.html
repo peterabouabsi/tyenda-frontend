@@ -1,0 +1,43 @@
+<div class="navbar-container">
+  <div class="inner-container padding-3 padding-lr-30 flex justify-start align-center">
+    <div class="logo-container flex justify-center align-center">
+      <img src="./assets/Icons/Icon 3.png" alt="tyenda-logo">
+    </div>
+    <div class="links-container padding-lr-50 flex justify-start align-center" [ngClass]="{'opened' : isLinksOpened}">
+      <div class="link-container padding-lr-10 flex justify-center align-center">
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('home')">Home</p>
+      </div>
+      <div class="link-container padding-lr-10 flex justify-center align-center">
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('search')">Search</p>
+      </div>
+      <div class="link-container padding-lr-10 flex justify-center align-center">
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('orders')">Orders</p>
+      </div>
+      <div class="link-container padding-lr-10 flex justify-center align-center">
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('folders')">Folders</p>
+      </div>
+    </div>
+    <div class="others-container flex justify-end align-end">
+      <div class="icons-container flex justify-center align-center">
+        <div class="icon-container padding-lr-6 flex justify-center align-center">
+          <mat-icon class="icon white" svgIcon="bell"></mat-icon>
+        </div>
+        <div class="icon-container padding-lr-6 flex justify-center align-center">
+          <mat-icon class="icon white" svgIcon="bag-shopping"></mat-icon>
+        </div>
+      </div>
+      <div class="profile-container padding-10 flex justify-center align-center">
+        <div class="image-container flex justify-center align-center">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="">
+        </div>
+      </div>
+      <div class="hamburger-container padding-lr-10 flex justify-center align-center">
+        <div class="hamburger flex justify-space-between align-center flex-column" [ngClass]="{'opened' : isLinksOpened}" (click)="openCloseLinks()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

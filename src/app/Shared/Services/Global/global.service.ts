@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 
+//Constants
+import { Constants } from '../../Models/constants.model';
+
+//Forms
+import { LogoutForm } from 'src/app/Shared/Models/Forms/LogoutForm.form';
+
 //Services
 import { ApiService } from './../Api/api.service';
 
@@ -17,6 +23,17 @@ export class GlobalService {
   }
   public isTokenExpired(token: string) {
     return this.apiService.post('/Session/Check()', { token: token });
+  }
+  public async logout(){
+    let session = this.getStorage(Constants.STORAGE_SESSION);
+    let logoutForm: LogoutForm = {
+      accessToken: session? session.accessToken: '',
+      refreshToken: session? session.refreshToken: ''
+    };
+    let response = await this.apiService.post('/Account/logout()', logoutForm).toPromise();
+    if(!response.error){
+      this.clearStorage();
+    }
   }
   public getCountries() {
     return this.apiService.getAnonymous('/Country');
@@ -64,6 +81,16 @@ export class GlobalService {
 
     // Call the callback function
     callback(!invalid);
+  }
+
+  //Check authenticated user
+  public async isAuthenticated(){
+    let session = this.getStorage(Constants.STORAGE_SESSION);
+    if(session){
+      let response = await this.getAccountRole().toPromise();
+      return {isAuth: true, role: response.role}
+    }
+    return {isAuth: false, role: null};
   }
 
   //LocalStorage

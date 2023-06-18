@@ -8,8 +8,11 @@ import { SharedModule } from 'src/app/Shared/Modules/shared/shared.module';
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
 import { CustomerMainComponent } from '../Pages/Customer/customer-main.component';
-  //
+  import { NavbarCustomerComponent } from 'src/app/Widgets/Navbar Components/navbar-customer/navbar-customer.component';
+  import { HomeCustomerComponent } from '../Pages/Customer/Pages/Home/home-customer/home-customer.component';
+
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
+  import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
   //
 
 @NgModule({
@@ -17,9 +20,15 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
     ApplicationComponent,
 
     CustomerMainComponent,
+    //Navbar
+    NavbarCustomerComponent,
     //Customer Pages
+    HomeCustomerComponent,
 
-    StoreMainComponent
+
+    StoreMainComponent,
+    //Navbar
+    NavbarStoreComponent,
     //Store Pages
 
   ],
@@ -33,11 +42,16 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
     ApplicationComponent,
 
     CustomerMainComponent,
+    //Navbar
+    NavbarCustomerComponent,
     //Customer Pages
+    HomeCustomerComponent,
 
-    StoreMainComponent
+
+    StoreMainComponent,
+    //Navbar
+    NavbarStoreComponent,
     //Store Pages
-
   ],
   providers: []
 })

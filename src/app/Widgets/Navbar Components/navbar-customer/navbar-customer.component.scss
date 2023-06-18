@@ -1,0 +1,176 @@
+.navbar-container{
+  width: 100%;
+  height: 65px;
+  background-color: var(--blue-dark);
+  user-select: none;
+
+  .inner-container{
+    width: 100%;
+    height: 100%;
+    .logo-container{
+      width: fit-content;
+      height: auto;
+      img{
+        width: 95px;
+        height: auto;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+    .links-container{
+      width: fit-content;
+      height: 100%;
+      .link-container{
+        width: fit-content;
+        .link{
+          cursor: pointer;
+        }
+      }
+    }
+    .others-container{
+      width: 100%;
+      height: 100%;
+      .icons-container{
+        width: fit-content;
+        height: 100%;
+        .icon-container{
+          .icon{
+            cursor: pointer;
+          }
+        }
+      }
+      .profile-container{
+        width: fit-content;
+        height: 100%;
+        .image-container{
+          border-radius: 50%;
+          overflow: hidden;
+          cursor: pointer;
+          img{
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+        .options-container{
+          width: 200px;
+          height: fit-content;
+          background: var(--white);
+          top: 51px;
+          right: 11px;
+          border-radius: 20px 0px 20px 20px;
+          box-shadow: 0px 1px 3px 1px var(--gray-light);
+          display: none;
+          transition: 0.3s ease-in-out;
+          &.show{display: block;
+            transition: 0.3s ease-in-out;}
+
+          .option-container{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            &:hover{
+              transition: 0.3s ease-in-out;
+              background-color: var(--gray-alpha);
+            }
+            &:active{
+              background-color: var(--gray-light);
+              transition: 0.3s ease-in-out;
+            }
+
+            &:last-child{
+              &:hover{
+                transition: 0.3s ease-in-out;
+                background-color: var(--red-light-alpha);
+              }
+              &:active{
+                background-color: var(--red-alpha);
+                transition: 0.3s ease-in-out;
+              }
+            }
+          }
+        }
+      }
+
+      .hamburger-container{
+        height: 100%;
+        display: none;
+        .hamburger {
+          width: 24px;
+          height: 20px;
+          cursor: pointer;
+          .bar {
+            width: 100%;
+            height: 4px;
+            border-radius: 50px;
+            background-color: white;
+            transition: 0.3s ease-in-out;
+          }
+          &.opened {
+            .bar:nth-child(2) {
+              opacity: 0;
+              transition: 0.3s ease-in-out;
+            }
+
+            .bar:first-child {
+              transform: translateY(8px) rotate(45deg);
+              transition: 0.3s ease-in-out;
+            }
+
+            .bar:last-child {
+              transform: translateY(-8px) rotate(-45deg);
+              transition: 0.3s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar-container{
+    position: relative;
+    .inner-container{
+      .links-container{
+        position: absolute;
+        width: 100%;
+        height: fit-content;
+        background-color: var(--blue-dark);
+        left: 0px;
+        top: 64px;
+        height: 0px;
+        overflow: hidden;
+        flex-direction: column;
+        border-radius: 0px 0px 20px 20px;
+        .link-container{
+          height: 40px;
+          width: 100%;
+          .link{
+            width: 100%;
+          }
+        }
+
+        &.opened{
+          height: fit-content;
+          padding: 10px 0;
+          .link-container{
+            .link{
+              height: 30px;
+              padding-top: 4px;
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+      .others-container{
+        .hamburger-container{
+          display: flex;
+        }
+      }
+    }
+  }
+}

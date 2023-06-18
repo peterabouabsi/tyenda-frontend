@@ -13,6 +13,8 @@ import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
 import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector-chip/selector-chip.component';
+import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
+import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector
     ToastrComponent,
     StepperComponent,
     SelectFieldComponent,
-    SelectorChipComponent
+    SelectorChipComponent,
+    AvatarComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,9 @@ import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector
     ToastrComponent,
     StepperComponent,
     SelectFieldComponent,
-    SelectorChipComponent
+    SelectorChipComponent,
+    AvatarComponent,
+    BadgeComponent
   ]
 })
 export class SharedModule { }

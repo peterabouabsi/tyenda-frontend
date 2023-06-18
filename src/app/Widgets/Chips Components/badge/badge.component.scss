@@ -1,0 +1,10 @@
+.badge-container{
+  width: fit-content;
+  height: 20px;
+  min-width: 30px;
+  border-radius: 3px;
+  user-select: none;
+  .value{
+    width: 100%;
+  }
+}

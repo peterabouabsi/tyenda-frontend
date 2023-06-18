@@ -18,10 +18,20 @@
   --gray-dark: #BBBBBB;
   --gray-super-dark: #A4A4A4;
 
+  --gray-alpha: #D6D6D65a;
+  --gray-dark-alpha: #BBBBBB5a;
+  --gray-super-dark-alpha: #a4a4a45a;
+
   --red-light: #F83F3F;
   --red: #F42424;
   --red-dark: #EC0C0C;
   --red-super-dark: #D90000;
+
+  --red-light-alpha: #f83f3f1b;
+  --red-alpha: #F424241b;
+  --red-dark-alpha: #EC0C0C1b;
+  --red-super-dark-alpha: #D900001b;
+
 
   --orange-light: #F3A100;
   --orange: #FFB72D;
@@ -35,6 +45,7 @@
 
   --white: #FFFFFF;
 
+  --black-light: #3b3b3b;
   --black: #2F2F2F;
 
   --blue-gradient: linear-gradient(180deg, var(--blue) 0%, var(--blue-dark) 50%, var(--blue-super-dark) 100%);
