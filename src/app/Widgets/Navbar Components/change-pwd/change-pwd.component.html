@@ -1,0 +1,22 @@
+<div class="dialog-container padding-20">
+  <div class="text-container flex justify-center align-center">
+    <p class="title text-center font-bold size-medium black">Change Password</p>
+  </div>
+  <div class="error-message-container flex justify-center align-center padding-10 margin-t-10" *ngIf="errorMessage">
+    <p class="error text-center font-medium size-small red-dark">{{errorMessage}}</p>
+  </div>
+  <div class="inputs-container padding-t-20">
+    <div class="input-form flex justify-center align-center padding-b-20">
+      <app-password-field [placeholder]="'Old password'" [formControl]="changePasswordForm.controls['oldPassword']" (onInputEvent)="setValue('oldPassword', $event)"></app-password-field>
+    </div>
+    <div class="input-form flex justify-center align-center padding-b-20">
+      <app-password-field [placeholder]="'New password'" [formControl]="changePasswordForm.controls['newPassword']" (onInputEvent)="setValue('newPassword', $event)"></app-password-field>
+    </div>
+    <div class="input-form flex justify-center align-center padding-b-20">
+      <app-password-field [placeholder]="'Confirm password'" [formControl]="changePasswordForm.controls['confirmPassword']" (onInputEvent)="setValue('confirmPassword', $event)"></app-password-field>
+    </div>
+  </div>
+  <div class="button-container flex justify-center align-center margin-t-10">
+    <app-button #changePwdButton [value]="'Change password'" [config]="buttonConfig" (click)="changePassword()"></app-button>
+  </div>
+</div>

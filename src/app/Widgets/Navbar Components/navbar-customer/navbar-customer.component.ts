@@ -1,8 +1,12 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+
+//Components
+import { ChangePwdComponent } from '../change-pwd/change-pwd.component';
+import { ToastrComponent } from '../../Other Components/toastr/toastr.component';
 
 @Component({
   selector: 'app-navbar-customer',
@@ -10,6 +14,8 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
   styleUrls: ['./navbar-customer.component.scss']
 })
 export class NavbarCustomerComponent implements OnInit{
+
+  @ViewChild('toastr') toastr: ToastrComponent; public viewToastr: boolean = false;
 
   constructor(private router: Router,
               private globalService: GlobalService) {
@@ -38,7 +44,14 @@ export class NavbarCustomerComponent implements OnInit{
 
   /*Profile Options*/
   public editProfile(){}
-  public changePassword(){}
+  public changePassword(){
+    this.globalService.openDialog(ChangePwdComponent, {}, (response: any) => {
+      if(!response.error){
+        this.viewToastr = true;
+        setTimeout(() => {this.toastr.onSuccess('Change Password', response.message, 5)}, 100);
+      }
+    });
+  }
   public logout(){
     this.globalService.logout().then(() => {
       this.router.navigate(['/authentication']);

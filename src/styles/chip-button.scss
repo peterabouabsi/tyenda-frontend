@@ -44,5 +44,22 @@
       background-color: var(--black-light);
     }
   }
+  &.blue{
+    background-color: var(--blue-dark);
+    transition: 0.3s ease-in-out;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--white);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      transition: 0.3s ease-in-out;
+      background-color: var(--blue);
+    }
+  }
 
 }

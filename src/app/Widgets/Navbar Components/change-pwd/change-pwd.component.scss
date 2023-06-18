@@ -1,0 +1,16 @@
+.dialog-container{
+  width: 300px;
+  height: fit-content;
+  .error-message-container{
+    width: 100%;
+    height: fit-content;
+    border-radius: 3px;
+    background-color: var(--red-light-alpha);
+  }
+  .inputs-container{
+    width: 100%;
+    .input-form{
+      width: 100%;
+    }
+  }
+}

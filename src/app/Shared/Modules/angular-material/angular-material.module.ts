@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 //Angular Materials
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const AngularMaterialModules = [
-  MatIconModule
+  MatIconModule,
+  MatDialogModule
 ];
 
 @NgModule({

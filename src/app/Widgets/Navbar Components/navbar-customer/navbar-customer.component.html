@@ -1,3 +1,4 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
 <div class="navbar-container">
   <div class="inner-container padding-3 padding-lr-30 flex justify-start align-center">
     <div class="logo-container flex justify-center align-center">
@@ -34,7 +35,7 @@
           <div class="option-container padding-10 margin-b-3" (click)="editProfile()">
             <p class="value text-start font-medium size-regular black">Edit profile</p>
           </div>
-          <div class="option-container padding-10 margin-b-3" (cancel)="changePassword()">
+          <div class="option-container padding-10 margin-b-3" (click)="changePassword()">
             <p class="value text-start font-medium size-regular black">Change password</p>
           </div>
           <div class="option-container padding-10 margin-b-3" (click)="logout()">

@@ -1,7 +1,7 @@
 .parent-container{
   .inner-container{
     display: grid;
-    grid-template-columns: 27% 73%;
+    grid-template-columns: 340px auto;
     grid-gap: 10px;
     .left-container{
       width: 100%;

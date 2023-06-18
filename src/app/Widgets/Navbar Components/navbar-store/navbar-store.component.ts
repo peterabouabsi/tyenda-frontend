@@ -6,29 +6,6 @@ import { Router } from '@angular/router';
   templateUrl: './navbar-store.component.html',
   styleUrls: ['./navbar-store.component.scss']
 })
-export class NavbarStoreComponent implements OnInit{
+export class NavbarStoreComponent {
 
-  constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
-    this.onWindowWidth();
-  }
-
-  public onLinkClick(link: string){
-    this.router.navigate(['/application/customer'+link]);
-    this.isLinksOpened = false;
-  }
-
-  public isLinksOpened: boolean = false;
-  public openCloseLinks(){
-    this.isLinksOpened = !this.isLinksOpened;
-  }
-
-  @HostListener('window: resize')
-  public onWindowWidth(){
-    if(window.innerWidth >= 650){
-      this.isLinksOpened = false;
-    }
-  }
 }

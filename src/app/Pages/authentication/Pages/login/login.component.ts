@@ -58,8 +58,7 @@ export class LoginComponent implements OnInit{
         }
 
         this.authenticationService.login(loginFrom).subscribe((response: any) => {
-          setTimeout(() => {this.loginButton.loading = false}, 1500);
-
+          this.loginButton.loading = false
           if(response.error){
             this.toastrRef.onDanger('Login', response.message, 5);
           }else{

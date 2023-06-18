@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 
+//Modules
+import { MatDialog } from '@angular/material/dialog';
+
 //Constants
 import { Constants } from '../../Models/constants.model';
 
 //Forms
 import { LogoutForm } from 'src/app/Shared/Models/Forms/LogoutForm.form';
+import { ChangePasswordForm } from './../../Models/Forms/ChangePasswordForm.form';
 
 //Services
 import { ApiService } from './../Api/api.service';
@@ -14,15 +18,28 @@ import { ApiService } from './../Api/api.service';
 })
 export class GlobalService {
 
-  constructor(private apiService: ApiService) {
+  constructor(private dialog: MatDialog,
+              private apiService: ApiService) {
   }
 
   //Global HTTP Requests
   public getAccountRole() {
     return this.apiService.get('/Account/Role()');
   }
+  public changePassword(changePasswordForm: ChangePasswordForm){
+    return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
+  }
   public isTokenExpired(token: string) {
     return this.apiService.post('/Session/Check()', { token: token });
+  }
+  public getCountries() {
+    return this.apiService.getAnonymous('/Country');
+  }
+  public getCities(countryId: string) {
+    return this.apiService.getAnonymous('/City/' + countryId);
+  }
+  public getCategories() {
+    return this.apiService.getAnonymous('/Category');
   }
   public async logout(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
@@ -34,15 +51,6 @@ export class GlobalService {
     if(!response.error){
       this.clearStorage();
     }
-  }
-  public getCountries() {
-    return this.apiService.getAnonymous('/Country');
-  }
-  public getCities(countryId: string) {
-    return this.apiService.getAnonymous('/City/' + countryId);
-  }
-  public getCategories() {
-    return this.apiService.getAnonymous('/Category');
   }
 
   //Check existancy in an array
@@ -63,7 +71,6 @@ export class GlobalService {
     }
     callback(exist);
   }
-
   //Check object validity
   public checkFormValidity(form: any, properties: string[], callback = (valid: boolean) => { }) {
     let invalid = false;
@@ -82,7 +89,6 @@ export class GlobalService {
     // Call the callback function
     callback(!invalid);
   }
-
   //Check authenticated user
   public async isAuthenticated(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
@@ -116,4 +122,14 @@ export class GlobalService {
     callback(true);
   }
 
+  //Dialog Components
+  public openDialog(component: any, data: any = {}, callback = (result?: any) => {}){
+    let dialog = this.dialog.open(component, {
+      data: data
+    });
+
+    dialog.afterClosed().subscribe((result?: any) => {
+      callback(result);
+    })
+  }
 }

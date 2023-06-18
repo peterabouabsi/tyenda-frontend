@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/Shared/Modules/shared/shared.module';
 
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
+import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd/change-pwd.component';
 import { CustomerMainComponent } from '../Pages/Customer/customer-main.component';
   import { NavbarCustomerComponent } from 'src/app/Widgets/Navbar Components/navbar-customer/navbar-customer.component';
   import { HomeCustomerComponent } from '../Pages/Customer/Pages/Home/home-customer/home-customer.component';
@@ -15,21 +16,21 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
   //
 
+
 @NgModule({
   declarations: [
     ApplicationComponent,
-
+    ChangePwdComponent,
     CustomerMainComponent,
-    //Navbar
-    NavbarCustomerComponent,
-    //Customer Pages
-    HomeCustomerComponent,
-
+      //Navbar
+      NavbarCustomerComponent,
+      //Customer Pages
+      HomeCustomerComponent,
 
     StoreMainComponent,
-    //Navbar
-    NavbarStoreComponent,
-    //Store Pages
+      //Navbar
+      NavbarStoreComponent,
+      //Store Pages
 
   ],
   imports: [
@@ -40,7 +41,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   ],
   exports: [
     ApplicationComponent,
-
+    ChangePwdComponent,
     CustomerMainComponent,
     //Navbar
     NavbarCustomerComponent,
