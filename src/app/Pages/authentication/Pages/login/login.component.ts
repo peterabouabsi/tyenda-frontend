@@ -67,8 +67,7 @@ export class LoginComponent implements OnInit{
               this.globalService.setStorage(Constants.STORAGE_SESSION, response);
               this.globalService.getAccountRole().subscribe((response: any) => {
                 if(!response.error){
-                  if(response.role == Constants.ROLE_CUSTOMER) this.router.navigate(['/application/customer']);
-                  if(response.role == Constants.ROLE_STORE) this.router.navigate(['/application/store']);
+                  this.router.navigate(['/application/'+response.role.toLowerCase()]);
                 }
               });
             //This means the account is not activated yet

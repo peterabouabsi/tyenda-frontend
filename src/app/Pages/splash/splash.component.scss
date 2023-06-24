@@ -1,0 +1,15 @@
+.page-container{
+  .inner-container{
+    img{
+      width: 160px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .bottom-container{
+      bottom: 2rem;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

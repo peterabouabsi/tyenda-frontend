@@ -1,0 +1,20 @@
+<div class="pager-container">
+  <div class="pager-content-container">
+    <ng-content></ng-content>
+  </div>
+  <div class="bottom-container flex justify-space-between align-center flex-wrap margin-t-50">
+    <div class="button-container flex justify-center align-center padding-tb-6">
+      <div class="chip-button {{config.button.color? config.button.color : 'gray'}}">
+        <p class="value uppercase" (click)="viewAllData()">{{config.button.value? config.button.value : 'NO VALUE SET'}}</p>
+      </div>
+    </div>
+    <div class="pages-container padding-r-30 flex justify-center align-center padding-tb-6">
+      <div class="page-number-container flex justify-center align-center padding-b-1 margin-lr-3"
+          [ngClass]="{'active': page == activePage}"
+          *ngFor="let page of pages"
+          (click)="setPage(page)">
+        <p class="value text-center font-medium size-regular">{{page}}</p>
+      </div>
+    </div>
+  </div>
+</div>

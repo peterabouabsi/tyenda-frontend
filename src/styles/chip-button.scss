@@ -5,6 +5,8 @@
   border-radius: 50px;
   cursor: pointer;
   padding: 0 1rem;
+  padding-top: 1px;
+  user-select: none;
   &.gray{
     background-color: var(--gray-light);
     transition: 0.3s ease-in-out;
@@ -24,6 +26,28 @@
     }
     &:active{
       border: 1px solid var(--gray);
+      transition: 0.3s ease-in-out;
+    }
+  }
+  &.white{
+    background-color: var(--white);
+    border: 1px solid var(--blue-light);
+    transition: 0.3s ease-in-out;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--blue);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      background-color: var(--gray-alpha);
+      transition: 0.3s ease-in-out;
+    }
+    &:active{
+      border: 1px solid var(--blue-dark);
       transition: 0.3s ease-in-out;
     }
   }
@@ -59,6 +83,71 @@
     &:hover{
       transition: 0.3s ease-in-out;
       background-color: var(--blue);
+    }
+  }
+  &.orange{
+    background-color: var(--orange-dark);
+    transition: 0.3s ease-in-out;
+    border: 1px solid transparent;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--white);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      transition: 0.3s ease-in-out;
+      background-color: var(--orange);
+    }
+    &:active{
+      border: 1px solid var(--orange-dark);
+      transition: 0.3s ease-in-out;
+    }
+  }
+  &.red{
+    background-color: var(--red-dark);
+    transition: 0.3s ease-in-out;
+    border: 1px solid transparent;
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--white);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      transition: 0.3s ease-in-out;
+      background-color: var(--red);
+    }
+    &:active{
+      border: 1px solid var(--red-dark);
+      transition: 0.3s ease-in-out;
+    }
+  }
+  &.red-white{
+    background-color: var(--white);
+    transition: 0.3s ease-in-out;
+    border: 1px solid var(--red-dark);
+    .value{
+      width: 100%;
+      height: 100%;
+      font-family: "tyenda-semi-bold";
+      color: var(--red-dark);
+      text-align: center;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+    &:hover{
+      transition: 0.3s ease-in-out;
+    }
+    &:active{
+      border: 1px solid var(--red-light-alpha);
+      transition: 0.3s ease-in-out;
     }
   }
 

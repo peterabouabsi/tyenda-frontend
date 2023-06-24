@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Components
 import { AppComponent } from './app.component';
+import { SplashComponent } from './Pages/splash/splash.component';
 
 //Services
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -20,7 +21,8 @@ import { HTTPInterceptor } from './Shared/Http Interceptors/http.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+  .app-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+  }
+
+@media (min-width: 1500px) {
+  .app-container {
+    max-width: 1360px;
+  }
+}

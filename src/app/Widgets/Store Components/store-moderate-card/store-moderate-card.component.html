@@ -1,0 +1,50 @@
+<div class="store-container margin-t-30 padding-tb-10">
+  <div class="images-container relative">
+    <img class="background-image" src="https://electrek.co/wp-content/uploads/sites/3/2021/05/Tesla-Logo-Hero.jpg?quality=82&strip=all&w=1024" alt="">
+    <div class="profile-image-container absolute">
+      <img class="profile-image padding-10" src="https://climatebaseuserstorage.s3.us-west-1.amazonaws.com/photos/66-126-234-65-tesla.png" alt="">
+    </div>
+  </div>
+  <div class="store-info-container padding-tb-10">
+    <p class="title text-start font-extra-bold size-medium black ellipse-1">Tesla</p>
+    <p class="timestamp text-start font-regular size-semi-small gray ellipse-1">Created 2 weeks ago</p>
+    <p class="description text-start font-regular size-semi-small gray-dark ellipse-3 margin-t-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus ipsa sequi odio, similique sit perferendis omnis in magni iusto suscipit ipsum sunt quam consequuntur dolores minus voluptatum itaque fugiat dolore maxime quibusdam! Nisi, tempora est. Quibusdam aspernatur totam doloribus deleniti fugit sint cumque? Beatae reprehenderit in dolorum eum iste quasi officia tempora eius itaque similique voluptatibus, quod fugit incidunt cum autem quis deleniti consequuntur minima eaque deserunt earum. Iusto error debitis ducimus libero voluptates accusantium optio delectus voluptate deserunt, officiis magni vel, minus eligendi! Voluptatum harum tempora placeat modi magni soluta expedita necessitatibus culpa id ea, non dignissimos itaque distinctio!</p>
+
+    <div class="key-value-container flex justify-start align-center margin-t-20">
+      <div class="key-container flex justify-start align-start">
+        <p class="key text-start font-bold size-small black">Branch</p>
+      </div>
+      <div class="value-container flex justify-start align-start">
+        <p class="value text-start font-regular size-small cyan ellipse-1">dsbfpjdbcj bckj lasbcj basjc basj basj b</p>
+      </div>
+    </div>
+
+    <div class="key-value-container flex justify-start align-center">
+      <div class="key-container flex justify-start align-start">
+        <p class="key text-start font-bold size-small black">Phone</p>
+      </div>
+      <div class="value-container flex justify-start align-start">
+        <p class="value text-start font-regular size-small cyan ellipse-1">+961 12 121212</p>
+      </div>
+    </div>
+
+    <div class="key-value-container flex justify-start align-center">
+      <div class="key-container flex justify-start align-start">
+        <p class="key text-start font-bold size-small black">Email</p>
+      </div>
+      <div class="value-container flex justify-start align-start">
+        <p class="value text-start font-regular size-small underline cyan ellipse-1">tesla@email.com</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="buttons-container flex justify-space-between align-center flex-wrap margin-t-20">
+    <div class="chip-button gray">
+      <p class="value">Add to cart</p>
+    </div>
+    <div class="chip-button" [ngClass]="{'red': true, 'red-white': false}">
+      <p class="value">{{true? 'Follow' : 'Unfollow'}}</p>
+    </div>
+  </div>
+</div>

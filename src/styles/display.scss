@@ -150,7 +150,7 @@ $base-px: 1px;
   .inner-container{
     width: 100%;
     height: 100%;
-    padding: 6rem 3rem;
+    padding: 6rem 2rem;
   }
 }
 //Navbar
@@ -158,7 +158,16 @@ $base-px: 1px;
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 1;
   width: 100%;
+  @media (min-width: 1360px) {
+    .navbar-container{
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1500px;
+    }
+  }
+
 }
 
 //Sections
@@ -168,5 +177,14 @@ $base-px: 1px;
   border-radius: 20px;
   &.shadow{
     box-shadow: 0 1px 4px 1px var(--gray-dark-alpha);
+  }
+}
+
+@media (max-width: 660px) {
+  .parent-container{
+    animation: fade-in 0.3s ease-in-out;
+    .inner-container{
+      padding: 6rem 1rem;
+    }
   }
 }

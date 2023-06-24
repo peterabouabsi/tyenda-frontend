@@ -15,6 +15,10 @@ import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepp
 import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector-chip/selector-chip.component';
 import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
 import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
+import { ItemBasicCardComponent } from 'src/app/Widgets/Item Components/item-basic-card/item-basic-card.component';
+import { StoreModerateCardComponent } from 'src/app/Widgets/Store Components/store-moderate-card/store-moderate-card.component';
+import { PagerComponent } from 'src/app/Widgets/Other Components/pager/pager.component';
+import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.com
     SelectFieldComponent,
     SelectorChipComponent,
     AvatarComponent,
-    BadgeComponent
+    BadgeComponent,
+    ItemBasicCardComponent,
+    StoreModerateCardComponent,
+    PagerComponent,
+    OverviewCardComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +55,11 @@ import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.com
     SelectFieldComponent,
     SelectorChipComponent,
     AvatarComponent,
-    BadgeComponent
+    BadgeComponent,
+    ItemBasicCardComponent,
+    StoreModerateCardComponent,
+    PagerComponent,
+    OverviewCardComponent
   ]
 })
 export class SharedModule { }

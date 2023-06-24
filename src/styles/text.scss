@@ -1,6 +1,7 @@
 :root {
   --extra-small: 10px;
-  --small: 12px;
+  --semi-small: 12px;
+  --small: 13px;
   --regular: 14px;
   --medium: 16px;
   --semi-large: 20px;
@@ -68,6 +69,7 @@ p{
 //Text decoration
 .underline{
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .line-through{
   text-decoration: line-through
@@ -79,6 +81,9 @@ p{
 //Font size
 .size-extra-small{
   font-size: var(--extra-small);
+}
+.size-semi-small{
+  font-size: var(--semi-small);
 }
 .size-small{
   font-size: var(--small);

@@ -1,0 +1,27 @@
+.pager-container{
+  .bottom-container{
+    .pages-container{
+      width: fit-content;
+      .page-number-container{
+        width: 30px;
+        height: 30px;
+        border-radius: 50px;
+        background-color: var(--white);
+        border: 1px solid var(--gray-light);
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        .value{
+          color: var(--gray-dark);
+        }
+        &.active{
+          background-color: var(--black-light);
+          border: 1px solid transparent;
+          transition: 0.3s ease-in-out;
+          .value{
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}

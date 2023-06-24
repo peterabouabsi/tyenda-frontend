@@ -1,49 +1,79 @@
 <div class="parent-container">
-  <div class="inner-container">
-    <div class="left-container padding-20">
-      <div class="section shadow padding-20">
+  <div class="inner-container flex justify-start align-start">
+    <div class="left-container padding-tb-20 padding-lr-10">
+      <div class="section shadow padding-20 margin-b-50">
         <div class="text-container flex jusitfy-start align-center">
-          <p class="title text-start font-extra-bold size-medium black capitalize">Top rated item</p>
+          <p class="title text-start font-extra-bold size-medium black capitalize">Top-Selling item</p>
         </div>
-        <div class="item-container margin-t-30 padding-tb-10">
-          <div class="store-container flex justify-start align-center">
-            <app-avatar [src]="'https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA'"></app-avatar>
-            <div class="info-container padding-l-10 flex justify-center align-start flex-column">
-              <p class="name text-start font-semi-bold size-regular black capitalize">Google Inc.</p>
-              <p class="username text-start font-medium size-small cyan capitalize">@google.inc</p>
-            </div>
-          </div>
-          <div class="info-container margin-tb-10">
-            <div class="image-container relative">
-              <img src="https://www.cnet.com/a/img/resize/bebef835df90640f9aa2e4a2f2a2699cf53a301f/hub/2020/10/26/b60bfe6f-3193-4381-b0d4-ac628cdcc565/img-1419.jpg?auto=webp&width=1200" alt="">
-              <div class="badge-rate-container absolute">
-                <app-badge [color]="'var(--orange)'" [value]="'4/5'"></app-badge>
-              </div>
-              <div class="badge-discount-price-container flex justify-start align-center absolute">
-                <div class="badge-discount-container">
-                  <app-badge [color]="'var(--red-dark)'" [value]="'20%'"></app-badge>
-                </div>
-                <div class="badge-price-container margin-l-3">
-                  <app-badge [color]="'var(--green-super-dark)'" [value]="'200$'"></app-badge>
-                </div>
-              </div>
-            </div>
-            <div class="text-container flex justify-start align-start flex-column padding-tb-10">
-              <p class="name text-start font-bold size-medium black">Play Station 5</p>
-              <p class="description text-start font-regular size-small gray-super-dark ellipse-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia possimus, enim iusto delectus suscipit voluptatibus ex accusantium! Tempore dicta consequuntur dolorum unde fuga incidunt doloremque culpa, voluptas quam maxime nam sint. Officia maxime assumenda expedita, aliquid neque velit eos totam ullam minima minus, quis accusamus consequatur quod, commodi possimus odio.</p>
-            </div>
-          </div>
-          <div class="buttons-container flex justify-space-between align-center margin-t-20">
-            <div class="chip-button gray">
-              <p class="value">Add to cart</p>
-            </div>
-            <div class="chip-button blue">
-              <p class="value">Order now</p>
-            </div>
+        <div class="item-card-container flex justify-center align-center">
+          <app-item-basic-card></app-item-basic-card>
+        </div>
+      </div>
+
+      <div class="section shadow padding-20 margin-b-10">
+        <div class="text-container flex justify-start align-center">
+          <p class="title text-start font-extra-bold size-medium black capitalize">Overview</p>
+        </div>
+        <div class="overview-cards-container flex justify-center align-center flex-wrap margin-tb-10">
+          <div class="overview-card-container padding-10" *ngFor="let overview of overviews">
+            <app-overview-card></app-overview-card>
           </div>
         </div>
       </div>
     </div>
-    <div class="right-container padding-20"></div>
+    <div class="right-container padding-tb-20 padding-lr-10">
+
+      <div class="section shadow items-container padding-20 margin-b-50">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-extra-bold size-medium black capitalize">Items</p>
+        </div>
+        <app-pager
+          [itemPerPage]="itemsData.dataPerPage"
+          [config]="{button: {color: 'black', path: '', value: 'View All Items'}, dataCount: itemsData.count}"
+          (onSetPage)="getPagingData('items', $event)">
+          <div class="item-cards-container flex justify-start align-center flex-wrap">
+            <div class="item-card-container flex justify-center align-center padding-lr-10"
+              *ngFor="let item of itemsData.data">
+              <app-item-basic-card></app-item-basic-card>
+            </div>
+          </div>
+        </app-pager>
+      </div>
+
+      <div class="section shadow items-container padding-20 margin-b-50">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-extra-bold size-medium black capitalize">Stores</p>
+        </div>
+        <app-pager
+          [itemPerPage]="storesData.dataPerPage"
+          [config]="{button: {color: 'black', path: '', value: 'View All Stores'}, dataCount: storesData.count}"
+          (onSetPage)="getPagingData('stores', $event)">
+          <div class="item-cards-container flex justify-start align-center flex-wrap">
+            <div class="item-card-container flex justify-center align-center padding-lr-10"
+              *ngFor="let store of storesData.data">
+              <app-store-moderate-card></app-store-moderate-card>
+            </div>
+          </div>
+        </app-pager>
+      </div>
+
+      <div class="section shadow items-container padding-20 margin-b-50">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-extra-bold size-medium black capitalize">Recent Orders</p>
+        </div>
+        <app-pager
+          [itemPerPage]="ordersData.dataPerPage"
+          [config]="{button: {color: 'black', path: '', value: 'View All Orders'}, dataCount: ordersData.count}"
+          (onSetPage)="getPagingData('orders', $event)">
+          <div class="item-cards-container flex justify-start align-center flex-wrap">
+            <div class="item-card-container flex justify-center align-center padding-r-30"
+              *ngFor="let order of ordersData.data">
+
+            </div>
+          </div>
+        </app-pager>
+      </div>
+
+    </div>
   </div>
 </div>

@@ -37,6 +37,47 @@
           .icon{
             cursor: pointer;
           }
+          .notifications-container{
+            width: 200px;
+            height: fit-content;
+            background: var(--white);
+            top: 30px;
+            right: 11px;
+            border-radius: 20px 0px 20px 20px;
+            box-shadow: 0px 1px 3px 1px var(--gray-light);
+            display: none;
+            transition: 0.3s ease-in-out;
+            &.show{
+              display: block;
+              transition: 0.3s ease-in-out;}
+
+            .notification-container{
+              width: 100%;
+              height: 40px;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: 0.3s ease-in-out;
+              &:hover{
+                transition: 0.3s ease-in-out;
+                background-color: var(--gray-alpha);
+              }
+              &:active{
+                background-color: var(--gray-light);
+                transition: 0.3s ease-in-out;
+              }
+
+              &:last-child{
+                &:hover{
+                  transition: 0.3s ease-in-out;
+                  background-color: var(--red-light-alpha);
+                }
+                &:active{
+                  background-color: var(--red-alpha);
+                  transition: 0.3s ease-in-out;
+                }
+              }
+            }
+          }
         }
       }
       .profile-container{
@@ -63,7 +104,8 @@
           box-shadow: 0px 1px 3px 1px var(--gray-light);
           display: none;
           transition: 0.3s ease-in-out;
-          &.show{display: block;
+          &.show{
+            display: block;
             transition: 0.3s ease-in-out;}
 
           .option-container{

@@ -5,32 +5,34 @@ import { RouterModule, Routes } from '@angular/router';
 import { Constants } from './Shared/Models/constants.model';
 
 //Pages
+import { SplashComponent } from './Pages/splash/splash.component';
+
 import { AuthMainComponent } from './Pages/authentication/Pages/auth-main.component';
-import { LoginComponent } from './Pages/authentication/Pages/login/login.component';
-import { ForgetPasswordComponent } from './Pages/authentication/Pages/forget-password/forget-password.component';
-import { ResetPasswordComponent } from './Pages/authentication/Pages/reset-password/reset-password.component';
-import { EmailActivationComponent } from './Pages/authentication/Pages/email-activation/email-activation.component';
-import { EmailVerificationComponent } from './Pages/authentication/Pages/email-verification/email-verification.component';
-import { CustomerSignupComponent } from './Pages/authentication/Pages/customer-signup/customer-signup.component';
-import { StoreSignupComponent } from './Pages/authentication/Pages/store-signup/store-signup.component';
-  import { AccountInfoComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/account-info/account-info.component';
-  import { StoreInfoComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-info/store-info.component';
-  import { StoreBranchComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-branch/store-branch.component';
-  import { StoreCategoryComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-category/store-category.component';
+  import { LoginComponent } from './Pages/authentication/Pages/login/login.component';
+  import { ForgetPasswordComponent } from './Pages/authentication/Pages/forget-password/forget-password.component';
+  import { ResetPasswordComponent } from './Pages/authentication/Pages/reset-password/reset-password.component';
+  import { EmailActivationComponent } from './Pages/authentication/Pages/email-activation/email-activation.component';
+  import { EmailVerificationComponent } from './Pages/authentication/Pages/email-verification/email-verification.component';
+  import { CustomerSignupComponent } from './Pages/authentication/Pages/customer-signup/customer-signup.component';
+  import { StoreSignupComponent } from './Pages/authentication/Pages/store-signup/store-signup.component';
+    import { AccountInfoComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/account-info/account-info.component';
+    import { StoreInfoComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-info/store-info.component';
+    import { StoreBranchComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-branch/store-branch.component';
+    import { StoreCategoryComponent } from './Pages/authentication/Pages/store-signup/Stepper Components/store-category/store-category.component';
 
 import { ApplicationComponent } from './Pages/application/Pages/application.component';
-import { CustomerMainComponent } from './Pages/application/Pages/Customer/customer-main.component';
-  import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer/home-customer.component';
+  import { CustomerMainComponent } from './Pages/application/Pages/Customer/customer-main.component';
+    import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer/home-customer.component';
 
-import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
-  //
+  import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
+    //
 
 //Guards
 import { authenticationGuard } from './Shared/Guards/Authentication/authentication.guard';
 import { roleBasedAuthenticationGuard } from './Shared/Guards/Role-Based Authentication/role-based-authentication.guard';
 
 const routes: Routes = [
-  {path:'', redirectTo: 'authentication', pathMatch: 'full'},
+  {path:'', component: SplashComponent},
   {path: 'authentication', component: AuthMainComponent, children: [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', title: 'Tyenda | Login', component: LoginComponent},

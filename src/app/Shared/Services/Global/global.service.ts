@@ -98,6 +98,10 @@ export class GlobalService {
     }
     return {isAuth: false, role: null};
   }
+  //Check if the device is touchable
+  public checkTouchDevice(){
+    return 'ontouchstart' in window;
+  }
 
   //LocalStorage
   public setStorage(key: string, value: any) {

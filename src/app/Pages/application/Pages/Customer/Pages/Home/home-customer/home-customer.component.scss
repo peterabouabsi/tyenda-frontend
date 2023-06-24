@@ -1,46 +1,56 @@
 .parent-container{
   .inner-container{
-    display: grid;
-    grid-template-columns: 340px auto;
-    grid-gap: 10px;
     .left-container{
       width: 100%;
+      max-width: 330px;
       .section{
-        .item-container{
+        .item-card-container{
           width: 100%;
-          height: fit-content;
-          .store-container{
-            width: 100%;
-            .info-container{
-              width: 100%;
+        }
+      }
+    }
+    .right-container{
+      width: 100%;
+      height: fit-content;
+      .item-cards-container{
+        width: 100%;
+        .item-card-container{
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1065px) {
+  .parent-container{
+    .inner-container{
+      display: block;
+      .left-container,.right-container{
+        .section{
+          .text-container{
+            justify-content: center;
+            .title{
+              font-size: 20px;
             }
           }
-          .info-container{
-            width: 100%;
-            .image-container{
-              width: 100%;
-              height: fit-content;
-              max-height: 300px;
-              border-radius: 10px;
-              img{
-                border-radius: 10px;
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-              }
-              .badge-rate-container{
-                top: 20px;
-                right: 20px;
-              }
-              .badge-discount-price-container{
-                bottom: 20px;
-                left: 20px;
-                width: fit-content;
-              }
+        }
+      }
+      .left-container{
+        max-width: none;
+      }
+      .right-container{
+        .section{
+          .item-cards-container{
+            justify-content: center;
+            .item-card-container{
+              max-width: none;
             }
           }
         }
       }
     }
   }
+
 }
