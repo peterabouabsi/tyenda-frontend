@@ -4,9 +4,11 @@
   </div>
   <div class="bottom-container flex justify-space-between align-center flex-wrap margin-t-50">
     <div class="button-container flex justify-center align-center padding-tb-6">
-      <div class="chip-button {{config.button.color? config.button.color : 'gray'}}">
-        <p class="value uppercase" (click)="viewAllData()">{{config.button.value? config.button.value : 'NO VALUE SET'}}</p>
-      </div>
+      <app-button
+        [color]="config.button.color? config.button.color : 'gray'"
+        [value]="config.button.value? config.button.value : 'NO VALUE SET'"
+        (click)="viewAllData()">
+      </app-button>
     </div>
     <div class="pages-container padding-r-30 flex justify-center align-center padding-tb-6">
       <div class="page-number-container flex justify-center align-center padding-b-1 margin-lr-3"

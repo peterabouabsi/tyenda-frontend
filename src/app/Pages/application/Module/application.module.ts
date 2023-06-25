@@ -11,6 +11,7 @@ import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd
 import { CustomerMainComponent } from '../Pages/Customer/customer-main.component';
   import { NavbarCustomerComponent } from 'src/app/Widgets/Navbar Components/navbar-customer/navbar-customer.component';
   import { HomeCustomerComponent } from '../Pages/Customer/Pages/Home/home-customer/home-customer.component';
+  import { SearchComponent } from '../Pages/Customer/Pages/Search/search/search.component';
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
@@ -26,6 +27,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       NavbarCustomerComponent,
       //Customer Pages
       HomeCustomerComponent,
+      SearchComponent,
 
     StoreMainComponent,
       //Navbar
@@ -43,16 +45,16 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
     ApplicationComponent,
     ChangePwdComponent,
     CustomerMainComponent,
-    //Navbar
-    NavbarCustomerComponent,
-    //Customer Pages
-    HomeCustomerComponent,
-
+      //Navbar
+      NavbarCustomerComponent,
+      //Customer Pages
+      HomeCustomerComponent,
+      SearchComponent,
 
     StoreMainComponent,
-    //Navbar
-    NavbarStoreComponent,
-    //Store Pages
+      //Navbar
+      NavbarStoreComponent,
+      //Store Pages
   ],
   providers: []
 })

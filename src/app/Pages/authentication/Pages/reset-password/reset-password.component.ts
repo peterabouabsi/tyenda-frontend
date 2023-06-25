@@ -3,10 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 //Config
-import { ButtonConfig } from 'src/app/Widgets/Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
 //Components
-import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 
 //Forms
@@ -53,7 +53,7 @@ export class ResetPasswordComponent implements OnInit{
     this.resetPasswordForm.get(formControlName).setValue(value);
   }
 
-  @ViewChild('resetPasswordButton') resetPasswordButton: ButtonComponent;
+  @ViewChild('resetPasswordButton') resetPasswordButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public resetPassword(){
     this.resetPasswordButton.onClick(() => {

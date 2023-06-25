@@ -1,6 +1,6 @@
 ::-webkit-scrollbar{
   width: 10px;
-  background-color: var(--white);
+  background-color: transparent; /* Set the background color of the scrollbar track */
 }
 ::-webkit-scrollbar-thumb{
   border-radius: 50px;

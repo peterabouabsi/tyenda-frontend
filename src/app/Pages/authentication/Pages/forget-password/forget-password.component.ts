@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Config
-import { ButtonConfig } from 'src/app/Widgets/Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
 //Components
-import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 
 //Services
@@ -40,7 +40,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.forgetPasswordForm.get(formControlName).setValue(value);
   }
 
-  @ViewChild('sendEmailButton') sendEmailButton: ButtonComponent;
+  @ViewChild('sendEmailButton') sendEmailButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public send() {
     this.sendEmailButton.onClick(() => {

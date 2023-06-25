@@ -36,15 +36,10 @@
         <p class="value text-start font-regular size-small underline cyan ellipse-1">tesla@email.com</p>
       </div>
     </div>
-
   </div>
 
   <div class="buttons-container flex justify-space-between align-center flex-wrap margin-t-20">
-    <div class="chip-button gray">
-      <p class="value">Add to cart</p>
-    </div>
-    <div class="chip-button" [ngClass]="{'red': true, 'red-white': false}">
-      <p class="value">{{true? 'Follow' : 'Unfollow'}}</p>
-    </div>
+    <app-button [color]="'gray'" [value]="'Add to cart'"></app-button>
+    <app-button [color]="true? 'red' : 'red-white'" [value]="true? 'Follow': 'Unfollow'"></app-button>
   </div>
 </div>

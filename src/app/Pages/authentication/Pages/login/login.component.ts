@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Config
-import { ButtonConfig } from 'src/app/Widgets/Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
 //Components
-import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 
 //Forms
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit{
     this.loginForm.get(controleName).setValue(value);
   }
 
-  @ViewChild('loginButton') loginButton: ButtonComponent;
+  @ViewChild('loginButton') loginButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public login(){
     this.loginButton.onClick(() => {

@@ -1,4 +1,4 @@
-<div class="dialog-container padding-20">
+<div class="dialog-container padding-tb-30 padding-lr-50">
   <div class="text-container flex justify-center align-center">
     <p class="title text-center font-bold size-medium black">Change Password</p>
   </div>
@@ -17,6 +17,6 @@
     </div>
   </div>
   <div class="button-container flex justify-center align-center margin-t-10">
-    <app-button #changePwdButton [value]="'Change password'" [config]="buttonConfig" (click)="changePassword()"></app-button>
+    <app-button-loader #changePwdButton [value]="'Change password'" [config]="buttonConfig" (click)="changePassword()"></app-button-loader>
   </div>
 </div>

@@ -6,6 +6,7 @@ import { Constants } from './Shared/Models/constants.model';
 
 //Pages
 import { SplashComponent } from './Pages/splash/splash.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
 
 import { AuthMainComponent } from './Pages/authentication/Pages/auth-main.component';
   import { LoginComponent } from './Pages/authentication/Pages/login/login.component';
@@ -23,6 +24,7 @@ import { AuthMainComponent } from './Pages/authentication/Pages/auth-main.compon
 import { ApplicationComponent } from './Pages/application/Pages/application.component';
   import { CustomerMainComponent } from './Pages/application/Pages/Customer/customer-main.component';
     import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer/home-customer.component';
+    import { SearchComponent } from './Pages/application/Pages/Customer/Pages/Search/search/search.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //
@@ -52,9 +54,9 @@ const routes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivateChild: [authenticationGuard], children: [
     {path: 'customer', component: CustomerMainComponent, data: {roles: [Constants.ROLE_CUSTOMER]}, canActivate: [roleBasedAuthenticationGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: HomeCustomerComponent, title: 'Tyenda | Home'}
+      {path: 'home', component: HomeCustomerComponent, title: 'Tyenda | Home'},
+      {path: 'search', component: SearchComponent, title: 'Tyenda | Search'}
       /*
-      {path: 'search', component: null, title: 'Tyenda | Search'},
       {path: 'orders', component: null, title: 'Tyenda | Orders'},
       {path: 'folders', component: null, title: 'Tyenda | Folders'}
       */
@@ -62,7 +64,8 @@ const routes: Routes = [
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
 
     ]}
-  ]}
+  ]},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

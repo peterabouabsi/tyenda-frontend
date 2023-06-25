@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-//Config
-import { ButtonConfig } from './ButtonConfig.form';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -11,19 +8,8 @@ import { ButtonConfig } from './ButtonConfig.form';
 export class ButtonComponent implements OnInit{
 
   @Input() value: string = '';
-  @Input() config: ButtonConfig = {isBlue: false, isWhite: false, isStepper: false, disabled: false};
-
-  constructor() {
-  }
+  @Input() color: string = '';//blue, white, red, red-white, orange, black etc.
 
   ngOnInit(): void {
-  }
-
-  public loading: boolean = false;
-  public onClick(callback = () => {}){
-    if(!this.config.isStepper && !this.config.disabled){
-      this.loading = true;
-    }
-    callback();
   }
 }

@@ -1,0 +1,36 @@
+.parent-container{
+  .inner-container{
+    .header-container{
+      width: 100%;
+      .filter-container{
+        width: auto;
+        .option-filter-container{
+          width: auto;
+          min-width: 100px;
+          cursor: pointer;
+          border: 1px solid var(--blue-dark);
+          transition: 0.3s ease-in-out;
+          .filter{
+            color: var(--blue-dark);
+          }
+
+          &:first-child{
+            border-radius: 6px 0 0 6px;
+          }
+          &:last-child{
+            border-radius: 0 6px 6px 0;
+          }
+          &.active{
+            background-color: var(--blue-dark);
+            .filter{
+              color: var(--white);
+            }
+          }
+        }
+      }
+
+      .search-filter-container{}
+      .result-container{}
+    }
+  }
+}

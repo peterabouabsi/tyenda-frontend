@@ -20,7 +20,7 @@
         <p class="forget-password text-end red size-small font-medium" (click)="forgetPassword()">Forget password?</p>
       </div>
       <div class="box-row button-container flex justify-center align-center relative">
-        <app-button #loginButton [value]="'Login'" [config]="buttonConfig" (click)="login()"></app-button>
+        <app-button-loader #loginButton [value]="'Login'" [config]="buttonConfig" (click)="login()"></app-button-loader>
       </div>
     </div>
     <div class="sign-up-container flex justify-center align-center padding-t-30">

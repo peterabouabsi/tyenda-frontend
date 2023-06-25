@@ -6,7 +6,7 @@ import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Config
 import { StepConfig } from 'src/app/Widgets/Other Components/stepper/StepConfig.form';
-import { ButtonConfig } from 'src/app/Widgets/Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -19,7 +19,7 @@ import { StoreSignupForm } from 'src/app/Shared/Models/Forms/StoreSignupForm.for
 import { BasicCategoryView } from 'src/app/Shared/Models/Views/Category/BasicCategoryView.view';
 
 //Components
-import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 
 @Component({
@@ -94,7 +94,7 @@ export class StoreSignupComponent implements OnInit {
     this.router.navigate([this.stepperConfig[this.activeStep - 1].route]);
   }
 
-  @ViewChild('signupButton') signupButton: ButtonComponent;
+  @ViewChild('signupButton') signupButton: ButtonLoaderComponent;
   private signup() {
     this.signupButton.onClick(() => {
       let storeData = this.globalService.getStorage(Constants.STORAGE_STORE_DATA);

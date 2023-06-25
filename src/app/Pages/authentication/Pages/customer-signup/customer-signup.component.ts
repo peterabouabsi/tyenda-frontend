@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Config
-import { ButtonConfig } from 'src/app/Widgets/Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
 //Components
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
-import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 
 //Forms
 import { CustomerSignupForm } from './../../../../Shared/Models/Forms/CustomerSignupForm.form';
@@ -45,7 +45,7 @@ export class CustomerSignupComponent implements OnInit{
     this.signupForm.get(formControlName).setValue(value);
   }
 
-  @ViewChild('signupButton') signupButton: ButtonComponent;
+  @ViewChild('signupButton') signupButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public signup(){
     this.signupButton.onClick(() => {

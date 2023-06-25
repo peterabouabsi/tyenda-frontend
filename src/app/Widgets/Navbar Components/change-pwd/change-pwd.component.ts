@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 //Config
-import { ButtonConfig } from '../../Button Components/button/ButtonConfig.form';
+import { ButtonConfig } from '../../Button Components/button-loader/ButtonConfig.form';
 
 //Components
-import { ButtonComponent } from '../../Button Components/button/button.component';
+import { ButtonLoaderComponent } from '../../Button Components/button-loader/button-loader.component';
 
 //Forms
 import { ChangePasswordForm } from 'src/app/Shared/Models/Forms/ChangePasswordForm.form';
@@ -42,7 +42,7 @@ export class ChangePwdComponent implements OnInit{
     this.buttonConfig.disabled = this.changePasswordForm.invalid
   }
 
-  @ViewChild('changePwdButton') changePwdButton: ButtonComponent;
+  @ViewChild('changePwdButton') changePwdButton: ButtonLoaderComponent;
   public errorMessage: string = "";
   @HostListener('document: keyup.enter')
   public changePassword(){

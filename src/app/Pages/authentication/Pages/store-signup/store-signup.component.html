@@ -14,7 +14,7 @@
       </div>
 
       <div class="box-row button-container flex justify-center align-center absolute">
-        <app-button #signupButton [value]="steps == activeStep? 'Signup' : 'Next'" [config]="buttonConfig" (click)="nextOrSignup()"></app-button>
+        <app-button-loader #signupButton [value]="steps == activeStep? 'Signup' : 'Next'" [config]="buttonConfig" (click)="nextOrSignup()"></app-button-loader>
       </div>
     </div>
 

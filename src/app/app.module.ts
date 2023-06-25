@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 //Components
 import { AppComponent } from './app.component';
 import { SplashComponent } from './Pages/splash/splash.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
 
 //Services
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -22,7 +23,8 @@ import { HTTPInterceptor } from './Shared/Http Interceptors/http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    SplashComponent
+    SplashComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+.notification-card-container{
+  width: 100%;
+  height: fit-content;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover, &.unseen{
+    background-color: var(--cyan-gray-light);
+  }
+  .info-container{
+    width: 100%;
+    .image-container{
+      width: 160px;
+      height: auto;
+      img{
+        width: 100%;
+        border-radius: 6px;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+}

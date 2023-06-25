@@ -1,0 +1,22 @@
+<div class="parent-container">
+  <div class="inner-container flex justify-start align-start">
+    <div class="header-container flex justify-space-between align-center flex-wrap">
+      <div class="text-container">
+        <p class="text text-start font-black size-extra-large black">Search</p>
+      </div>
+      <div class="filter-container flex justify-center align-center">
+        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6" [ngClass]="{'active': activeFilterIndex == 1}" (click)="setFilterIndex(1)">
+          <p class="filter text-center font-medium size-regular padding-b-2">Stores</p>
+        </div>
+        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6" [ngClass]="{'active': activeFilterIndex == 2}" (click)="setFilterIndex(2)">
+          <p class="filter text-center font-medium size-regular padding-b-2">Items</p>
+        </div>
+      </div>
+    </div>
+    <div class="search-filter-container flex justify-space-between align-center">
+      <div class="inputs-container"></div>
+      <div class="overview-container"></div>
+    </div>
+    <div class="result-container"></div>
+  </div>
+</div>
