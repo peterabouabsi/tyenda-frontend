@@ -87,9 +87,12 @@
           border-radius: 50%;
           overflow: hidden;
           cursor: pointer;
+          background-color: var(--white);
+          box-shadow: 0px 1px 4px 1px var(--gray-alpha);
+          padding: 3px;
           img{
-            width: 33px;
-            height: 33px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             object-fit: cover;
           }
@@ -146,7 +149,7 @@
           cursor: pointer;
           .bar {
             width: 100%;
-            height: 4px;
+            height: 3px;
             border-radius: 50px;
             background-color: white;
             transition: 0.3s ease-in-out;
@@ -163,7 +166,7 @@
             }
 
             .bar:last-child {
-              transform: translateY(-8px) rotate(-45deg);
+              transform: translateY(-9px) rotate(-45deg);
               transition: 0.3s ease-in-out;
             }
           }
@@ -176,14 +179,21 @@
 @media (max-width: 650px) {
   .navbar-container{
     position: relative;
+    height: 50px;
     .inner-container{
+      padding: 0 13px 0 13px;
+      .logo-container{
+        img{
+          width: 80px;
+        }
+      }
       .links-container{
         position: absolute;
         width: 100%;
         height: fit-content;
         background-color: var(--blue-dark);
         left: 0px;
-        top: 64px;
+        top: 49px;
         height: 0px;
         overflow: hidden;
         flex-direction: column;
@@ -209,6 +219,23 @@
         }
       }
       .others-container{
+        .icons-container{
+          .icon-container{
+            .icon{
+              width: 19px;
+            }
+          }
+        }
+
+        .profile-container{
+          .image-container{
+            img{
+              width: 27px;
+              height: 27px;
+            }
+          }
+        }
+
         .hamburger-container{
           display: flex;
         }

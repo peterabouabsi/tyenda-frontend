@@ -6,11 +6,11 @@
           <p class="title text-start font-extra-bold size-medium black capitalize">Top-Selling item</p>
         </div>
         <div class="item-card-container flex justify-center align-center">
-          <app-item-basic-card></app-item-basic-card>
+          <app-item-customer-basic-card></app-item-customer-basic-card>
         </div>
       </div>
 
-      <div class="section shadow padding-20 margin-b-10">
+      <div class="overview-section section shadow padding-20 margin-b-10">
         <div class="text-container flex justify-start align-center">
           <p class="title text-start font-extra-bold size-medium black capitalize">Overview</p>
         </div>
@@ -31,10 +31,10 @@
           [itemPerPage]="itemsData.dataPerPage"
           [config]="{button: {color: 'black', path: '', value: 'View All Items'}, dataCount: itemsData.count}"
           (onSetPage)="getPagingData('items', $event)">
-          <div class="item-cards-container flex justify-start align-center flex-wrap">
-            <div class="item-card-container flex justify-center align-center padding-lr-10"
+          <div class="cards-container flex justify-start align-center flex-wrap">
+            <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let item of itemsData.data">
-              <app-item-basic-card></app-item-basic-card>
+              <app-item-customer-basic-card></app-item-customer-basic-card>
             </div>
           </div>
         </app-pager>
@@ -48,30 +48,30 @@
           [itemPerPage]="storesData.dataPerPage"
           [config]="{button: {color: 'black', path: '', value: 'View All Stores'}, dataCount: storesData.count}"
           (onSetPage)="getPagingData('stores', $event)">
-          <div class="item-cards-container flex justify-start align-center flex-wrap">
-            <div class="item-card-container flex justify-center align-center padding-lr-10"
+          <div class="cards-container flex justify-start align-center flex-wrap">
+            <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let store of storesData.data">
-              <app-store-moderate-card></app-store-moderate-card>
+              <app-store-customer-moderate-card></app-store-customer-moderate-card>
             </div>
           </div>
         </app-pager>
       </div>
 
-      <div class="section shadow items-container padding-20 margin-b-50">
+      <div class="section recent-orders-section shadow items-container padding-20 margin-b-50">
         <div class="text-container flex jusitfy-start align-center">
           <p class="title text-start font-extra-bold size-medium black capitalize">Recent Orders</p>
         </div>
-        <app-pager
-          [itemPerPage]="ordersData.dataPerPage"
-          [config]="{button: {color: 'black', path: '', value: 'View All Orders'}, dataCount: ordersData.count}"
-          (onSetPage)="getPagingData('orders', $event)">
-          <div class="item-cards-container flex justify-start align-center flex-wrap">
-            <div class="item-card-container flex justify-center align-center padding-r-30"
-              *ngFor="let order of ordersData.data">
-
-            </div>
+        <div class="order-cards-container margin-t-30">
+          <div class="order-card-container padding-6"
+            *ngFor="let order of orders">
+            <app-order-customer-card></app-order-customer-card>
           </div>
-        </app-pager>
+        </div>
+        <div class="button-container flex justify-center align-center margin-t-50">
+          <div class="chip-button black">
+            <p class="value uppercase">View All Orders</p>
+          </div>
+        </div>
       </div>
 
     </div>

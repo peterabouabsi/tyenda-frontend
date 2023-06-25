@@ -15,7 +15,7 @@ export class HomeCustomerComponent implements OnInit{
   public overviews: any[] = [1,1,1,1,1];
   public itemsData: PagerDataConfig<any> = {data: [1,1,1], count: 6, dataPerPage: 3}
   public storesData: PagerDataConfig<any> = {data: [1,1,1], count: 6, dataPerPage: 3}
-  public ordersData: PagerDataConfig<any> = {data: [1,1,1], count: 6, dataPerPage: 3}
+  public orders: any[] = [1,1,1,1];
 
   constructor() {
   }

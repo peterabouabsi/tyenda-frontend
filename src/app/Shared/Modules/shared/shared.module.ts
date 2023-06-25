@@ -13,16 +13,20 @@ import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
 import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector-chip/selector-chip.component';
-import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
-import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
-import { ItemBasicCardComponent } from 'src/app/Widgets/Item Components/item-basic-card/item-basic-card.component';
-import { StoreModerateCardComponent } from 'src/app/Widgets/Store Components/store-moderate-card/store-moderate-card.component';
 import { PagerComponent } from 'src/app/Widgets/Other Components/pager/pager.component';
+import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
+import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
+
+import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
+import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
+import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
+
 
 @NgModule({
   declarations: [
     //Components
+    PagerComponent,
     TextFieldComponent,
     TextAreaComponent,
     PasswordFieldComponent,
@@ -33,9 +37,9 @@ import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overv
     SelectorChipComponent,
     AvatarComponent,
     BadgeComponent,
-    ItemBasicCardComponent,
-    StoreModerateCardComponent,
-    PagerComponent,
+    ItemCustomerBasicCardComponent,
+    StoreCustomerModerateCardComponent,
+    OrderCustomerCardComponent,
     OverviewCardComponent
   ],
   imports: [
@@ -46,6 +50,7 @@ import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overv
   ],
   exports:[
     //Components
+    PagerComponent,
     TextFieldComponent,
     TextAreaComponent,
     PasswordFieldComponent,
@@ -56,9 +61,9 @@ import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overv
     SelectorChipComponent,
     AvatarComponent,
     BadgeComponent,
-    ItemBasicCardComponent,
-    StoreModerateCardComponent,
-    PagerComponent,
+    ItemCustomerBasicCardComponent,
+    StoreCustomerModerateCardComponent,
+    OrderCustomerCardComponent,
     OverviewCardComponent
   ]
 })

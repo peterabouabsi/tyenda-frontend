@@ -37,17 +37,17 @@
       </div>
       <div class="profile-container padding-10 flex justify-center align-center relative" (focusout)="onFocusOut()" tabindex="1">
         <div class="image-container flex justify-center align-center" (click)="onFocus(2)">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="">
+          <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
         </div>
         <div class="options-container padding-20 absolute" [ngClass]="{'show': optionsOpenIndex == 2}">
-          <div class="option-container padding-10 margin-b-3" (click)="editProfile()">
-            <p class="value text-start font-medium size-regular black">Edit profile</p>
+          <div class="option-container margin-b-3" (click)="editProfile()">
+            <p class="value text-start font-medium size-regular black padding-9">Edit profile</p>
           </div>
-          <div class="option-container padding-10 margin-b-3" (click)="changePassword()">
-            <p class="value text-start font-medium size-regular black">Change password</p>
+          <div class="option-container margin-b-3" (click)="changePassword()">
+            <p class="value text-start font-medium size-regular black padding-9">Change password</p>
           </div>
-          <div class="option-container padding-10 margin-b-3" (click)="logout()">
-            <p class="value text-start font-medium size-regular red">Logout</p>
+          <div class="option-container margin-b-3" (click)="logout()">
+            <p class="value text-start font-medium size-regular red padding-9">Logout</p>
           </div>
         </div>
       </div>

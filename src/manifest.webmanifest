@@ -1,8 +1,8 @@
 {
   "name": "Tyenda",
   "short_name": "Tyenda",
-  "theme_color": "#004CDF",
-  "background_color": "#004CDF",
+  "theme_color": "white",
+  "background_color": "white",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
