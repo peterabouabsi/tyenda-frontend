@@ -1,0 +1,60 @@
+<div class="parent-container">
+  <div class="inner-container">
+    <div class="header-container flex justify-space-between align-center flex-wrap">
+      <div class="text-container">
+        <p class="text text-start font-black size-extra-large black">Search</p>
+      </div>
+      <div class="filter-container flex justify-center align-center">
+        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6" [ngClass]="{'active': activeFilterIndex == 1}" (click)="setFilterIndex(1)">
+          <p class="filter text-center font-medium size-regular padding-b-2">Stores</p>
+        </div>
+        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6" [ngClass]="{'active': activeFilterIndex == 2}" (click)="setFilterIndex(2)">
+          <p class="filter text-center font-medium size-regular padding-b-2">Items</p>
+        </div>
+      </div>
+    </div>
+    <div class="search-filter-container flex justify-space-between align-center padding-tb-50">
+      <div class="inputs-container"></div>
+      <div class="overview-container padding-20">
+        <div class="header-container">
+          <p class="text text-start font-extra-bold size-regular black">Search for {{activeFilterIndex == 1? 'stores' : 'items'}} with:</p>
+        </div>
+        <div class="store-overview margin-t-20" *ngIf="activeFilterIndex == 1">
+          <div class="key-value-container flex justify-start align-start">
+            <div class="key-container flex justify-start align-start">
+              <p class="key text-start font-medium size-small">Names</p>
+            </div>
+            <div class="value-container">
+              <p class="value text-start font-medium size-small cyan-dark ellipse-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, delectus.</p>
+            </div>
+          </div>
+          <div class="key-value-container flex justify-start align-start margin-t-10">
+            <div class="key-container flex justify-start align-start">
+              <p class="key text-start font-medium size-small">Located in</p>
+            </div>
+            <div class="value-container">
+              <p class="value text-start font-medium size-small cyan-dark ellipse-1">Beirut - Lebanon</p>
+            </div>
+          </div>
+          <div class="key-value-container flex justify-start align-start margin-t-10">
+            <div class="key-container flex justify-start align-start">
+              <p class="key text-start font-medium size-small">Created</p>
+            </div>
+            <div class="value-container">
+              <p class="value text-start font-medium size-small cyan-dark ellipse-1">2 weeks ago</p>
+            </div>
+          </div>
+          <div class="key-value-container flex justify-start align-start margin-t-10">
+            <div class="key-container flex justify-start align-start">
+              <p class="key text-start font-medium size-small">Category</p>
+            </div>
+            <div class="value-container">
+            </div>
+          </div>
+        </div>
+        <div class="item-overview margin-t-20" *ngIf="activeFilterIndex == 2"></div>
+      </div>
+    </div>
+    <div class="result-container"></div>
+  </div>
+</div>

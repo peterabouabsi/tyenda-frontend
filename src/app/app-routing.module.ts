@@ -23,8 +23,8 @@ import { AuthMainComponent } from './Pages/authentication/Pages/auth-main.compon
 
 import { ApplicationComponent } from './Pages/application/Pages/application.component';
   import { CustomerMainComponent } from './Pages/application/Pages/Customer/customer-main.component';
-    import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer/home-customer.component';
-    import { SearchComponent } from './Pages/application/Pages/Customer/Pages/Search/search/search.component';
+    import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer.component';
+    import { SearchComponent } from './Pages/application/Pages/Customer/Pages/Search/search.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //

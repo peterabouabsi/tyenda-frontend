@@ -28,9 +28,31 @@
           }
         }
       }
-
-      .search-filter-container{}
-      .result-container{}
     }
+
+    .search-filter-container{
+      width: 100%;
+      height: fit-content;
+      .inputs-container{
+
+      }
+      .overview-container{
+        width: 500px;
+        min-height: 230px;
+        height: fit-content;
+        border-radius: 20px;
+        box-shadow: 0px 1px 3px 2px var(--gray-light);
+        .key-value-container{
+          width: 100%;
+          .key-container{
+            width: 100px;
+          }
+          .value-container{
+            width: 100%;
+          }
+        }
+      }
+    }
+    .result-container{}
   }
 }
