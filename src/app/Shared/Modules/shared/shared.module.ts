@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
+//Pipes
+import { TimestampPipe } from '../../Pipes/Timestamp/timestamp.pipe';
+
 //Components
 import { TextFieldComponent } from 'src/app/Widgets/Form Components/text-field/text-field.component';
 import { SelectFieldComponent } from 'src/app/Widgets/Form Components/select-field/select-field.component';
@@ -26,8 +29,12 @@ import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Compon
 import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
+
 @NgModule({
   declarations: [
+    //Pipes
+    TimestampPipe,
+
     //Components
     TextFieldComponent,
     TextAreaComponent,
@@ -58,6 +65,9 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     AngularMaterialModule
   ],
   exports:[
+    //Pipes
+    TimestampPipe,
+
     //Components
     TextFieldComponent,
     TextAreaComponent,

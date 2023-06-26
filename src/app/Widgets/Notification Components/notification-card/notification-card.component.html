@@ -1,17 +1,17 @@
-<div class="notification-card-container padding-15" [ngClass]="{'unseen': false}">
+<div class="notification-card-container padding-15" [ngClass]="{'unseen': !notification.isViewed}" (click)="onClick()">
   <div class="header-container flex justify-start align-center">
-    <app-avatar [src]="'https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA'"></app-avatar>
+    <app-avatar [src]="notification.storeImageUrl"></app-avatar>
     <div class="text-container flex justify-start align-center padding-l-10">
-      <p class="text text-start font-medium size-semi-small black">Play Station 5 from google is out here!!!</p>
+      <p class="text text-start font-medium size-semi-small black" [innerHTML]="notification.title"></p>
     </div>
   </div>
   <div class="info-container flex justify-center align-start margin-t-13">
     <div class="text-container padding-r-6">
-      <p class="description text-start font-regular size-semi-small gray-dark ellipse-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quis? Itaque, vero reiciendis officiis sed explicabo pariatur? Assumenda, quisquam et.</p>
-      <p class="timestamp text-start font-regular size-semi-small gray margin-t-10">2 hours ago</p>
+      <p class="description text-start font-regular size-semi-small gray-dark ellipse-3" [innerHTML]="notification.description"></p>
+      <p class="timestamp text-start font-regular size-semi-small gray margin-t-10">{{notification.createdAt | timestamp}}</p>
     </div>
-    <div class="image-container flex justify-center align-center">
-      <img src="https://www.cnet.com/a/img/resize/bebef835df90640f9aa2e4a2f2a2699cf53a301f/hub/2020/10/26/b60bfe6f-3193-4381-b0d4-ac628cdcc565/img-1419.jpg?auto=webp&width=1200" alt="">
+    <div class="image-container flex justify-center align-center" *ngIf="notification.itemImageUrl">
+      <img [src]="notification.itemImageUrl" alt="">
     </div>
   </div>
 </div>

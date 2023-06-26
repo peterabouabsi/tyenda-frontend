@@ -8,6 +8,9 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { ChangePwdComponent } from '../change-pwd/change-pwd.component';
 import { ToastrComponent } from '../../Other Components/toastr/toastr.component';
 
+//Views
+import { ViewModerateNotification } from 'src/app/Shared/Models/Views/Notification/ViewModerateNotification.view';
+
 @Component({
   selector: 'app-navbar-customer',
   templateUrl: './navbar-customer.component.html',
@@ -17,30 +20,37 @@ export class NavbarCustomerComponent implements OnInit{
 
   @ViewChild('toastr') toastr: ToastrComponent; public viewToastr: boolean = false;
 
+  public notifications: ViewModerateNotification[] = [];
+
   constructor(private router: Router,
               private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
     this.onWindowWidth();
+    this.readNotifications();
   }
 
-  public onLinkClick(link: string){
-    this.router.navigate(['/application/customer/'+link]);
-    this.isLinksOpened = false;
-    this.optionsOpenIndex = 0;
+  private readNotifications(){
+    this.globalService.getMyNotifications().subscribe((response: any) => {
+      if(!response.error){
+        this.notifications = response;
+      }
+    });
   }
 
-  /*open-close profile|notification options menu*/
-  public optionsOpenIndex: number = 0;
-  public onFocusOut(){
-    this.optionsOpenIndex = 0
+  /*Open and set notification as viewed*/
+  public openNotification(notification: any){
+    const {link, id} = notification;
+    this.globalService.viewNotification(id).subscribe((response: any) => {
+      if(!response.error){
+        this.optionsOpenIndex = 0;
+        this.readNotifications();
+        this.router.navigate([link]);
+      }
+    });
   }
-  public onFocus(index: number){
-    if(this.optionsOpenIndex != index) this.optionsOpenIndex = index;
-    else this.optionsOpenIndex = 0;
-  }
-  /*--------------------------------------------*/
+  /*------------------------------------------------*/
 
   /*Profile Options*/
   public editProfile(){}
@@ -58,6 +68,26 @@ export class NavbarCustomerComponent implements OnInit{
     });
   }
   /*------------------------------------------------*/
+
+  /*on link click*/
+  public onLinkClick(link: string){
+    this.router.navigate(['/application/customer/'+link]);
+    this.isLinksOpened = false;
+    this.optionsOpenIndex = 0;
+  }
+  /*------------------------------------------------*/
+
+  /*open-close profile|notification options menu*/
+  public optionsOpenIndex: number = 0;
+  public onFocusOut(){
+    this.optionsOpenIndex = 0
+  }
+  public onFocus(index: number){
+    if(this.optionsOpenIndex != index) this.optionsOpenIndex = index;
+    else this.optionsOpenIndex = 0;
+  }
+  /*--------------------------------------------*/
+
 
   public isLinksOpened: boolean = false;
   public openCloseLinks(){

@@ -41,6 +41,13 @@ export class GlobalService {
   public getCategories() {
     return this.apiService.getAnonymous('/Category');
   }
+  public getMyNotifications(){
+    return this.apiService.get('/Notification');
+  }
+  public viewNotification(notificationId: string){
+    return this.apiService.post('/Notification/View/'+notificationId);
+  }
+
   public async logout(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
     let logoutForm: LogoutForm = {
