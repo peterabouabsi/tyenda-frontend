@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+//Services
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+
 @Component({
   selector: 'app-select-field',
   templateUrl: './select-field.component.html',
   styleUrls: ['./select-field.component.scss']
 })
-export class SelectFieldComponent implements OnInit{
+export class SelectFieldComponent implements OnInit {
 
   @Input() data: any[] = [];
   @Input() placeholder: string = '';
@@ -13,30 +16,41 @@ export class SelectFieldComponent implements OnInit{
 
   @Output() onSelectEvent = new EventEmitter();
 
-  constructor(){
+  public isFormControlArray: boolean = false;
+
+  constructor(private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
-    if(this.formControl.value) this.selectedOption = this.formControl.value;
+    if (this.formControl.value) this.selectedOption = this.formControl.value;
+    if (Array.isArray(this.formControl.value)) this.isFormControlArray = true;
   }
 
   //Select option
   public selectedOption: any;
-  public setOption(option: any){
+  public setOption(option: any) {
     this.selectedOption = option;
-    this.formControl.setValue(this.selectedOption);
-    this.onSelectEvent.emit(this.selectedOption);
+    if (Array.isArray(this.formControl.value)) {
+      this.globalService.checkExistancy(this.formControl.value, { id: this.selectedOption.id }, (exist: boolean) => {
+        if (!exist) {
+          this.formControl.value.push(this.selectedOption);
+        }
+      });
+    } else {
+      this.formControl.setValue(this.selectedOption);
+      this.onSelectEvent.emit(this.selectedOption);
+    }
   }
 
   //Open-Close select field
   public isSelectFieldOpened: boolean = false;
-  public openCloseSelectField(){
+  public openCloseSelectField() {
     this.isSelectFieldOpened = !this.isSelectFieldOpened;
   }
 
   //Close select field
-  public closeSelectField(){
-    if(!this.formControl.valid) this.formControl.markAsDirty();
+  public closeSelectField() {
+    if (!this.formControl.valid) this.formControl.markAsDirty();
     this.isSelectFieldOpened = false;
   }
 }

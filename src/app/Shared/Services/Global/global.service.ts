@@ -13,6 +13,9 @@ import { ChangePasswordForm } from './../../Models/Forms/ChangePasswordForm.form
 //Services
 import { ApiService } from './../Api/api.service';
 
+//Views
+import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampView.view';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +46,26 @@ export class GlobalService {
   }
   public getMyNotifications(){
     return this.apiService.get('/Notification');
+  }
+  public getTimestamps(){
+    var now = new Date();
+    var last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    var last48Hours = new Date(now.getTime() - 48 * 60 * 60 * 1000);
+    var lastWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    var lastMonth = new Date(now.getTime() - 31 * 24 * 60 * 60 * 1000);
+    var last6Months = new Date(now.getTime() - 6 * 30 * 24 * 60 * 60 * 1000);
+    var lastYear = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+
+    // Generate the date ranges
+    var timestamps: BasicTimestampView[] = [
+      { value: "Last 24 hours", id: last24Hours.toISOString() },
+      { value: "Last 48 hours", id: last48Hours.toISOString() },
+      { value: "Last week", id: lastWeek.toISOString() },
+      { value: "Last month", id: lastMonth.toISOString() },
+      { value: "Last 6 months", id: last6Months.toISOString() },
+      { value: "Last year", id: lastYear.toISOString() }
+    ];
+    return timestamps;
   }
   public viewNotification(notificationId: string){
     return this.apiService.post('/Notification/View/'+notificationId);
