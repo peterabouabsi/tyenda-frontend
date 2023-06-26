@@ -14,45 +14,112 @@
       </div>
     </div>
     <div class="search-filter-container flex justify-space-between align-center padding-tb-50">
-      <div class="inputs-container"></div>
+      <div class="inputs-container" style="width: 300px;">
+        <div class="input-container">
+          <div class="label-container padding-tb-10">
+            <p class="label text-start font-bold size-regular black">Name</p>
+          </div>
+          <div class="input-form">
+            <app-text-field
+              [placeholder]="'Keywords, etc.'"
+              [formControl]="searchFilter.controls['name']"
+              (onInputEvent)="setValue('name', $event)">
+            </app-text-field>
+          </div>
+        </div>
+        <div class="input-container"></div>
+        <div class="input-container"></div>
+        <div class="input-container"></div>
+        <div class="input-container" *ngIf="activeFilterIndex == 2">
+          <div class="input-form">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Price</p>
+            </div>
+            <app-salary-range-select
+              [min]="minPrice"
+              [max]="maxPrice"
+              [step]="100"
+              (onRangeEvent)="setValue('price', $event)">
+            </app-salary-range-select>
+          </div>
+          <div class="price-container flex justify-space-between align-center margin-t-10">
+            <div class="price-box padding-10 flex justify-center align-center font-medium size-small gray-super-dark text-center">{{searchFilter.controls['price'].value[0] | currency:'':'symbol':'1.0-0'}}</div>
+            <div class="price-box padding-10 flex justify-center align-center font-medium size-small gray-super-dark text-center">{{searchFilter.controls['price'].value[1] | currency:'':'symbol':'1.0-0'}}</div>
+          </div>
+        </div>
+      </div>
       <div class="overview-container padding-20">
         <div class="header-container">
           <p class="text text-start font-extra-bold size-regular black">Search for {{activeFilterIndex == 1? 'stores' : 'items'}} with:</p>
         </div>
-        <div class="store-overview margin-t-20" *ngIf="activeFilterIndex == 1">
+        <div class="store-overview margin-t-20">
           <div class="key-value-container flex justify-start align-start">
             <div class="key-container flex justify-start align-start">
-              <p class="key text-start font-medium size-small">Names</p>
+              <p class="key text-start font-medium size-small">Name</p>
             </div>
             <div class="value-container">
-              <p class="value text-start font-medium size-small cyan-dark ellipse-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, delectus.</p>
+              <p class="value text-start font-medium size-small cyan-dark ellipse-3">
+                {{searchFilter.controls['name'].value?
+                  searchFilter.controls['name'].value
+                  :
+                  ''
+                }}
+              </p>
             </div>
           </div>
-          <div class="key-value-container flex justify-start align-start margin-t-10">
+          <div class="key-value-container flex justify-start align-start margin-t-15" *ngIf="activeFilterIndex == 1">
             <div class="key-container flex justify-start align-start">
               <p class="key text-start font-medium size-small">Located in</p>
             </div>
             <div class="value-container">
-              <p class="value text-start font-medium size-small cyan-dark ellipse-1">Beirut - Lebanon</p>
+              <p class="value text-start font-medium size-small cyan-dark ellipse-1">
+                {{searchFilter.controls['country'].value?
+                  searchFilter.controls['city'].value.value - searchFilter.controls['country'].value.value
+                  :
+                  ''
+                }}
+              </p>
             </div>
           </div>
-          <div class="key-value-container flex justify-start align-start margin-t-10">
+          <div class="key-value-container flex justify-start align-start margin-t-15">
             <div class="key-container flex justify-start align-start">
               <p class="key text-start font-medium size-small">Created</p>
             </div>
             <div class="value-container">
-              <p class="value text-start font-medium size-small cyan-dark ellipse-1">2 weeks ago</p>
+              <p class="value text-start font-medium size-small cyan-dark ellipse-1">
+                {{searchFilter.controls['createdAt'].value?
+                  (searchFilter.controls['createdAt'].value | timestamp)
+                  :
+                  ''
+                }}
+              </p>
             </div>
           </div>
-          <div class="key-value-container flex justify-start align-start margin-t-10">
+          <div class="key-value-container flex justify-start align-start margin-t-15" *ngIf="activeFilterIndex == 2">
+            <div class="key-container flex justify-start align-start">
+              <p class="key text-start font-medium size-small">Min Price</p>
+            </div>
+            <div class="value-container">
+              <p class="value text-start font-medium size-small cyan-dark ellipse-1">
+                {{searchFilter.controls['price'].value[0]}}
+                -
+                {{searchFilter.controls['price'].value[1]}}
+              </p>
+            </div>
+          </div>
+          <div class="key-value-container flex justify-start align-start margin-t-15">
             <div class="key-container flex justify-start align-start">
               <p class="key text-start font-medium size-small">Category</p>
             </div>
             <div class="value-container">
+              <div class="chips-container flex justify-start align-start flex-wrap">
+                <div class="chip-container padding-r-3 padding-b-3" *ngFor="let category of searchFilter.controls['categories'].value; let i = index">
+                  <app-selector-chip [data]="category" (onDelete)="removeValue('categories', i)"></app-selector-chip>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="item-overview margin-t-20" *ngIf="activeFilterIndex == 2"></div>
       </div>
     </div>
     <div class="result-container"></div>

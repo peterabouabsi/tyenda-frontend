@@ -34,7 +34,19 @@
       width: 100%;
       height: fit-content;
       .inputs-container{
-
+        width: 100%;
+        .input-container{
+          width: 100%;
+          .price-container{
+            width: 100%;
+            .price-box{
+              min-width: 65px;
+              width: fit-content;
+              border-radius: 6px;
+              box-shadow: 0px 0px 3px 1px var(--gray-light);
+            }
+          }
+        }
       }
       .overview-container{
         width: 500px;

@@ -1,0 +1,11 @@
+<div class="range-container">
+  <div class="slider">
+    <div #progress class="progress"></div>
+  </div>
+  <div class="range-input">
+    <input type="range" (input)="change('min', $event)" [(ngModel)]="minSalary" class="range-min" [min]="min"
+      [max]="max" [value]="min" [step]="step">
+    <input type="range" (input)="change('max', $event)" [(ngModel)]="maxSalary" class="range-max" [min]="min"
+      [max]="max" [value]="max" [step]="step">
+  </div>
+</div>
