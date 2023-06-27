@@ -24,6 +24,7 @@ import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
 import { PagerComponent } from 'src/app/Widgets/Other Components/pager/pager.component';
+import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expansion-panel/expansion-panel.component';
 
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
 import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
@@ -53,6 +54,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     ToastrComponent,
     StepperComponent,
     PagerComponent,
+    ExpansionPanelComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,
@@ -87,6 +89,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     ToastrComponent,
     StepperComponent,
     PagerComponent,
+    ExpansionPanelComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,

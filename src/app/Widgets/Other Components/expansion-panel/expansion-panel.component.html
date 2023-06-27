@@ -1,0 +1,19 @@
+<div class="expansion-panel">
+  <div class="expansion-panel-header padding-lr-20" [ngClass]="{'padding-tb-20': isExpansionOpened}" (click)="onHeaderClick()">
+
+    <div class="box-container flex justify-start align-center">
+      <mat-icon class="title-icon margin-r-6" [svgIcon]="titleIcon" *ngIf="titleIcon"></mat-icon>
+      <p class="title font-bold size-medium black capitalize">{{title}}</p>
+    </div>
+    <div class="box-container flex justify-center align-center">
+      <p class="description font-regular size-small gray capitalize">{{description}}</p>
+    </div>
+    <div class="box-container flex justify-end align-center">
+      <mat-icon class="arrow-icon gray" [ngClass]="{'rotate-to-bottom': isExpansionOpened}" svgIcon="arrow-right"></mat-icon>
+    </div>
+
+  </div>
+  <div class="expansion-panel-body padding-tb-10" *ngIf="isExpansionOpened">
+    <ng-content></ng-content>
+  </div>
+</div>

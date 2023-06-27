@@ -28,5 +28,9 @@ export class IconService {
         'bag-shopping',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/bag-shopping.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'filter',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/filter.svg')
+      );
     }
 }

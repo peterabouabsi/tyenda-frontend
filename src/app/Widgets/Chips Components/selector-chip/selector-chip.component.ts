@@ -7,7 +7,9 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SelectorChipComponent implements OnInit{
 
-  @Input() data: any = {};
+  @Input() data?: any = {};
+  @Input() value?: string = "";
+  @Input() color: string = "";
 
   @Output() onDelete = new EventEmitter();
 

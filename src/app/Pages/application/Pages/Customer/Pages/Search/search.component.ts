@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+//Config
+import { SearchResultConfig } from 'src/app/Shared/Models/Config/Search/SearchResultConfig.config';
+
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
@@ -17,13 +20,19 @@ import { BasicTimestampView } from 'src/app/Shared/Models/Views/Timestamp/BasicT
 })
 export class SearchComponent implements OnInit {
 
-  //Replace <any> with the exact viewModel
+  //active index: store = 1 ; item = 2
+  public activeFilterIndex: number = 1;
+
+  //Data required for the filter expansion section
   public countries: BasicCountryView[] = [];
   public cities: BasicCityView[] = [];
   public categories: BasicCategoryView[] = [];
   public dates: BasicTimestampView[] = [];
   public minPrice: number = 0;
   public maxPrice: number = 30000;
+
+  //replace any | any with Store and Item View Models
+  public searchResultConfig: SearchResultConfig<any | any> = { value: "4 Items found", data: [1,1,1,1,1,1,1,1,1,1,1] };
 
   public searchFilter: FormGroup = new FormGroup({
     name: new FormControl('', []),
@@ -41,6 +50,8 @@ export class SearchComponent implements OnInit {
     this.readCountries();
     this.readCategories();
     this.readTimestamps();
+
+    this.readData();
   }
 
   private readCountries() {
@@ -63,29 +74,59 @@ export class SearchComponent implements OnInit {
     this.dates = this.globalService.getTimestamps();
   }
 
+  private readData(onSearchButton?: boolean) {
+    if (this.activeFilterIndex == 1) {
+      if (onSearchButton) {
+        //Search filtered stores
+      } else {
+        //read all stores
+      }
+    }
+    if (this.activeFilterIndex == 2) {
+      if (onSearchButton) {
+        //Search filtered items
+      } else {
+        //read all items
+      }
+    }
+  }
+
+  public search() {
+    if (this.activeFilterIndex == 1) {
+      this.readData(true)
+      //save the searched data in: this.searchResultConfig.data
+    }
+    if (this.activeFilterIndex == 2) {
+      this.readData(true)
+      //save the searched data in: this.searchResultConfig.data
+    }
+  }
+  public clearSearchResult() {
+    this.readData();
+  }
+
+  /*----------- Set value to the corresponding formControl ----------*/
   public setValue(formControlName: string, value: any) {
-    if (formControlName == 'country'){
+    if (formControlName == 'country') {
       this.searchFilter.get('city').setValue('');
       this.globalService.getCities(value.id).subscribe((response: any) => {
-        if(!response.error){
+        if (!response.error) {
           this.cities = response;
         }
       });
     }
     this.searchFilter.get(formControlName).setValue(value);
   }
-
   public removeValue(formControlName: string, index: number) {
     if (Array.isArray(this.searchFilter.get(formControlName).value)) {
       this.searchFilter.get(formControlName).value.splice(index, 1);
     }
   }
+  /*----------- Set value to the corresponding formControl ----------*/
 
   /*----------- Switch between Store/Item filter options ------------*/
-  public activeFilterIndex: number = 1;
   public setFilterIndex(index: number) {
     this.activeFilterIndex = index;
   }
   /*----------- Switch between Store/Item filter options ------------*/
-
 }

@@ -26,3 +26,11 @@
     transform: rotate(360deg);
   }
 }
+@keyframes scale-in {
+  0%{
+    transform: scale(0,0);
+  }
+  100%{
+    transform: scale(1,1);
+  }
+}
