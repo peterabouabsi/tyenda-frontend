@@ -100,7 +100,7 @@
         <div class="chip-container flex justify-center align-center">
           <app-selector-chip
             [color]="'gray-dark'"
-            [value]="'4 Items found'"
+            [value]="searchResultConfig.value"
             (onDelete)="clearSearchResult()"
             *ngIf="searchResultConfig.data.length > 0">
           </app-selector-chip>
@@ -114,6 +114,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="button-container flex justify-center align-center margin-t-50">
+      <app-button [value]="'View More'" [color]="'blue'" (click)="null"></app-button>
     </div>
   </div>
 </div>

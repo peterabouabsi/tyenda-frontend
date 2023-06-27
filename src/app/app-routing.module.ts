@@ -25,6 +25,7 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
   import { CustomerMainComponent } from './Pages/application/Pages/Customer/customer-main.component';
     import { HomeCustomerComponent } from './Pages/application/Pages/Customer/Pages/Home/home-customer.component';
     import { SearchComponent } from './Pages/application/Pages/Customer/Pages/Search/search.component';
+    import { OrdersCustomerComponent } from './Pages/application/Pages/Customer/Pages/Orders/orders-customer.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //
@@ -55,9 +56,9 @@ const routes: Routes = [
     {path: 'customer', component: CustomerMainComponent, data: {roles: [Constants.ROLE_CUSTOMER]}, canActivate: [roleBasedAuthenticationGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeCustomerComponent, title: 'Tyenda | Home'},
-      {path: 'search', component: SearchComponent, title: 'Tyenda | Search'}
+      {path: 'search', component: SearchComponent, title: 'Tyenda | Search'},
+      {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda | Orders'}
       /*
-      {path: 'orders', component: null, title: 'Tyenda | Orders'},
       {path: 'folders', component: null, title: 'Tyenda | Folders'}
       */
     ]},

@@ -1,0 +1,44 @@
+<div class="parent-container">
+  <div class="inner-container">
+    <div class="header-container">
+      <div class="text-container flex justify-center align-center">
+        <p class="text text-start font-black size-extra-large black">Orders</p>
+      </div>
+    </div>
+    <div class="expansion-container padding-tb-30">
+      <app-expansion-panel [title]="'Filter'" [titleIcon]="'filter'">
+        <div class="inputs-container flex justify-center align-start flex-wrap">
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Label</p>
+            </div>
+            <div class="input-form">
+            </div>
+          </div>
+        </div>
+      </app-expansion-panel>
+    </div>
+    <div class="result-container">
+      <div class="result-header-container flex justify-end align-center flex-wrap">
+        <div class="chip-container flex justify-center align-center">
+          <app-selector-chip
+            [color]="'gray-dark'"
+            [value]="searchResultConfig.value"
+            (onDelete)="clearSearchResult()"
+            *ngIf="searchResultConfig.data.length > 0">
+          </app-selector-chip>
+        </div>
+      </div>
+      <div class="result-body-container padding-tb-30">
+        <div class="cards-container flex justify-center align-start flex-wrap">
+          <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
+            <app-order-customer-card></app-order-customer-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-container flex justify-center align-center margin-t-50">
+      <app-button [value]="'View More'" [color]="'blue'" (click)="null"></app-button>
+    </div>
+  </div>
+</div>
