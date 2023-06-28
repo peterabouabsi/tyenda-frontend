@@ -20,6 +20,7 @@ import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button
 import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector-chip/selector-chip.component';
 import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
 import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
+import { SelectMultiBoxComponent } from 'src/app/Widgets/Chips Components/select-multi-box/select-multi-box.component';
 
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
@@ -55,6 +56,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     StepperComponent,
     PagerComponent,
     ExpansionPanelComponent,
+    SelectMultiBoxComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,
@@ -85,6 +87,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     SelectorChipComponent,
     AvatarComponent,
     BadgeComponent,
+    SelectMultiBoxComponent,
 
     ToastrComponent,
     StepperComponent,

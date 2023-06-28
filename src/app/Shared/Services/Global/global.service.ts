@@ -47,6 +47,11 @@ export class GlobalService {
   public getMyNotifications(){
     return this.apiService.get('/Notification');
   }
+  public viewNotification(notificationId: string){
+    return this.apiService.post('/Notification/View/'+notificationId);
+  }
+
+  //Global Data
   public getTimestamps(){
     var now = new Date();
     var last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -67,10 +72,9 @@ export class GlobalService {
     ];
     return timestamps;
   }
-  public viewNotification(notificationId: string){
-    return this.apiService.post('/Notification/View/'+notificationId);
+  public getOrderStatuses(){
+    return ['Submitted', 'Rejected', 'Approved', 'OnGoing', 'Completed']
   }
-
   public async logout(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
     let logoutForm: LogoutForm = {
@@ -84,22 +88,34 @@ export class GlobalService {
   }
 
   //Check existancy in an array
-  public checkExistancy(array: any[], filter: any = {}, callback = (exist: boolean) => { }) {
+  public checkExistancy(array: any[], filter: any, callback = (exist: boolean, index?: number) => { }) {
     let exist = false;
-    for (const item of array) {
-      let match = true;
-      for (const key in filter) {
-        if (item[key] !== filter[key]) {
-          match = false;
+    let existAtIndex = -1;
+    if(typeof filter !== 'object'){
+      for (const item of array) {
+        if(item == filter){
+          exist = true;
+          existAtIndex = array.indexOf(item);
           break;
         }
       }
-      if (match) {
-        exist = true;
-        break;
+    }else{
+      for (const item of array) {
+        let match = true;
+        for (const key in filter) {
+          if (item[key] !== filter[key]) {
+            match = false;
+            existAtIndex = array.indexOf(item);
+            break;
+          }
+        }
+        if (match) {
+          exist = true;
+          break;
+        }
       }
     }
-    callback(exist);
+    callback(exist, existAtIndex);
   }
   //Check object validity
   public checkFormValidity(form: any, properties: string[], callback = (valid: boolean) => { }) {

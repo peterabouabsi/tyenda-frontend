@@ -1,0 +1,8 @@
+<div class="boxes-container flex justify-start align-start flex-wrap">
+  <div class="box-container flex justify-center align-center text-center font-regular size-small gray-dark padding-lr-10 padding-tb-6 margin-r-9 margin-b-10"
+    *ngFor="let boxData of data; let i = index"
+    [ngClass]="{'active': false}"
+    (click)="onBoxSelect(boxData, $event)">
+    {{!boxData.value? boxData : boxData.value}}
+  </div>
+</div>

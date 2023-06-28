@@ -5,16 +5,53 @@
         <p class="text text-start font-black size-extra-large black">Orders</p>
       </div>
     </div>
-    <div class="expansion-container padding-tb-30">
+    <div class="expansion-panel-container margin-tb-30">
       <app-expansion-panel [title]="'Filter'" [titleIcon]="'filter'">
         <div class="inputs-container flex justify-center align-start flex-wrap">
           <div class="input-container margin-10">
             <div class="label-container padding-tb-10">
-              <p class="label text-start font-bold size-regular black">Label</p>
+              <p class="label text-start font-bold size-regular black">Keywords</p>
             </div>
             <div class="input-form">
+              <app-text-field
+                [placeholder]="'Keywords, etc.'"
+                [formControl]="searchFilter.controls['keywords']"></app-text-field>
             </div>
           </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Reference</p>
+            </div>
+            <div class="input-form">
+              <app-text-field
+                [placeholder]="'Order reference'"
+                [formControl]="searchFilter.controls['reference']"></app-text-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Creation Date</p>
+            </div>
+            <div class="input-form">
+              <app-select-field [data]="dates" [placeholder]="'Created date'"
+                [formControl]="searchFilter.controls['timestamp']" (onSelectEvent)="setValue('timestamp', $event)">
+              </app-select-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Status</p>
+            </div>
+            <div class="input-form">
+              <app-select-multi-box
+                [data]="orderStatuses"
+                (onSelectEvent)="setValue('statuses', $event)">
+              </app-select-multi-box>
+            </div>
+          </div>
+        </div>
+        <div class="button-container flex justify-center align-start margin-tb-30">
+          <app-button [color]="'blue'" [value]="'Search'" (click)="search()"></app-button>
         </div>
       </app-expansion-panel>
     </div>

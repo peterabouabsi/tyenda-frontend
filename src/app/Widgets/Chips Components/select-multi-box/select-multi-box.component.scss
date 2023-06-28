@@ -1,0 +1,22 @@
+.boxes-container{
+  width: 100%;
+  height: auto;
+  .box-container{
+    width: fit-content;
+    height: fit-content;
+    min-width: none;
+    background-color: var(--white);
+    border: 1px solid var(--gray-light);
+    min-width: 90px;
+    min-height: 35px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    &.active{
+      color: var(--blue-dark);
+      border: 1px solid var(--blue-dark);
+      transition: 0.3s ease-in-out;
+    }
+
+  }
+}

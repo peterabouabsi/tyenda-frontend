@@ -56,7 +56,7 @@ export class NavbarCustomerComponent implements OnInit{
   public editProfile(){}
   public changePassword(){
     this.globalService.openDialog(ChangePwdComponent, {}, (response: any) => {
-      if(!response.error){
+      if(response && !response.error){
         this.viewToastr = true;
         setTimeout(() => {this.toastr.onSuccess('Change Password', response.message, 5)}, 100);
       }
