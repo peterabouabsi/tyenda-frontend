@@ -23,13 +23,16 @@ export class PagerComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.initPages();
+    setTimeout(() => {
+      this.initPages();
+    }, 1000)
   }
 
   /*------------------ Init pager ------------------*/
   private initPages(){
     if(this.itemPerPage > 0){
       let pages = Math.ceil(this.config.dataCount / this.itemPerPage);
+
       for(let i = 1; i <= pages; i++){
         this.pages.push(i);
       }

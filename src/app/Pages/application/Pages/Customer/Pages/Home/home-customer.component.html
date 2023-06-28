@@ -6,7 +6,9 @@
           <p class="title text-start font-extra-bold size-medium black capitalize">Top-Selling item</p>
         </div>
         <div class="item-card-container flex justify-center align-center">
+          <!--
           <app-item-customer-basic-card></app-item-customer-basic-card>
+          -->
         </div>
       </div>
 
@@ -34,7 +36,7 @@
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let item of itemsData.data">
-              <app-item-customer-basic-card></app-item-customer-basic-card>
+              <app-item-customer-basic-card [data]="item"></app-item-customer-basic-card>
             </div>
           </div>
         </app-pager>
@@ -51,7 +53,7 @@
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let store of storesData.data">
-              <app-store-customer-moderate-card></app-store-customer-moderate-card>
+              <app-store-customer-moderate-card [data]="store"></app-store-customer-moderate-card>
             </div>
           </div>
         </app-pager>

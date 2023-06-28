@@ -5,6 +5,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AngularMaterialModule } from 'src/app/Shared/Modules/angular-material/angular-material.module';
 import { SharedModule } from 'src/app/Shared/Modules/shared/shared.module';
 
+//Services
+import { CustomerHomeService } from '../Pages/Customer/Pages/Home/Services/customer-home.service';
+
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
 import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd/change-pwd.component';
@@ -60,7 +63,9 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       NavbarStoreComponent,
       //Store Pages
   ],
-  providers: []
+  providers: [
+    CustomerHomeService
+  ]
 })
 
 export class ApplicationModule { }

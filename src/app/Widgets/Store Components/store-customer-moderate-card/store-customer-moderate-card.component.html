@@ -1,21 +1,21 @@
 <div class="store-container margin-t-30 padding-tb-10">
   <div class="images-container relative">
-    <img class="background-image" src="https://electrek.co/wp-content/uploads/sites/3/2021/05/Tesla-Logo-Hero.jpg?quality=82&strip=all&w=1024" alt="">
+    <img class="background-image" [src]="data.backgroundImage" alt="">
     <div class="profile-image-container absolute">
-      <img class="profile-image padding-10" src="https://climatebaseuserstorage.s3.us-west-1.amazonaws.com/photos/66-126-234-65-tesla.png" alt="">
+      <img class="profile-image padding-6" [src]="data.profileImage" alt="">
     </div>
   </div>
   <div class="store-info-container padding-tb-10">
-    <p class="title text-start font-extra-bold size-medium black ellipse-1">Tesla</p>
-    <p class="timestamp text-start font-regular size-semi-small gray ellipse-1">Created 2 weeks ago</p>
-    <p class="description text-start font-regular size-semi-small gray-dark ellipse-3 margin-t-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus ipsa sequi odio, similique sit perferendis omnis in magni iusto suscipit ipsum sunt quam consequuntur dolores minus voluptatum itaque fugiat dolore maxime quibusdam! Nisi, tempora est. Quibusdam aspernatur totam doloribus deleniti fugit sint cumque? Beatae reprehenderit in dolorum eum iste quasi officia tempora eius itaque similique voluptatibus, quod fugit incidunt cum autem quis deleniti consequuntur minima eaque deserunt earum. Iusto error debitis ducimus libero voluptates accusantium optio delectus voluptate deserunt, officiis magni vel, minus eligendi! Voluptatum harum tempora placeat modi magni soluta expedita necessitatibus culpa id ea, non dignissimos itaque distinctio!</p>
+    <p class="title text-start font-extra-bold size-medium black ellipse-1">{{data.name}}</p>
+    <p class="timestamp text-start font-regular size-semi-small gray ellipse-1">Created {{data.createdAt | timestamp}}</p>
+    <p class="description text-start font-regular size-semi-small gray-dark ellipse-3 margin-t-10">{{data.description}}</p>
 
     <div class="key-value-container flex justify-start align-center margin-t-20">
       <div class="key-container flex justify-start align-start">
-        <p class="key text-start font-bold size-small black">Branch</p>
+        <p class="key text-start font-bold size-small black">Owner</p>
       </div>
       <div class="value-container flex justify-start align-start">
-        <p class="value text-start font-regular size-semi-small cyan ellipse-1">dsbfpjdbcj bckj lasbcj basjc basj basj b</p>
+        <p class="value text-start font-regular size-semi-small cyan ellipse-1">{{data.ownerName}}</p>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         <p class="key text-start font-bold size-small black">Phone</p>
       </div>
       <div class="value-container flex justify-start align-start">
-        <p class="value text-start font-regular size-semi-small cyan ellipse-1">+961 12 121212</p>
+        <p class="value text-start font-regular size-semi-small cyan ellipse-1">{{data.phone}}</p>
       </div>
     </div>
 
@@ -33,13 +33,13 @@
         <p class="key text-start font-bold size-small black">Email</p>
       </div>
       <div class="value-container flex justify-start align-start">
-        <p class="value text-start font-regular size-semi-small underline cyan ellipse-1">tesla@email.com</p>
+        <p class="value text-start font-regular size-semi-small underline cyan ellipse-1">{{data.email}}</p>
       </div>
     </div>
   </div>
 
   <div class="buttons-container flex justify-space-between align-center flex-wrap margin-t-20">
-    <app-button [color]="'gray'" [value]="'Add to cart'"></app-button>
-    <app-button [color]="true? 'red' : 'red-white'" [value]="true? 'Follow': 'Unfollow'"></app-button>
+    <app-button [color]="'gray'" [value]="!data.isAddedToCart? 'Add to cart' : 'Remove from cart'" (click)="addRemoveCart()"></app-button>
+    <app-button [color]="!data.isFollowed? 'red' : 'red-white'" [value]="!data.isFollowed? 'Follow': 'Unfollow'" (click)="followUnfollow()"></app-button>
   </div>
 </div>

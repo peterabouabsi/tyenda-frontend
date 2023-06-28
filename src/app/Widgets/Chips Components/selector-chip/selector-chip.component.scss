@@ -4,10 +4,13 @@
   height: 32px;
   animation: scale-in 0.3s;
   .delete-container{
-    width: 25px;
-    height: 100%;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border-radius: 51%;
+
     .icon{
-      width: 12px;
+      width: 16px;
       height: auto;
       cursor: pointer;
     }

@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
+//Services
+import { StoreCardService } from 'src/app/Widgets/Store Components/Services/store-card.service';
+import { ItemCardService } from 'src/app/Widgets/Item Components/Services/item-card.service';
+
 //Pipes
 import { TimestampPipe } from '../../Pipes/Timestamp/timestamp.pipe';
 
@@ -99,6 +103,10 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     OrderCustomerCardComponent,
     OverviewCardComponent,
     NotificationCardComponent
+  ],
+  providers: [
+    StoreCardService,
+    ItemCardService
   ]
 })
 export class SharedModule { }
