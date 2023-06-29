@@ -10,6 +10,14 @@ export class CustomerHomeService {
 
   constructor(private apiService: ApiService) { }
 
+  public getTopSellingItem(){
+    return this.apiService.get('/Item/Top()');
+  }
+
+  public getOrdersOverview(){
+    return this.apiService.get('/Order/Overview()');
+  }
+
   public getRandomStores(top: number, skip: number){
     return this.apiService.get('/Store/Random()?top='+top+'&skip='+skip);
   }

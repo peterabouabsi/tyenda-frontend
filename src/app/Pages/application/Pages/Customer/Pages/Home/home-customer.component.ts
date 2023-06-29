@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { PagerDataConfig } from 'src/app/Shared/Models/Config/Pager/PagerDataConfig.config';
 
 //Views
+import { OrderOverview } from 'src/app/Shared/Models/Views/Order/OrderOverview.view';
 import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModerateView.view';
 import { ItemBasicView } from 'src/app/Shared/Models/Views/Item/ItemBasicView.view';
 import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
@@ -18,9 +19,8 @@ import { CustomerHomeService } from './Services/customer-home.service';
 })
 export class HomeCustomerComponent implements OnInit{
 
-  //Replace <any> with the exact <ViewModelDataType>
   public topSellingItem: ItemBasicView;
-  public overviews: any[] = [1,1,1,1,1];
+  public overviews: OrderOverview[] = [];
   public itemsData: PagerDataConfig<ItemBasicView> = {data: [], count: 0, dataPerPage: 3}
   public storesData: PagerDataConfig<StoreModerateView> = {data: [], count: 0, dataPerPage: 3}
   public orders: OrderBasicView[] = [];
@@ -36,7 +36,20 @@ export class HomeCustomerComponent implements OnInit{
     this.readOrders();
   }
 
-  private readTopSellingItem(){}
+  private readTopSellingItem(){
+    this.customerHomeService.getTopSellingItem().subscribe((response: any) => {
+      if(!response.error){
+        this.topSellingItem = response;
+      }
+    });
+  }
+  private readOverview(){
+    this.customerHomeService.getOrdersOverview().subscribe((response: any) => {
+      if(!response.error){
+        this.overviews = response;
+      }
+    });
+  }
   private readItems(top: number, skip: number){
     this.customerHomeService.getRandomItems(top, skip).subscribe((response: any) => {
       if(!response.error){
@@ -58,7 +71,6 @@ export class HomeCustomerComponent implements OnInit{
       }
     })
   }
-  private readOverview(){}
 
   public getPagingData(category: string, data: any){
     let top = data.top;
