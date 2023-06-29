@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  authenticatedBaseUrl: "http://localhost:5000/api/Authentication",
-  anonymousBaseUrl: "http://localhost:5000/api/Anonymous"
+  authenticatedBaseUrl: "https://localhost:5001/api/Authentication",
+  anonymousBaseUrl: "https://localhost:5001/api/Anonymous"
 };

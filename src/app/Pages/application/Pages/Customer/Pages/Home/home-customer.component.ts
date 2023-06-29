@@ -6,6 +6,7 @@ import { PagerDataConfig } from 'src/app/Shared/Models/Config/Pager/PagerDataCon
 //Views
 import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModerateView.view';
 import { ItemBasicView } from 'src/app/Shared/Models/Views/Item/ItemBasicView.view';
+import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
 
 //Services
 import { CustomerHomeService } from './Services/customer-home.service';
@@ -22,7 +23,7 @@ export class HomeCustomerComponent implements OnInit{
   public overviews: any[] = [1,1,1,1,1];
   public itemsData: PagerDataConfig<ItemBasicView> = {data: [], count: 0, dataPerPage: 3}
   public storesData: PagerDataConfig<StoreModerateView> = {data: [], count: 0, dataPerPage: 3}
-  public orders: any[] = [1,1,1,1];
+  public orders: OrderBasicView[] = [];
 
   constructor(private customerHomeService: CustomerHomeService) {
   }
@@ -50,7 +51,13 @@ export class HomeCustomerComponent implements OnInit{
       }
     });
   }
-  private readOrders(){}
+  private readOrders(){
+    this.customerHomeService.getRecentOrders().subscribe((response: any) => {
+      if(!response.error){
+        this.orders = response;
+      }
+    })
+  }
   private readOverview(){}
 
   public getPagingData(category: string, data: any){
@@ -62,9 +69,6 @@ export class HomeCustomerComponent implements OnInit{
     }
     if(category == 'stores'){
       this.readStores(top, skip);
-    }
-    if(category == 'orders'){
-      //Get pagging orders
     }
   }
 }

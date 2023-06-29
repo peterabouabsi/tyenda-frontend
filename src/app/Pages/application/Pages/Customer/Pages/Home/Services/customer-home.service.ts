@@ -17,4 +17,8 @@ export class CustomerHomeService {
   public getRandomItems(top: number, skip: number){
     return this.apiService.get('/Item/Random()?top='+top+'&skip='+skip);
   }
+
+  public getRecentOrders(){
+    return this.apiService.get('/Order/Recent()');
+  }
 }

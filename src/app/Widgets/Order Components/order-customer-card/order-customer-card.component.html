@@ -1,13 +1,13 @@
 <div class="order-container relative padding-15">
   <div class="header-container flex justify-space-between">
     <div class="profile-container flex justify-start align-center">
-      <app-avatar [src]="'https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA'"></app-avatar>
+      <app-avatar [src]="data.profileImage"></app-avatar>
       <div class="info-container padding-l-10 flex justify-center align-start flex-column">
-        <p class="name text-start font-semi-bold size-regular black capitalize">Google Inc.</p>
+        <p class="name text-start font-semi-bold size-regular black capitalize">{{data.storeName}}</p>
       </div>
     </div>
     <div class="reference-container padding-lr-6 padding-tb-3">
-      <p class="referene text-center font-medium size-extra-small gray-dark">#123123123</p>
+      <p class="referene text-center font-medium size-extra-small gray-dark">#{{data.reference}}</p>
     </div>
   </div>
   <div class="order-info-container margin-t-15">
@@ -16,7 +16,7 @@
         <p class="key text-start font-bold size-semi-small black">Ordered Item</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">Play Station 5</p>
+        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">{{data.itemName}}</p>
       </div>
     </div>
     <div class="key-value-container flex justify-start align-center">
@@ -24,7 +24,7 @@
         <p class="key text-start font-bold size-semi-small black">Quantity</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">1 piece</p>
+        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">{{data.quantity == 1? data.quantity+' piece' : data.quantity+' pieces'}}</p>
       </div>
     </div>
     <div class="key-value-container flex justify-start align-center">
@@ -32,7 +32,7 @@
         <p class="key text-start font-bold size-semi-small black">Cost</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">$ 100</p>
+        <p class="value text-start font-bold size-semi-small cyan-dark ellipse-1">$ {{data.price}}</p>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
         <p class="key text-start font-regular size-semi-small black">Submitted by</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">leo messi</p>
+        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">{{data.customerName}}</p>
       </div>
     </div>
     <div class="key-value-container flex justify-start align-center">
@@ -50,7 +50,7 @@
         <p class="key text-start font-regular size-semi-small black">Receiver</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">Leonel Messi</p>
+        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">{{data.receiver}}</p>
       </div>
     </div>
     <div class="key-value-container flex justify-start align-center">
@@ -58,7 +58,7 @@
         <p class="key text-start font-regular size-semi-small black">Submitted on</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">10/1/2023</p>
+        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">{{data.createdAt | date: 'd mm yyyy'}}</p>
       </div>
     </div>
     <div class="key-value-container flex justify-start align-center">
@@ -66,13 +66,18 @@
         <p class="key text-start font-regular size-semi-small black">Drop-off site</p>
       </div>
       <div class="value-container">
-        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">Beirut - Lebanon</p>
+        <p class="value text-start font-regular size-semi-small cyan-dark ellipse-1">{{data.city}} - {{data.country}}</p>
       </div>
     </div>
   </div>
 
   <div class="status-container flex align-center absolute"
-      [ngClass]="{'submitted': true, 'rejected': false, 'approved': false, 'ongoing': false, 'completed': false}">
-    <p class="status text-center font-extra-bold size-regular padding-b-2 white">Submitted</p>
+      [ngClass]="{'submitted': data.orderStatus == 'Submitted',
+                  'rejected': data.orderStatus == 'Rejected',
+                  'approved': data.orderStatus == 'Approved',
+                  'ongoing': data.orderStatus == 'OnGoing',
+                  'completed': data.orderStatus == 'Completed'}">
+
+    <p class="status text-center font-extra-bold size-regular padding-b-2 white">{{data.orderStatus}}</p>
   </div>
 </div>

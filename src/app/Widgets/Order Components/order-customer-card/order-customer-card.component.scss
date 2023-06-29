@@ -50,6 +50,9 @@
     &.approved{
       background-color: var(--green-super-dark);
     }
+    &.ongoing{
+      background-color: var(--orange);
+    }
     &.completed{
       background-color: var(--green);
     }
