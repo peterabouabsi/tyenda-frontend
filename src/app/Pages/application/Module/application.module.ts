@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/Shared/Modules/shared/shared.module';
 
 //Services
 import { CustomerHomeService } from '../Pages/Customer/Pages/Home/Services/customer-home.service';
+import { CustomerOrdersService } from '../Pages/Customer/Pages/Orders/Services/customer-orders.service';
 
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
@@ -64,7 +65,8 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       //Store Pages
   ],
   providers: [
-    CustomerHomeService
+    CustomerHomeService,
+    CustomerOrdersService
   ]
 })
 

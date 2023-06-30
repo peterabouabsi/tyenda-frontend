@@ -59,7 +59,7 @@ const routes: Routes = [
       {path: 'search', component: SearchComponent, title: 'Tyenda | Search'},
       {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda | Orders'}
       /*
-      {path: 'folders', component: null, title: 'Tyenda | Folders'}
+      {path: 'Cart', component: null, title: 'Tyenda | Cart'}
       */
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [

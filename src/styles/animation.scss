@@ -34,3 +34,13 @@
     transform: scale(1,1);
   }
 }
+
+@keyframes skeleton-animation {
+  0% {
+      background-position: 200% 0;
+  }
+
+  100% {
+      background-position: -200% 0;
+  }
+}

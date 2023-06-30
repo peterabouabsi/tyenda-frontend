@@ -15,7 +15,7 @@
         <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('orders')">Orders</p>
       </div>
       <div class="link-container padding-lr-10 flex justify-center align-center">
-        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('folders')">Folders</p>
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('Cart')">Cart</p>
       </div>
     </div>
     <div class="others-container flex justify-end align-end">
@@ -27,9 +27,6 @@
               <app-notification-card [notification]="notification" (onClickEvent)="openNotification($event)"></app-notification-card>
             </div>
           </div>
-        </div>
-        <div class="icon-container padding-lr-6 flex justify-center align-center">
-          <mat-icon class="icon white" svgIcon="bag-shopping"></mat-icon>
         </div>
       </div>
       <div class="profile-container padding-10 flex justify-center align-center relative" (focusout)="onFocusOut()" tabindex="1">

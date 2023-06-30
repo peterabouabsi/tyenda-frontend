@@ -6,6 +6,16 @@
     width: 100%;
     .info-container{
       width: 100%;
+      .icon-container{
+        right: 3px;
+        top: 6px;
+        .icon{
+          width: 20px;
+          height: auto;
+          cursor: pointer;
+          transition: 0.3s ease-in-out;
+        }
+      }
     }
   }
   .info-container{

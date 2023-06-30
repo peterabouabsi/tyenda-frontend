@@ -1,14 +1,22 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+import { CustomerOrdersService } from './Services/customer-orders.service';
+
+//Components
+import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expansion-panel/expansion-panel.component';
 
 //Config
 import { SearchResultConfig } from 'src/app/Shared/Models/Config/Search/SearchResultConfig.config';
 
 //Views
 import { BasicTimestampView } from 'src/app/Shared/Models/Views/Timestamp/BasicTimestampView.view';
+import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
+
+//Forms
+import { OrdersSearchForm } from 'src/app/Shared/Models/Forms/OrdersSearchForm.form';
 
 @Component({
   selector: 'app-orders-customer',
@@ -28,9 +36,10 @@ export class OrdersCustomerComponent implements OnInit {
   });
 
   //replace any | any with Order View Model
-  public searchResultConfig: SearchResultConfig<any> = { value: '4 Orders found', data: [1,1,1,1,1,1] }
+  public searchResultConfig: SearchResultConfig<OrderBasicView> = { value: '', data: [], loaded: false }
 
-  constructor(private globalService: GlobalService) {
+  constructor(private globalService: GlobalService,
+              private customerOrdersService: CustomerOrdersService) {
   }
 
   ngOnInit(): void {
@@ -43,28 +52,40 @@ export class OrdersCustomerComponent implements OnInit {
   private readTimestamps() {
     this.dates = this.globalService.getTimestamps();
   }
-  private readOrderStatuses(){
+  private readOrderStatuses() {
     this.orderStatuses = this.globalService.getOrderStatuses();
   }
 
-
   private readData(onSearchButton?: boolean) {
-    if (onSearchButton) {
-      //Search filtered orders
-    } else {
-      //read all orders
-    }
+    let form: OrdersSearchForm = !onSearchButton ? {} : {
+      keyword: this.searchFilter.get('keywords').value,
+      reference: this.searchFilter.get('reference').value,
+      minDate: this.searchFilter.get('timestamp').value ? this.searchFilter.get('timestamp').value.id : null,
+      orderStatuses: this.searchFilter.get('statuses').value
+    };
+
+    this.searchResultConfig.loaded = false;
+    this.customerOrdersService.searchOrders(form).subscribe((response: any) => {
+      if (!response.error) {
+        this.searchResultConfig = {
+          value: onSearchButton ? response.length + ' orders found' : '',
+          data: response,
+          loaded: true
+        };
+      }
+    });
   }
 
   /*----------- Set value to the corresponding formControl ----------*/
-  public setValue(formControlName: string, value: any){
+  public setValue(formControlName: string, value: any) {
     this.searchFilter.get(formControlName).setValue(value);
   }
   /*----------- Set value to the corresponding formControl ----------*/
 
+  @ViewChild('filterPanel') filterPanelRef: ExpansionPanelComponent;
   public search() {
-    this.readData(true)
-    //save the searched data in: this.searchResultConfig.data
+    this.filterPanelRef.isExpansionOpened = false;
+    this.readData(true);
   }
   public clearSearchResult() {
     this.readData();

@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
   public maxPrice: number = 30000;
 
   //replace any | any with Store and Item View Models
-  public searchResultConfig: SearchResultConfig<any | any> = { value: "4 Items found", data: [1,1,1,1,1,1,1,1,1,1,1] };
+  public searchResultConfig: SearchResultConfig<any | any> = { value: "4 Items found", data: [], loaded: false };
 
   public searchFilter: FormGroup = new FormGroup({
     name: new FormControl('', []),

@@ -6,7 +6,8 @@
           <p class="title text-start font-extra-bold size-medium black capitalize">Top-Selling item</p>
         </div>
         <div class="item-card-container flex justify-center align-center">
-          <app-item-customer-basic-card [data]="topSellingItem"></app-item-customer-basic-card>
+          <app-empty [value]="'No item sold'" *ngIf="!topSellingItem"></app-empty>
+          <app-item-customer-basic-card [data]="topSellingItem" [config]="{showLike: false, showCartButton: false}" *ngIf="topSellingItem"></app-item-customer-basic-card>
         </div>
       </div>
 
@@ -15,6 +16,8 @@
           <p class="title text-start font-extra-bold size-medium black capitalize">Overview</p>
         </div>
         <div class="overview-cards-container flex justify-center align-center flex-wrap margin-tb-10">
+
+          <app-empty [value]="'No item sold'" *ngIf="!topSellingItem"></app-empty>
           <div class="overview-card-container padding-10" *ngFor="let overview of overviews">
             <app-overview-card [data]="overview"></app-overview-card>
           </div>

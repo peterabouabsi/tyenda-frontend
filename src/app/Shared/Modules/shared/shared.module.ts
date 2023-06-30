@@ -36,6 +36,7 @@ import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Compon
 import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
+import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -55,12 +56,13 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     SelectorChipComponent,
     AvatarComponent,
     BadgeComponent,
+    SelectMultiBoxComponent,
 
     ToastrComponent,
     StepperComponent,
     PagerComponent,
     ExpansionPanelComponent,
-    SelectMultiBoxComponent,
+    EmptyComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,
@@ -97,6 +99,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     StepperComponent,
     PagerComponent,
     ExpansionPanelComponent,
+    EmptyComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,

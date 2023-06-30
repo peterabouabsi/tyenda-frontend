@@ -25,8 +25,12 @@ export class IconService {
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/bell.svg')
       );
       this.matIconRegistry.addSvgIcon(
-        'bag-shopping',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/bag-shopping.svg')
+        'heart',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/heart.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'full-heart',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/full-heart.svg')
       );
       this.matIconRegistry.addSvgIcon(
         'filter',

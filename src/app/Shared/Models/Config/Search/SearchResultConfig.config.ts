@@ -1,4 +1,5 @@
 export interface SearchResultConfig<Type>{
   value: string;
-  data: Type;
+  loaded: boolean;
+  data: Type[];
 }

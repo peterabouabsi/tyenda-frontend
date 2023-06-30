@@ -1,10 +1,10 @@
   <div class="chip padding-lr-10 padding-b-2 flex justify-start align-center"
-    [ngStyle]="{'background-color': color? 'var(--'+color+')' : 'var(--blue-dark)'}">
+      [ngStyle]="{'background-color': color? 'var(--'+color+')' : 'var(--blue-dark)'}">
 
   <div class="value-container margin-r-3 font-medium size-regular white">{{value? value : data.value}}</div>
 
   <div class="delete-container flex justify-center align-center margin-l-7 margin-t-1 padding-t-1 padding-l-0">
-    <mat-icon class="icon blue-dark" svgIcon="x-mark" (click)="remove()"></mat-icon>
+    <mat-icon class="icon" [ngStyle]="{'color': color? 'var(--'+color+')' : 'var(--blue-dark)'}" svgIcon="x-mark" (click)="remove()"></mat-icon>
   </div>
 
 </div>

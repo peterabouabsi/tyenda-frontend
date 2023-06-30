@@ -10,4 +10,5 @@ export interface ItemBasicView {
   itemImage: string;
   description: string;
   isAddedToCart: boolean;
+  isItemLiked: boolean;
 }

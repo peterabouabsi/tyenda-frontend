@@ -6,7 +6,10 @@
       </div>
     </div>
     <div class="expansion-panel-container margin-tb-30">
-      <app-expansion-panel [title]="'Filter'" [titleIcon]="'filter'">
+      <app-expansion-panel
+        #filterPanel
+        [title]="'Filter'"
+        [titleIcon]="'filter'">
         <div class="inputs-container flex justify-center align-start flex-wrap">
           <div class="input-container margin-10">
             <div class="label-container padding-tb-10">
@@ -15,7 +18,9 @@
             <div class="input-form">
               <app-text-field
                 [placeholder]="'Keywords, etc.'"
-                [formControl]="searchFilter.controls['keywords']"></app-text-field>
+                [formControl]="searchFilter.controls['keywords']"
+                (onInputEvent)="setValue('keywords', $event)">
+              </app-text-field>
             </div>
           </div>
           <div class="input-container margin-10">
@@ -25,7 +30,9 @@
             <div class="input-form">
               <app-text-field
                 [placeholder]="'Order reference'"
-                [formControl]="searchFilter.controls['reference']"></app-text-field>
+                [formControl]="searchFilter.controls['reference']"
+                (onInputEvent)="setValue('reference', $event)">
+              </app-text-field>
             </div>
           </div>
           <div class="input-container margin-10">
@@ -33,8 +40,11 @@
               <p class="label text-start font-bold size-regular black">Creation Date</p>
             </div>
             <div class="input-form">
-              <app-select-field [data]="dates" [placeholder]="'Created date'"
-                [formControl]="searchFilter.controls['timestamp']" (onSelectEvent)="setValue('timestamp', $event)">
+              <app-select-field
+                [data]="dates"
+                [placeholder]="'Created date'"
+                [formControl]="searchFilter.controls['timestamp']"
+                (onSelectEvent)="setValue('timestamp', $event)">
               </app-select-field>
             </div>
           </div>
@@ -55,27 +65,24 @@
         </div>
       </app-expansion-panel>
     </div>
-    <div class="result-container">
+    <div class="result-container" [ngClass]="{'skeleton-loader' : !searchResultConfig.loaded}">
       <div class="result-header-container flex justify-end align-center flex-wrap">
         <div class="chip-container flex justify-center align-center">
           <app-selector-chip
             [color]="'gray-dark'"
             [value]="searchResultConfig.value"
             (onDelete)="clearSearchResult()"
-            *ngIf="searchResultConfig.data.length > 0">
+            *ngIf="searchResultConfig.value">
           </app-selector-chip>
         </div>
       </div>
       <div class="result-body-container padding-tb-30">
-        <div class="cards-container flex justify-center align-start flex-wrap">
+        <div class="cards-container flex justify-center align-start flex-wrap" *ngIf="searchResultConfig.loaded">
           <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
-            <app-order-customer-card></app-order-customer-card>
+            <app-order-customer-card [data]="dataCard"></app-order-customer-card>
           </div>
         </div>
       </div>
-    </div>
-    <div class="button-container flex justify-center align-center margin-t-50">
-      <app-button [value]="'View More'" [color]="'blue'" (click)="null"></app-button>
     </div>
   </div>
 </div>
