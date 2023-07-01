@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 //Forms
 import { FollowUnfollowForm } from './../../../Shared/Models/Forms/FollowUnfollowForm.form';
-import { AddToCartForm } from './../../../Shared/Models/Forms/AddToCartForm.form';
+import { AddRemoveCartForm } from '../../../Shared/Models/Forms/AddRemoveCartForm.form';
 
 //Services
 import { StoreCardService } from 'src/app/Widgets/Store Components/Services/store-card.service';
@@ -26,7 +26,7 @@ export class StoreCustomerModerateCardComponent implements OnInit{
   }
 
   public addRemoveCart(){
-    let form: AddToCartForm = {
+    let form: AddRemoveCartForm = {
       storeId: this.data.id
     };
     this.storeCardService.addRemoveCart(form).subscribe((response: any) => {

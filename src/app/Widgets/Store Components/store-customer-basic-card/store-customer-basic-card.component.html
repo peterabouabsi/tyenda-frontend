@@ -1,0 +1,17 @@
+<div class="store-container margin-t-30 padding-tb-10">
+  <div class="background-image-container">
+    <img class="background-image" [src]="data?.backgroundImage" alt="">
+  </div>
+  <div class="profile-image-container flex justify-center align-center padding-tb-20">
+    <img class="profile-image padding-3" [src]="data?.profileImage" alt="">
+  </div>
+  <div class="info-container flex justify-start align-center flex-column">
+    <p class="name text-center font-extra-bold size-regular black">{{data?.storeName}}</p>
+    <p class="overview text-center font-regular size-semi-small gray-dark">{{data.followersCount | numberFormat}} Followers&nbsp;&nbsp;{{data.itemsCount | numberFormat}} Items&nbsp;&nbsp;{{data.ordersCount | numberFormat}} Orders</p>
+    <p class="overview text-center font-regular size-semi-small black ellipse-3 margin-t-10">{{data.description}}</p>
+  </div>
+  <div class="button-container padding-tb-30">
+    <app-button [color]="'gray'" [value]="'Remove from cart'" (click)="addRemoveCart()"></app-button>
+  </div>
+</div>
+

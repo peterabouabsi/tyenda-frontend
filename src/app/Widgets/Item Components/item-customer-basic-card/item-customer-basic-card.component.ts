@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 //Forms
-import { AddToCartForm } from 'src/app/Shared/Models/Forms/AddToCartForm.form';
+import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
 import { LikeItemForm } from 'src/app/Shared/Models/Forms/LikeItemForm.form';
 
 //Views
@@ -52,7 +52,7 @@ export class ItemCustomerBasicCardComponent implements OnInit{
     });
   }
   public addRemoveCart(){
-    let form: AddToCartForm = {
+    let form: AddRemoveCartForm = {
       itemId: this.data.id
     }
 

@@ -1,0 +1,27 @@
+<div class="parent-container">
+  <div class="inner-container">
+    <div class="header-container flex justify-space-between align-center flex-wrap">
+      <div class="text-container">
+        <p class="text text-start font-black size-extra-large black">Your Cart</p>
+      </div>
+      <div class="filter-container flex justify-center align-center">
+        <app-options-bar
+          [options]="['Stores', 'Items']"
+          (onSelectEvent)="setFilterIndex($event)">
+        </app-options-bar>
+      </div>
+    </div>
+    <div class="result-container" [ngClass]="{'skeleton-loader' : !cartResultConfig.loaded}">
+      <div class="result-body-container padding-tb-30">
+        <div class="empty-container margin-t-50" *ngIf="cartResultConfig.data.length == 0">
+          <app-empty [value]="'No data found'"></app-empty>
+        </div>
+        <div class="cards-container flex justify-center align-start flex-wrap" *ngIf="cartResultConfig.loaded">
+          <div class="card-container padding-15" *ngFor="let dataCard of cartResultConfig.data">
+            <app-store-customer-basic-card [data]="dataCard" *ngIf="activeFilterIndex == 1" (onRemoveEvent)="readData(cartResultConfig.top, cartResultConfig.skip)"></app-store-customer-basic-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

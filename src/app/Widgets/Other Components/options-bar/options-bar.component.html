@@ -1,0 +1,7 @@
+<div class="filter-container flex justify-center align-center">
+  <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6"
+    [ngClass]="{'active': i+1 == activeIndex}" (click)="onClick(i+1)"
+    *ngFor="let option of options; let i = index">
+    <p class="filter text-center font-medium size-regular padding-b-2">{{option}}</p>
+  </div>
+</div>

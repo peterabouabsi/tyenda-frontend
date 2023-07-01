@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/Shared/Services/Api/api.service';
 
 //Forms
-import { AddToCartForm } from 'src/app/Shared/Models/Forms/AddToCartForm.form';
+import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
 import { LikeItemForm } from 'src/app/Shared/Models/Forms/LikeItemForm.form';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class ItemCardService {
     return this.apiService.post('/Item/Like()', form);
   }
 
-  public addRemoveCart(form: AddToCartForm){
-    return this.apiService.post('/Item/AddCart()', form);
+  public addRemoveCart(form: AddRemoveCartForm){
+    return this.apiService.post('/Item/AddRemoveCart()', form);
   }
 
 }

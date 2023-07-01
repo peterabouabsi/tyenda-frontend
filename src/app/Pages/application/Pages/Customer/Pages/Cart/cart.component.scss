@@ -6,33 +6,8 @@
         width: auto;
       }
     }
-
-    .expansion-panel-container{
-      width: 100%;
-      height: fit-content;
-
-      .inputs-container{
-        width: 100%;
-        .input-container{
-          width: 500px;
-          .input-form{
-            width: 100%;
-          }
-          .price-container{
-            width: 100%;
-            .price-box{
-              min-width: 65px;
-              width: fit-content;
-              border-radius: 6px;
-              box-shadow: 0px 0px 3px 1px var(--gray-light);
-            }
-          }
-        }
-      }
-    }
     .result-container{
       width: 100%;
-      height: auto;
       .cards-container{
         width: fit-content;
         height: auto;
@@ -63,12 +38,6 @@
         }
         .filter-container{
           width: 100%;
-          .option-filter-container{
-            width: 100%;
-            .filter{
-              font-size: 0.85rem;
-            }
-          }
         }
       }
       .result-container{

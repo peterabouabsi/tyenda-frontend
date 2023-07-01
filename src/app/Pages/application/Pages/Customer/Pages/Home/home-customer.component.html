@@ -16,8 +16,6 @@
           <p class="title text-start font-extra-bold size-medium black capitalize">Overview</p>
         </div>
         <div class="overview-cards-container flex justify-center align-center flex-wrap margin-tb-10">
-
-          <app-empty [value]="'No item sold'" *ngIf="!topSellingItem"></app-empty>
           <div class="overview-card-container padding-10" *ngFor="let overview of overviews">
             <app-overview-card [data]="overview"></app-overview-card>
           </div>

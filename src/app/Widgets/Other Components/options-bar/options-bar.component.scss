@@ -1,0 +1,32 @@
+.filter-container{
+  width: auto;
+  .option-filter-container{
+    width: auto;
+    min-width: 100px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    .filter{
+      color: var(--gray);
+    }
+    &.active{
+      transition: 0.3s ease-in-out;
+      border-bottom: 1px solid var(--blue-dark);
+
+      .filter{
+        color: var(--blue-dark);
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .filter-container{
+    width: 100%;
+    .option-filter-container{
+      width: 100%;
+      .filter{
+        font-size: 0.85rem;
+      }
+    }
+  }
+}

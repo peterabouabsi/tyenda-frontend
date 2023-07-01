@@ -5,14 +5,10 @@
         <p class="text text-start font-black size-extra-large black">Search</p>
       </div>
       <div class="filter-container flex justify-center align-center">
-        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6"
-          [ngClass]="{'active': activeFilterIndex == 1}" (click)="setFilterIndex(1)">
-          <p class="filter text-center font-medium size-regular padding-b-2">Stores</p>
-        </div>
-        <div class="option-filter-container flex justify-center align-center padding-lr-10 padding-tb-6"
-          [ngClass]="{'active': activeFilterIndex == 2}" (click)="setFilterIndex(2)">
-          <p class="filter text-center font-medium size-regular padding-b-2">Items</p>
-        </div>
+        <app-options-bar
+          [options]="['Stores', 'Items']"
+          (onSelectEvent)="setFilterIndex($event)">
+        </app-options-bar>
       </div>
     </div>
     <div class="expansion-panel-container margin-tb-30">
@@ -23,7 +19,9 @@
               <p class="label text-start font-bold size-regular black">Name</p>
             </div>
             <div class="input-form">
-              <app-text-field [placeholder]="'Keywords, etc.'" [formControl]="searchFilter.controls['name']"
+              <app-text-field
+                [placeholder]="'Keywords, etc.'"
+                [formControl]="searchFilter.controls['name']"
                 (onInputEvent)="setValue('name', $event)">
               </app-text-field>
             </div>
@@ -34,13 +32,19 @@
             </div>
             <div class="input-forms flex justify-start align-center">
               <div class="input-form">
-                <app-select-field [data]="countries" [placeholder]="'Select Country'"
-                  [formControl]="searchFilter.controls['country']" (onSelectEvent)="setValue('country', $event)">
+                <app-select-field
+                  [data]="countries"
+                  [placeholder]="'Select Country'"
+                  [formControl]="searchFilter.controls['country']"
+                  (onSelectEvent)="setValue('country', $event)">
                 </app-select-field>
               </div>
               <div class="input-form margin-l-6">
-                <app-select-field [data]="cities" [placeholder]="'Select City'"
-                  [formControl]="searchFilter.controls['city']" (onSelectEvent)="setValue('city', $event)">
+                <app-select-field
+                  [data]="cities"
+                  [placeholder]="'Select City'"
+                  [formControl]="searchFilter.controls['city']"
+                  (onSelectEvent)="setValue('city', $event)">
                 </app-select-field>
               </div>
             </div>
@@ -50,8 +54,11 @@
               <p class="label text-start font-bold size-regular black">Creation date</p>
             </div>
             <div class="input-form">
-              <app-select-field [data]="dates" [placeholder]="'Created date'"
-                [formControl]="searchFilter.controls['timestamp']" (onSelectEvent)="setValue('timestamp', $event)">
+              <app-select-field
+                [data]="dates"
+                [placeholder]="'Created date'"
+                [formControl]="searchFilter.controls['timestamp']"
+                (onSelectEvent)="setValue('timestamp', $event)">
               </app-select-field>
             </div>
           </div>
@@ -60,12 +67,18 @@
               <p class="label text-start font-bold size-regular black">Category</p>
             </div>
             <div class="input-form">
-              <app-select-field [data]="categories" [placeholder]="'Select category'"
-                [formControl]="searchFilter.controls['categories']" (onSelectEvent)="setValue('categories', $event)">
+              <app-select-field
+                [data]="categories"
+                [placeholder]="'Select category'"
+                [formControl]="searchFilter.controls['categories']"
+                (onSelectEvent)="setValue('categories', $event)">
               </app-select-field>
               <div class="chips-container flex justify-start align-start flex-wrap">
                 <div class="chip-container margin-r-6 margin-t-6" *ngFor="let category of searchFilter.controls['categories'].value; let i = index">
-                  <app-selector-chip [data]="category" (onDelete)="removeValue('categories', i)"></app-selector-chip>
+                  <app-selector-chip
+                    [data]="category"
+                    (onDelete)="removeValue('categories', i)">
+                  </app-selector-chip>
                 </div>
               </div>
             </div>
@@ -75,7 +88,10 @@
               <div class="label-container padding-tb-10">
                 <p class="label text-start font-bold size-regular black">Price</p>
               </div>
-              <app-salary-range-select [min]="minPrice" [max]="maxPrice" [step]="100"
+              <app-salary-range-select
+                [min]="minPrice"
+                [max]="maxPrice"
+                [step]="100"
                 (onRangeEvent)="setValue('price', $event)">
               </app-salary-range-select>
             </div>
@@ -114,9 +130,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="button-container flex justify-center align-center margin-t-50">
-      <app-button [value]="'View More'" [color]="'blue'" (click)="null"></app-button>
     </div>
   </div>
 </div>

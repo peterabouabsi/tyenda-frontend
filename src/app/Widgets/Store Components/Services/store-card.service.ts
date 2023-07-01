@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/Shared/Services/Api/api.service';
 
 //Forms
 import { FollowUnfollowForm } from 'src/app/Shared/Models/Forms/FollowUnfollowForm.form';
-import { AddToCartForm } from 'src/app/Shared/Models/Forms/AddToCartForm.form';
+import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class StoreCardService {
 
   constructor(private apiService: ApiService) { }
 
-  public addRemoveCart(form: AddToCartForm){
-    return this.apiService.post('/Store/AddCart()', form);
+  public addRemoveCart(form: AddRemoveCartForm){
+    return this.apiService.post('/Store/AddRemoveCart()', form);
   }
 
   public followUnfollow(form: FollowUnfollowForm){

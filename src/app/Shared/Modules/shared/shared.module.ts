@@ -10,6 +10,7 @@ import { ItemCardService } from 'src/app/Widgets/Item Components/Services/item-c
 
 //Pipes
 import { TimestampPipe } from '../../Pipes/Timestamp/timestamp.pipe';
+import { NumberFormatPipe } from '../../Pipes/Number/number-format.pipe';
 
 //Components
 import { TextFieldComponent } from 'src/app/Widgets/Form Components/text-field/text-field.component';
@@ -30,18 +31,21 @@ import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
 import { PagerComponent } from 'src/app/Widgets/Other Components/pager/pager.component';
 import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expansion-panel/expansion-panel.component';
+import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.component';
+import { OptionsBarComponent } from 'src/app/Widgets/Other Components/options-bar/options-bar.component';
 
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
 import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
+import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Components/store-customer-basic-card/store-customer-basic-card.component';
 import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
-import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.component';
 
 @NgModule({
   declarations: [
     //Pipes
     TimestampPipe,
+    NumberFormatPipe,
 
     //Components
     TextFieldComponent,
@@ -63,9 +67,11 @@ import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.com
     PagerComponent,
     ExpansionPanelComponent,
     EmptyComponent,
+    OptionsBarComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,
+    StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
     OverviewCardComponent,
     NotificationCardComponent
@@ -79,6 +85,7 @@ import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.com
   exports:[
     //Pipes
     TimestampPipe,
+    NumberFormatPipe,
 
     //Components
     TextFieldComponent,
@@ -100,9 +107,11 @@ import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.com
     PagerComponent,
     ExpansionPanelComponent,
     EmptyComponent,
+    OptionsBarComponent,
 
     ItemCustomerBasicCardComponent,
     StoreCustomerModerateCardComponent,
+    StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
     OverviewCardComponent,
     NotificationCardComponent
