@@ -10,8 +10,8 @@ export class CartService {
 
   constructor(private apiService: ApiService) { }
 
-  public readCart(type: string, top: number, skip: number){
-    return this.apiService.get('/Cart/'+type+'?top='+top+'&skip='+skip);
+  public readCart(type: string, top: number){
+    return this.apiService.get('/Cart/'+type+'?top='+top);
   }
 
 }

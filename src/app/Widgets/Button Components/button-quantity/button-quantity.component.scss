@@ -1,0 +1,17 @@
+.chip-button{
+  width: fit-content;
+  height: 32px;
+  border-radius: 50px;
+  user-select: none;
+  background-color: var(--white);
+  transition: 0.3s ease-in-out;
+  border: 2px solid var(--gray-light);
+  .symbol-container{
+    cursor: pointer;
+    width: fit-content;
+    height: 100%;
+  }
+  .quantity-container{
+    width: fit-content;
+  }
+}

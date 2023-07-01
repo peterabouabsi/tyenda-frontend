@@ -7,11 +7,10 @@
   </div>
   <div class="info-container flex justify-start align-center flex-column">
     <p class="name text-center font-extra-bold size-regular black">{{data?.storeName}}</p>
-    <p class="overview text-center font-regular size-semi-small gray-dark">{{data.followersCount | numberFormat}} Followers&nbsp;&nbsp;{{data.itemsCount | numberFormat}} Items&nbsp;&nbsp;{{data.ordersCount | numberFormat}} Orders</p>
-    <p class="overview text-center font-regular size-semi-small black ellipse-3 margin-t-10">{{data.description}}</p>
+    <p class="overview text-center font-regular size-semi-small gray-super-dark">{{data.followersCount | numberFormat}} followers&nbsp;&nbsp;{{data.itemsCount | numberFormat}} items&nbsp;&nbsp;{{data.ordersCount | numberFormat}} orders</p>
+    <p class="description text-center font-regular size-semi-small black ellipse-3 margin-t-10">{{data.description}}</p>
   </div>
   <div class="button-container padding-tb-30">
     <app-button [color]="'gray'" [value]="'Remove from cart'" (click)="addRemoveCart()"></app-button>
   </div>
 </div>
-

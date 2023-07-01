@@ -18,10 +18,22 @@
         </div>
         <div class="cards-container flex justify-center align-start flex-wrap" *ngIf="cartResultConfig.loaded">
           <div class="card-container padding-15" *ngFor="let dataCard of cartResultConfig.data">
-            <app-store-customer-basic-card [data]="dataCard" *ngIf="activeFilterIndex == 1" (onRemoveEvent)="readData(cartResultConfig.top, cartResultConfig.skip)"></app-store-customer-basic-card>
+            <app-store-customer-basic-card
+              [data]="dataCard"
+              (onRemoveEvent)="readData(cartResultConfig.top)"
+              *ngIf="activeFilterIndex == 1">
+            </app-store-customer-basic-card>
+            <app-item-customer-moderate-card
+              [data]="dataCard"
+              (onRemoveEvent)="readData(cartResultConfig.top)"
+              *ngIf="activeFilterIndex == 2">
+            </app-item-customer-moderate-card>
           </div>
         </div>
       </div>
+    </div>
+    <div class="button-container flex justify-center align-center margin-t-30">
+      <app-button [value]="'View More'" [color]="'blue'" (click)="viewMore()"></app-button>
     </div>
   </div>
 </div>

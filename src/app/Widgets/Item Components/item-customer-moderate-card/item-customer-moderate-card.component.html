@@ -1,0 +1,31 @@
+<div class="item-container margin-t-30 padding-tb-10">
+  <div class="image-container relative">
+    <img [src]="data?.itemImage" alt="">
+    <div class="badge-rate-container absolute">
+      <app-badge [color]="'var(--orange)'" [value]="data?.rate+'/5'"></app-badge>
+    </div>
+    <div class="badge-discount-price-container flex justify-start align-center absolute">
+      <div class="badge-discount-container">
+        <app-badge [color]="'var(--red-dark)'" [value]="data?.discount+'%'"></app-badge>
+      </div>
+      <div class="badge-price-container margin-l-3">
+        <app-badge [color]="'var(--green-super-dark)'" [value]="data?.price+'$'"></app-badge>
+      </div>
+    </div>
+  </div>
+  <div class="text-container flex justify-center align-center padding-tb-10">
+    <p class="value text-center font-extra-bold size-medium">{{data?.itemName}}</p>
+  </div>
+
+  <div class="store-info-container flex justify-center align-center flex-column margin-t-10">
+    <app-avatar [src]="data?.profileImage"></app-avatar>
+    <p class="store-name text-center font-medium size-regular">{{data?.storeName}}</p>
+    <p class="overview text-center font-regular size-semi-small gray-super-dark">{{data?.likesCount}} likes&nbsp;{{data?.ordersCount}} orders</p>
+    <p class="description text-center font-regular size-semi-small black ellipse-3 margin-t-10">{{data?.description}}</p>
+  </div>
+
+  <div class="button-container flex justify-space-between align-center padding-tb-30">
+    <app-button [color]="'gray'" [value]="'Remove from cart'" (click)="addRemoveCart()"></app-button>
+    <app-button-quantity [quantity]="data?.quantity" [maxQuantity]="data?.stock" (onCounterClick)="onQuantityUpdate($event)"></app-button-quantity>
+  </div>
+</div>

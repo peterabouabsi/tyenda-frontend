@@ -21,6 +21,7 @@ import { SalaryRangeSelectComponent } from 'src/app/Widgets/Form Components/sala
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
+import { ButtonQuantityComponent } from 'src/app/Widgets/Button Components/button-quantity/button-quantity.component';
 
 import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector-chip/selector-chip.component';
 import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
@@ -40,6 +41,7 @@ import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Component
 import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
+import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
 
     ButtonLoaderComponent,
     ButtonComponent,
+    ButtonQuantityComponent,
 
     SelectorChipComponent,
     AvatarComponent,
@@ -70,6 +73,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     OptionsBarComponent,
 
     ItemCustomerBasicCardComponent,
+    ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,
     StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
@@ -96,6 +100,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
 
     ButtonLoaderComponent,
     ButtonComponent,
+    ButtonQuantityComponent,
 
     SelectorChipComponent,
     AvatarComponent,
@@ -110,6 +115,7 @@ import { NotificationCardComponent } from 'src/app/Widgets/Notification Componen
     OptionsBarComponent,
 
     ItemCustomerBasicCardComponent,
+    ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,
     StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
