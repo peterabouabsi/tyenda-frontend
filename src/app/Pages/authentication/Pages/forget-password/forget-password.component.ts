@@ -2,6 +2,9 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Config
 import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
@@ -53,7 +56,7 @@ export class ForgetPasswordComponent implements OnInit {
           if(response.error){
             this.toastrRef.onDanger('Forget Password', response.message, 5);
           }else{
-            this.router.navigate(['/authentication/login']);
+            this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
           }
         });
       } else {
@@ -70,6 +73,6 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   public backToLogin() {
-    this.router.navigate(['/authentication/login'])
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login'])
   }
 }

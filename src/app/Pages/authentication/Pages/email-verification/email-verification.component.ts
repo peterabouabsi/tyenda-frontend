@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { AuthenticationService } from '../../Services/authentication.service';
 
@@ -29,7 +32,7 @@ export class EmailVerificationComponent implements OnInit{
   private activateAccount(){
     this.token = this.route.snapshot.queryParams['token'];
     if(!this.token || this.token == ''){
-      this.router.navigate(['/authentication/login']);
+      this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
     }else{
       let activateAccountForm: ActivateAccountForm = {
         token: this.token

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Config
 import { CartConfig } from 'src/app/Shared/Models/Config/Cart/CartConfig.config';
 
@@ -32,8 +35,8 @@ export class CartComponent implements OnInit{
   /*--------- Read Stores/Items in your cart based on the activeIndex -------------*/
   public readData(top: number){
     let type = "";
-    if(this.activeFilterIndex == 1) type = "Stores"
-    if(this.activeFilterIndex == 2) type = "Items"
+    if(this.activeFilterIndex == 1) type = Constants.STORE_TYPE
+    if(this.activeFilterIndex == 2) type = Constants.ITEM_TYPE
 
     this.cartService.readCart(type, top).subscribe((response: any) => {
       if(!response.error){

@@ -118,7 +118,7 @@ export class StoreSignupComponent implements OnInit {
           this.authenticationService.signup('/Account/Store/Signup()', storeSignupForm).subscribe((response: any) => {
             setTimeout(() => {this.signupButton.loading = false}, 1500);
             if(!response.error){
-              this.router.navigate(['/authentication/email-activation'], {queryParams: {email: storeData.email}});
+              this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: storeData.email}});
             }
           });
         }else{
@@ -140,7 +140,7 @@ export class StoreSignupComponent implements OnInit {
   }
 
   public login() {
-    this.router.navigate(['/authentication/login']);
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
   }
 
 }

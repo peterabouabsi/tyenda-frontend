@@ -88,6 +88,12 @@ export class OrdersCustomerComponent implements OnInit {
     this.readData(true);
   }
   public clearSearchResult() {
+    this.searchFilter = new FormGroup({
+      keywords: new FormControl('', []),
+      reference: new FormControl('', []),
+      timestamp: new FormControl(null, []),
+      statuses: new FormControl([], [])
+    });
     this.readData();
   }
 

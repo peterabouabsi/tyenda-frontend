@@ -2,6 +2,9 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Config
 import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
@@ -65,7 +68,7 @@ export class CustomerSignupComponent implements OnInit{
           if(response.error){
             this.toastrRef.onDanger('Signup', response.message, 5);
           }else{
-            this.router.navigate(['/authentication/email-activation'], {queryParams: {email: customerSignupForm.email}});
+            this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: customerSignupForm.email}});
           }
         });
 
@@ -83,7 +86,7 @@ export class CustomerSignupComponent implements OnInit{
   }
 
   public login(){
-    this.router.navigate(['/authentication/login']);
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
   }
 
 }

@@ -17,7 +17,7 @@ import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModera
 })
 export class StoreCustomerModerateCardComponent implements OnInit{
 
-  @Input() data: StoreModerateView;
+  @Input() data: StoreModerateView | any;
 
   constructor(private storeCardService: StoreCardService) {
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 //Modules
 import { MatDialog } from '@angular/material/dialog';
@@ -21,11 +22,12 @@ import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampV
 })
 export class GlobalService {
 
-  constructor(private dialog: MatDialog,
+  constructor(private router: Router,
+              private dialog: MatDialog,
               private apiService: ApiService) {
   }
 
-  //Global HTTP Requests
+  //Global HTTP Requests and Data
   public getAccountRole() {
     return this.apiService.get('/Account/Role()');
   }
@@ -50,8 +52,6 @@ export class GlobalService {
   public viewNotification(notificationId: string){
     return this.apiService.post('/Notification/View/'+notificationId);
   }
-
-  //Global Data
   public getTimestamps(){
     var now = new Date();
     var last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -180,6 +180,25 @@ export class GlobalService {
 
     dialog.afterClosed().subscribe((result?: any) => {
       callback(result);
+    })
+  }
+
+  //Remove all query params
+  public async removeQueryParameterAsync() {
+    new Promise(() => {
+      // Get the current route URL without query parameters
+      const urlTree = this.router.parseUrl(this.router.url);
+      urlTree.queryParams = {};
+
+      // Create navigation extras without preserving the query parameters
+      const navigationExtras: NavigationExtras = {
+        queryParamsHandling: '',
+        preserveFragment: true,
+      };
+
+      // Navigate to the updated route
+      this.router.navigateByUrl(urlTree.toString(), navigationExtras);
+
     })
   }
 }

@@ -6,13 +6,14 @@
       </div>
       <div class="filter-container flex justify-center align-center">
         <app-options-bar
-          [options]="['Stores', 'Items']"
+          [activeIndex]="FilterIndexConfig.active"
+          [options]="FilterIndexConfig.options"
           (onSelectEvent)="setFilterIndex($event)">
         </app-options-bar>
       </div>
     </div>
     <div class="expansion-panel-container margin-tb-30">
-      <app-expansion-panel [title]="'Filters'" [titleIcon]="'filter'">
+      <app-expansion-panel #expansionPanel [title]="'Filters'" [titleIcon]="'filter'">
         <div class="inputs-container flex justify-center align-start flex-wrap">
           <div class="input-container margin-10">
             <div class="label-container padding-tb-10">
@@ -26,7 +27,7 @@
               </app-text-field>
             </div>
           </div>
-          <div class="input-container margin-10" *ngIf="activeFilterIndex == 1">
+          <div class="input-container margin-10" *ngIf="FilterIndexConfig.active == 1">
             <div class="label-container padding-tb-10">
               <p class="label text-start font-bold size-regular black">Location</p>
             </div>
@@ -39,7 +40,7 @@
                   (onSelectEvent)="setValue('country', $event)">
                 </app-select-field>
               </div>
-              <div class="input-form margin-l-6">
+              <div class="input-form margin-l-6" *ngIf="searchFilter.controls['country'].value">
                 <app-select-field
                   [data]="cities"
                   [placeholder]="'Select City'"
@@ -57,8 +58,8 @@
               <app-select-field
                 [data]="dates"
                 [placeholder]="'Created date'"
-                [formControl]="searchFilter.controls['timestamp']"
-                (onSelectEvent)="setValue('timestamp', $event)">
+                [formControl]="searchFilter.controls['createdAt']"
+                (onSelectEvent)="setValue('createdAt', $event)">
               </app-select-field>
             </div>
           </div>
@@ -83,7 +84,7 @@
               </div>
             </div>
           </div>
-          <div class="input-container margin-10" *ngIf="activeFilterIndex == 2">
+          <div class="input-container margin-10" *ngIf="FilterIndexConfig.active == 2">
             <div class="input-form">
               <div class="label-container padding-tb-10">
                 <p class="label text-start font-bold size-regular black">Price</p>
@@ -118,15 +119,15 @@
             [color]="'gray-dark'"
             [value]="searchResultConfig.value"
             (onDelete)="clearSearchResult()"
-            *ngIf="searchResultConfig.data.length > 0">
+            *ngIf="searchResultConfig.value">
           </app-selector-chip>
         </div>
       </div>
       <div class="result-body-container padding-tb-30">
         <div class="cards-container flex justify-center align-start flex-wrap">
           <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
-            <app-store-customer-moderate-card *ngIf="activeFilterIndex == 1"></app-store-customer-moderate-card>
-            <app-item-customer-basic-card *ngIf="activeFilterIndex == 2"></app-item-customer-basic-card>
+            <app-store-customer-moderate-card [data]="dataCard" *ngIf="FilterIndexConfig.active == 1"></app-store-customer-moderate-card>
+            <app-item-customer-basic-card [data]="dataCard" *ngIf="FilterIndexConfig.active == 2"></app-item-customer-basic-card>
           </div>
         </div>
       </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { AuthenticationService } from '../../Services/authentication.service';
 
@@ -31,7 +34,7 @@ export class EmailActivationComponent implements OnInit{
   private getActivationEmail(){
     this.email = this.route.snapshot.queryParams['email'];
     if(!this.email || this.email == ''){
-      this.router.navigate(['/authentication/login']);
+      this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
     }
   }
 
@@ -53,6 +56,6 @@ export class EmailActivationComponent implements OnInit{
   }
 
   public login(){
-    this.router.navigate(['/authentication/login']);
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
   }
 }

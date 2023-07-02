@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
@@ -64,14 +67,14 @@ export class NavbarCustomerComponent implements OnInit{
   }
   public logout(){
     this.globalService.logout().then(() => {
-      this.router.navigate(['/authentication']);
+      this.router.navigate([Constants.AUTH_MAIN_ROUTE]);
     });
   }
   /*------------------------------------------------*/
 
   /*on link click*/
   public onLinkClick(link: string){
-    this.router.navigate(['/application/customer/'+link]);
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+link]);
     this.isLinksOpened = false;
     this.optionsOpenIndex = 0;
   }

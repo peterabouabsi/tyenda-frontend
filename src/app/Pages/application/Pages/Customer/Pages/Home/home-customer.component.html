@@ -30,7 +30,7 @@
         </div>
         <app-pager
           [itemPerPage]="itemsData.dataPerPage"
-          [config]="{button: {color: 'black', path: '', value: 'View All Items'}, dataCount: itemsData.count}"
+          [config]="{button: {color: 'black', path: '/application/customer/search', queryParams: {type: 'Item'},value: 'View All Items'}, dataCount: itemsData.count}"
           (onSetPage)="getPagingData('items', $event)">
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
@@ -47,7 +47,7 @@
         </div>
         <app-pager
           [itemPerPage]="storesData.dataPerPage"
-          [config]="{button: {color: 'black', path: '', value: 'View All Stores'}, dataCount: storesData.count}"
+          [config]="{button: {color: 'black', path: '/application/customer/search', queryParams: {type: 'Store'}, value: 'View All Stores'}, dataCount: storesData.count}"
           (onSetPage)="getPagingData('stores', $event)">
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
@@ -69,7 +69,7 @@
           </div>
         </div>
         <div class="button-container flex justify-center align-center margin-t-50">
-          <app-button [color]="'black'" [value]="'View All Orders'"></app-button>
+          <app-button [color]="'black'" [value]="'View All Orders'" (click)="routeTo('orders')"></app-button>
         </div>
       </div>
 

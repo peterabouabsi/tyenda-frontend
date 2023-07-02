@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit{
               });
             //This means the account is not activated yet
             }else{
-              this.router.navigate(['/authentication/email-activation'], {queryParams: {email: response.email}});
+              this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: response.email}});
             }
           }
         });
@@ -91,9 +91,9 @@ export class LoginComponent implements OnInit{
   }
 
   public forgetPassword(){
-    this.router.navigate(['/authentication/forget-password']);
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'forget-password']);
   }
   public signup(path: string){
-    this.router.navigate(['/authentication/signup/'+path]);
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'signup/'+path]);
   }
 }

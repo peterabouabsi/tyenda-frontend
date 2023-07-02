@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Config
 import { PagerDataConfig } from 'src/app/Shared/Models/Config/Pager/PagerDataConfig.config';
@@ -25,7 +29,8 @@ export class HomeCustomerComponent implements OnInit{
   public storesData: PagerDataConfig<StoreModerateView> = {data: [], count: 0, dataPerPage: 3}
   public orders: OrderBasicView[] = [];
 
-  constructor(private customerHomeService: CustomerHomeService) {
+  constructor(private router: Router,
+              private customerHomeService: CustomerHomeService) {
   }
 
   ngOnInit(): void {
@@ -82,5 +87,9 @@ export class HomeCustomerComponent implements OnInit{
     if(category == 'stores'){
       this.readStores(top, skip);
     }
+  }
+
+  public routeTo(path: string){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+path]);
   }
 }

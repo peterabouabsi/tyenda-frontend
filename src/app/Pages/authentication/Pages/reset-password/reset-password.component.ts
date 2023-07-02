@@ -2,6 +2,9 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Config
 import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
 
@@ -45,7 +48,7 @@ export class ResetPasswordComponent implements OnInit{
     if(token){
       this.setValue('token', token);
     }else{
-      this.router.navigate(['/authentication/login']);
+      this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
     }
   }
 
@@ -70,7 +73,7 @@ export class ResetPasswordComponent implements OnInit{
           if(response.error){
             this.toastrRef.onDanger('Reset Password', response.message, 5);
           }else{
-            this.router.navigate(['/authentication/login']);
+            this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
           }
         });
 

@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/Shared/Modules/shared/shared.module';
 //Services
 import { CustomerHomeService } from '../Pages/Customer/Pages/Home/Services/customer-home.service';
 import { CustomerOrdersService } from '../Pages/Customer/Pages/Orders/Services/customer-orders.service';
+import { CustomerSearchService } from '../Pages/Customer/Pages/Search/Services/customer-search.service';
 import { CartService } from '../Pages/Customer/Pages/Cart/Services/cart.service';
 
 //Components
@@ -20,6 +21,7 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
   import { SearchComponent } from '../Pages/Customer/Pages/Search/search.component';
   import { OrdersCustomerComponent } from '../Pages/Customer/Pages/Orders/orders-customer.component';
   import { CartComponent } from '../Pages/Customer/Pages/Cart/cart.component';
+  import { CustomerItemComponent } from '../Pages/Customer/Pages/Item/customer-item.component';
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
@@ -38,6 +40,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       SearchComponent,
       OrdersCustomerComponent,
       CartComponent,
+      CustomerItemComponent,
 
     StoreMainComponent,
       //Navbar
@@ -62,6 +65,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       SearchComponent,
       OrdersCustomerComponent,
       CartComponent,
+      CustomerItemComponent,
 
     StoreMainComponent,
       //Navbar
@@ -71,6 +75,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   providers: [
     CustomerHomeService,
     CustomerOrdersService,
+    CustomerSearchService,
     CartService,
 
     DecimalPipe

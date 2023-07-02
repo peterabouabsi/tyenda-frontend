@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Forms
 import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
@@ -20,10 +24,11 @@ import { ItemCustomerBasicCardConfig } from './ItemCustomerBasicCardConfig.confi
 })
 export class ItemCustomerBasicCardComponent implements OnInit{
 
-  @Input() data: ItemBasicView;
+  @Input() data: ItemBasicView | any;
   @Input() config?: ItemCustomerBasicCardConfig = {showLike: true, showCartButton: true, showOrderButton: true}
 
-  constructor(private itemCardService: ItemCardService) {
+  constructor(private router: Router,
+              private itemCardService: ItemCardService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +43,10 @@ export class ItemCustomerBasicCardComponent implements OnInit{
     };
 
     this.config = { ...defaultConfig, ...this.config };
+  }
+
+  public openItem(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'item/'+this.data.id]);
   }
 
   public likeDislike(){
