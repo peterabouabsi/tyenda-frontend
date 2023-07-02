@@ -22,6 +22,8 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
   import { OrdersCustomerComponent } from '../Pages/Customer/Pages/Orders/orders-customer.component';
   import { CartComponent } from '../Pages/Customer/Pages/Cart/cart.component';
   import { CustomerItemComponent } from '../Pages/Customer/Pages/Item/customer-item.component';
+    import { CustomerItemDescriptionComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
+    import { CustomerItemOrdersComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
@@ -41,6 +43,8 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       OrdersCustomerComponent,
       CartComponent,
       CustomerItemComponent,
+        CustomerItemDescriptionComponent,
+        CustomerItemOrdersComponent,
 
     StoreMainComponent,
       //Navbar
@@ -66,6 +70,8 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
       OrdersCustomerComponent,
       CartComponent,
       CustomerItemComponent,
+        CustomerItemDescriptionComponent,
+        CustomerItemOrdersComponent,
 
     StoreMainComponent,
       //Navbar

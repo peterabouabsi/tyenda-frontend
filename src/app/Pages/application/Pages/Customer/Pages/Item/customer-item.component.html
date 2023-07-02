@@ -1,5 +1,22 @@
-<div class="parent-container">
+<div class="parent-container padding-50">
   <div class="inner-container">
-
+    <div class="header-container">
+      <p class="item-name font-black size-large black">Play Station 5</p>
+      <p class="timestamp font-regular size-small gray-dark">Posted 3 weeks ago</p>
+      <div class="store-info-container flex justify-start align-center padding-tb-10">
+        <app-avatar src="https://pbs.twimg.com/profile_images/1337607516008501250/6Ggc4S5n_400x400.png"></app-avatar>
+        <p class="store-name font-bold size-regular black margin-lr-10">Box Office</p>
+      </div>
+    </div>
+    <div class="filter-container flex justify-end align-center">
+      <app-options-bar
+        [options]="FilterIndexConfig.options"
+        [activeIndex]="FilterIndexConfig.active"
+        (onSelectEvent)="setFilterIndex($event)">
+      </app-options-bar>
+    </div>
+    <div class="body-container padding-tb-50">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

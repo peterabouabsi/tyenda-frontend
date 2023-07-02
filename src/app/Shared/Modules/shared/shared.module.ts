@@ -18,6 +18,7 @@ import { SelectFieldComponent } from 'src/app/Widgets/Form Components/select-fie
 import { TextAreaComponent } from 'src/app/Widgets/Form Components/text-area/text-area.component';
 import { PasswordFieldComponent } from 'src/app/Widgets/Form Components/password-field/password-field.component';
 import { SalaryRangeSelectComponent } from 'src/app/Widgets/Form Components/salary-range-select/salary-range-select.component';
+import { RateSelectorComponent } from 'src/app/Widgets/Form Components/rate-selector/rate-selector.component';
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
@@ -27,6 +28,7 @@ import { SelectorChipComponent } from 'src/app/Widgets/Chips Components/selector
 import { BadgeComponent } from 'src/app/Widgets/Chips Components/badge/badge.component';
 import { AvatarComponent } from 'src/app/Widgets/Chips Components/avatar/avatar.component';
 import { SelectMultiBoxComponent } from 'src/app/Widgets/Chips Components/select-multi-box/select-multi-box.component';
+import { ChipComponent } from 'src/app/Widgets/Chips Components/chip/chip.component';
 
 import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 import { StepperComponent } from 'src/app/Widgets/Other Components/stepper/stepper.component';
@@ -55,6 +57,7 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     PasswordFieldComponent,
     SelectFieldComponent,
     SalaryRangeSelectComponent,
+    RateSelectorComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -64,6 +67,7 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     AvatarComponent,
     BadgeComponent,
     SelectMultiBoxComponent,
+    ChipComponent,
 
     ToastrComponent,
     StepperComponent,
@@ -97,6 +101,7 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     PasswordFieldComponent,
     SelectFieldComponent,
     SalaryRangeSelectComponent,
+    RateSelectorComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -106,6 +111,7 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     AvatarComponent,
     BadgeComponent,
     SelectMultiBoxComponent,
+    ChipComponent,
 
     ToastrComponent,
     StepperComponent,

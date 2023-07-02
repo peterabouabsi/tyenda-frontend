@@ -1,0 +1,5 @@
+<div class="rate-container flex justify-start align-start">
+  <div class="icon-container flex justify-center align-center" *ngFor="let rate of rates" (click)="onRate(rate)">
+    <mat-icon [ngClass]="'icon '+(value>=rate? 'orange-dark' : 'black')" [svgIcon]="value>=rate? 'full-star' : 'star'"></mat-icon>
+  </div>
+</div>

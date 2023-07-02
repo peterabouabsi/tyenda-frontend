@@ -1,0 +1,56 @@
+.description-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 30px;
+  .left-container{
+    width: 100%;
+    .images-container{
+      width: 100%;
+      height: auto;
+      .initial-image-container{
+        width: 100%;
+        height: auto;
+        img{
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+      .other-images-container{
+        width: 100%;
+        height: auto;
+        .image-container{
+          width: 130px;
+          height: auto;
+          cursor: pointer;
+          img{
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .buttons-container{
+      width: 100%;
+    }
+  }
+  .right-container{
+    width: 100%;
+    .rating-container{
+      width: 100%;
+    }
+    .row-data-container{
+      .colors-container{
+        .color-container{
+          width: 20px;
+          height: 20px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}

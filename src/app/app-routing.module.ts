@@ -28,6 +28,8 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
     import { OrdersCustomerComponent } from './Pages/application/Pages/Customer/Pages/Orders/orders-customer.component';
     import { CartComponent } from './Pages/application/Pages/Customer/Pages/Cart/cart.component';
     import { CustomerItemComponent } from './Pages/application/Pages/Customer/Pages/Item/customer-item.component';
+      import { CustomerItemDescriptionComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
+      import { CustomerItemOrdersComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //
@@ -61,7 +63,11 @@ const routes: Routes = [
       {path: 'search', component: SearchComponent, title: 'Tyenda | Search'},
       {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda | Orders'},
       {path: 'cart', component: CartComponent, title: 'Tyenda | Cart'},
-      {path: 'item/:itemId', component: CustomerItemComponent, title: 'Tyenda | '}
+      {path: 'item/:itemId', component: CustomerItemComponent, title: 'Tyenda | Item', children: [
+        {path: '', redirectTo: 'description', pathMatch: 'full'},
+        {path: 'description', component: CustomerItemDescriptionComponent},
+        {path: 'orders', component: CustomerItemOrdersComponent},
+      ]}
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
 

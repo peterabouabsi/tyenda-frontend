@@ -1,0 +1,29 @@
+.chip-container{
+  width: fit-content;
+  min-width: 100px;
+  height: 30px;
+  border-radius: 50px;
+  user-select: none;
+  background-color: var(--black);
+  color: var(--white);
+  &.gray{
+    background-color: var(--gray-light);
+    color: var(--black);
+  }
+  &.blue{
+    background-color: var(--blue-dark);
+    color: var(--white);
+  }
+  &.red{
+    background-color: var(--red-dark);
+    color: var(--white);
+  }
+  &.orange{
+    background-color: var(--orange-dark);
+    color: var(--white);
+  }
+  &.green{
+    background-color: var(--green-dark);
+    color: var(--white);
+  }
+}

@@ -36,5 +36,13 @@ export class IconService {
         'filter',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/filter.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'star',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/star.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'full-star',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/full-star.svg')
+      );
     }
 }
