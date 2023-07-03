@@ -5,11 +5,15 @@ import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedV
 
 //Services
 import { CustomerItemService } from './../../Services/customer-item.service';
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
 //Forms
 import { RateItemForm } from 'src/app/Shared/Models/Forms/RateItemForm.form';
 import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
 import { LikeItemForm } from 'src/app/Shared/Models/Forms/LikeItemForm.form';
+
+//Components
+import { CustomerItemCommentsComponent } from './Components/customer-item-comments/customer-item-comments.component';
 
 @Component({
   selector: 'app-customer-item-description',
@@ -20,7 +24,8 @@ export class CustomerItemDescriptionComponent implements OnInit{
 
   public item: ItemAdvancedView;
 
-  constructor(private customerItemService: CustomerItemService) {
+  constructor(private globalService: GlobalService,
+              private customerItemService: CustomerItemService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +38,7 @@ export class CustomerItemDescriptionComponent implements OnInit{
     }
     this.customerItemService.rateItem(form).subscribe((response: any) => {
       if(!response.error){
-        this.item = {...this.item, myRate: response.myRate, rate: response.itemRate}
+        this.item = {...this.item, myRate: response.myRate, rate: response.itemRate, ratersCount: response.ratersCount}
       }
     });
   }
@@ -68,7 +73,11 @@ export class CustomerItemDescriptionComponent implements OnInit{
     this.activeImageIndex = index;
   }
 
-  public openCommentsSection(){}
+  public openCommentsSection(){
+    this.globalService.openDialog(CustomerItemCommentsComponent, null, (result => {
+
+    }))
+  }
   public order(){}
 
 }

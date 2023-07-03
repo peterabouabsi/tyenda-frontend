@@ -101,7 +101,7 @@
       </app-chip>
     </div>
     <div class="row-data-container">
-      <p class="description text-start font-regular size-regular gray-super-dark">{{item?.description}}</p>
+      <div class="description text-start font-regular size-regular gray-super-dark" [innerHtml]="item?.description"></div>
     </div>
   </div>
 </div>

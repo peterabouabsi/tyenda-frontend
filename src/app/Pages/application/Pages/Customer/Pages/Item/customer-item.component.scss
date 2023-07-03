@@ -11,3 +11,33 @@
     }
   }
 }
+
+@media (max-width: 650px){
+  .parent-container{
+    padding: 0 0.8rem;
+    .inner-container{
+      .header-container{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 10px;
+        .item-name{
+          font-size: 20px;
+        }
+        .timestamp{
+          font-size: 13px;
+        }
+        .store-name{
+          font-size: 15px;
+        }
+      }
+      .filter-container{
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
