@@ -1,26 +1,39 @@
-<div class="item-container margin-t-30 padding-tb-10" (click)="openItem()">
+<div class="item-container margin-t-30 padding-tb-10">
   <div class="store-container flex justify-start align-center">
     <app-avatar [src]="data?.profileImage"></app-avatar>
     <div class="info-container padding-l-10 flex justify-center align-start flex-column relative">
       <p class="name text-start font-semi-bold size-regular black capitalize">{{data?.storeName}}</p>
       <p class="email text-start font-medium size-small cyan lowercase">{{data?.storeEmail}}</p>
-      <div class="icon-container flex justify-center align-center absolute" (click)="likeDislike()" *ngIf="config.showLike">
-        <mat-icon class="icon" [svgIcon]="!data?.isItemLiked? 'heart' : 'full-heart'"></mat-icon>
+      <div class="icon-container flex justify-center align-center absolute" (click)="likeDislike()"
+        *ngIf="config.showLike">
+        <mat-icon
+          [class]="'icon '+(data?.isItemLiked?'red' : 'gray')"
+          [svgIcon]="!data?.isItemLiked? 'heart' : 'full-heart'">
+        </mat-icon>
       </div>
     </div>
   </div>
-  <div class="info-container margin-tb-10">
+  <div class="info-container margin-tb-10" (click)="openItem()">
     <div class="image-container relative">
       <img [src]="data?.itemImage" alt="">
       <div class="badge-rate-container absolute">
-        <app-badge [color]="'var(--orange)'" [value]="data?.rate+'/5'"></app-badge>
+        <app-badge
+          [color]="'var(--orange)'"
+          [value]="data?.rate+'/5'">
+        </app-badge>
       </div>
       <div class="badge-discount-price-container flex justify-start align-center absolute">
         <div class="badge-discount-container">
-          <app-badge [color]="'var(--red-dark)'" [value]="data?.discount+'%'"></app-badge>
+          <app-badge
+            [color]="'var(--red-dark)'"
+            [value]="data?.discount+'%'">
+          </app-badge>
         </div>
         <div class="badge-price-container margin-l-3">
-          <app-badge [color]="'var(--green-super-dark)'" [value]="data?.price+'$'"></app-badge>
+          <app-badge
+            [color]="'var(--green-super-dark)'"
+            [value]="data?.price+'$'">
+          </app-badge>
         </div>
       </div>
     </div>
@@ -31,18 +44,18 @@
   </div>
   <div class="buttons-container flex justify-space-between align-center margin-t-20">
     <app-button
-    [ngStyle]="{'flex': (config.showCartButton && config.showOrderButton) == false? '1' : 'none'}"
-    [color]="'gray'"
-    [value]="!data?.isAddedToCart? 'Add to cart' : 'Remove from cart'"
-    (click)="addRemoveCart()"
-    *ngIf="config.showCartButton">
-  </app-button>
+      [ngStyle]="{'flex': (config.showCartButton && config.showOrderButton) == false? '1' : 'none'}"
+      [color]="'gray'"
+      [value]="!data?.isAddedToCart? 'Add to cart' : 'Remove from cart'"
+      (click)="addRemoveCart()"
+      *ngIf="config.showCartButton">
+    </app-button>
 
-  <app-button
-    [ngStyle]="{'flex': (config.showCartButton && config.showOrderButton) == false? '1' : 'none'}"
-    [color]="'blue'"
-    [value]="'Order now'"
-    *ngIf="config.showOrderButton">
-  </app-button>
+    <app-button
+      [ngStyle]="{'flex': (config.showCartButton && config.showOrderButton) == false? '1' : 'none'}"
+      [color]="'blue'"
+      [value]="'Order now'"
+      *ngIf="config.showOrderButton">
+    </app-button>
   </div>
 </div>

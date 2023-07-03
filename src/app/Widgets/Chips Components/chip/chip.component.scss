@@ -1,11 +1,23 @@
 .chip-container{
   width: fit-content;
-  min-width: 100px;
   height: 30px;
   border-radius: 50px;
   user-select: none;
   background-color: var(--black);
   color: var(--white);
+  .icon-container{
+    width: 20px;
+    height: 100%;
+    .icon{
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+  .text-container{
+    width: 100%;
+    height: 100%;
+  }
   &.gray{
     background-color: var(--gray-light);
     color: var(--black);

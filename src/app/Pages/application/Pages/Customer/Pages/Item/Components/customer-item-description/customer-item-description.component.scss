@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-gap: 30px;
+  animation: fade-in 0.3s;
   .left-container{
     width: 100%;
     .images-container{
@@ -10,10 +11,10 @@
       height: auto;
       .initial-image-container{
         width: 100%;
-        height: auto;
+        height: 400px;
         img{
           width: 100%;
-          height: auto;
+          height: 400px;
           object-fit: cover;
           border-radius: 10px;
         }
@@ -23,8 +24,13 @@
         height: auto;
         .image-container{
           width: 130px;
-          height: auto;
+          height: 84px;
           cursor: pointer;
+          transition: 0.3s ease-in-out;
+          &.scale-out{
+            transform: scale(0.8, 0.8);
+            transition: 0.3s ease-in-out;
+          }
           img{
             border-radius: 10px;
             width: 100%;

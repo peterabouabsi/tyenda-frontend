@@ -1,0 +1,26 @@
+.orders-container {
+  width: 100%;
+  animation: fade-in 0.3s;
+
+  .cards-container {
+    width: fit-content;
+    height: auto;
+
+    .card-container {
+      width: 416px;
+      height: 100%;
+    }
+
+  }
+}
+
+@media (max-width: 930px) {
+  .orders-container {
+    .cards-container {
+      .card-container {
+        width: 100%;
+        align-self: stretch;
+      }
+    }
+  }
+}

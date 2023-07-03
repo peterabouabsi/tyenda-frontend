@@ -2,22 +2,37 @@
   <div class="left-container">
     <div class="images-container flex justify-start align-start flex-column">
       <div class="initial-image-container flex justify-center align-center padding-10">
-        <img src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8eGJveHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="">
+        <img [src]="item?.displayedImage" alt="">
       </div>
-      <div class="other-images-container flex justify-start align-center flex-wrap">
-        <div class="image-container padding-10" *ngFor="let image of [1,1,1]" (click)="displaySelectedImage(image)">
-          <img src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8eGJveHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="">
+      <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
+        <div class="image-container padding-10"
+          [ngClass]="{'scale-out': activeImageIndex != index}"
+          (click)="displaySelectedImage(image, index)"
+          *ngFor="let image of item?.otherImages; let index = index">
+          <img [src]="image" alt="">
         </div>
       </div>
     </div>
 
     <div class="buttons-container flex justify-space-between align-center flex-wrap">
       <div class="button-container flex justify-start align-center flex-wrap">
-        <app-button [value]="'Add to cart'" [color]="'gray'" (click)="addRemoveCart()"></app-button>
-        <app-button [value]="'Comments 10'" [color]="'gray'" (click)="openCommentsSection()"></app-button>
+        <app-button
+          [value]="item?.isAddedToCart?'Remove from cart' : 'Add to cart'"
+          [color]="'gray'"
+          (click)="addRemoveCart()">
+        </app-button>
+        <app-button
+          [value]="'Comments '+item?.countComments"
+          [color]="'gray'"
+          (click)="openCommentsSection()">
+        </app-button>
       </div>
       <div class="button-container flex justify-center align-center">
-        <app-button [color]="'blue'" [value]="'Order'" (click)="order()"></app-button>
+        <app-button
+          [color]="'blue'"
+          [value]="'Order'"
+          (click)="order()">
+        </app-button>
       </div>
     </div>
 
@@ -27,54 +42,66 @@
     <div class="row-data-container flex justify-space-between align-center">
       <div class="rate-container">
         <app-rate-selector
-        [value]="3"
-        (onRateEvent)="null">
+          [value]="item?.myRate"
+          (onRateEvent)="onRateItem($event)">
         </app-rate-selector>
       </div>
-      <div class="p value font-regular size-small gray-super-dark">10.23K rated this item</div>
+      <div class="p value font-regular size-small gray-super-dark">{{item?.ratersCount}} people rated this item</div>
+    </div>
+    <div class="rate-container padding-tb-10">
+      <app-badge
+        [color]="'orange'"
+        [value]="item?.rate+'/5'">
+      </app-badge>
     </div>
     <div class="row-data-container flex justify-start align-center padding-tb-20">
-      <p class="dicount font-regular size-large red-dark margin-r-10">-50%</p>
-      <p class="price font-medium size-large black"><sup class="size-small">$</sup>200.00</p>
+      <p class="dicount font-regular size-large red-dark margin-r-10">-{{item?.discount}}%</p>
+      <p class="price font-medium size-large black"><sup class="size-small">$</sup>{{item?.currentPrice}}</p>
     </div>
-    <div class="row-data-container padding-tb-3">
-      <p class="dicount font-medium size-regular black">Was: <span class="old-price font-medium size-small gray-dark line-through">$400</span></p>
+    <div class="row-data-container padding-tb-3" *ngIf="item?.oldPrice != -1">
+      <p class="dicount font-medium size-regular black">Was: <span class="old-price font-medium size-small gray-dark line-through">${{item?.oldPrice}}</span></p>
     </div>
-    <div class="row-data-container padding-tb-10">
-      <p class="note font-medium size-regular cyan-dark">FREE delivery charge</p>
-      <p class="note font-medium size-regular cyan-dark">FREE returns within 3 weeks</p>
+    <div class="row-data-container padding-tb-10" *ngIf="item?.notes">
+      <p class="note font-medium size-regular cyan-dark" *ngFor="let note of item?.notes">{{note}}</p>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap padding-tb-10">
-      <app-chip [value]="'Sport'" [color]="'blue'" *ngFor="let category of [1,1,1]"></app-chip>
+    <div class="row-data-container flex justify-start align-start flex-wrap padding-tb-10" *ngIf="item?.categories">
+      <app-chip
+        [value]="category"
+        [color]="'blue'"
+        *ngFor="let category of item?.categories">
+      </app-chip>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3">
+    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colors.length > 0">
       <div class="text-container">
         <p class="value text-start font-medium size-regular black">Colors</p>
       </div>
       <div class="colors-container flex justify-start align-center flex-wrap padding-t-1">
-        <div class="color-container margin-l-10" [ngStyle]="{'background-color': 'red'}" *ngFor="let color of [1,1,1]"></div>
+        <div class="color-container margin-l-10" [ngStyle]="{'background-color': color}" *ngFor="let color of item?.colors"></div>
       </div>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3">
+    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.sizes.length > 0">
       <div class="text-container">
         <p class="value text-start font-medium size-regular black">Sizes</p>
       </div>
       <div class="sizes-container flex justify-start align-center flex-wrap padding-t-1">
-        <div class="size-container font-medium size-regular gray-super-dark margin-l-10" *ngFor="let size of [1,1,1]">XL</div>
+        <div class="size-container font-medium size-regular gray-super-dark margin-l-10" *ngFor="let size of item?.sizes">{{size}}</div>
       </div>
     </div>
 
     <div class="row-data-container flex justify-start align-center flex-wrap margin-t-20">
-      <app-chip [value]="'10k Likes'" [color]="'gray'"></app-chip>
-      <app-chip [value]="'10k Orders'" [color]="'gray'"></app-chip>
+      <app-chip
+        [value]="item?.countLikes+' Likes'"
+        [color]="'gray'"
+        [icon]="item?.isLiked? 'full-heart' : 'heart'"
+        (onClickEvent)="likeDislike()">
+      </app-chip>
+      <app-chip
+        [value]="item?.countOrders+' Orders'"
+        [color]="'gray'">
+      </app-chip>
     </div>
     <div class="row-data-container">
-      <p class="description text-start font-regular size-regular gray-super-dark">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, asperiores! Temporibus, dignissimos! Vel nemo sunt quis facilis tenetur provident laboriosam odit, repellendus est distinctio assumenda harum soluta maxime adipisci recusandae!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, asperiores! Temporibus, dignissimos! Vel nemo sunt quis facilis tenetur provident laboriosam odit, repellendus est distinctio assumenda harum soluta maxime adipisci recusandae!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, asperiores! Temporibus, dignissimos! Vel nemo sunt quis facilis tenetur provident laboriosam odit, repellendus est distinctio assumenda harum soluta maxime adipisci recusandae!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, asperiores! Temporibus, dignissimos! Vel nemo sunt quis facilis tenetur provident laboriosam odit, repellendus est distinctio assumenda harum soluta maxime adipisci recusandae!
-      </p>
+      <p class="description text-start font-regular size-regular gray-super-dark">{{item?.description}}</p>
     </div>
   </div>
 </div>

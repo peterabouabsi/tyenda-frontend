@@ -1,3 +1,8 @@
-<div [ngClass]="'chip-container flex justify-center align-center font-medium size-small black margin-r-3 margin-b-3 padding-10 '+color">
-  {{value}}
+<div [ngClass]="'chip-container flex justify-start align-center margin-r-3 margin-b-3 padding-lr-10 '+color">
+  <div class="icon-container flex justify-center align-center margin-r-3" *ngIf="icon" (click)="onClick()">
+    <mat-icon class="icon" [svgIcon]="icon"></mat-icon>
+  </div>
+  <div class="text-container flex justify-center align-center">
+    <p class="value text-start font-medium size-small">{{value}}</p>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rate-selector',
@@ -10,7 +10,7 @@ export class RateSelectorComponent implements OnInit{
   public rates: number[] = [1,2,3,4,5];
 
   @Input() value: number = 0;
-  @Input() onRateEvent = new EventEmitter();
+  @Output() onRateEvent = new EventEmitter();
 
   constructor() {
   }

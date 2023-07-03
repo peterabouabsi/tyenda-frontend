@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-chip',
@@ -7,13 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChipComponent implements OnInit{
 
+  @Input() icon?: string = '';
   @Input() value: string = '';
   @Input() color: string = '';
+
+  @Output() onClickEvent = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  public onClick(){
+    this.onClickEvent.emit()
   }
 
 }
