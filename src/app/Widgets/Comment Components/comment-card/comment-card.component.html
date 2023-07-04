@@ -1,0 +1,17 @@
+<div class="comment-container flex justify-start align-start padding-tb-10">
+  <div class="avatar-container flex justify-center align-start">
+    <app-avatar [src]="data?.profileImage"></app-avatar>
+  </div>
+  <div class="comment-info-container flex justify-start align-start flex-column padding-lr-10">
+    <div class="text-container flex justify-space-between align-center padding-tb-6">
+      <p class="text-start font-bold size-semi-small black">{{data?.customerName}}</p>
+      <div class="icon-container flex justify-center align-center" *ngIf="data?.showDeleteOption">
+        <mat-icon class="icon" svgIcon="circle-minus" (click)="deleteComment(data?.id)"></mat-icon>
+      </div>
+    </div>
+    <div class="value-container flex justify-start align-start">
+      <p class="text-start font-regular size-semi-small gray-dark">{{data?.value}}</p>
+    </div>
+
+  </div>
+</div>

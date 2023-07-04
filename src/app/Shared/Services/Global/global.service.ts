@@ -49,6 +49,12 @@ export class GlobalService {
   public getMyNotifications(){
     return this.apiService.get('/Notification');
   }
+  public getItemComments(itemId: string){
+    return this.apiService.get('/Comment/'+itemId);
+  }
+  public deleteComment(commentId){
+    return this.apiService.delete('/Comment/'+commentId);
+  }
   public viewNotification(notificationId: string){
     return this.apiService.post('/Notification/View/'+notificationId);
   }

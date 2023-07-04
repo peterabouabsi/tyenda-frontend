@@ -74,9 +74,7 @@ export class CustomerItemDescriptionComponent implements OnInit{
   }
 
   public openCommentsSection(){
-    this.globalService.openDialog(CustomerItemCommentsComponent, null, (result => {
-
-    }))
+    this.globalService.openDialog(CustomerItemCommentsComponent, this.item.id);
   }
   public order(){}
 

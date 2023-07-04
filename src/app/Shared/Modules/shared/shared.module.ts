@@ -44,6 +44,7 @@ import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/ord
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
 import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
+import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment-card/comment-card.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
     OverviewCardComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    CommentCardComponent
   ],
   imports: [
     CommonModule,
@@ -126,7 +128,8 @@ import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Componen
     StoreCustomerBasicCardComponent,
     OrderCustomerCardComponent,
     OverviewCardComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    CommentCardComponent
   ],
   providers: [
     StoreCardService,
