@@ -50,6 +50,8 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
 
 import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.component';
 
+import { MapViewComponent } from './../../../Widgets/Map Components/map-view/map-view.component';
+
 @NgModule({
   declarations: [
     //Pipes
@@ -91,7 +93,9 @@ import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.com
     NotificationCardComponent,
     CommentCardComponent,
 
-    VideoComponent
+    VideoComponent,
+
+    MapViewComponent
   ],
   imports: [
     CommonModule,
@@ -139,7 +143,9 @@ import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.com
     NotificationCardComponent,
     CommentCardComponent,
 
-    VideoComponent
+    VideoComponent,
+
+    MapViewComponent
   ],
   providers: [
     StoreCardService,

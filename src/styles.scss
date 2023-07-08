@@ -15,6 +15,8 @@ $tyenda-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($tyenda-theme);
 
+@import '~leaflet/dist/leaflet.css';
+
 @import './styles/text.scss';
 @import './styles/color.scss';
 @import './styles/display.scss';
