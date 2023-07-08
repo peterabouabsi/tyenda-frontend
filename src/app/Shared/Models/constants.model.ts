@@ -33,4 +33,11 @@ export class Constants{
     return 'Store';
   }
 
+  static get STORE_NAME_RESOLVER(){
+    return 'storeName';
+  }
+  static get ITEM_NAME_RESOLVER(){
+    return 'itemName';
+  }
+
 }

@@ -8,6 +8,7 @@ import { Constants } from 'src/app/Shared/Models/constants.model';
 import { CustomerItemService } from './Services/customer-item.service';
 
 //Views
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedView.view';
 
 @Component({
@@ -25,10 +26,16 @@ export class CustomerItemComponent implements OnInit{
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private globalService: GlobalService,
               private customerItemService: CustomerItemService) {
   }
 
   ngOnInit(): void {
+    this.displayItemNameOnTabBar();
+  }
+
+  private displayItemNameOnTabBar(){
+    this.globalService.setTab(this.route, Constants.ITEM_NAME_RESOLVER);
   }
 
   private async readItemDescription(): Promise<void> {

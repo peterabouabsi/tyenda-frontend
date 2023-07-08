@@ -30,6 +30,7 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
     import { CustomerItemComponent } from './Pages/application/Pages/Customer/Pages/Item/customer-item.component';
       import { CustomerItemDescriptionComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
       import { CustomerItemOrdersComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
+    import { CustomerStoreComponent } from './Pages/application/Pages/Customer/Pages/Store/customer-store/customer-store.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //
@@ -37,6 +38,9 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
 //Guards
 import { authenticationGuard } from './Shared/Guards/Authentication/authentication.guard';
 import { roleBasedAuthenticationGuard } from './Shared/Guards/Role-Based Authentication/role-based-authentication.guard';
+
+//Resolvers
+import { ItemNameResolver, StoreNameResolver } from './Shared/Services/Resolver/tab-title.resolver';
 
 const routes: Routes = [
   {path:'', component: SplashComponent},
@@ -63,11 +67,12 @@ const routes: Routes = [
       {path: 'search', component: SearchComponent, title: 'Tyenda | Search'},
       {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda | Orders'},
       {path: 'cart', component: CartComponent, title: 'Tyenda | Cart'},
-      {path: 'item/:itemId', component: CustomerItemComponent, title: 'Tyenda | Item', children: [
+      {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: CustomerItemComponent, title: 'Tyenda', children: [
         {path: '', redirectTo: 'description', pathMatch: 'full'},
         {path: 'description', component: CustomerItemDescriptionComponent},
-        {path: 'orders', component: CustomerItemOrdersComponent},
-      ]}
+        {path: 'orders', title: 'Tyenda | Cart', component: CustomerItemOrdersComponent},
+      ]},
+      {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: CustomerStoreComponent}
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
 

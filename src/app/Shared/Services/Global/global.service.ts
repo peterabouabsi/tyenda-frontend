@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 
 //Modules
 import { MatDialog } from '@angular/material/dialog';
@@ -80,6 +80,12 @@ export class GlobalService {
   }
   public getOrderStatuses(){
     return ['Submitted', 'Rejected', 'Approved', 'OnGoing', 'Completed']
+  }
+  public getStoreName(storeId: string){
+    return this.apiService.get('/Tab/Store/'+storeId);
+  }
+  public getItemName(itemId: string){
+    return this.apiService.get('/Tab/Item/'+itemId);
   }
   public async logout(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
@@ -206,5 +212,14 @@ export class GlobalService {
       this.router.navigateByUrl(urlTree.toString(), navigationExtras);
 
     })
+  }
+
+  //Set data to tab bar
+  public setTab(route: ActivatedRoute, objectKey: string){
+    route.data.subscribe((data: any) => {
+      if(data[objectKey]){
+        document.title += ` | ${data[objectKey]}`;
+      }
+    });
   }
 }
