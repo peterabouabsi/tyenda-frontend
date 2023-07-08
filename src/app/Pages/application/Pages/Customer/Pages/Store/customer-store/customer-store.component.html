@@ -15,7 +15,8 @@
             <p class="headquarter text-start font-regular size-regular ellipse-1 gray-dark">Beirut, Lebanon</p>
             <div class="count-follow-container flex justify-space-between align-center relative">
               <div class="count-container">
-                <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items</p>
+                <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items 10K
+                  followers</p>
               </div>
               <div class="button-container">
                 <app-button [color]="true?'red-white' : 'red'" [value]="true? 'Unfollow' : 'follow'"
@@ -29,17 +30,21 @@
           <p class="description text-start font-regular size-small black">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
             incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
-            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae et
+            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae
+            et
             reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
-            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus mollitia
+            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus
+            mollitia
             repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
             facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
             mollitia repellendus aut excepturi.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
             incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
-            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae et
+            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae
+            et
             reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
-            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus mollitia
+            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus
+            mollitia
             repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
             facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
             mollitia repellendus aut excepturi.
@@ -127,8 +132,23 @@
           <div class="title-container margin-b-30">
             <p class="title text-start font-bold size-medium black">Tesla Inc. Branches</p>
           </div>
+          <div class="branches-container flex justify-start align-start">
+            <div class="left-container padding-r-30">
+              <div class="cards-container">
+                <div class="card-container padding-tb-6 margin-tb-10 relative" [ngClass]="{'active': i == 1}"
+                  *ngFor="let location of [1,2,3]; let i = index">
+                  <p class="location text-start font-medium size-small margin-b-3 capitalize" [ngClass]="{'blue': i == 1}">Beirut, Lebanon</p>
+                  <p class="address-details text-start font-regular size-semi-small" [ngClass]="{'blue': i == 1}">Address details</p>
+                  <mat-icon class="icon absolute" [ngClass]="{'blue': i == 1}" svgIcon="location"></mat-icon>
+                </div>
+              </div>
+            </div>
+            <div class="right-container">
+              <app-map-view [lat]="33" [lng]="35" [zoomControlVisible]="false">
+              </app-map-view>
+            </div>
+          </div>
         </div>
-
       </div>
       <div class="right-container padding-15">
         <div class="top-selling-items">
@@ -142,8 +162,7 @@
           </div>
         </div>
         <div class="video-container flex justify-center align-center">
-          <app-video
-            *ngIf="true"
+          <app-video *ngIf="true"
             [src]="'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'"
             [poster]="'https://info.haas-avocats.com/hubfs/bureaux%20google.jpg'">
           </app-video>
@@ -156,23 +175,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-    </div>
-    <div class="branches-container">
-      <div class="left-container">
-        <div class="cards-container">
-          <div class="card-container">
-
-          </div>
-        </div>
-      </div>
-      <div class="right-container">
-        <app-map-view
-        [lat]="33"
-        [lng]="35"
-        [zoomControlVisible]="false">
-      </app-map-view>
       </div>
     </div>
   </div>

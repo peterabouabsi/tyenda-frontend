@@ -1,23 +1,28 @@
-.parent-container{
+.parent-container {
   width: 100%;
-  .inner-container{
+
+  .inner-container {
     width: 100%;
     height: auto;
-    .overview-container{
+
+    .overview-container {
       display: grid;
       grid-template-columns: 68% 32%;
       grid-gap: 10px;
-      .left-container, .right-container{
+
+      .left-container,
+      .right-container {
         width: 100%;
         height: auto;
       }
 
-      .left-container{
-        .background-image-container{
+      .left-container {
+        .background-image-container {
           border-radius: 1rem;
           width: 100%;
           height: 18rem;
-          img{
+
+          img {
             width: 100%;
             height: 18rem;
             object-fit: cover;
@@ -25,129 +30,197 @@
           }
         }
 
-        .profile-info-container{
+        .profile-info-container {
           width: 100%;
           height: auto;
-          .image-container{
+
+          .image-container {
             width: 100px;
             height: 100px;
             border: 1rem;
-            img{
+
+            img {
               width: 100%;
               height: auto;
               object-fit: cover;
               border: 1rem;
             }
           }
-          .info-container{
+
+          .info-container {
             width: 100%;
-            .title, .headquarter{
+
+            .title,
+            .headquarter {
               width: 100%;
             }
-            .count-follow-container{
+
+            .count-follow-container {
               width: 100%;
               top: 1rem;
-              .count-container{
+
+              .count-container {
                 width: auto;
               }
-              .button-container{
+
+              .button-container {
                 width: fit-content;
               }
             }
           }
         }
 
-        .profile-description-container{
+        .profile-description-container {
           width: 100%;
-          .description{
+
+          .description {
             width: 100%;
             height: auto;
           }
         }
 
-        .profile-section-container{
+        .profile-section-container {
           width: 100%;
-          .text-container{
+
+          .text-container {
             width: 100%;
-            .title{
+
+            .title {
               width: 100%;
             }
           }
-          .key-value-container{
+
+          .key-value-container {
             width: 100%;
-            .key-container{
+
+            .key-container {
               width: 130px;
-              .icon-container{
+
+              .icon-container {
                 width: 18px;
                 height: 25px;
-                .icon{
+
+                .icon {
                   width: 23px;
                   height: auto;
                 }
               }
-              .text-container{
+
+              .text-container {
                 width: 100%;
                 height: 25px;
-                .value{
+
+                .value {
                   width: 100%;
                 }
               }
             }
-            .value-container{
+
+            .value-container {
               width: 100%;
               min-height: 25px;
               height: auto;
-              .underline{
+
+              .underline {
                 cursor: pointer;
               }
             }
           }
+          .branches-container {
+            width: 100%;
+            .left-container {
+              width: fit-content;
+              .cards-container {
+                width: 100%;
+
+                .card-container {
+                  width: 400px;
+                  cursor: pointer;
+                  border-bottom: 1px solid var(--gray-light);
+                  color: var(--gray);
+                  transition: 0.3s ease-in-out;
+
+                  p {
+                    width: 90%;
+                  }
+
+                  .icon {
+                    top: 10px;
+                    right: 9px;
+                    width: 1rem;
+                    height: auto;
+                  }
+
+                  &.active {
+                    border-bottom-color: var(--blue);
+                    transition: 0.3s ease-in-out;
+                  }
+                }
+              }
+            }
+
+            .right-container {
+              height: 300px;
+            }
+
+          }
         }
       }
 
-      .right-container{
+      .right-container {
         width: 100%;
         height: fit-content;
-        .top-selling-items{
+
+        .top-selling-items {
           width: 100%;
           height: auto;
           min-height: 700px;
-          .title-container{
+
+          .title-container {
             width: 100%;
           }
-          .cards-container{
+
+          .cards-container {
             width: 100%;
-            .card-container{
+
+            .card-container {
               width: 100%;
             }
           }
         }
-        .video-container{
+
+        .video-container {
           width: 100%;
-          app-video{
+
+          app-video {
             width: 100%;
-            ::ng-deep .video-container{
+
+            ::ng-deep .video-container {
               width: 100%;
               height: 16rem;
             }
           }
-          .no-video-container{
+
+          .no-video-container {
             width: 100%;
             height: 16rem;
             border-radius: 10px;
             border: 3px solid var(--gray-light);
             background-color: var(--white);
-            .icon-button-container{
+
+            .icon-button-container {
               width: 100%;
               height: auto;
-              .button-container{
+
+              .button-container {
                 width: 50px;
                 height: 50px;
                 border-radius: 50px;
                 background-color: var(--gray-light);
                 border: 3px solid var(--gray);
                 cursor: pointer;
-                .icon{
+
+                .icon {
                   width: 17px;
                   height: auto;
                 }
@@ -155,22 +228,6 @@
             }
           }
         }
-      }
-    }
-    .branches-container{
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-gap: 10px;
-      .left-container, .right-container{
-        width: 100%;
-        height: auto;
-      }
-
-      .left-container{
-
-      }
-      .right-container{
-        height: 400px;
       }
     }
   }

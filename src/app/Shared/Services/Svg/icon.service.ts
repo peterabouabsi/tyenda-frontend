@@ -68,5 +68,9 @@ export class IconService {
         'play',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/play.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'location',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/location.svg')
+      );
     }
 }
