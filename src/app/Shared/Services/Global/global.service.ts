@@ -218,7 +218,7 @@ export class GlobalService {
   public setTab(route: ActivatedRoute, objectKey: string){
     route.data.subscribe((data: any) => {
       if(data[objectKey]){
-        document.title += ` | ${data[objectKey]}`;
+        document.title += ` - ${data[objectKey]}`;
       }
     });
   }

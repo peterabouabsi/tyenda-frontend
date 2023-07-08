@@ -44,5 +44,29 @@ export class IconService {
         'full-star',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/full-star.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'person',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/person.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'link',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/link.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'phone',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/phone.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'mailbox',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/mailbox.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'list',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/list.svg')
+      );
+      this.matIconRegistry.addSvgIcon(
+        'play',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/play.svg')
+      );
     }
 }

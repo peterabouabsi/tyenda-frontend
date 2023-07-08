@@ -37,6 +37,7 @@ import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expans
 import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.component';
 import { OptionsBarComponent } from 'src/app/Widgets/Other Components/options-bar/options-bar.component';
 
+import { ItemEntryCardComponent } from 'src/app/Widgets/Item Components/item-entry-card/item-entry-card.component';
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
 import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
 import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Components/store-customer-basic-card/store-customer-basic-card.component';
@@ -44,6 +45,7 @@ import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/ord
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
 import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
+
 import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment-card/comment-card.component';
 
 @NgModule({
@@ -77,6 +79,7 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
     EmptyComponent,
     OptionsBarComponent,
 
+    ItemEntryCardComponent,
     ItemCustomerBasicCardComponent,
     ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,
@@ -122,6 +125,7 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
     EmptyComponent,
     OptionsBarComponent,
 
+    ItemEntryCardComponent,
     ItemCustomerBasicCardComponent,
     ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,

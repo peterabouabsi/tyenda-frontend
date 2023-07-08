@@ -46,13 +46,13 @@ const routes: Routes = [
   {path:'', component: SplashComponent},
   {path: 'authentication', component: AuthMainComponent, children: [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'login', title: 'Tyenda | Login', component: LoginComponent},
-    {path: 'forget-password', title: 'Tyenda | Forget password', component: ForgetPasswordComponent},
-    {path: 'reset-password', title: 'Tyenda | Reset password', component: ResetPasswordComponent},
-    {path: 'email-activation', title: 'Tyenda | email activation', component: EmailActivationComponent},
-    {path: 'email-verification', title: 'Tyenda | email verification', component: EmailVerificationComponent},
-    {path: 'signup/customer', title: 'Tyenda | Signup Customer', component: CustomerSignupComponent},
-    {path: 'signup/store', title: 'Tyenda | Signup Store', component: StoreSignupComponent, children: [
+    {path: 'login', title: 'Tyenda - Login', component: LoginComponent},
+    {path: 'forget-password', title: 'Tyenda - Forget password', component: ForgetPasswordComponent},
+    {path: 'reset-password', title: 'Tyenda - Reset password', component: ResetPasswordComponent},
+    {path: 'email-activation', title: 'Tyenda - email activation', component: EmailActivationComponent},
+    {path: 'email-verification', title: 'Tyenda - email verification', component: EmailVerificationComponent},
+    {path: 'signup/customer', title: 'Tyenda - Signup Customer', component: CustomerSignupComponent},
+    {path: 'signup/store', title: 'Tyenda - Signup Store', component: StoreSignupComponent, children: [
       {path: '', redirectTo: 'account-info', pathMatch: 'full'},
       {path: 'account-info', component: AccountInfoComponent},
       {path: 'store-info', component: StoreInfoComponent},
@@ -63,14 +63,14 @@ const routes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivateChild: [authenticationGuard], children: [
     {path: 'customer', component: CustomerMainComponent, data: {roles: [Constants.ROLE_CUSTOMER]}, canActivate: [roleBasedAuthenticationGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: HomeCustomerComponent, title: 'Tyenda | Home'},
-      {path: 'search', component: SearchComponent, title: 'Tyenda | Search'},
-      {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda | Orders'},
-      {path: 'cart', component: CartComponent, title: 'Tyenda | Cart'},
+      {path: 'home', component: HomeCustomerComponent, title: 'Tyenda - Home'},
+      {path: 'search', component: SearchComponent, title: 'Tyenda - Search'},
+      {path: 'orders', component: OrdersCustomerComponent, title: 'Tyenda - Orders'},
+      {path: 'cart', component: CartComponent, title: 'Tyenda - Cart'},
       {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: CustomerItemComponent, title: 'Tyenda', children: [
         {path: '', redirectTo: 'description', pathMatch: 'full'},
         {path: 'description', component: CustomerItemDescriptionComponent},
-        {path: 'orders', title: 'Tyenda | Cart', component: CustomerItemOrdersComponent},
+        {path: 'orders', title: 'Tyenda - Cart', component: CustomerItemOrdersComponent},
       ]},
       {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: CustomerStoreComponent}
     ]},

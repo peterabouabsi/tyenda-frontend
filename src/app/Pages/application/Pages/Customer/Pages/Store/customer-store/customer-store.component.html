@@ -1,5 +1,147 @@
 <div class="parent-container">
   <div class="inner-container">
-    a
+    <div class="left-container padding-15">
+
+      <div class="background-image-container">
+        <img src="https://info.haas-avocats.com/hubfs/bureaux%20google.jpg" alt="">
+      </div>
+
+      <div class="profile-info-container flex justify-start align-start padding-tb-15">
+        <div class="image-container flex justify-center align-center">
+          <img src="https://m.media-amazon.com/images/I/71z4q-mBNhL._SS400_.png" alt="">
+        </div>
+        <div class="info-container flex justify-start align-center flex-column padding-lr-15">
+          <p class="title text-start font-extra-bold size-large ellipse-1 black">Tesla Inc.</p>
+          <p class="headquarter text-start font-regular size-regular ellipse-1 gray-dark">Beirut, Lebanon</p>
+          <div class="count-follow-container flex justify-space-between align-center relative">
+            <div class="count-container">
+              <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items</p>
+            </div>
+            <div class="button-container">
+              <app-button [color]="true?'red-white' : 'red'" [value]="true? 'Unfollow' : 'follow'"
+                (click)="null"></app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-description-container margin-tb-30">
+        <p class="description text-start font-regular size-small black">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
+          incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
+          exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae et
+          reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
+          reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus mollitia
+          repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
+          facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
+          mollitia repellendus aut excepturi.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
+          incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
+          exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae et
+          reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
+          reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus mollitia
+          repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
+          facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
+          mollitia repellendus aut excepturi.
+        </p>
+      </div>
+
+      <div class="profile-section-container margin-t-40 margin-b-60">
+        <div class="title-container margin-b-30">
+          <p class="title text-start font-bold size-medium black">More About Tesla Inc.</p>
+        </div>
+        <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-container flex justify-start align-start">
+            <div class="icon-container">
+              <mat-icon class="icon black" svgIcon="person"></mat-icon>
+            </div>
+            <div class="text-container padding-lr-10">
+              <p class="key text-start font-regular size-small capitalize ellipse-1 black">Owner</p>
+            </div>
+          </div>
+          <div class="value-container flex justify-start align-start">
+            <p class="value text-start font-regular size-small blue-dark">Leonel Messi</p>
+          </div>
+        </div>
+
+        <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-container flex justify-start align-start">
+            <div class="icon-container flex justify-center align-center">
+              <mat-icon class="icon black" svgIcon="link"></mat-icon>
+            </div>
+            <div class="text-container padding-lr-10">
+              <p class="key text-start font-regular size-small capitalize ellipse-1 black">Website</p>
+            </div>
+          </div>
+          <div class="value-container flex justify-start align-start">
+            <p class="value text-start font-regular size-small underline blue-dark">https://www.tesla.com</p>
+          </div>
+        </div>
+
+        <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-container flex justify-start align-start">
+            <div class="icon-container flex justify-center align-center">
+              <mat-icon class="icon black" svgIcon="phone"></mat-icon>
+            </div>
+            <div class="text-container padding-lr-10">
+              <p class="key text-start font-regular size-small capitalize ellipse-1 black">Phone</p>
+            </div>
+          </div>
+          <div class="value-container flex justify-start align-start">
+            <p class="value text-start font-regular size-small blue-dark">+961 99 999 999</p>
+          </div>
+        </div>
+
+        <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-container flex justify-start align-start">
+            <div class="icon-container flex justify-center align-center">
+              <mat-icon class="icon black" svgIcon="mailbox"></mat-icon>
+            </div>
+            <div class="text-container padding-lr-10">
+              <p class="key text-start font-regular size-small capitalize ellipse-1 black">Email</p>
+            </div>
+          </div>
+          <div class="value-container flex justify-start align-start">
+            <p class="value text-start font-regular size-small underline blue-dark">tesla@email.com</p>
+          </div>
+        </div>
+
+        <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-container flex justify-start align-start">
+            <div class="icon-container flex justify-center align-center">
+              <mat-icon class="icon black" svgIcon="list"></mat-icon>
+            </div>
+            <div class="text-container padding-lr-10">
+              <p class="key text-start font-regular size-small capitalize ellipse-1 black">Categories</p>
+            </div>
+          </div>
+          <div class="value-container flex justify-start align-start flex-wrap">
+            <div class="chip-container" *ngFor="let category of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+              <app-chip [color]="'blue'" [value]="'Sport'"></app-chip>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section-container margin-t-40 margin-b-60">
+        <div class="title-container margin-b-30">
+          <p class="title text-start font-bold size-medium black">Tesla Inc. Branches</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="right-container padding-15">
+      <div class="top-selling-items">
+        <div class="title-container">
+          <p class="title text-start font-bold size-medium capitalize black">Top Selling Items</p>
+        </div>
+        <div class="cards-container flex justify-start align-start flex-wrap margin-tb-10">
+          <div class="card-container margin-tb-10" *ngFor="let item of [1,1,1,1,1,1,1]">
+            <app-item-entry-card></app-item-entry-card>
+          </div>
+        </div>
+      </div>
+      <div class="video-container"></div>
+    </div>
   </div>
 </div>
