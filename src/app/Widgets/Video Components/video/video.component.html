@@ -1,0 +1,10 @@
+<div class="video-container relative">
+
+  <div class="blank-container absolute" *ngIf="!onPlay"></div>
+
+  <video #video class="video" [src]="src" [poster]="poster" [controls]="onPlay"></video>
+
+  <div class="button-container flex justify-center align-center padding-t-4 padding-l-4 absolute" (click)="play()" *ngIf="!onPlay">
+    <mat-icon class="icon white" svgIcon="play"></mat-icon>
+  </div>
+</div>

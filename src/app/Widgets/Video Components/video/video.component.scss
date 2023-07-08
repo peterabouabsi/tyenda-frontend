@@ -1,0 +1,36 @@
+.video-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  .blank-container{
+    background-color: var(--black-alpha);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  .button-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: var(--blue);
+    border: 3px solid var(--white);
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .icon{
+      width: 17px;
+      height: auto;
+    }
+  }
+
+  .video{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    border-radius: 20px;
+  }
+}

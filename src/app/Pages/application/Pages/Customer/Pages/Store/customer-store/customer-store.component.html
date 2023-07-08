@@ -141,7 +141,21 @@
           </div>
         </div>
       </div>
-      <div class="video-container"></div>
+      <div class="video-container flex justify-center align-center">
+        <app-video
+          *ngIf="true"
+          [src]="'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'"
+          [poster]="'https://info.haas-avocats.com/hubfs/bureaux%20google.jpg'">
+        </app-video>
+        <div class="no-video-container flex justify-center align-center flex-column" *ngIf="false">
+          <p class="value text-center font-medium size-medium gray capitalize">No posted video</p>
+          <div class="icon-button-container flex justify-center align-center padding-tb-10">
+            <div class="button-container flex justify-center align-center padding-t-4 padding-l-4">
+              <mat-icon class="icon gray" svgIcon="play"></mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

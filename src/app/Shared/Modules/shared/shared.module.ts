@@ -39,14 +39,16 @@ import { OptionsBarComponent } from 'src/app/Widgets/Other Components/options-ba
 
 import { ItemEntryCardComponent } from 'src/app/Widgets/Item Components/item-entry-card/item-entry-card.component';
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
+import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
 import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
 import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Components/store-customer-basic-card/store-customer-basic-card.component';
 import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
-import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
 
 import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment-card/comment-card.component';
+
+import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
     OrderCustomerCardComponent,
     OverviewCardComponent,
     NotificationCardComponent,
-    CommentCardComponent
+    CommentCardComponent,
+
+    VideoComponent
   ],
   imports: [
     CommonModule,
@@ -133,7 +137,9 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
     OrderCustomerCardComponent,
     OverviewCardComponent,
     NotificationCardComponent,
-    CommentCardComponent
+    CommentCardComponent,
+
+    VideoComponent
   ],
   providers: [
     StoreCardService,
