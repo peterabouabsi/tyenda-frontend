@@ -126,15 +126,18 @@
               }
             }
           }
+
           .branches-container {
             width: 100%;
+
             .left-container {
               width: fit-content;
+
               .cards-container {
                 width: 100%;
 
                 .card-container {
-                  width: 400px;
+                  width: 280px;
                   cursor: pointer;
                   border-bottom: 1px solid var(--gray-light);
                   color: var(--gray);
@@ -160,6 +163,8 @@
             }
 
             .right-container {
+              width: 100%;
+              min-width: 300px;
               height: 300px;
             }
 
@@ -197,7 +202,7 @@
 
             ::ng-deep .video-container {
               width: 100%;
-              height: 16rem;
+              height: 14rem;
             }
           }
 
@@ -224,6 +229,193 @@
                   width: 17px;
                   height: auto;
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1150.5px) {
+  .parent-container {
+    .inner-container {
+      .overview-container {
+        grid-template-columns: 65% 35%;
+      }
+    }
+  }
+}
+@media (max-width: 1090.5px) {
+  .parent-container {
+    .inner-container {
+      .overview-container {
+        .left-container {
+          .background-image-container {
+            height: 16rem;
+
+            img {
+              height: 16rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1040.5px) {
+  .parent-container {
+    .inner-container {
+      .overview-container {
+        grid-template-columns: 59% 41%;
+      }
+    }
+  }
+}
+@media (max-width: 1000.5px) {
+  .parent-container{
+    .inner-container{
+      .overview-container{
+        display: block;
+        .right-container{
+          width: 100%;
+          .top-selling-items{
+            width: 100%;
+            height: fit-content;
+            min-height: 0;
+            padding: 1rem 0;
+            .title-container{
+              padding: 10px 0;
+              .title{
+                text-align: center;
+              }
+            }
+            .cards-container{
+              width: 100%;
+              .card-container{
+                width: 280px;
+                flex-grow: 1;
+              }
+            }
+          }
+          .video-container {
+
+            app-video {
+
+              ::ng-deep .video-container {
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 800.5px) {
+  .parent-container{
+    .inner-container{
+      padding: 6rem 0rem;
+
+      .overview-container{
+        .left-container{
+          .profile-info-container{
+            .info-container{
+              .title{
+                font-size: 1.1rem;
+              }
+              .headquarter{
+                font-size: 0.8rem;
+              }
+              .count-follow-container{
+                top: 0.5rem;
+                .count-container{
+                  .count{
+                    font-size: 0.8rem;
+                  }
+                }
+              }
+            }
+          }
+          .profile-section-container{
+            .branches-container{
+              flex-direction: column;
+              .left-container{
+                width: 100%;
+                padding-right: 0;
+                .cards-container{
+                  width: 100%;
+                  .card-container{
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 660.5px) {
+  .parent-container{
+    .inner-container{
+      .overview-container{
+        .left-container{
+          .background-image-container{
+            height: auto;
+            img{
+              height: 12rem;
+            }
+          }
+
+          .profile-info-container{
+            .info-container{
+              .count-follow-container{
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                .count-container{
+                  width: 100%;
+                  margin-bottom: 10px;
+                  .count{
+                    width: 100%;
+                  }
+                }
+                .button-container{
+                  width: 100%;
+
+                }
+              }
+            }
+          }
+
+          .profile-section-container{
+            width: 100%;
+            .category-container{
+              width: 100%;
+              .value-container{
+                flex-wrap: nowrap;
+                overflow: scroll;
+                &::-webkit-scrollbar{
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+        .right-container{
+          .top-selling-items{
+            .title-container{
+              .title{
+                text-align: start;
+              }
+            }
+            .cards-container{
+              justify-content: center;
+              .card-container{
+                width: 100%;
               }
             }
           }

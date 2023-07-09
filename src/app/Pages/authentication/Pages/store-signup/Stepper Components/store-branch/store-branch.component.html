@@ -22,6 +22,16 @@
         <div class="input-form padding-t-15">
           <app-text-field [placeholder]="'Address details'" [formControl]="storeBranchForm.controls['addressDetails']" (onInputEvent)="setValue('addressDetails', $event, i)"></app-text-field>
         </div>
+        <div class="input-form map-form padding-t-15">
+          <app-map
+            [mapId]="i"
+            [lat]="storeBranchForm.controls['lat'].value"
+            [lng]="storeBranchForm.controls['lng'].value"
+            (mapLatitudeEvent)="setValue('lat', $event, i)"
+            (mapLongitudeEvent)="setValue('lng', $event, i)">
+          </app-map>
+        </div>
+
       </div>
     </div>
 

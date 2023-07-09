@@ -44,13 +44,23 @@ export class StoreBranchComponent implements OnInit {
         let country = branches[i].country;
         let city = branches[i].city;
         let addressDetails = branches[i].addressDetails;
+        let lat = branches[i].lat;
+        let lng = branches[i].lng;
 
-        this.addNewBranch(country, city, addressDetails);
+        this.addNewBranch(country, city, addressDetails, lat, lng);
       }
 
     }else{
       //No branches added yet
-      this.storeBranchForms = [new FormGroup({ country: new FormControl(null, [Validators.required]), city: new FormControl(null, [Validators.required]), addressDetails: new FormControl('', [Validators.required]) })]
+      this.storeBranchForms = [
+        new FormGroup({
+          country: new FormControl(null, [Validators.required]),
+          city: new FormControl(null, [Validators.required]),
+          addressDetails: new FormControl('', [Validators.required]),
+          lat: new FormControl(0, [Validators.required]),
+          lng: new FormControl(0, [Validators.required])
+        })
+      ]
     }
   }
   //-------------------------------------------------------------
@@ -93,14 +103,22 @@ export class StoreBranchComponent implements OnInit {
           id: formGroup.get('city').value?.id,
           value: formGroup.get('city').value?.value
         },
-        addressDetails: formGroup.get('addressDetails').value
+        addressDetails: formGroup.get('addressDetails').value,
+        lat: formGroup.get('lat').value,
+        lng: formGroup.get('lng').value
       };
     });
     this.setStoreData();
   }
 
-  public addNewBranch(country: any = null, city: any = null, addressDetails: string = '') {
-    this.storeBranchForms.push(new FormGroup({ country: new FormControl(country, [Validators.required]), city: new FormControl(city, [Validators.required]), addressDetails: new FormControl(addressDetails, [Validators.required]) }))
+  public addNewBranch(country: any = null, city: any = null, addressDetails: string = '', lat: number = 0, lng: number = 0,) {
+    this.storeBranchForms.push(new FormGroup({
+      country: new FormControl(country, [Validators.required]),
+      city: new FormControl(city, [Validators.required]),
+      addressDetails: new FormControl(addressDetails, [Validators.required]),
+      lat: new FormControl(lat, [Validators.required]),
+      lng: new FormControl(lng, [Validators.required])
+    }))
   }
 
   public removeBranch(index: number){

@@ -1,6 +1,8 @@
 interface StoreBranchForm{
   cityId: string;
   addressDetails: string;
+  latitude: number;
+  longitude: number;
 }
 export interface StoreSignupForm{
   email: string;

@@ -7,18 +7,17 @@
         </div>
 
         <div class="profile-info-container flex justify-start align-start padding-tb-15">
-          <div class="image-container flex justify-center align-center">
+          <div class="image-container flex justify-center align-start">
             <img src="https://m.media-amazon.com/images/I/71z4q-mBNhL._SS400_.png" alt="">
           </div>
           <div class="info-container flex justify-start align-center flex-column padding-lr-15">
             <p class="title text-start font-extra-bold size-large ellipse-1 black">Tesla Inc.</p>
-            <p class="headquarter text-start font-regular size-regular ellipse-1 gray-dark">Beirut, Lebanon</p>
+            <p class="headquarter text-start font-regular size-regular ellipse-1 gray-super-dark">Beirut, Lebanon</p>
             <div class="count-follow-container flex justify-space-between align-center relative">
               <div class="count-container">
-                <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items 10K
-                  followers</p>
+                <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items 10K followers</p>
               </div>
-              <div class="button-container">
+              <div class="button-container flex justify-end align-center">
                 <app-button [color]="true?'red-white' : 'red'" [value]="true? 'Unfollow' : 'follow'"
                   (click)="null"></app-button>
               </div>
@@ -111,7 +110,7 @@
             </div>
           </div>
 
-          <div class="key-value-container flex justify-start align-start margin-tb-15">
+          <div class="key-value-container category-container flex justify-start align-start margin-tb-15">
             <div class="key-container flex justify-start align-start">
               <div class="icon-container flex justify-center align-center">
                 <mat-icon class="icon black" svgIcon="list"></mat-icon>

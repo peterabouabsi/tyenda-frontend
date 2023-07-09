@@ -51,6 +51,7 @@ import { CommentCardComponent } from 'src/app/Widgets/Comment Components/comment
 import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.component';
 
 import { MapViewComponent } from './../../../Widgets/Map Components/map-view/map-view.component';
+import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { MapViewComponent } from './../../../Widgets/Map Components/map-view/map
 
     VideoComponent,
 
-    MapViewComponent
+    MapViewComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
@@ -145,7 +147,8 @@ import { MapViewComponent } from './../../../Widgets/Map Components/map-view/map
 
     VideoComponent,
 
-    MapViewComponent
+    MapViewComponent,
+    MapComponent
   ],
   providers: [
     StoreCardService,
