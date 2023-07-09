@@ -38,11 +38,19 @@ export class MapViewComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.map.remove();
+    if(this.map){
+      this.map.remove();
+    }
   }
 
   init() {
-    this.initMap(this.lat, this.lng);
+    let intervale;
+    intervale = setInterval(() => {
+      if(this.lat && this.lng){
+        this.initMap(this.lat, this.lng);
+        clearInterval(intervale);
+      }
+    }, 100);
   }
   initMap(lat: number, lng: number) {
     this.map = L.map('map-view', {
@@ -65,8 +73,8 @@ export class MapViewComponent implements OnInit {
   }
 
   public updateMarkerPosition() {
+    let newLatLng = L.latLng(this.lat, this.lng);
     if (this.marker && this.map) {
-      const newLatLng = L.latLng(this.lat, this.lng);
       this.marker.setLatLng(newLatLng);
       this.map.panTo(newLatLng);
     }

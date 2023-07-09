@@ -1,4 +1,4 @@
-export interface storeAdvancedView {
+export interface StoreAdvancedView {
   id: string;
   name: string;
   description: string;
@@ -13,7 +13,7 @@ export interface storeAdvancedView {
   videoUrl: string;
   videoPosterUrl: string;
   categories: string[];
-  branches: branchView[];
+  branches: BranchView[];
   displayedBranch: number[]; // [lat, lng]
   isFollowed: boolean;
   isAddedToCart: boolean;
@@ -22,7 +22,7 @@ export interface storeAdvancedView {
   countFollowers: number;
 }
 
-export interface branchView {
+export interface BranchView {
   country: string;
   city: string;
   addressDetails: string;

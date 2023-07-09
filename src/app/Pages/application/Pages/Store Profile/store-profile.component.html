@@ -10,23 +10,34 @@
           <div class="image-container flex justify-center align-start">
             <img [src]="store?.profileImage" alt="">
           </div>
-          <div class="info-container flex justify-start align-center flex-column padding-lr-15">
+          <div class="info-container flex justify-start align-start flex-column padding-lr-15">
             <p class="title text-start font-extra-bold size-large ellipse-1 black">{{store?.name}}</p>
-            <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">{{store?.countOrders | numberFormat}} orders {{store?.countItems | numberFormat}} items {{store?.countFollowers | numberFormat}} followers</p>
+            <p class="timestamp text-start font-regular size-semi-small ellipse-1 gray-dark">Created 2 weeks ago</p>
             <div class="buttons-container flex justify-end align-center relative">
               <div class="button-container flex justify-end align-center margin-l-10">
-                <app-button [color]="'gray'" [value]="store?.isAddedToCart? 'Remove from cart' : 'Add to cart'"
-                  (click)="null"></app-button>
+                <app-button
+                  [color]="'gray'"
+                  [value]="store?.isAddedToCart? 'Remove from cart' : 'Add to cart'"
+                  (click)="addRemoveCart()">
+                </app-button>
               </div>
               <div class="button-container flex justify-end align-center margin-l-10">
-                <app-button [color]="store?.isFollowed?'red-white' : 'red'" [value]="store?.isFollowed? 'Unfollow' : 'follow'"
-                  (click)="null"></app-button>
+                <app-button
+                  [color]="store?.isFollowed?'red-white' : 'red'"
+                  [value]="store?.isFollowed? 'Unfollow' : 'Follow'"
+                  (click)="followUnfollow()">
+                </app-button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="profile-description-container margin-tb-30">
+          <div class="counters-container flex justify-start align-start flex-wrap">
+            <app-badge class="margin-r-10 margin-b-10" [color]="'gray'" [value]="(store?.countOrders | numberFormat) +' Orders'"></app-badge>
+            <app-badge class="margin-r-10 margin-b-10" [color]="'gray'" [value]="(store?.countItems | numberFormat) +' Items'"></app-badge>
+            <app-badge class="margin-r-10 margin-b-10" [color]="'gray'" [value]="(store?.countFollowers | numberFormat) +' Followers'"></app-badge>
+          </div>
           <p class="description text-start font-regular size-small black">
             {{store?.description}}
           </p>
@@ -103,7 +114,10 @@
             </div>
             <div class="value-container flex justify-start align-start flex-wrap">
               <div class="chip-container" *ngFor="let category of store?.categories">
-                <app-chip [color]="'blue'" [value]="category"></app-chip>
+                <app-chip
+                  [color]="'blue'"
+                  [value]="category">
+                </app-chip>
               </div>
             </div>
           </div>
@@ -118,7 +132,7 @@
               <div class="cards-container">
                 <div class="card-container padding-tb-6 margin-tb-10 relative"
                   [ngClass]="{'active': index == activeBranchIndex}"
-                  (click)="displaySelectedBranch(branch, index)"
+                  (click)="displaySelectedBranch(branch.latitude, branch.longitude, index)"
                   *ngFor="let branch of store?.branches; let index = index">
                   <p class="location text-start font-medium size-small margin-b-3 capitalize" [ngClass]="{'blue': index == activeBranchIndex}">{{branch?.city}}, {{branch?.country}}</p>
                   <p class="address-details text-start font-regular size-semi-small" [ngClass]="{'blue': index == activeBranchIndex}">{{branch?.addressDetails}}</p>
@@ -128,8 +142,8 @@
             </div>
             <div class="right-container">
               <app-map-view #viewMap
-                [lat]="store?.displayedBranch? store?.displayedBranch[0] : 0"
-                [lng]="store?.displayedBranch? store?.displayedBranch[1] : 0"
+                [lat]="store?.displayedBranch[0]"
+                [lng]="store?.displayedBranch[1]"
                 [zoomControlVisible]="false">
               </app-map-view>
             </div>
@@ -141,13 +155,19 @@
           <div class="title-container">
             <p class="title text-start font-bold size-medium capitalize black">Top Selling Items</p>
           </div>
-          <div class="cards-container flex justify-start align-start flex-wrap margin-tb-10">
-            <div class="card-container margin-tb-10" *ngFor="let item of [1,1,1,1,1,1,1]">
-              <app-item-entry-card></app-item-entry-card>
+          <app-empty [value]="'No Item Sold'" *ngIf="!storeTopItems"></app-empty>
+          <div class="cards-container flex justify-start align-start flex-wrap margin-tb-10" *ngIf="storeTopItems">
+            <div class="card-container margin-tb-10" *ngFor="let item of storeTopItems">
+              <app-item-entry-card
+                [data]="item">
+              </app-item-entry-card>
             </div>
           </div>
         </div>
-        <div class="video-container flex justify-center align-center">
+        <div class="video-container flex justify-center align-center flex-column">
+          <div class="title-container padding-tb-10">
+            <p class="title text-start font-bold size-medium black">Take a tour of {{store?.name}}</p>
+          </div>
           <app-video *ngIf="store?.videoUrl"
             [src]="store?.videoUrl"
             [poster]="store?.videoPosterUrl">

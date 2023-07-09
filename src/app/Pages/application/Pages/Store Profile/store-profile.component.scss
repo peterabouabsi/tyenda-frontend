@@ -51,7 +51,7 @@
             width: 100%;
 
             .title,
-            .count {
+            .timestamp{
               width: 100%;
             }
 
@@ -68,6 +68,10 @@
 
         .profile-description-container {
           width: 100%;
+
+          .counters-container{
+            width: 100%;
+          }
 
           .description {
             width: 100%;
@@ -134,7 +138,6 @@
 
                 .card-container {
                   width: 280px;
-                  cursor: pointer;
                   border-bottom: 1px solid var(--gray-light);
                   color: var(--gray);
                   transition: 0.3s ease-in-out;
@@ -175,7 +178,6 @@
         .top-selling-items {
           width: 100%;
           height: auto;
-          min-height: 700px;
 
           .title-container {
             width: 100%;
@@ -192,6 +194,10 @@
 
         .video-container {
           width: 100%;
+
+          .title-container {
+            width: 100%;
+          }
 
           app-video {
             width: 100%;
@@ -321,16 +327,8 @@
               .title{
                 font-size: 1.1rem;
               }
-              .headquarter{
+              .timestamp{
                 font-size: 0.8rem;
-              }
-              .count-follow-container{
-                top: 0.5rem;
-                .count-container{
-                  .count{
-                    font-size: 0.8rem;
-                  }
-                }
               }
             }
           }
@@ -366,27 +364,6 @@
             }
           }
 
-          .profile-info-container{
-            .info-container{
-              .count-follow-container{
-                flex-direction: column;
-                justify-content: flex-end;
-                align-items: center;
-                .count-container{
-                  width: 100%;
-                  margin-bottom: 10px;
-                  .count{
-                    width: 100%;
-                  }
-                }
-                .button-container{
-                  width: 100%;
-
-                }
-              }
-            }
-          }
-
           .profile-section-container{
             width: 100%;
             .category-container{
@@ -412,6 +389,30 @@
               justify-content: center;
               .card-container{
                 width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 430.5px) {
+  .parent-container {
+    .inner-container {
+      .overview-container {
+        .left-container {
+          .profile-info-container {
+            .info-container {
+              .buttons-container {
+                flex-direction: column;
+                align-items: flex-end;
+                .button-container {
+                  margin-bottom: 10px;
+                  width: fit-content;
+                }
               }
             }
           }

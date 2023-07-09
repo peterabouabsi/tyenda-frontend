@@ -1,14 +1,14 @@
-<div class="card-container flex justify-start align-start">
+<div class="card-container flex justify-start align-start" (click)="openItemPage()">
   <div class="image-container">
-    <img src="https://www.cnet.com/a/img/resize/bebef835df90640f9aa2e4a2f2a2699cf53a301f/hub/2020/10/26/b60bfe6f-3193-4381-b0d4-ac628cdcc565/img-1419.jpg?auto=webp&width=1200" alt="">
+    <img [src]="data?.imageUrl" alt="">
   </div>
   <div class="info-container padding-lr-6">
     <p class="value text-start font-bold size-small capitalize black">Play Station 5</p>
-    <app-badge [color]="'orange'" [value]="'4/5'"></app-badge>
+    <app-badge [color]="'orange'" [value]="data?.rate+'/5'"></app-badge>
     <div class="discount-price-container flex justify-start align-center margin-t-1">
-      <p class="dicount font-regular size-regular red-dark margin-r-10">-20%</p>
-      <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>200.00</p>
+      <p class="dicount font-regular size-regular red-dark margin-r-10">-{{data?.discount}}%</p>
+      <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>{{data?.price}}</p>
     </div>
-    <p class="count font-regular size-extra-small gray-dark">10 likes   20 orders</p>
+    <p class="count font-regular size-extra-small gray-dark">{{data?.countLikes}} likes   {{data?.countOrders}} orders</p>
   </div>
 </div>
