@@ -109,7 +109,7 @@ export class StoreSignupComponent implements OnInit {
         ownerEmail: storeData.ownerEmail? storeData.ownerEmail : '',
         website: storeData.website? storeData.website : '',
         description: storeData.description? storeData.description : '',
-        branches: storeData.branches? storeData.branches.map(branch => {return {cityId: branch.city.id, addressDetails: branch.addressDetails}}) : [],
+        branches: storeData.branches? storeData.branches.map(branch => {return {cityId: branch.city.id, addressDetails: branch.addressDetails, latitude: branch.lat, longitude: branch.lng}}) : [],
         categoryIds: storeData.categories? storeData.categories.map((category: BasicCategoryView) => category.id) : []
       };
 

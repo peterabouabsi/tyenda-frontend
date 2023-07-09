@@ -26,7 +26,7 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
     import { CustomerItemDescriptionComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
     import { CustomerItemCommentsComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/Components/customer-item-comments/customer-item-comments.component';
     import { CustomerItemOrdersComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
-  import { CustomerStoreComponent } from '../Pages/Customer/Pages/Store/customer-store/customer-store.component';
+  import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.component';
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
@@ -49,12 +49,13 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
         CustomerItemDescriptionComponent,
         CustomerItemCommentsComponent,
         CustomerItemOrdersComponent,
-      CustomerStoreComponent,
 
     StoreMainComponent,
       //Navbar
       NavbarStoreComponent,
       //Store Pages
+
+    StoreProfileComponent
 
   ],
   imports: [
@@ -78,12 +79,13 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
         CustomerItemDescriptionComponent,
         CustomerItemOrdersComponent,
         CustomerItemCommentsComponent,
-      CustomerStoreComponent,
 
     StoreMainComponent,
       //Navbar
       NavbarStoreComponent,
       //Store Pages
+
+    StoreProfileComponent,
   ],
   providers: [
     CustomerHomeService,

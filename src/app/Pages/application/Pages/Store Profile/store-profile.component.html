@@ -3,22 +3,23 @@
     <div class="overview-container">
       <div class="left-container padding-15">
         <div class="background-image-container">
-          <img src="https://info.haas-avocats.com/hubfs/bureaux%20google.jpg" alt="">
+          <img [src]="store?.backgroundImage" alt="">
         </div>
 
         <div class="profile-info-container flex justify-start align-start padding-tb-15">
           <div class="image-container flex justify-center align-start">
-            <img src="https://m.media-amazon.com/images/I/71z4q-mBNhL._SS400_.png" alt="">
+            <img [src]="store?.profileImage" alt="">
           </div>
           <div class="info-container flex justify-start align-center flex-column padding-lr-15">
-            <p class="title text-start font-extra-bold size-large ellipse-1 black">Tesla Inc.</p>
-            <p class="headquarter text-start font-regular size-regular ellipse-1 gray-super-dark">Beirut, Lebanon</p>
-            <div class="count-follow-container flex justify-space-between align-center relative">
-              <div class="count-container">
-                <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">10K orders 10K items 10K followers</p>
+            <p class="title text-start font-extra-bold size-large ellipse-1 black">{{store?.name}}</p>
+            <p class="count text-start font-regular size-small ellipse-1 gray-super-dark">{{store?.countOrders | numberFormat}} orders {{store?.countItems | numberFormat}} items {{store?.countFollowers | numberFormat}} followers</p>
+            <div class="buttons-container flex justify-end align-center relative">
+              <div class="button-container flex justify-end align-center margin-l-10">
+                <app-button [color]="'gray'" [value]="store?.isAddedToCart? 'Remove from cart' : 'Add to cart'"
+                  (click)="null"></app-button>
               </div>
-              <div class="button-container flex justify-end align-center">
-                <app-button [color]="true?'red-white' : 'red'" [value]="true? 'Unfollow' : 'follow'"
+              <div class="button-container flex justify-end align-center margin-l-10">
+                <app-button [color]="store?.isFollowed?'red-white' : 'red'" [value]="store?.isFollowed? 'Unfollow' : 'follow'"
                   (click)="null"></app-button>
               </div>
             </div>
@@ -27,32 +28,13 @@
 
         <div class="profile-description-container margin-tb-30">
           <p class="description text-start font-regular size-small black">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
-            incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
-            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae
-            et
-            reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
-            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus
-            mollitia
-            repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
-            facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
-            mollitia repellendus aut excepturi.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur iusto vero assumenda veniam totam
-            incidunt inventore, nobis voluptatibus eaque sint eveniet. Excepturi numquam debitis nihil fugit
-            exercitationem magnam laboriosam, porro eos cum error soluta incidunt aut at mollitia ad consequuntur quae
-            et
-            reiciendis voluptate distinctio quisquam accusantium officia magni tenetur! Accusantium aliquid cum
-            reprehenderit quia, illo quam! Quos corrupti esse ea dolor inventore officiis ad maiores voluptatibus
-            mollitia
-            repellendus, sit minus iste sunt pariatur sequi magni, modi, aspernatur veritatis? Eaque, libero deleniti
-            facere laudantium atque qui id illo necessitatibus. Libero ut dignissimos aspernatur ducimus obcaecati quas
-            mollitia repellendus aut excepturi.
+            {{store?.description}}
           </p>
         </div>
 
         <div class="profile-section-container margin-t-40 margin-b-60">
           <div class="title-container margin-b-30">
-            <p class="title text-start font-bold size-medium black">More About Tesla Inc.</p>
+            <p class="title text-start font-bold size-medium black">More About {{store?.name}}</p>
           </div>
           <div class="key-value-container flex justify-start align-start margin-tb-15">
             <div class="key-container flex justify-start align-start">
@@ -64,7 +46,7 @@
               </div>
             </div>
             <div class="value-container flex justify-start align-start">
-              <p class="value text-start font-regular size-small blue-dark">Leonel Messi</p>
+              <p class="value text-start font-regular size-small blue-dark">{{store?.ownerName}}, <span class="underline">{{store?.ownerEmail}}</span></p>
             </div>
           </div>
 
@@ -78,7 +60,7 @@
               </div>
             </div>
             <div class="value-container flex justify-start align-start">
-              <p class="value text-start font-regular size-small underline blue-dark">https://www.tesla.com</p>
+              <p class="value text-start font-regular size-small underline blue-dark">{{store?.website}}</p>
             </div>
           </div>
 
@@ -92,7 +74,7 @@
               </div>
             </div>
             <div class="value-container flex justify-start align-start">
-              <p class="value text-start font-regular size-small blue-dark">+961 99 999 999</p>
+              <p class="value text-start font-regular size-small blue-dark">{{store?.phone}}</p>
             </div>
           </div>
 
@@ -106,7 +88,7 @@
               </div>
             </div>
             <div class="value-container flex justify-start align-start">
-              <p class="value text-start font-regular size-small underline blue-dark">tesla@email.com</p>
+              <p class="value text-start font-regular size-small underline blue-dark">{{store?.email}}</p>
             </div>
           </div>
 
@@ -120,8 +102,8 @@
               </div>
             </div>
             <div class="value-container flex justify-start align-start flex-wrap">
-              <div class="chip-container" *ngFor="let category of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-                <app-chip [color]="'blue'" [value]="'Sport'"></app-chip>
+              <div class="chip-container" *ngFor="let category of store?.categories">
+                <app-chip [color]="'blue'" [value]="category"></app-chip>
               </div>
             </div>
           </div>
@@ -129,21 +111,26 @@
 
         <div class="profile-section-container margin-t-40 margin-b-60">
           <div class="title-container margin-b-30">
-            <p class="title text-start font-bold size-medium black">Tesla Inc. Branches</p>
+            <p class="title text-start font-bold size-medium black">{{store?.name}} Branches</p>
           </div>
           <div class="branches-container flex justify-start align-start">
             <div class="left-container padding-r-30">
               <div class="cards-container">
-                <div class="card-container padding-tb-6 margin-tb-10 relative" [ngClass]="{'active': i == 1}"
-                  *ngFor="let location of [1,2,3]; let i = index">
-                  <p class="location text-start font-medium size-small margin-b-3 capitalize" [ngClass]="{'blue': i == 1}">Beirut, Lebanon</p>
-                  <p class="address-details text-start font-regular size-semi-small" [ngClass]="{'blue': i == 1}">Address details</p>
-                  <mat-icon class="icon absolute" [ngClass]="{'blue': i == 1}" svgIcon="location"></mat-icon>
+                <div class="card-container padding-tb-6 margin-tb-10 relative"
+                  [ngClass]="{'active': index == activeBranchIndex}"
+                  (click)="displaySelectedBranch(branch, index)"
+                  *ngFor="let branch of store?.branches; let index = index">
+                  <p class="location text-start font-medium size-small margin-b-3 capitalize" [ngClass]="{'blue': index == activeBranchIndex}">{{branch?.city}}, {{branch?.country}}</p>
+                  <p class="address-details text-start font-regular size-semi-small" [ngClass]="{'blue': index == activeBranchIndex}">{{branch?.addressDetails}}</p>
+                  <mat-icon class="icon absolute" [ngClass]="{'blue': index == activeBranchIndex}" svgIcon="location"></mat-icon>
                 </div>
               </div>
             </div>
             <div class="right-container">
-              <app-map-view [lat]="33" [lng]="35" [zoomControlVisible]="false">
+              <app-map-view #viewMap
+                [lat]="store?.displayedBranch? store?.displayedBranch[0] : 0"
+                [lng]="store?.displayedBranch? store?.displayedBranch[1] : 0"
+                [zoomControlVisible]="false">
               </app-map-view>
             </div>
           </div>
@@ -161,11 +148,11 @@
           </div>
         </div>
         <div class="video-container flex justify-center align-center">
-          <app-video *ngIf="true"
-            [src]="'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'"
-            [poster]="'https://info.haas-avocats.com/hubfs/bureaux%20google.jpg'">
+          <app-video *ngIf="store?.videoUrl"
+            [src]="store?.videoUrl"
+            [poster]="store?.videoPosterUrl">
           </app-video>
-          <div class="no-video-container flex justify-center align-center flex-column" *ngIf="false">
+          <div class="no-video-container flex justify-center align-center flex-column" *ngIf="!store?.videoUrl">
             <p class="value text-center font-medium size-medium gray capitalize">No posted video</p>
             <div class="icon-button-container flex justify-center align-center padding-tb-10">
               <div class="button-container flex justify-center align-center padding-t-4 padding-l-4">

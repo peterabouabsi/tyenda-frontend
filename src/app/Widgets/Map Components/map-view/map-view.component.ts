@@ -64,5 +64,12 @@ export class MapViewComponent implements OnInit {
     tiles.addTo(this.map);
   }
 
+  public updateMarkerPosition() {
+    if (this.marker && this.map) {
+      const newLatLng = L.latLng(this.lat, this.lng);
+      this.marker.setLatLng(newLatLng);
+      this.map.panTo(newLatLng);
+    }
+  }
 
 }

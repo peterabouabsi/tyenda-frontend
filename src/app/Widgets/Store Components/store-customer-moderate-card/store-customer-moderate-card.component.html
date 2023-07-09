@@ -1,14 +1,16 @@
 <div class="store-container margin-t-30 padding-tb-10">
-  <div class="images-container relative">
+  <div class="images-container relative" (click)="openStoreProfile()">
     <img class="background-image" [src]="data.backgroundImage" alt="">
     <div class="profile-image-container absolute">
       <img class="profile-image padding-6" [src]="data.profileImage" alt="">
     </div>
   </div>
   <div class="store-info-container padding-tb-10">
-    <p class="title text-start font-extra-bold size-medium black ellipse-1">{{data.name}}</p>
-    <p class="timestamp text-start font-regular size-semi-small gray ellipse-1">Created {{data.createdAt | timestamp}}</p>
-    <p class="description text-start font-regular size-semi-small gray-dark ellipse-3 margin-t-10">{{data.description}}</p>
+    <div class="info-container" (click)="openStoreProfile()">
+      <p class="title text-start font-extra-bold size-medium black ellipse-1">{{data.name}}</p>
+      <p class="timestamp text-start font-regular size-semi-small gray ellipse-1">Created {{data.createdAt | timestamp}}</p>
+      <p class="description text-start font-regular size-semi-small gray-dark ellipse-3 margin-t-10">{{data.description}}</p>
+    </div>
 
     <div class="key-value-container flex justify-start align-center margin-t-20">
       <div class="key-container flex justify-start align-start">

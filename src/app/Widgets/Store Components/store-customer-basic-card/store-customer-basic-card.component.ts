@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Services
 import { StoreCardService } from '../Services/store-card.service';
@@ -19,7 +23,8 @@ export class StoreCustomerBasicCardComponent implements OnInit{
   @Input() data: CartStoreBasicView | any;
   @Output() onRemoveEvent = new EventEmitter();
 
-  constructor(private storeCardService: StoreCardService) {
+  constructor(private router: Router,
+              private storeCardService: StoreCardService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +40,10 @@ export class StoreCustomerBasicCardComponent implements OnInit{
         this.onRemoveEvent.emit();
       }
     });
+  }
+
+  public openStoreProfile(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/store/'+this.data.storeId]);
   }
 
 }

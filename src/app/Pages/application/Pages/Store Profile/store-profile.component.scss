@@ -43,7 +43,7 @@
               width: 100%;
               height: auto;
               object-fit: cover;
-              border: 1rem;
+              border-radius: 1rem;
             }
           }
 
@@ -51,17 +51,13 @@
             width: 100%;
 
             .title,
-            .headquarter {
+            .count {
               width: 100%;
             }
 
-            .count-follow-container {
+            .buttons-container {
               width: 100%;
               top: 1rem;
-
-              .count-container {
-                width: auto;
-              }
 
               .button-container {
                 width: fit-content;

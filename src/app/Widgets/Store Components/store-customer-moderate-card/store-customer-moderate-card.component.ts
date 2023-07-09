@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Forms
 import { FollowUnfollowForm } from './../../../Shared/Models/Forms/FollowUnfollowForm.form';
@@ -19,7 +23,8 @@ export class StoreCustomerModerateCardComponent implements OnInit{
 
   @Input() data: StoreModerateView | any;
 
-  constructor(private storeCardService: StoreCardService) {
+  constructor(private router: Router,
+              private storeCardService: StoreCardService) {
   }
 
   ngOnInit(): void {
@@ -46,5 +51,10 @@ export class StoreCustomerModerateCardComponent implements OnInit{
       }
     });
   }
+
+  public openStoreProfile(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/store/'+this.data.id]);
+  }
+
 
 }
