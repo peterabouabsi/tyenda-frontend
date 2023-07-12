@@ -39,7 +39,7 @@
     </div>
     <div class="text-container flex justify-start align-start flex-column padding-tb-10">
       <p class="name text-start font-bold size-medium black">{{data?.value}}</p>
-      <p class="description text-start font-regular size-small gray-super-dark ellipse-4">{{data?.description}}</p>
+      <div class="description text-start font-regular size-small gray-super-dark ellipse-4" [innerHTML]="data?.description"></div>
     </div>
   </div>
   <div class="buttons-container flex justify-space-between align-center margin-t-20">

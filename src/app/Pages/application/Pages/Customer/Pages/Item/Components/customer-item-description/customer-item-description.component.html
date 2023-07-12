@@ -65,12 +65,14 @@
     <div class="row-data-container padding-tb-10" *ngIf="item?.notes">
       <p class="note font-medium size-regular cyan-dark" *ngFor="let note of item?.notes">{{note}}</p>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap padding-tb-10" *ngIf="item?.categories">
-      <app-chip
-        [value]="category"
-        [color]="'blue'"
-        *ngFor="let category of item?.categories">
-      </app-chip>
+    <div class="row-data-container categories-row-data padding-tb-10" *ngIf="item?.categories">
+      <app-slider [scrollAmount]="130">
+        <app-chip
+          [value]="category"
+          [color]="'blue'"
+          *ngFor="let category of item?.categories">
+        </app-chip>
+      </app-slider>
     </div>
     <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colors.length > 0">
       <div class="text-container">
