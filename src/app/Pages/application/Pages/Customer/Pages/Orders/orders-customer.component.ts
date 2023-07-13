@@ -1,6 +1,9 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { CustomerOrdersService } from './Services/customer-orders.service';
@@ -17,6 +20,7 @@ import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView
 
 //Forms
 import { OrdersSearchForm } from 'src/app/Shared/Models/Forms/OrdersSearchForm.form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders-customer',
@@ -38,7 +42,8 @@ export class OrdersCustomerComponent implements OnInit {
   //replace any | any with Order View Model
   public searchResultConfig: SearchResultConfig<OrderBasicView> = { value: '', data: [], loaded: false }
 
-  constructor(private globalService: GlobalService,
+  constructor(private router: Router,
+              private globalService: GlobalService,
               private customerOrdersService: CustomerOrdersService) {
   }
 
@@ -95,6 +100,10 @@ export class OrdersCustomerComponent implements OnInit {
       statuses: new FormControl([], [])
     });
     this.readData();
+  }
+
+  public navigateToItems(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"search"], {queryParams: {type: Constants.ITEM_TYPE}});
   }
 
 }

@@ -21,7 +21,7 @@
     <app-avatar [src]="data?.profileImage"></app-avatar>
     <p class="store-name text-center font-medium size-regular">{{data?.storeName}}</p>
     <p class="overview text-center font-regular size-semi-small gray-super-dark">{{data?.likesCount}} likes&nbsp;{{data?.ordersCount}} orders</p>
-    <p class="description text-center font-regular size-semi-small black ellipse-3 margin-t-10">{{data?.description}}</p>
+    <div class="description text-center font-regular size-semi-small black ellipse-3 margin-t-10" [innerHTML]="data?.description"></div>
   </div>
 
   <div class="button-container flex justify-space-between align-center padding-tb-30">

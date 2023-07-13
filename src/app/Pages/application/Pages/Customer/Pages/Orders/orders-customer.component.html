@@ -1,8 +1,11 @@
 <div class="parent-container">
   <div class="inner-container">
-    <div class="header-container">
+    <div class="header-container flex justify-space-between align-center">
       <div class="text-container flex justify-center align-center">
         <p class="text text-start font-black size-extra-large black">Orders</p>
+      </div>
+      <div class="button-container flex justify-center align-center">
+        <app-button [value]="'Order An Item'" [color]="'orange'" (click)="navigateToItems()"></app-button>
       </div>
     </div>
     <div class="expansion-panel-container margin-tb-30">

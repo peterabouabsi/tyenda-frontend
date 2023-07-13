@@ -26,11 +26,13 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
     import { CustomerItemDescriptionComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
     import { CustomerItemCommentsComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/Components/customer-item-comments/customer-item-comments.component';
     import { CustomerItemOrdersComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
-  import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.component';
+  import { RequestOrderComponent } from '../Pages/Customer/Pages/Request Order/request-order.component';
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
   //
+
+import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.component';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
         CustomerItemDescriptionComponent,
         CustomerItemCommentsComponent,
         CustomerItemOrdersComponent,
+      RequestOrderComponent,
 
     StoreMainComponent,
       //Navbar
@@ -79,6 +82,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
         CustomerItemDescriptionComponent,
         CustomerItemOrdersComponent,
         CustomerItemCommentsComponent,
+      RequestOrderComponent,
 
     StoreMainComponent,
       //Navbar

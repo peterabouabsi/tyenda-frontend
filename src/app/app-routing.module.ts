@@ -30,6 +30,7 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
     import { CustomerItemComponent } from './Pages/application/Pages/Customer/Pages/Item/customer-item.component';
       import { CustomerItemDescriptionComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
       import { CustomerItemOrdersComponent } from './Pages/application/Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
+    import { RequestOrderComponent } from './Pages/application/Pages/Customer/Pages/Request Order/request-order.component';
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     //
@@ -73,6 +74,7 @@ const routes: Routes = [
         {path: 'description', component: CustomerItemDescriptionComponent},
         {path: 'orders', title: 'Tyenda - Cart', component: CustomerItemOrdersComponent},
       ]},
+      {path: 'request-order/:itemId', title: 'Tyenda - Request Order', component: RequestOrderComponent},
       {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent}
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [

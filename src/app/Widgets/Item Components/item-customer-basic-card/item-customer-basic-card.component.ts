@@ -72,4 +72,7 @@ export class ItemCustomerBasicCardComponent implements OnInit{
     });
   }
 
+  public orderNow(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"request-order/"+this.data.id]);
+  }
 }

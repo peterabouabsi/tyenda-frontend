@@ -55,6 +55,7 @@
       [ngStyle]="{'flex': (config.showCartButton && config.showOrderButton) == false? '1' : 'none'}"
       [color]="'blue'"
       [value]="'Order now'"
+      (click)="orderNow()"
       *ngIf="config.showOrderButton">
     </app-button>
   </div>

@@ -125,6 +125,12 @@
                 cursor: pointer;
               }
             }
+
+            &.category-container{
+              .value-container{
+                overflow: hidden;
+              }
+            }
           }
 
           .branches-container {
@@ -369,11 +375,7 @@
             .category-container{
               width: 100%;
               .value-container{
-                flex-wrap: nowrap;
-                overflow: scroll;
-                &::-webkit-scrollbar{
-                  display: none;
-                }
+                width: 100%;
               }
             }
           }
