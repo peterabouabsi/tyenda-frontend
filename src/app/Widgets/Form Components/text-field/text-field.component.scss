@@ -18,6 +18,14 @@
       border-color: var(--gray-dark);
       transition: 0.2s ease-in-out;
     }
+    &:disabled{
+      border-color: var(--gray-light-alpha);
+      color: var(--gray-light);
+
+      &::placeholder{
+        color: var(--gray-light);
+      }
+    }
     &.danger{
       border-color: var(--red);
     }

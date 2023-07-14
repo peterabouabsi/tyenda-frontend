@@ -1,11 +1,88 @@
 <div class="parent-container">
   <div class="inner-container">
-    <div class="header-container flex justify-space-between align-center">
-      <div class="text-container flex justify-center align-center">
+    <div class="header-container flex justify-space-between align-start">
+      <div class="text-container flex justify-center align-start">
         <p class="text text-start font-black size-extra-large black">Request Order</p>
       </div>
       <div class="item-to-order-container flex justify-center align-center">
         <app-item-entry-card [data]="itemToOrder"></app-item-entry-card>
+      </div>
+    </div>
+
+    <div class="body-container padding-lr-50">
+      <div class="row-container flex justify-start align-start flex-column margin-t-50">
+        <div class="row-header-container padding-tb-30">
+          <p class="title text-start font-bold size-regular black">Receiver Name <span
+              class="optional-label font-regular size-semi-small red">*optional</span></p>
+        </div>
+        <div class="checkbox-container flex justify-start align-center">
+          <app-single-checkbox [label]="'Another Recipient?'" (clickEvent)="enableDisabledReceiverInputs($event)">
+          </app-single-checkbox>
+        </div>
+        <div class="inputs-container flex justify-end align-center">
+          <div class="input-form padding-lr-3">
+            <app-text-field [placeholder]="'Firstname'" [formControl]="requestOrderForm.controls['receiverFirstname']"
+              [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverFirstname', $event)">
+            </app-text-field>
+          </div>
+          <div class="input-form padding-lr-3">
+            <app-text-field [placeholder]="'Lastname'" [formControl]="requestOrderForm.controls['receiverLastname']"
+              [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverLastname', $event)">
+            </app-text-field>
+          </div>
+          <div class="input-form padding-lr-3">
+            <app-text-field [placeholder]="'Email'" [formControl]="requestOrderForm.controls['receiverEmail']"
+              [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverEmail', $event)">
+            </app-text-field>
+          </div>
+          <div class="input-form padding-lr-3">
+            <app-text-field [placeholder]="'Phone Number'" [formControl]="requestOrderForm.controls['receiverPhone']"
+              [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverPhone', $event)">
+            </app-text-field>
+          </div>
+        </div>
+      </div>
+      <div class="row-container margin-t-50">
+        <div class="row-header-container padding-tb-10">
+          <p class="title text-start font-bold size-regular black">Delivery Location</p>
+        </div>
+        <div class="inputs-map-container">
+          <div class="inputs-container flex justify-start align-start flex-wrap">
+            <div class="input-form padding-lr-3">
+              <app-select-field [data]="countries" [placeholder]="'Select Country'"
+                [formControl]="requestOrderForm.controls['country']" (onSelectEvent)="setValue('country', $event)">
+              </app-select-field>
+            </div>
+            <div class="input-form padding-lr-3">
+              <app-select-field [data]="cities" [placeholder]="'Select City'"
+                [formControl]="requestOrderForm.controls['city']" [disabled]="!requestOrderForm.controls['country'].valid" (onSelectEvent)="setValue('city', $event)">
+              </app-select-field>
+            </div>
+            <div class="input-form input-textarea-form padding-lr-3 margin-tb-20">
+              <app-text-area [placeholder]="'Address Details'"
+                [formControl]="requestOrderForm.controls['addressDetails']"
+                (onInputEvent)="setValue('addressDetails', $event)">
+              </app-text-area>
+            </div>
+            <div class="input-form input-textarea-form padding-lr-3 margin-tb-20">
+              <app-text-area [placeholder]="'Add note here...'" [formControl]="requestOrderForm.controls['note']"
+                (onInputEvent)="setValue('note', $event)">
+              </app-text-area>
+            </div>
+          </div>
+          <div class="map-selector-container"></div>
+        </div>
+      </div>
+      <div class="row-container margin-t-50">
+        <div class="row-header-container padding-tb-10">
+          <p class="title text-start font-bold size-regular black">Ordered Item</p>
+        </div>
+      </div>
+      <div class="row-container flex justify-end align-center margin-t-100">
+        <div class="button-container">
+          <app-button [color]="'blue'" [value]="'Request Order'" (click)="null">
+          </app-button>
+        </div>
       </div>
     </div>
   </div>

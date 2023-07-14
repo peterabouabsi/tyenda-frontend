@@ -13,6 +13,7 @@ export class SelectFieldComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() placeholder: string = '';
   @Input() formControl: any = null;
+  @Input() disabled?: boolean = false;
 
   @Output() onSelectEvent = new EventEmitter();
 
@@ -45,7 +46,7 @@ export class SelectFieldComponent implements OnInit {
   //Open-Close select field
   public isSelectFieldOpened: boolean = false;
   public openCloseSelectField() {
-    this.isSelectFieldOpened = !this.isSelectFieldOpened;
+    if(!this.disabled) this.isSelectFieldOpened = !this.isSelectFieldOpened;
   }
 
   //Close select field

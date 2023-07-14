@@ -147,6 +147,23 @@ export class GlobalService {
     // Call the callback function
     callback(!invalid);
   }
+  //Add validator(s) to a fromControl in formGroup
+  public addFormValidators(form: any, formControlNames: string[], validators: any[]){
+    formControlNames.forEach(formControlName => {
+      form.get(formControlName).addValidators(validators);
+      form.get(formControlName).updateValueAndValidity();
+    });
+    return form;
+  }
+  //Add validator(s) to a fromControl in formGroup
+  public clearFormValidators(form: any, formControlNames: string[]){
+    formControlNames.forEach(formControlName => {
+      form.get(formControlName).clearValidators();
+      form.get(formControlName).updateValueAndValidity();
+    });
+    return form;
+  }
+
   //Check authenticated user
   public async isAuthenticated(){
     let session = this.getStorage(Constants.STORAGE_SESSION);

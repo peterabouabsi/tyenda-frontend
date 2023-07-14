@@ -19,6 +19,7 @@ import { TextAreaComponent } from 'src/app/Widgets/Form Components/text-area/tex
 import { PasswordFieldComponent } from 'src/app/Widgets/Form Components/password-field/password-field.component';
 import { SalaryRangeSelectComponent } from 'src/app/Widgets/Form Components/salary-range-select/salary-range-select.component';
 import { RateSelectorComponent } from 'src/app/Widgets/Form Components/rate-selector/rate-selector.component';
+import { SingleCheckboxComponent } from './../../../Widgets/Form Components/single-checkbox/single-checkbox.component';
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
@@ -67,6 +68,7 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
     SelectFieldComponent,
     SalaryRangeSelectComponent,
     RateSelectorComponent,
+    SingleCheckboxComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -119,6 +121,7 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
     SelectFieldComponent,
     SalaryRangeSelectComponent,
     RateSelectorComponent,
+    SingleCheckboxComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,

@@ -9,6 +9,8 @@ export class TextFieldComponent implements OnInit{
 
   @Input() placeholder: string = '';
   @Input() formControl: any = null;
+  @Input() disabled?: boolean = false;
+
 
   @Output() onInputEvent = new EventEmitter();
 

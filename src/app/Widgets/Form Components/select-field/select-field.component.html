@@ -1,5 +1,5 @@
 <div class="field-container">
-  <div tabindex="1" class="select relative padding-lr-10 padding-t-7" [ngClass]="{'active' : isSelectFieldOpened, 'danger': formControl.dirty && !formControl.valid}" (click)="openCloseSelectField()" (focusout)="closeSelectField()">
+  <div tabindex="1" class="select relative padding-lr-10 padding-t-7" [ngClass]="{'disabled': disabled, 'active' : isSelectFieldOpened, 'danger': formControl.dirty && !formControl.valid}" (click)="openCloseSelectField()" (focusout)="closeSelectField()">
 
       <div class="text-container">
           <p class="text text-start size-small" [ngClass]="{'gray-dark font-regular':isFormControlArray || !formControl.value || !selectedOption.value, 'black font-medium':!isFormControlArray && formControl.value  && selectedOption.value}">{{!isFormControlArray && formControl.value && selectedOption.value? selectedOption.value : placeholder}}</p>
