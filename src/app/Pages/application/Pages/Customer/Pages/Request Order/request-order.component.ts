@@ -29,7 +29,9 @@ export class RequestOrderComponent implements OnInit{
     country: new FormControl(null, [Validators.required]),
     city: new FormControl(null, [Validators.required]),
     addressDetails: new FormControl('', [Validators.required]),
-    note: new FormControl('', [])
+    note: new FormControl('', []),
+    latitude: new FormControl(0, []),
+    longitude: new FormControl(0, [])
   });
 
   constructor(private route: ActivatedRoute,

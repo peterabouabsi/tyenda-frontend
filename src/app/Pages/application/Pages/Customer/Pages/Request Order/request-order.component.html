@@ -47,7 +47,7 @@
           <p class="title text-start font-bold size-regular black">Delivery Location</p>
         </div>
         <div class="inputs-map-container">
-          <div class="inputs-container flex justify-start align-start flex-wrap">
+          <div class="inputs-container flex justify-start align-start flex-wrap margin-0">
             <div class="input-form padding-lr-3">
               <app-select-field [data]="countries" [placeholder]="'Select Country'"
                 [formControl]="requestOrderForm.controls['country']" (onSelectEvent)="setValue('country', $event)">
@@ -55,7 +55,8 @@
             </div>
             <div class="input-form padding-lr-3">
               <app-select-field [data]="cities" [placeholder]="'Select City'"
-                [formControl]="requestOrderForm.controls['city']" [disabled]="!requestOrderForm.controls['country'].valid" (onSelectEvent)="setValue('city', $event)">
+                [formControl]="requestOrderForm.controls['city']"
+                [disabled]="!requestOrderForm.controls['country'].valid" (onSelectEvent)="setValue('city', $event)">
               </app-select-field>
             </div>
             <div class="input-form input-textarea-form padding-lr-3 margin-tb-20">
@@ -70,7 +71,11 @@
               </app-text-area>
             </div>
           </div>
-          <div class="map-selector-container"></div>
+          <div class="map-selector-container">
+            <app-map [lat]="requestOrderForm.controls['latitude'].value" [lng]="requestOrderForm.controls['longitude'].value" (mapLatitudeEvent)="setValue('latitude', $event)"
+              (mapLongitudeEvent)="setValue('longitude', $event)">
+            </app-map>
+          </div>
         </div>
       </div>
       <div class="row-container margin-t-50">
