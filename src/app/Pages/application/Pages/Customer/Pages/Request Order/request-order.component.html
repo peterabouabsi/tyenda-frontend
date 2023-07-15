@@ -5,7 +5,7 @@
         <p class="text text-start font-black size-extra-large black">Request Order</p>
       </div>
       <div class="item-to-order-container flex justify-center align-center">
-        <app-item-entry-card [data]="itemToOrder"></app-item-entry-card>
+        <app-item-entry-card [data]="itemToOrder" [showStatus]="false"></app-item-entry-card>
       </div>
     </div>
 
@@ -19,23 +19,23 @@
           <app-single-checkbox [label]="'Another Recipient?'" (clickEvent)="enableDisabledReceiverInputs($event)">
           </app-single-checkbox>
         </div>
-        <div class="inputs-container flex justify-end align-center">
-          <div class="input-form padding-lr-3">
+        <div class="inputs-container flex justify-start align-start flex-wrap">
+          <div class="input-form padding-lr-3 padding-b-10">
             <app-text-field [placeholder]="'Firstname'" [formControl]="requestOrderForm.controls['receiverFirstname']"
               [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverFirstname', $event)">
             </app-text-field>
           </div>
-          <div class="input-form padding-lr-3">
+          <div class="input-form padding-lr-3 padding-b-10">
             <app-text-field [placeholder]="'Lastname'" [formControl]="requestOrderForm.controls['receiverLastname']"
               [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverLastname', $event)">
             </app-text-field>
           </div>
-          <div class="input-form padding-lr-3">
+          <div class="input-form padding-lr-3 padding-b-10">
             <app-text-field [placeholder]="'Email'" [formControl]="requestOrderForm.controls['receiverEmail']"
               [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverEmail', $event)">
             </app-text-field>
           </div>
-          <div class="input-form padding-lr-3">
+          <div class="input-form padding-lr-3 padding-b-10">
             <app-text-field [placeholder]="'Phone Number'" [formControl]="requestOrderForm.controls['receiverPhone']"
               [disabled]="isInputDisabled" (onInputEvent)="setValue('receiverPhone', $event)">
             </app-text-field>
@@ -47,7 +47,7 @@
           <p class="title text-start font-bold size-regular black">Delivery Location</p>
         </div>
         <div class="inputs-map-container">
-          <div class="inputs-container flex justify-start align-start flex-wrap margin-0">
+          <div class="inputs-container flex justify-start align-start flex-wrap">
             <div class="input-form padding-lr-3">
               <app-select-field [data]="countries" [placeholder]="'Select Country'"
                 [formControl]="requestOrderForm.controls['country']" (onSelectEvent)="setValue('country', $event)">
@@ -78,15 +78,64 @@
           </div>
         </div>
       </div>
-      <div class="row-container margin-t-50">
+      <div class="row-container margin-t-50" *ngIf="itemToOrder?.colors?.length > 0 || itemToOrder?.sizes?.length > 0">
         <div class="row-header-container padding-tb-10">
           <p class="title text-start font-bold size-regular black">Ordered Item</p>
         </div>
+        <div class="ordered-item-container margin-t-10">
+          <div class="box-container padding-r-30"
+              *ngIf="itemToOrder?.colors?.length > 0">
+            <div class="title-container">
+              <p class="title text-start font-medium size-small black">Colors</p>
+            </div>
+            <div class="box-content-container padding-tb-10 margin-r-10">
+              <div class="cards-container flex justify-start align-start flex-wrap">
+                <div class="card-container flex justify-start align-start margin-r-3 margin-b-3 disabled"
+                    *ngFor="let color of itemToOrder?.colors">
+                    <div class="checkbox-container flex justify-center align-center">
+                      <app-single-checkbox></app-single-checkbox>
+                    </div>
+                    <div class="color-container" [ngStyle]="{'background-color': color?.value}"></div>
+                    <div class="quantity-container flex justify-center align-center padding-lr-10">
+                      <app-button-quantity [quantity]="1" [maxQuantity]="color?.quantity"></app-button-quantity>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box-container padding-r-30"
+            *ngIf="itemToOrder?.sizes?.length > 0">
+            <div class="title-container">
+              <p class="title text-start font-medium size-small black">Sizes</p>
+            </div>
+            <div class="box-content-container padding-tb-10 margin-r-10">
+              <div class="cards-container flex justify-start align-start flex-wrap">
+                <div class="card-container flex justify-center align-center padding-lr-10 margin-r-3 margin-b-3 disabled"
+                    *ngFor="let size of itemToOrder?.sizes">
+                    <div class="checkbox-container flex justify-center align-center">
+                      <app-single-checkbox></app-single-checkbox>
+                    </div>
+                    <div class="size-container flex justify-center align-center">
+                      <p class="value text-center font-medium size-semi-small gray-dark">{{size?.code? size?.code : 'No. '+size?.number}}</p>
+                    </div>
+                    <div class="quantity-container flex justify-center align-center padding-lr-10">
+                      <app-button-quantity [quantity]="1" [maxQuantity]="size?.quantity"></app-button-quantity>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row-container flex justify-end align-center margin-t-100">
+      <div class="row-container flex align-center margin-t-100"
+          [ngClass]="{'justify-end': itemToOrder?.colors?.length > 0 || itemToOrder?.sizes?.length > 0, 'justify-space-between' : itemToOrder?.colors?.length == 0 && itemToOrder?.sizes?.length == 0}">
+        <div class="button-container" *ngIf="itemToOrder?.colors?.length == 0 && itemToOrder?.sizes?.length == 0">
+          <p class="text text-start font-medium size-regular padding-t-3 padding-b-3 gray-super-dark">How many pieces?</p>
+          <app-button-quantity [quantity]="requestOrderForm.controls['quantity'].value" [maxQuantity]="itemToOrder?.stock" (onCounterClick)="setValue('quantity', $event)"></app-button-quantity>
+        </div>
         <div class="button-container">
-          <app-button [color]="'blue'" [value]="'Request Order'" (click)="null">
-          </app-button>
+          <app-button-loader #requestOrderButton [value]="'Request Order'" [config]="buttonConfig" (click)="requestOrder()"></app-button-loader>
         </div>
       </div>
     </div>

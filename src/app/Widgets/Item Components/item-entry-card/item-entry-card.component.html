@@ -9,6 +9,6 @@
       <p class="dicount font-regular size-regular red-dark margin-r-10">-{{data?.discount}}%</p>
       <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>{{data?.price}}</p>
     </div>
-    <p class="count font-regular size-extra-small gray-dark">{{data?.countLikes}} likes   {{data?.countOrders}} orders</p>
+    <p class="count font-regular size-extra-small gray-dark" *ngIf="showStatus">{{data?.countLikes}} likes   {{data?.countOrders}} orders</p>
   </div>
 </div>

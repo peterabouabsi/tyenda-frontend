@@ -24,8 +24,9 @@
     <div class="description text-center font-regular size-semi-small black ellipse-3 margin-t-10" [innerHTML]="data?.description"></div>
   </div>
 
-  <div class="button-container flex justify-space-between align-center padding-tb-30">
+  <div class="button-container flex justify-space-between align-center padding-t-30">
     <app-button [color]="'gray'" [value]="'Remove from cart'" (click)="addRemoveCart()"></app-button>
-    <app-button-quantity [quantity]="data?.quantity" [maxQuantity]="data?.stock" (onCounterClick)="onQuantityUpdate($event)"></app-button-quantity>
+    <app-button [color]="'blue'" [value]="'Order Now'" (click)="orderNow()"></app-button>
   </div>
+
 </div>

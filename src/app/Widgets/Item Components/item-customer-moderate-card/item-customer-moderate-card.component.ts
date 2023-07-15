@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
@@ -8,7 +9,6 @@ import { ItemCardService } from 'src/app/Widgets/Item Components/Services/item-c
 
 //Forms
 import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
-import { ItemCartUpdateForm } from 'src/app/Shared/Models/Forms/ItemCartUpdateForm.form';
 
 //Views
 import { CartItemBasicView } from 'src/app/Shared/Models/Views/Cart/CartItemBasicView.view';
@@ -23,7 +23,8 @@ export class ItemCustomerModerateCardComponent implements OnInit{
   @Input() data: CartItemBasicView | any;
   @Output() onRemoveEvent = new EventEmitter();
 
-  constructor(private itemCardService: ItemCardService) {
+  constructor(private router: Router,
+              private itemCardService: ItemCardService) {
   }
 
   ngOnInit(): void {
@@ -41,16 +42,8 @@ export class ItemCustomerModerateCardComponent implements OnInit{
     });
   }
 
-  public onQuantityUpdate(quantity: number){
-    let form: ItemCartUpdateForm = {
-      itemId: this.data.itemId,
-      quantity: quantity
-    };
-    this.itemCardService.updateQuantity(form).subscribe((response: any) => {
-      if(!response.error){
-        this.data.quantity = response.quantity;
-      }
-    });
+  public orderNow(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"request-order/"+this.data.id]);
   }
 
 }

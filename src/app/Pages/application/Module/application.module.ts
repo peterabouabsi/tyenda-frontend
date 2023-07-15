@@ -11,6 +11,7 @@ import { CustomerOrdersService } from '../Pages/Customer/Pages/Orders/Services/c
 import { CustomerSearchService } from '../Pages/Customer/Pages/Search/Services/customer-search.service';
 import { CartService } from '../Pages/Customer/Pages/Cart/Services/cart.service';
 import { CustomerItemService } from '../Pages/Customer/Pages/Item/Services/customer-item.service';
+import { RequestOrderService } from '../Pages/Customer/Pages/Request Order/Services/request-order.service';
 
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
@@ -97,6 +98,7 @@ import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.comp
     CustomerSearchService,
     CartService,
     CustomerItemService,
+    RequestOrderService,
 
     DecimalPipe
   ]

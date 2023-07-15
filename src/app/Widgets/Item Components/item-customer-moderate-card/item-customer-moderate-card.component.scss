@@ -21,4 +21,10 @@
       width: fit-content;
     }
   }
+  .order-button-container{
+    width: 100%;
+    app-button{
+      width: 100%;
+    }
+  }
 }

@@ -1,13 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+import { RequestOrderService } from './Services/request-order.service';
 
 //Views
 import { BasicCountryView } from 'src/app/Shared/Models/Views/Country/BasicCountryView.view';
 import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.view';
+
+//Config
+import { ButtonConfig } from 'src/app/Widgets/Button Components/button-loader/ButtonConfig.form';
+
+//Components
+import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
+
+//Views
+import { ItemEntryView } from 'src/app/Shared/Models/Views/Item/ItemEntryView.view';
 
 @Component({
   selector: 'app-request-order',
@@ -16,10 +26,7 @@ import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.vi
 })
 export class RequestOrderComponent implements OnInit{
 
-  public itemToOrder: any;
-
-  public countries: BasicCountryView[] = [];
-  public cities: BasicCityView[] = [];
+  public itemToOrder: ItemEntryView;
 
   public requestOrderForm: FormGroup = new FormGroup({
     receiverFirstname: new FormControl('', []),
@@ -31,11 +38,19 @@ export class RequestOrderComponent implements OnInit{
     addressDetails: new FormControl('', [Validators.required]),
     note: new FormControl('', []),
     latitude: new FormControl(0, []),
-    longitude: new FormControl(0, [])
+    longitude: new FormControl(0, []),
+    quantity: new FormControl(0, []),
   });
 
+  public countries: BasicCountryView[] = [];
+  public cities: BasicCityView[] = [];
+
+  @ViewChild('requestOrderButton') requestOrderButton: ButtonLoaderComponent;
+  public buttonConfig: ButtonConfig = {isBlue: true};
+
   constructor(private route: ActivatedRoute,
-              private globalService: GlobalService) {
+              private globalService: GlobalService,
+              private requestOrderService: RequestOrderService) {
   }
 
   ngOnInit(): void {
@@ -46,30 +61,17 @@ export class RequestOrderComponent implements OnInit{
 
   private readItemToOrder(){
     let itemId = this.route.snapshot.params['itemId'];
-    this.itemToOrder = {
-      id: "b9c4d995-6fd9-4888-85f1-fe82877257b1",
-      value: "Xbox",
-      imageUrl: "https://images.unsplash.com/photo-1612801799890-4ba4760b6590?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHhib3h8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
-      discount: 50,
-      rate: 5.0,
-      price: 150.250,
-      countOrders: 3,
-      countLikes: 0,
-      qty: 3
-    }
+    this.requestOrderService.getItem(itemId).subscribe((response: any) => {
+      if(!response.error){
+        this.itemToOrder = response;
+      }
+    })
   }
 
   private readCountries(){
     this.globalService.getCountries().subscribe((response: any) => {
       if(!response.error){
         this.countries = response;
-      }
-    });
-  }
-  private readCities(countryId: string){
-    this.globalService.getCities(countryId).subscribe((response: any) => {
-      if(!response.error){
-        this.cities = response;
       }
     });
   }
@@ -93,7 +95,16 @@ export class RequestOrderComponent implements OnInit{
     if(formControlName == 'country'){
       //get country's cities
       let countryId = value.id;
-      this.readCities(countryId)
+      this.globalService.getCities(countryId).subscribe((response: any) => {
+        if(!response.error){
+          this.cities = response;
+        }
+      });
     }
+  }
+
+  public requestOrder(){
+    //show a dialog for order confirmation
+    this.requestOrderButton.onClick(() => {});
   }
 }

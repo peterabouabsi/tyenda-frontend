@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
-//Forms
+//Views
 import { StoreTopItemBasicView } from 'src/app/Shared/Models/Views/Store/StoreTopItemBasicView.view';
+import { ItemEntryView } from 'src/app/Shared/Models/Views/Item/ItemEntryView.view';
 
 @Component({
   selector: 'app-item-entry-card',
@@ -14,7 +15,8 @@ import { StoreTopItemBasicView } from 'src/app/Shared/Models/Views/Store/StoreTo
 })
 export class ItemEntryCardComponent implements OnInit{
 
-  @Input() data: StoreTopItemBasicView;
+  @Input() data: StoreTopItemBasicView | ItemEntryView | any;
+  @Input() showStatus?: boolean = true;
 
   constructor(private router: Router) {
   }
