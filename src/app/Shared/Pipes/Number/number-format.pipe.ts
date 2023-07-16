@@ -11,7 +11,13 @@ export class NumberFormatPipe implements PipeTransform {
   constructor(private decimalPipe: DecimalPipe) {
   }
 
-  transform(value: number): string {
+  transform(value: any, type: string = "format"): any {
+    if(type == "format") return this.numberFormat(value);
+    else if(type == "isNumber") return this.checkIsNumber(value);
+    else return "";
+  }
+
+  public numberFormat(value: number){
     const absValue = Math.abs(value);
     let formattedValue: string;
 
@@ -26,6 +32,10 @@ export class NumberFormatPipe implements PipeTransform {
     }
 
     return formattedValue;
+  }
+  public checkIsNumber(value: string){
+    const parsedNumber = parseFloat(value);
+    return !isNaN(parsedNumber) ? true : false;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -39,7 +39,9 @@ export class RequestOrderComponent implements OnInit{
     note: new FormControl('', []),
     latitude: new FormControl(0, []),
     longitude: new FormControl(0, []),
-    quantity: new FormControl(0, []),
+    quantity: new FormControl(1, []),
+    colorsAndQuantity: new FormControl([], []),
+    sizesAndQuantity: new FormControl([], [])
   });
 
   public countries: BasicCountryView[] = [];
@@ -64,7 +66,12 @@ export class RequestOrderComponent implements OnInit{
     this.requestOrderService.getItem(itemId).subscribe((response: any) => {
       if(!response.error){
         this.itemToOrder = response;
-      }
+        if(this.itemToOrder.colors.length > 0)
+        this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm,['colorsAndQuantity'], [Validators.required]);
+
+        if(this.itemToOrder.sizes.length > 0)
+        this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm,['sizesAndQuantity'], [Validators.required]);
+        }
     })
   }
 
@@ -75,6 +82,20 @@ export class RequestOrderComponent implements OnInit{
       }
     });
   }
+
+  public setValue(formControlName: string, value: any){
+    this.requestOrderForm.get(formControlName).setValue(value);
+    if(formControlName == 'country'){
+      //get country's cities
+      let countryId = value.id;
+      this.globalService.getCities(countryId).subscribe((response: any) => {
+        if(!response.error){
+          this.cities = response;
+        }
+      });
+    }
+  }
+
 
   /* ------------ enable-disable another recipient inputs ------------ */
   public isInputDisabled: boolean = true;
@@ -89,19 +110,6 @@ export class RequestOrderComponent implements OnInit{
     }
   }
   /* ------------ enable-disable another recipient inputs ------------ */
-
-  public setValue(formControlName: string, value: any){
-    this.requestOrderForm.get(formControlName).setValue(value);
-    if(formControlName == 'country'){
-      //get country's cities
-      let countryId = value.id;
-      this.globalService.getCities(countryId).subscribe((response: any) => {
-        if(!response.error){
-          this.cities = response;
-        }
-      });
-    }
-  }
 
   public requestOrder(){
     //show a dialog for order confirmation

@@ -43,6 +43,8 @@ export class CustomerItemComponent implements OnInit{
     const response = await this.customerItemService.getItemDescription(itemId).toPromise();
     if (!response.error) {
       this.item = response;
+
+      console.log(this.item)
     }
   }
   private async readMyItemOrders(): Promise<void> {

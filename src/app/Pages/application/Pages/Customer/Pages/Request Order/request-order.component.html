@@ -80,52 +80,7 @@
       </div>
       <div class="row-container margin-t-50" *ngIf="itemToOrder?.colors?.length > 0 || itemToOrder?.sizes?.length > 0">
         <div class="row-header-container padding-tb-10">
-          <p class="title text-start font-bold size-regular black">Ordered Item</p>
-        </div>
-        <div class="ordered-item-container margin-t-10">
-          <div class="box-container padding-r-30"
-              *ngIf="itemToOrder?.colors?.length > 0">
-            <div class="title-container">
-              <p class="title text-start font-medium size-small black">Colors</p>
-            </div>
-            <div class="box-content-container padding-tb-10 margin-r-10">
-              <div class="cards-container flex justify-start align-start flex-wrap">
-                <div class="card-container flex justify-start align-start margin-r-3 margin-b-3 disabled"
-                    *ngFor="let color of itemToOrder?.colors">
-                    <div class="checkbox-container flex justify-center align-center">
-                      <app-single-checkbox></app-single-checkbox>
-                    </div>
-                    <div class="color-container" [ngStyle]="{'background-color': color?.value}"></div>
-                    <div class="quantity-container flex justify-center align-center padding-lr-10">
-                      <app-button-quantity [quantity]="1" [maxQuantity]="color?.quantity"></app-button-quantity>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="box-container padding-r-30"
-            *ngIf="itemToOrder?.sizes?.length > 0">
-            <div class="title-container">
-              <p class="title text-start font-medium size-small black">Sizes</p>
-            </div>
-            <div class="box-content-container padding-tb-10 margin-r-10">
-              <div class="cards-container flex justify-start align-start flex-wrap">
-                <div class="card-container flex justify-center align-center padding-lr-10 margin-r-3 margin-b-3 disabled"
-                    *ngFor="let size of itemToOrder?.sizes">
-                    <div class="checkbox-container flex justify-center align-center">
-                      <app-single-checkbox></app-single-checkbox>
-                    </div>
-                    <div class="size-container flex justify-center align-center">
-                      <p class="value text-center font-medium size-semi-small gray-dark">{{size?.code? size?.code : 'No. '+size?.number}}</p>
-                    </div>
-                    <div class="quantity-container flex justify-center align-center padding-lr-10">
-                      <app-button-quantity [quantity]="1" [maxQuantity]="size?.quantity"></app-button-quantity>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p class="title text-start font-bold size-regular black">Colors & Sizes</p>
         </div>
       </div>
       <div class="row-container flex align-center margin-t-100"

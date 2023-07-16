@@ -5,10 +5,8 @@
         <img [src]="item?.displayedImage" alt="">
       </div>
       <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
-        <div class="image-container padding-10"
-          [ngClass]="{'scale-out': activeImageIndex != index}"
-          (click)="displaySelectedImage(image, index)"
-          *ngFor="let image of item?.otherImages; let index = index">
+        <div class="image-container padding-10" [ngClass]="{'scale-out': activeImageIndex != index}"
+          (click)="displaySelectedImage(image, index)" *ngFor="let image of item?.otherImages; let index = index">
           <img [src]="image" alt="">
         </div>
       </div>
@@ -16,23 +14,15 @@
 
     <div class="buttons-container flex justify-space-between align-center flex-wrap">
       <div class="button-container flex justify-start align-center flex-wrap">
-        <app-button
-          [value]="item?.isAddedToCart?'Remove from cart' : 'Add to cart'"
-          [color]="'gray'"
+        <app-button [value]="item?.isAddedToCart?'Remove from cart' : 'Add to cart'" [color]="'gray'"
           (click)="addRemoveCart()">
         </app-button>
         &nbsp;
-        <app-button
-          [value]="'Comments'"
-          [color]="'gray'"
-          (click)="openCommentsSection()">
+        <app-button [value]="'Comments'" [color]="'gray'" (click)="openCommentsSection()">
         </app-button>
       </div>
       <div class="button-container flex justify-center align-center">
-        <app-button
-          [color]="'blue'"
-          [value]="'Order'"
-          (click)="order()">
+        <app-button [color]="'blue'" [value]="'Order'" (click)="order()">
         </app-button>
       </div>
     </div>
@@ -42,17 +32,13 @@
   <div class="right-container">
     <div class="row-data-container flex justify-space-between align-center">
       <div class="rate-container">
-        <app-rate-selector
-          [value]="item?.myRate"
-          (onRateEvent)="onRateItem($event)">
+        <app-rate-selector [value]="item?.myRate" (onRateEvent)="onRateItem($event)">
         </app-rate-selector>
       </div>
       <div class="p value font-regular size-small gray-super-dark">{{item?.ratersCount}} people rated this item</div>
     </div>
     <div class="rate-container padding-tb-10">
-      <app-badge
-        [color]="'orange'"
-        [value]="item?.rate+'/5'">
+      <app-badge [color]="'orange'" [value]="item?.rate+'/5'">
       </app-badge>
     </div>
     <div class="row-data-container flex justify-start align-center padding-tb-20">
@@ -60,51 +46,58 @@
       <p class="price font-medium size-large black"><sup class="size-small">$</sup>{{item?.currentPrice}}</p>
     </div>
     <div class="row-data-container padding-tb-3" *ngIf="item?.oldPrice != -1">
-      <p class="dicount font-medium size-regular black">Was: <span class="old-price font-medium size-small gray-dark line-through">${{item?.oldPrice}}</span></p>
+      <p class="dicount font-medium size-regular black">Was: <span
+          class="old-price font-medium size-small gray-dark line-through">${{item?.oldPrice}}</span></p>
     </div>
     <div class="row-data-container padding-tb-10" *ngIf="item?.notes">
       <p class="note font-medium size-regular cyan-dark" *ngFor="let note of item?.notes">{{note}}</p>
     </div>
     <div class="row-data-container categories-row-data padding-tb-10" *ngIf="item?.categories">
       <app-slider [scrollAmount]="130">
-        <app-chip
-          [value]="category"
-          [color]="'blue'"
-          *ngFor="let category of item?.categories">
+        <app-chip [value]="category" [color]="'blue'" *ngFor="let category of item?.categories">
         </app-chip>
       </app-slider>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colors.length > 0">
+    <div class="row-data-container justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colors.length > 0">
       <div class="text-container">
         <p class="value text-start font-medium size-regular black">Colors</p>
       </div>
       <div class="colors-container flex justify-start align-center flex-wrap padding-t-1">
-        <div class="color-container margin-l-10" [ngStyle]="{'background-color': color}" *ngFor="let color of item?.colors"></div>
+        <div class="color-container margin-r-10 margin-b-10" [ngStyle]="{'background-color': color}"
+          *ngFor="let color of item?.colors"></div>
       </div>
     </div>
-    <div class="row-data-container flex justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.sizes.length > 0">
+    <div class="row-data-container justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.sizes.length > 0">
       <div class="text-container">
         <p class="value text-start font-medium size-regular black">Sizes</p>
       </div>
       <div class="sizes-container flex justify-start align-center flex-wrap padding-t-1">
-        <div class="size-container font-medium size-regular gray-super-dark margin-l-10" *ngFor="let size of item?.sizes">{{size}}</div>
+        <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3"
+          *ngFor="let size of item?.sizes">{{size}}</div>
+      </div>
+    </div>
+    <div class="row-data-container justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colorSizes.length > 0">
+      <div class="text-container">
+        <p class="value text-start font-medium size-regular black">Colors & Sizes</p>
+      </div>
+      <div class="colors-sizes-container padding-t-1">
+        <div class="color-sizes-container flex justify-start align-center flex-wrap padding-t-10" *ngFor="let colorSize of item?.colorSizes">
+          <div class="color-container margin-r-10 margin-b-10" [ngStyle]="{'background-color': colorSize?.value}"></div>
+          <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3" *ngFor="let size of colorSize?.sizes">{{(size | numberFormat: "isNumber")? 'No. '+size : size}}</div>
+        </div>
       </div>
     </div>
 
     <div class="row-data-container flex justify-start align-center flex-wrap margin-t-20">
-      <app-chip
-        [value]="item?.countLikes+' Likes'"
-        [color]="'gray'"
-        [icon]="item?.isLiked? 'full-heart' : 'heart'"
+      <app-chip [value]="item?.countLikes+' Likes'" [color]="'gray'" [icon]="item?.isLiked? 'full-heart' : 'heart'"
         (onClickEvent)="likeDislike()">
       </app-chip>
-      <app-chip
-        [value]="item?.countOrders+' Orders'"
-        [color]="'gray'">
+      <app-chip [value]="item?.countOrders+' Orders'" [color]="'gray'">
       </app-chip>
     </div>
     <div class="row-data-container">
-      <div class="description text-start font-regular size-regular gray-super-dark" [innerHtml]="item?.description"></div>
+      <div class="description text-start font-regular size-regular gray-super-dark" [innerHtml]="item?.description">
+      </div>
     </div>
   </div>
 </div>

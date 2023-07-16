@@ -1,3 +1,7 @@
+interface ColorSizesView{
+  value: string;
+  sizes: string[];
+}
 export interface ItemAdvancedView {
   id: string;
   value: string;
@@ -19,6 +23,7 @@ export interface ItemAdvancedView {
   countComments: number;
   colors: string[];
   sizes: string[];
+  colorSizes: ColorSizesView[]
   description: string;
   isAddedToCart: boolean;
   isLiked: boolean;
