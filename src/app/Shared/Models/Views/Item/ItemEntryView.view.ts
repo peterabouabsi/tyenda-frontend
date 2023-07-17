@@ -3,11 +3,20 @@ interface ColorView{
   value: string;
   quantity: number;
 }
-interface SizeView{
+interface AdvancedSizeView{
   id: string;
   code: string;
   number: number;
   quantity: number;
+}
+interface BasicSizeView{
+  code: string;
+  number: number;
+  quantity: number;
+}
+interface ColorSizeView{
+  value: string;
+  sizes: BasicSizeView[];
 }
 export interface ItemEntryView{
   id: string;
@@ -17,5 +26,6 @@ export interface ItemEntryView{
   discount: number;
   stock: number;
   colors: ColorView[];
-  sizes: SizeView[];
+  sizes: AdvancedSizeView[];
+  colorSizes: ColorSizeView[];
 }

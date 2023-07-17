@@ -34,55 +34,48 @@
           }
         }
 
-        .ordered-item-container{
-          display: grid;
-          grid-template-columns: 50% 50%;
-          grid-gap: 10px;
-          .box-container{
-            width: fit-content;
-            max-width: 300px;
-            .cards-container{
-              width: 100%;
-              .card-container{
-                cursor: pointer;
-                &.disabled{
-                  cursor: default;
-                  .color-container, .size-container, .quantity-container{
-                    opacity: 0.3;
-                    pointer-events: none;
-                  }
-                }
-                .checkbox-container{
-                  width: 40px;
-                  height: 40px;
-                }
-                .color-container{
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 6px;
-                }
-                .size-container{
-                  width: fit-content;
-                  height: 40px;
-                  min-width: 50px;
-                  width: fit-content;
-                  background-color: var(--gray-light-alpha);
-                  border: 1px solid var(--gray-light);
-                  transition: 0.3s ease-in-out;
-                  border-radius: 6px;
-                  &.selected{
-                    background-color: var(--gray-light);
-                    border: 1px solid var(--gray);
-                    transition: 0.3s ease-in-out;
-                  }
-                }
-
-                .quantity-container{
-                  width: fit-content;
-                  height: 40px;
-                }
-
-              }
+        .colors-container{
+          width: 100%;
+          height: fit-content;
+          .color-container{
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            cursor: pointer;
+          }
+        }
+        .sizes-container{
+          width: 100%;
+          height: auto;
+          .size-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 3px;
+            background-color: var(--gray-light-alpha);
+            border: 1px solid var(--gray-light);
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+          }
+        }
+        .colors-sizes-container{
+          width: fit-content;
+          .color-sizes-container{
+            width: 100%;
+            .color-container{
+              width: 30px;
+              height: 30px;
+              border-radius: 50px;
+              cursor: pointer;
+            }
+            .size-container {
+              width: fit-content;
+              min-width: 60px;
+              height: 30px;
+              border-radius: 3px;
+              background-color: var(--gray-light-alpha);
+              border: 1px solid var(--gray-light);
+              transition: 0.3s ease-in-out;
+              cursor: pointer;
             }
           }
         }
