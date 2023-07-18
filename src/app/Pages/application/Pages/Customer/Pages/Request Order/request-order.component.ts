@@ -92,25 +92,19 @@ export class RequestOrderComponent implements OnInit {
         }
       });
 
-    } else if (['colors', 'sizes', 'colorSizes'].includes(formControlName)) {
-      this.globalService.checkExistancy(
-        this.requestOrderForm.get(formControlName).value,
-        formControlName == 'colorSizes' ? { id: value.id, code: value.sizeCode, number: value.sizeNumber } : { id: value.id },
-        (exist, index) => {
-          if (exist) {
-            if (index + 1 > 0)
-              this.requestOrderForm.get(formControlName).value.splice(1, index + 1);
-            else
-              this.requestOrderForm.get(formControlName).value.shift();
-          } else {
-            if (formControlName == 'colors')
-              this.requestOrderForm.get(formControlName).value.push({ id: value.id, value: value.value, quantity: 1 });
-            if (formControlName == 'sizes')
-              this.requestOrderForm.get(formControlName).value.push({ id: value.id, code: value.code, number: value.number, quantity: 1 });
+    } else if (['colors', 'sizes'].includes(formControlName)) {
+      this.globalService.checkExistancy(this.requestOrderForm.get(formControlName).value, { id: value.id }, (exist, index) => {
+        if (exist) {
+          if (index + 1 > 0) this.requestOrderForm.get(formControlName).value.splice(1, index + 1);
+          else this.requestOrderForm.get(formControlName).value.shift();
 
-            if (formControlName == 'colorSizes') null
-          }
-        })
+        } else {
+          if (formControlName == 'colors') this.requestOrderForm.get(formControlName).value.push({ id: value.id, value: value.value, quantity: 1, maxQuantity: value.quantity });
+          if (formControlName == 'sizes') this.requestOrderForm.get(formControlName).value.push({ id: value.id, code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity });
+        }
+      });
+
+    } else if (formControlName == 'colorSizes') {
 
     } else {
       this.requestOrderForm.get(formControlName).setValue(value);
