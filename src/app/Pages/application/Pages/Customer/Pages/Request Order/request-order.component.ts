@@ -91,8 +91,7 @@ export class RequestOrderComponent implements OnInit {
           this.cities = response;
         }
       });
-
-    } else if (['colors', 'sizes'].includes(formControlName)) {
+    } else if (formControlName == 'colors' || formControlName == 'sizes') {
       this.globalService.checkExistancy(this.requestOrderForm.get(formControlName).value, { id: value.id }, (exist, index) => {
         if (exist) {
           if (index + 1 > 0) this.requestOrderForm.get(formControlName).value.splice(1, index + 1);
@@ -103,15 +102,34 @@ export class RequestOrderComponent implements OnInit {
           if (formControlName == 'sizes') this.requestOrderForm.get(formControlName).value.push({ id: value.id, code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity });
         }
       });
-
     } else if (formControlName == 'colorSizes') {
-
+      this.globalService.checkExistancy(this.requestOrderForm.get(formControlName).value, { id: value.id }, (exist, colorIndex) => {
+        if(exist){
+          //check if size is already selected
+          let sizes = this.requestOrderForm.get('colorSizes').value[colorIndex+1].sizes;
+          this.globalService.checkExistancy(sizes, {code: value.code, number: value.number}, (exist, sizeIndex) => {
+            if(exist){
+              //remove the size
+              if (sizeIndex + 1 > 0) sizes.splice(1, sizeIndex + 1);
+              else sizes.shift();
+              if(sizes.length == 0){
+                //remove the whole color
+                if (colorIndex + 1 > 0) this.requestOrderForm.get(formControlName).value.splice(1, colorIndex = 1);
+                else this.requestOrderForm.get(formControlName).value.shift();
+              }
+            }else{
+              //add size
+              sizes.push({code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity})
+            }
+          });
+        }else{
+          this.requestOrderForm.get(formControlName).value.push({id: value.id, value: value.value, sizes: [{code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity}]})
+        }
+      });
     } else {
       this.requestOrderForm.get(formControlName).setValue(value);
     }
-
   }
-
 
   /* ------------ enable-disable another recipient inputs ------------ */
   public isInputDisabled: boolean = true;

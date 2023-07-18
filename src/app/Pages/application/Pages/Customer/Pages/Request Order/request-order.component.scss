@@ -42,10 +42,9 @@
             border-radius: 50px;
             cursor: pointer;
             transition: 0.3s ease-in-out;
-            transform: scale(0.9);
-            &.selected{
-              transition: 0.3s ease-in-out;
-              transform: scale(1.03);
+
+            &:active{
+              transform: scale(0.9);
             }
           }
         }
@@ -60,6 +59,9 @@
             border: 1px solid var(--gray-light);
             transition: 0.3s ease-in-out;
             cursor: pointer;
+            &:active{
+              transform: scale(0.9);
+            }
           }
         }
         .colors-sizes-container{
@@ -99,7 +101,6 @@
             }
           }
         }
-
       }
     }
   }
