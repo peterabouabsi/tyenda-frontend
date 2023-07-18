@@ -15,6 +15,7 @@ interface BasicSizeView{
   quantity: number;
 }
 interface ColorSizeView{
+  id: string;
   value: string;
   sizes: BasicSizeView[];
 }

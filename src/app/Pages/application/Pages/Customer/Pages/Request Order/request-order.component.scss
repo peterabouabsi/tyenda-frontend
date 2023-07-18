@@ -33,7 +33,6 @@
             }
           }
         }
-
         .colors-container{
           width: 100%;
           height: fit-content;
@@ -42,6 +41,12 @@
             height: 30px;
             border-radius: 50px;
             cursor: pointer;
+            transition: 0.3s ease-in-out;
+            transform: scale(0.9);
+            &.selected{
+              transition: 0.3s ease-in-out;
+              transform: scale(1.03);
+            }
           }
         }
         .sizes-container{
@@ -66,6 +71,9 @@
               height: 30px;
               border-radius: 50px;
               cursor: pointer;
+              &.selected{
+                border: 3px solid var(--blue);
+              }
             }
             .size-container {
               width: fit-content;
@@ -76,6 +84,18 @@
               border: 1px solid var(--gray-light);
               transition: 0.3s ease-in-out;
               cursor: pointer;
+            }
+          }
+        }
+        &.review-order-container{
+          box-shadow: 0px 0px 3px 1px var(--gray-light);
+          border-radius: 10px;
+          .text-container{
+            width: fit-content;
+            .value{
+              .dot{
+                bottom: 2px;
+              }
             }
           }
         }

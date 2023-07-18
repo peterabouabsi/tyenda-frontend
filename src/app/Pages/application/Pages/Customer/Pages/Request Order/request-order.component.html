@@ -84,11 +84,11 @@
         </div>
 
         <div class="colors-container flex justify-start align-start margin-t-10" *ngIf="itemToOrder?.colors?.length > 0">
-          <div class="color-container margin-r-10" [ngStyle]="{'background-color': color.value}" *ngFor="let color of itemToOrder?.colors"></div>
+          <div class="color-container margin-r-3" [ngStyle]="{'background-color': color.value}" *ngFor="let color of itemToOrder?.colors" (click)="setValue('colors', color)"></div>
         </div>
 
         <div class="sizes-container flex justify-start align-start margin-t-10" *ngIf="itemToOrder?.sizes?.length > 0">
-          <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3" *ngFor="let size of itemToOrder?.sizes">
+          <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3" *ngFor="let size of itemToOrder?.sizes"  (click)="setValue('sizes', size)">
             {{size.number? 'No. '+size.number : size.code}}
           </div>
         </div>
@@ -96,11 +96,61 @@
         <div class="colors-sizes-container justify-start align-start flex-wrap margin-t-10" *ngIf="itemToOrder?.colorSizes.length > 0">
           <div class="color-sizes-container flex justify-start align-center flex-wrap margin-tb-6" *ngFor="let colorSize of itemToOrder?.colorSizes">
             <div class="color-container margin-r-10" [ngStyle]="{'background-color': colorSize?.value}"></div>
-            <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark padding-lr-10 margin-r-10" *ngFor="let size of colorSize?.sizes">{{size.number? 'No. '+size?.number : size?.code}}</div>
+            <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark padding-lr-10 margin-r-10"
+            *ngFor="let size of colorSize?.sizes"
+            (click)="setValue('colorSizes', {id: colorSize.id, value: colorSize.value, sizeCode: size.code, sizeNumber: size.number})">
+              {{size.number? 'No. '+size?.number : size?.code}}
+            </div>
           </div>
         </div>
-
       </div>
+
+      <div class="row-container review-order-container margin-t-30 padding-20">
+        <div class="row-header-container margin-b-10">
+          <p class="title text-start font-extra-bold size-medium black">Order Review</p>
+        </div>
+        <div class="section-container margin-t-10">
+          <div class="text-container padding-tb-3">
+            <p class="title text-start font-medium size-regular black">Receiver</p>
+            <p class="value text-start font-regular size-small gray-dark">Leonel Messi <span class="dot font-black size-medium relative">.</span> leomessi@email.com <span class="dot font-black size-medium relative">.</span> +961 12 121212</p>
+          </div>
+        </div>
+        <div class="section-container margin-t-10">
+          <div class="text-container padding-tb-3">
+            <p class="title text-start font-medium size-regular black">Location</p>
+            <p class="value text-start font-regular size-small gray-dark margin-b-3">Lebanon, Beirut (10, 30)</p>
+            <p class="value text-start font-regular size-small gray-dark margin-b-3">Address Details Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, dolore.</p>
+            <p class="value text-start font-regular size-small gray-dark margin-b-3">* Note Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, aut. *</p>
+          </div>
+        </div>
+        <div class="section-container margin-t-10">
+          <div class="text-container padding-tb-3">
+            <p class="title text-start font-medium size-regular black">Colors & Sizes</p>
+            <div class="colors-container flex justify-start align-start margin-t-10" *ngIf="itemToOrder?.colors?.length > 0">
+              <div class="color-container margin-r-3" [ngStyle]="{'background-color': color.value}"
+              *ngFor="let color of requestOrderForm.controls['colors'].value"></div>
+            </div>
+
+            <div class="sizes-container flex justify-start align-start margin-t-10" *ngIf="itemToOrder?.sizes?.length > 0">
+              <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3"
+              *ngFor="let size of requestOrderForm.controls['sizes'].value">
+                {{size.number? 'No. '+size.number : size.code}}
+              </div>
+            </div>
+
+            <div class="colors-sizes-container justify-start align-start flex-wrap margin-t-10" *ngIf="itemToOrder?.colorSizes.length > 0">
+              <div class="color-sizes-container flex justify-start align-center flex-wrap margin-tb-6" *ngFor="let colorSize of requestOrderForm.controls['colorSizes'].value">
+                <div class="color-container margin-r-10" [ngStyle]="{'background-color': colorSize?.value}"></div>
+                <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark padding-lr-10 margin-r-10"
+                *ngFor="let size of colorSize?.sizes">
+                {{size.number? 'No. '+size?.number : size?.code}}
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row-container flex align-center margin-t-100">
         <div class="button-container">
           <app-button-loader #requestOrderButton [value]="'Request Order'" [config]="buttonConfig" (click)="requestOrder()"></app-button-loader>
