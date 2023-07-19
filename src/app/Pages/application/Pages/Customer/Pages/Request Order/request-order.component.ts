@@ -131,22 +131,29 @@ export class RequestOrderComponent implements OnInit {
     }
   }
 
-  /* ------------ enable-disable another recipient inputs ------------ */
-  public isInputDisabled: boolean = true;
-  public enableDisabledReceiverInputs(isChecked: boolean) {
-    this.isInputDisabled = !isChecked;
-    if (!this.isInputDisabled) {
-      //add Receiver first, lastname and email Validators
-      this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone'], [Validators.required]);
-      this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverEmail'], [Validators.email]);
-    } else {
-      this.requestOrderForm = this.globalService.clearFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone']);
-    }
+  public updateQuantity(formControlName: string, quantity: number, index: number | number[]){
+    if(formControlName == 'colors' && !Array.isArray(index)) this.requestOrderForm.get('colors').value[index].quantity = quantity;
+    if(formControlName == 'sizes' && !Array.isArray(index)) this.requestOrderForm.get('sizes').value[index].quantity = quantity;
+    if(formControlName == 'colorSizes' && Array.isArray(index)) this.requestOrderForm.get('colorSizes').value[index[0]].sizes[index[1]].quantity = quantity;
   }
-  /* ------------ enable-disable another recipient inputs ------------ */
 
   public requestOrder() {
     //show a dialog for order confirmation
     this.requestOrderButton.onClick(() => { });
   }
+
+    /* ------------ enable-disable another recipient inputs ------------ */
+    public isInputDisabled: boolean = true;
+    public enableDisabledReceiverInputs(isChecked: boolean) {
+      this.isInputDisabled = !isChecked;
+      if (!this.isInputDisabled) {
+        //add Receiver first, lastname and email Validators
+        this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone'], [Validators.required]);
+        this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverEmail'], [Validators.email]);
+      } else {
+        this.requestOrderForm = this.globalService.clearFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone']);
+      }
+    }
+    /* ------------ enable-disable another recipient inputs ------------ */
+
 }

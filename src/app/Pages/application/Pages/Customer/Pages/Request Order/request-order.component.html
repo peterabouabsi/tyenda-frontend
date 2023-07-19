@@ -141,38 +141,38 @@
             <div class="colors-container flex justify-start align-start flex-column"
               *ngIf="itemToOrder?.colors?.length > 0">
               <div class="box-container flex justify-start align-center margin-t-10"
-                *ngFor="let color of requestOrderForm.controls['colors'].value">
+                *ngFor="let color of requestOrderForm.controls['colors'].value; let index = index">
                 <div class="color-container margin-r-3" [ngStyle]="{'background-color': color.value}"></div>
-                <app-button-quantity [quantity]="color.quantity"
-                  [maxQuantity]="color.maxQuantity"></app-button-quantity>
+                <app-button-quantity [quantity]="color.quantity" [maxQuantity]="color.maxQuantity"
+                  (onCounterClick)="updateQuantity('colors', $event, index)"></app-button-quantity>
               </div>
             </div>
-
             <div class="sizes-container flex justify-start align-start flex-column"
               *ngIf="itemToOrder?.sizes?.length > 0">
               <div class="box-container flex justify-start align-center margin-t-10"
-                *ngFor="let size of requestOrderForm.controls['sizes'].value">
+                *ngFor="let size of requestOrderForm.controls['sizes'].value; let index = index">
                 <div
                   class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3">
                   {{size.number? 'No. '+size.number : size.code}}</div>
-                <app-button-quantity class="margin-b-10" [quantity]="size.quantity"
-                  [maxQuantity]="size.maxQuantity"></app-button-quantity>
+                <app-button-quantity class="margin-b-10" [quantity]="size.quantity" [maxQuantity]="size.maxQuantity"
+                  (onCounterClick)="updateQuantity('sizes', $event, index)"></app-button-quantity>
               </div>
             </div>
 
             <div class="colors-sizes-container justify-start align-start flex-wrap margin-t-10"
               *ngIf="itemToOrder?.colorSizes.length > 0">
               <div class="color-sizes-container flex justify-start align-center flex-wrap margin-tb-6"
-                *ngFor="let colorSize of requestOrderForm.controls['colorSizes'].value">
+                *ngFor="let colorSize of requestOrderForm.controls['colorSizes'].value; let colorIndex = index">
                 <div class="color-container margin-r-10" [ngStyle]="{'background-color': colorSize?.value}"></div>
                 <div class="box-container flex justify-start align-center margin-t-10"
-                  *ngFor="let size of colorSize.sizes">
+                  *ngFor="let size of colorSize.sizes; let sizeIndex = index">
                   <div
                     class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3">
                     {{size.number? 'No. '+size?.number : size?.code}}</div>
                   <app-button-quantity class="margin-b-10 margin-r-10" [quantity]="size.quantity"
-                    [maxQuantity]="size.maxQuantity"></app-button-quantity>
-                  </div>
+                    [maxQuantity]="size.maxQuantity"
+                    (onCounterClick)="updateQuantity('colorSizes', $event, [colorIndex, sizeIndex])"></app-button-quantity>
+                </div>
                 <div>
                 </div>
               </div>
