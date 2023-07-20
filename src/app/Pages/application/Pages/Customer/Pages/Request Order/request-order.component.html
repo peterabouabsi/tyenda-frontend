@@ -173,14 +173,18 @@
                     [maxQuantity]="size.maxQuantity"
                     (onCounterClick)="updateQuantity('colorSizes', $event, [colorIndex, sizeIndex])"></app-button-quantity>
                 </div>
-                <div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="section-container">
-
+          <div class="text-container padding-tb-3">
+            <p class="title text-start font-medium size-regular black">Prices</p>
+          </div>
+          <div class="discount-price-container flex justify-start align-center margin-t-1">
+            <p class="dicount font-regular size-regular red-dark margin-r-10">-{{itemToOrder?.discount}}%</p>
+            <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>{{(itemToOrder?.price)}}</p>
+          </div>
         </div>
         <div class="section-container flex justify-end align-center margin-t-30">
           <div class="button-container">
