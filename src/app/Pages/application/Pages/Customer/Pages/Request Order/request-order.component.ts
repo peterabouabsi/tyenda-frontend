@@ -144,21 +144,22 @@ export class RequestOrderComponent implements OnInit {
           { value: 'Request Order', color: 'gray', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
               //Request order to backend
               let requestOrderForm: RequestOrderForm = {
-                receiverName: '',
-                receiverEmail: '',
-                receiverPhone: '',
-                cityId: '',
-                addressDetails: '',
-                note: '',
-                longitude: 0,
-                latitude: 0
+                itemId: this.itemToOrder.id,
+                receiverName: this.requestOrderForm.get('receiverName').value,
+                receiverEmail: this.requestOrderForm.get('receiverEmail').value,
+                receiverPhone: this.requestOrderForm.get('receiverPhone').value,
+                cityId: this.requestOrderForm.get('cityId').value,
+                addressDetails: this.requestOrderForm.get('addressDetails').value,
+                note: this.requestOrderForm.get('note').value,
+                longitude: this.requestOrderForm.get('longitude').value,
+                latitude: this.requestOrderForm.get('latitude').value
               }
 
               this.requestOrderService.requestOrder(requestOrderForm).subscribe((response: any) => {
                 if(!response.error){
                   setTimeout(() => {dialogRef.close()}, 1000)
                 }
-              })
+              });
             }
           },
           { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
