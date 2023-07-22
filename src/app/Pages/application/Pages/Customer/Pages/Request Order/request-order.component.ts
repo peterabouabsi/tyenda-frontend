@@ -93,7 +93,7 @@ export class RequestOrderComponent implements OnInit {
 
         } else {
           if (formControlName == 'colors') this.requestOrderForm.get(formControlName).value.push({ id: value.id, value: value.value, quantity: 1, maxQuantity: value.quantity });
-          if (formControlName == 'sizes') this.requestOrderForm.get(formControlName).value.push({ id: value.id, code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity });
+          if (formControlName == 'sizes') this.requestOrderForm.get(formControlName).value.push({ code: value.code, number: value.number, quantity: 1, maxQuantity: value.quantity });
         }
       });
     } else if (formControlName == 'colorSizes') {
@@ -168,9 +168,7 @@ export class RequestOrderComponent implements OnInit {
             },
             { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
           ]
-        },
-
-        () => { });
+        }, null);
     } else {
       //show toast
     }
