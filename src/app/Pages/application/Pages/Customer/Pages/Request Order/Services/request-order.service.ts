@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+//Forms
+import { RequestOrderForm } from 'src/app/Shared/Models/Forms/RequestOrderForm.form';
+
 //Services
 import { ApiService } from 'src/app/Shared/Services/Api/api.service';
 
@@ -12,6 +15,10 @@ export class RequestOrderService {
 
   public getItem(itemId: string){
     return this.apiService.get('/Item/OrderRequest/'+itemId);
+  }
+
+  public requestOrder(form: RequestOrderForm){
+    return this.apiService.post('/Order/Request()', form);
   }
 
 }

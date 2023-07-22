@@ -14,6 +14,9 @@ import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.vi
 import { ItemEntryView } from 'src/app/Shared/Models/Views/Item/ItemEntryView.view';
 import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
 
+//Forms
+import { RequestOrderForm } from 'src/app/Shared/Models/Forms/RequestOrderForm.form';
+
 @Component({
   selector: 'app-request-order',
   templateUrl: './request-order.component.html',
@@ -34,7 +37,6 @@ export class RequestOrderComponent implements OnInit {
     note: new FormControl('', []),
     latitude: new FormControl(0, []),
     longitude: new FormControl(0, []),
-    quantity: new FormControl(1, []),
     colors: new FormControl([], []),
     sizes: new FormControl([], []),
     colorSizes: new FormControl([], [])
@@ -46,8 +48,8 @@ export class RequestOrderComponent implements OnInit {
   public totalQuantity: number = 0;//Total Quantity Selected
 
   constructor(private route: ActivatedRoute,
-    private globalService: GlobalService,
-    private requestOrderService: RequestOrderService) {
+              private globalService: GlobalService,
+              private requestOrderService: RequestOrderService) {
   }
 
   ngOnInit(): void {
@@ -141,15 +143,25 @@ export class RequestOrderComponent implements OnInit {
         buttons: [
           { value: 'Request Order', color: 'gray', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
               //Request order to backend
-              setTimeout(() => {
-                dialogRef.close();
-              }, 3000)
+              let requestOrderForm: RequestOrderForm = {
+                receiverName: '',
+                receiverEmail: '',
+                receiverPhone: '',
+                cityId: '',
+                addressDetails: '',
+                note: '',
+                longitude: 0,
+                latitude: 0
+              }
+
+              this.requestOrderService.requestOrder(requestOrderForm).subscribe((response: any) => {
+                if(!response.error){
+                  setTimeout(() => {dialogRef.close()}, 1000)
+                }
+              })
             }
           },
-          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => {
-              dialogRef.close()
-            }
-          }
+          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
         ]
       },
 
