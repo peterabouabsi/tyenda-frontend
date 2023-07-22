@@ -1,11 +1,13 @@
 .button {
   width: fit-content;
-  min-width: 160px;
+  min-width: 100px;
   border-radius: 50px;
-  height: 37px;
+  height: 32px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  padding: 0 1rem;
+  padding-bottom: 1px;
   &.blue-button{
     background-color: var(--blue-dark);
     color: var(--white);

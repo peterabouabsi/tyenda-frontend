@@ -202,13 +202,13 @@ export class GlobalService {
   }
 
   //Dialog Components
-  public openDialog(component: any, data: any = {}, callback = (result?: any) => {}){
+  public openDialog(component: any, data: any = {}, callback = (dialogRef?:any, result?: any) => {}){
     let dialog = this.dialog.open(component, {
       data: data
     });
 
     dialog.afterClosed().subscribe((result?: any) => {
-      callback(result);
+      callback(dialog, result);
     })
   }
 

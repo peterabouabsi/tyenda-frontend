@@ -117,22 +117,30 @@
         <div class="row-header-container margin-b-10">
           <p class="title text-start font-extra-bold size-medium black">Order Review</p>
         </div>
-        <div class="section-container margin-t-10">
+        <div class="section-container margin-t-10" *ngIf="!isInputDisabled">
           <div class="text-container padding-tb-3">
             <p class="title text-start font-medium size-regular black">Receiver</p>
-            <p class="value text-start font-regular size-small gray-dark">Leonel Messi <span
-                class="dot font-black size-medium relative">.</span> leomessi@email.com <span
-                class="dot font-black size-medium relative">.</span> +961 12 121212</p>
+            <p class="value text-start font-regular size-small gray-dark">
+              {{requestOrderForm.controls['receiverFirstname'].value}} {{requestOrderForm.controls['receiverLastname'].value}}
+              <span class="dot font-black size-medium relative"> . </span>{{requestOrderForm.controls['receiverEmail'].value}}
+              <span class="dot font-black size-medium relative"> . </span>{{requestOrderForm.controls['receiverPhone'].value}}
+            </p>
           </div>
         </div>
         <div class="section-container margin-t-10">
           <div class="text-container padding-tb-3">
             <p class="title text-start font-medium size-regular black">Location</p>
-            <p class="value text-start font-regular size-small gray-dark margin-b-3">Lebanon, Beirut (10, 30)</p>
-            <p class="value text-start font-regular size-small gray-dark margin-b-3">Address Details Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Deleniti, dolore.</p>
-            <p class="value text-start font-regular size-small gray-dark margin-b-3">* Note Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Autem, aut. *</p>
+            <p class="value text-start font-regular size-small gray-dark margin-b-3">
+              {{requestOrderForm.controls['country'].value?.value? requestOrderForm.controls['country'].value?.value : '[Country]'}},
+              {{requestOrderForm.controls['city'].value?.value? requestOrderForm.controls['city'].value?.value : '[City]'}}
+              ({{requestOrderForm.controls['longitude'].value}}, {{requestOrderForm.controls['latitude'].value}})
+            </p>
+            <p class="value text-start font-regular size-small gray-dark margin-b-3">
+              {{requestOrderForm.controls['addressDetails'].value? requestOrderForm.controls['addressDetails'].value : '[Address Details]'}}
+            </p>
+            <p class="value text-start italic font-regular size-small gray-dark margin-b-3">
+              * {{requestOrderForm.controls['note'].value? requestOrderForm.controls['note'].value : '[Note]'}} *
+            </p>
           </div>
         </div>
         <div class="section-container margin-t-10">
@@ -183,13 +191,12 @@
           </div>
           <div class="discount-price-container flex justify-start align-center margin-t-1">
             <p class="dicount font-regular size-regular red-dark margin-r-10">-{{itemToOrder?.discount}}%</p>
-            <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>{{(itemToOrder?.price)}}</p>
+            <p class="price font-medium size-regular black"><sup class="size-extra-small">$</sup>{{(itemToOrder?.price) * totalQuantity}}</p>
           </div>
         </div>
         <div class="section-container flex justify-end align-center margin-t-30">
           <div class="button-container">
-            <app-button-loader #requestOrderButton [value]="'Request Order'" [config]="buttonConfig"
-              (click)="requestOrder()"></app-button-loader>
+            <app-button [value]="'Confirm Order'" [color]="'blue'" (click)="confirmOrder()"></app-button>
           </div>
         </div>
       </div>

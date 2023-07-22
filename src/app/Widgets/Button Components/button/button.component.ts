@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ButtonComponent implements OnInit{
 
   @Input() value: string = '';
-  @Input() color: string = '';//blue, white, red, red-white, orange, black etc.
+  @Input() color: string = '';//blue, white, red, red-white, orange, black, gray, etc.
 
   ngOnInit(): void {
   }

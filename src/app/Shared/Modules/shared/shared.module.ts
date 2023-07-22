@@ -38,6 +38,7 @@ import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expans
 import { EmptyComponent } from 'src/app/Widgets/Other Components/empty/empty.component';
 import { OptionsBarComponent } from 'src/app/Widgets/Other Components/options-bar/options-bar.component';
 import { SliderComponent } from 'src/app/Widgets/Other Components/slider/slider.component';
+import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
 
 import { ItemEntryCardComponent } from 'src/app/Widgets/Item Components/item-entry-card/item-entry-card.component';
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
@@ -87,6 +88,7 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
     EmptyComponent,
     OptionsBarComponent,
     SliderComponent,
+    AlertComponent,
 
     ItemEntryCardComponent,
     ItemCustomerBasicCardComponent,

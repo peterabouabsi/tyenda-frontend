@@ -1,0 +1,14 @@
+<div class="alert-container padding-20">
+  <div class="title-container text-start align-start margin-b-6">
+    <p class="title text-start font-bold size-regular black">{{data.title}}</p>
+  </div>
+  <div class="message-container text-start align-start margin-b-10">
+    <p class="title text-start font-regular size-small gray-dark">{{data.message}}</p>
+  </div>
+  <div class="buttons-container flex justify-end align-center margin-t-50">
+    <div class="button-container margin-l-10" *ngFor="let button of data.buttons">
+      <app-button *ngIf="!button.isLoaderButton" [color]="button.color" [value]="button.value" (click)="button.onButtonClick(dialogRef)"></app-button>
+      <app-button-loader *ngIf="button.isLoaderButton" [value]="button.value" [config]="requestOrderButtonConfig" (click)="button.onButtonClick(dialogRef)"></app-button-loader>
+    </div>
+  </div>
+</div>
