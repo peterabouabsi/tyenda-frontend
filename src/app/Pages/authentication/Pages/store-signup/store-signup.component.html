@@ -14,7 +14,8 @@
       </div>
 
       <div class="box-row button-container flex justify-center align-center absolute">
-        <app-button-loader #signupButton [value]="steps == activeStep? 'Signup' : 'Next'" [config]="buttonConfig" (click)="nextOrSignup()"></app-button-loader>
+        <app-button [color]="'blue'" [value]="'Next'" (click)="nextOrSignup()" *ngIf="steps > activeStep"></app-button>
+        <app-button-loader #signupButton [value]="'Signup'" [config]="buttonConfig" (click)="nextOrSignup()" *ngIf="steps == activeStep"></app-button-loader>
       </div>
     </div>
 

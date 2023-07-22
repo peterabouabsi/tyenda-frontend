@@ -135,38 +135,45 @@ export class RequestOrderComponent implements OnInit {
     this.totalQuantity = this.getTotalQuantitySelected(this.requestOrderForm.get(formControlName).value, formControlName == 'colorSizes' ? true : false);
   }
 
+  private onRequestingOrder = false;
   public confirmOrder() {
-    this.globalService.openDialog(AlertComponent,
-      {
-        title: 'Request Order',
-        message: 'Are you sure you want to proceed with the request?',
-        buttons: [
-          { value: 'Request Order', color: 'gray', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
-              //Request order to backend
-              let requestOrderForm: RequestOrderForm = {
-                itemId: this.itemToOrder.id,
-                receiverName: this.requestOrderForm.get('receiverName').value,
-                receiverEmail: this.requestOrderForm.get('receiverEmail').value,
-                receiverPhone: this.requestOrderForm.get('receiverPhone').value,
-                cityId: this.requestOrderForm.get('cityId').value,
-                addressDetails: this.requestOrderForm.get('addressDetails').value,
-                note: this.requestOrderForm.get('note').value,
-                longitude: this.requestOrderForm.get('longitude').value,
-                latitude: this.requestOrderForm.get('latitude').value
-              }
+    if (this.requestOrderForm.valid) {
+      this.globalService.openDialog(AlertComponent,
+        {
+          title: 'Request Order',
+          message: 'Are you sure you want to proceed with the request?',
+          buttons: [
+            { value: 'Request Order', color: 'gray', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+                if(this.onRequestingOrder == false) {
+                  this.onRequestingOrder = true;
 
-              this.requestOrderService.requestOrder(requestOrderForm).subscribe((response: any) => {
-                if(!response.error){
-                  setTimeout(() => {dialogRef.close()}, 1000)
+                  let requestOrderForm: RequestOrderForm = {
+                    itemId: this.itemToOrder.id,
+                    receiverName: this.requestOrderForm.get('receiverFirstname').value + " " + this.requestOrderForm.get('receiverLastname').value,
+                    receiverEmail: this.requestOrderForm.get('receiverEmail').value,
+                    receiverPhone: this.requestOrderForm.get('receiverPhone').value,
+                    cityId: this.requestOrderForm.get('city').value.id,
+                    addressDetails: this.requestOrderForm.get('addressDetails').value,
+                    note: this.requestOrderForm.get('note').value,
+                    longitude: this.requestOrderForm.get('longitude').value,
+                    latitude: this.requestOrderForm.get('latitude').value
+                  }
+                  this.requestOrderService.requestOrder(requestOrderForm).subscribe((response: any) => {
+                    if (!response.error) {
+                      setTimeout(() => {dialogRef.close()}, 1000)
+                    }
+                  });
                 }
-              });
-            }
-          },
-          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
-        ]
-      },
+              }
+            },
+            { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
+          ]
+        },
 
-      () => {});
+        () => { });
+    } else {
+      //show toast
+    }
   }
 
   /* ------------ Generate the total quantity selected (Color, Size or ColorSizes) ------------ */
@@ -199,6 +206,11 @@ export class RequestOrderComponent implements OnInit {
       this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverEmail'], [Validators.email]);
     } else {
       this.requestOrderForm = this.globalService.clearFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone']);
+
+      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverFirstname', '');
+      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverLastname', '');
+      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverEmail', '');
+      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverPhone', '');
     }
   }
   /* ------------ enable-disable another recipient inputs ------------ */

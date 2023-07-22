@@ -147,7 +147,7 @@ export class GlobalService {
     // Call the callback function
     callback(!invalid);
   }
-  //Add validator(s) to a fromControl in formGroup
+  //Add validator(s) to a formControl in formGroup
   public addFormValidators(form: any, formControlNames: string[], validators: any[]){
     formControlNames.forEach(formControlName => {
       form.get(formControlName).addValidators(validators);
@@ -155,12 +155,17 @@ export class GlobalService {
     });
     return form;
   }
-  //Add validator(s) to a fromControl in formGroup
+  //Clear validator(s) to a formControl in formGroup
   public clearFormValidators(form: any, formControlNames: string[]){
     formControlNames.forEach(formControlName => {
       form.get(formControlName).clearValidators();
       form.get(formControlName).updateValueAndValidity();
     });
+    return form;
+  }
+  //Reset formControl value
+  public clearFormControl(form: any, formControlName: string, resetTo: any){
+    form.get(formControlName).setValue(resetTo);
     return form;
   }
 

@@ -38,7 +38,7 @@ export class StoreSignupComponent implements OnInit {
     { note: 'Branch', route: '/authentication/signup/store/store-branch', visited: false },
     { note: 'Category', route: '/authentication/signup/store/store-category', visited: false }
   ]
-  public buttonConfig: ButtonConfig = { isBlue: true, isStepper: true }
+  public buttonConfig: ButtonConfig = { isBlue: true }
 
   constructor(private cdr: ChangeDetectorRef,
               private router: Router,
@@ -85,11 +85,7 @@ export class StoreSignupComponent implements OnInit {
     }
   }
   private next() {
-    if ((this.activeStep + 1) == this.steps) {
-      this.buttonConfig.isStepper = false
-    };
     this.activeStep++;
-    this.buttonConfig.isStepper = true;
     this.stepperConfig[this.activeStep - 1].visited = true;
     this.router.navigate([this.stepperConfig[this.activeStep - 1].route]);
   }

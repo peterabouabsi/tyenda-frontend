@@ -11,7 +11,7 @@ import { ButtonConfig } from './ButtonConfig.form';
 export class ButtonLoaderComponent implements OnInit{
 
   @Input() value: string = '';
-  @Input() config: ButtonConfig = {isBlue: false, isWhite: false, isStepper: false, disabled: false};
+  @Input() config: ButtonConfig = {isBlue: false, isWhite: false, disabled: false};
 
   constructor() {
   }
@@ -21,9 +21,9 @@ export class ButtonLoaderComponent implements OnInit{
 
   public loading: boolean = false;
   public onClick(callback = () => {}){
-    if(!this.config.isStepper && !this.config.disabled){
+    if(!this.config.disabled && !this.loading){
       this.loading = true;
+      callback();
     }
-    callback();
   }
 }
