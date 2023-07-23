@@ -112,7 +112,7 @@ export class SearchComponent implements OnInit {
 
     this.customerSearchService.searchData(type, form).subscribe((response: any) => {
       if (!response.error) {
-        this.searchResultConfig = { value: onSearchButton ? `${response.length} ${type.toLowerCase()}s found` : '', data: response, loaded: true }
+        this.searchResultConfig = { value: onSearchButton ? `${response.length} ${(response.length > 1? type.toLowerCase()+'s' : type.toLowerCase())} found` : ``, data: response, loaded: true }
       }
     });
 

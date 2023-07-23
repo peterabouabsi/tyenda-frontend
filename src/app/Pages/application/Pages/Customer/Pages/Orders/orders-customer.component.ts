@@ -73,7 +73,7 @@ export class OrdersCustomerComponent implements OnInit {
     this.customerOrdersService.searchOrders(form).subscribe((response: any) => {
       if (!response.error) {
         this.searchResultConfig = {
-          value: onSearchButton ? response.length + ' orders found' : '',
+          value: onSearchButton ? response.length + (response.length > 1? ' orders' : ' order') +' found' : '',
           data: response,
           loaded: true
         };

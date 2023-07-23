@@ -55,15 +55,19 @@ export class MapComponent implements OnInit {
     });
   }
   initMap(lat: number, lng: number) {
+    this.mapLatitudeEvent.emit(lat);
+    this.mapLongitudeEvent.emit(lng);
+
     this.map = L.map('map'+this.mapId, {
       center: [lat, lng],
       zoom: 15,
       attributionControl: false
     });
+
     this.marker = new L.Marker([lat, lng], {icon: this.myIcon}).addTo(this.map);
     this.initTiles();
 
-    //map events
+    //map events: onClick
     this.map.on('click', (event) => {
       if (this.marker) {
         this.map.removeLayer(this.marker);

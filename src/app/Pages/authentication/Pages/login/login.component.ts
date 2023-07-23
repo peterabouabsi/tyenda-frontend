@@ -16,7 +16,7 @@ import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.
 import { LoginForm } from 'src/app/Shared/Models/Forms/LoginForm.form';
 
 //Services
-import { GlobalService } from './../../../../Shared/Services/Global/global.service';
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { AuthenticationService } from '../../Services/authentication.service';
 
 @Component({

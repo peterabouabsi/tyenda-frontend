@@ -1,3 +1,4 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
 <div class="parent-container">
   <div class="inner-container">
     <div class="header-container flex justify-space-between align-start">
@@ -129,13 +130,13 @@
         </div>
         <div class="section-container margin-t-10">
           <div class="text-container padding-tb-3">
-            <p class="title text-start font-medium size-regular black">Location</p>
-            <p class="value text-start font-regular size-small gray-dark margin-b-3">
+            <p class="title text-start font-bold size-regular black">Location</p>
+            <p class="value text-start font-medium size-small blue-dark margin-b-3">
               {{requestOrderForm.controls['country'].value?.value? requestOrderForm.controls['country'].value?.value : '[Country]'}},
               {{requestOrderForm.controls['city'].value?.value? requestOrderForm.controls['city'].value?.value : '[City]'}}
               ({{requestOrderForm.controls['longitude'].value}}, {{requestOrderForm.controls['latitude'].value}})
             </p>
-            <p class="value text-start font-regular size-small gray-dark margin-b-3">
+            <p class="value text-start font-medium size-small blue-dark margin-b-3">
               {{requestOrderForm.controls['addressDetails'].value? requestOrderForm.controls['addressDetails'].value : '[Address Details]'}}
             </p>
             <p class="value text-start italic font-regular size-small gray-dark margin-b-3">
@@ -145,7 +146,7 @@
         </div>
         <div class="section-container margin-t-10">
           <div class="text-container padding-tb-3">
-            <p class="title text-start font-medium size-regular black">Colors & Sizes</p>
+            <p class="title text-start font-bold size-regular black">Colors & Sizes</p>
             <div class="colors-container flex justify-start align-start flex-column"
               *ngIf="itemToOrder?.colors?.length > 0">
               <div class="box-container flex justify-start align-center margin-t-10"
@@ -187,7 +188,7 @@
         </div>
         <div class="section-container">
           <div class="text-container padding-tb-3">
-            <p class="title text-start font-medium size-regular black">Prices</p>
+            <p class="title text-start font-bold size-regular black">Prices</p>
           </div>
           <div class="discount-price-container flex justify-start align-center margin-t-1">
             <p class="dicount font-regular size-regular red-dark margin-r-10">-{{itemToOrder?.discount}}%</p>

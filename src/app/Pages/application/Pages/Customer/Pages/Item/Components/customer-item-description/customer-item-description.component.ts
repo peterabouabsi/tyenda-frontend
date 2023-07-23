@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Views
 import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedView.view';
@@ -24,7 +28,8 @@ export class CustomerItemDescriptionComponent implements OnInit{
 
   public item: ItemAdvancedView;
 
-  constructor(private globalService: GlobalService,
+  constructor(private router: Router,
+              private globalService: GlobalService,
               private customerItemService: CustomerItemService) {
   }
 
@@ -76,6 +81,9 @@ export class CustomerItemDescriptionComponent implements OnInit{
   public openCommentsSection(){
     this.globalService.openDialog(CustomerItemCommentsComponent, this.item.id);
   }
-  public order(){}
+
+  public order(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/request-order/'+this.item.id]);
+  }
 
 }

@@ -164,8 +164,10 @@ export class GlobalService {
     return form;
   }
   //Reset formControl value
-  public clearFormControl(form: any, formControlName: string, resetTo: any){
-    form.get(formControlName).setValue(resetTo);
+  public clearFormValue(form: any, formControlNames: string[], resetTo: any[]){
+    formControlNames.forEach((formControlName, index) => {
+      form.get(formControlName).setValue(resetTo[index]);
+    });
     return form;
   }
 
@@ -213,7 +215,7 @@ export class GlobalService {
     });
 
     dialog.afterClosed().subscribe((result?: any) => {
-      callback(dialog, result);
+      if(callback) callback(dialog, result);
     })
   }
 

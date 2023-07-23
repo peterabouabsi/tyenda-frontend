@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 //Services
@@ -9,13 +9,15 @@ import { RequestOrderService } from './Services/request-order.service';
 //Views
 import { BasicCountryView } from 'src/app/Shared/Models/Views/Country/BasicCountryView.view';
 import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.view';
-
-//Views
 import { ItemEntryView } from 'src/app/Shared/Models/Views/Item/ItemEntryView.view';
-import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
+
 
 //Forms
 import { RequestOrderForm } from 'src/app/Shared/Models/Forms/RequestOrderForm.form';
+
+//Components
+import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
+import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.component';
 
 @Component({
   selector: 'app-request-order',
@@ -23,6 +25,8 @@ import { RequestOrderForm } from 'src/app/Shared/Models/Forms/RequestOrderForm.f
   styleUrls: ['./request-order.component.scss']
 })
 export class RequestOrderComponent implements OnInit {
+
+  @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
 
   public itemToOrder: ItemEntryView;
 
@@ -37,9 +41,9 @@ export class RequestOrderComponent implements OnInit {
     note: new FormControl('', []),
     latitude: new FormControl(0, []),
     longitude: new FormControl(0, []),
-    colors: new FormControl([], []),
-    sizes: new FormControl([], []),
-    colorSizes: new FormControl([], [])
+    colors: new FormControl([]),
+    sizes: new FormControl([]),
+    colorSizes: new FormControl([])
   });
 
   public countries: BasicCountryView[] = [];
@@ -48,6 +52,7 @@ export class RequestOrderComponent implements OnInit {
   public totalQuantity: number = 0;//Total Quantity Selected
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private globalService: GlobalService,
               private requestOrderService: RequestOrderService) {
   }
@@ -62,9 +67,6 @@ export class RequestOrderComponent implements OnInit {
     this.requestOrderService.getItem(itemId).subscribe((response: any) => {
       if (!response.error) {
         this.itemToOrder = response;
-        if (this.itemToOrder.colors.length > 0) this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['colors'], [Validators.required]);
-        if (this.itemToOrder.sizes.length > 0) this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['sizes'], [Validators.required]);
-        if (this.itemToOrder.colorSizes.length > 0) this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['colorSizes'], [Validators.required]);
       }
     })
   }
@@ -137,7 +139,13 @@ export class RequestOrderComponent implements OnInit {
 
   private onRequestingOrder = false;
   public confirmOrder() {
-    if (this.requestOrderForm.valid) {
+
+    var isColorsValid = this.requestOrderForm.get('colors').value.length > 0;
+    var isSizesValid = this.requestOrderForm.get('sizes').value.length > 0;
+    var isColorSizesValid = this.requestOrderForm.get('colorSizes').value.length > 0;
+
+    if (this.requestOrderForm.valid && (isColorsValid || isSizesValid || isColorSizesValid)) {
+
       this.globalService.openDialog(AlertComponent,
         {
           title: 'Request Order',
@@ -156,11 +164,17 @@ export class RequestOrderComponent implements OnInit {
                     addressDetails: this.requestOrderForm.get('addressDetails').value,
                     note: this.requestOrderForm.get('note').value,
                     longitude: this.requestOrderForm.get('longitude').value,
-                    latitude: this.requestOrderForm.get('latitude').value
+                    latitude: this.requestOrderForm.get('latitude').value,
+                    colors: this.requestOrderForm.get('colors').value,
+                    sizes: this.requestOrderForm.get('sizes').value,
+                    colorSizes: this.requestOrderForm.get('colorSizes').value
                   }
                   this.requestOrderService.requestOrder(requestOrderForm).subscribe((response: any) => {
                     if (!response.error) {
-                      setTimeout(() => {dialogRef.close()}, 1000)
+                      setTimeout(() => {
+                        dialogRef.close();
+                        this.router.navigate(['/application/Order/'+response.orderId]);
+                      }, 3000)
                     }
                   });
                 }
@@ -170,7 +184,7 @@ export class RequestOrderComponent implements OnInit {
           ]
         }, null);
     } else {
-      //show toast
+      this.toastrRef.onDanger('Request Order', 'Please complete the required information !', 5);
     }
   }
 
@@ -204,11 +218,7 @@ export class RequestOrderComponent implements OnInit {
       this.requestOrderForm = this.globalService.addFormValidators(this.requestOrderForm, ['receiverEmail'], [Validators.email]);
     } else {
       this.requestOrderForm = this.globalService.clearFormValidators(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone']);
-
-      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverFirstname', '');
-      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverLastname', '');
-      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverEmail', '');
-      this.requestOrderForm = this.globalService.clearFormControl(this.requestOrderForm, 'receiverPhone', '');
+      this.requestOrderForm = this.globalService.clearFormValue(this.requestOrderForm, ['receiverFirstname', 'receiverLastname', 'receiverEmail', 'receiverPhone'], ['', '', '', '']);
     }
   }
   /* ------------ enable-disable another recipient inputs ------------ */
