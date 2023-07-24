@@ -34,7 +34,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   //
 
 import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.component';
-
+import { OrderComponent } from '../Pages/Order/order.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,8 @@ import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.comp
       NavbarStoreComponent,
       //Store Pages
 
-    StoreProfileComponent
+    StoreProfileComponent,
+    OrderComponent
 
   ],
   imports: [
@@ -91,6 +92,7 @@ import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.comp
       //Store Pages
 
     StoreProfileComponent,
+    OrderComponent
   ],
   providers: [
     CustomerHomeService,

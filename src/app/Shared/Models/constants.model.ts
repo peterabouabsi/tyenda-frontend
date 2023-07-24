@@ -40,5 +40,8 @@ export class Constants{
   static get ITEM_NAME_RESOLVER(){
     return 'itemName';
   }
+  static get ORDER_REF_RESOLVER(){
+    return 'orderRef';
+  }
 
 }

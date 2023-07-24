@@ -87,6 +87,9 @@ export class GlobalService {
   public getItemName(itemId: string){
     return this.apiService.get('/Tab/Item/'+itemId);
   }
+  public getOrderReference(orderId: string){
+    return this.apiService.get('/Tab/Order/'+orderId);
+  }
   public async logout(){
     let session = this.getStorage(Constants.STORAGE_SESSION);
     let logoutForm: LogoutForm = {

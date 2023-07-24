@@ -19,3 +19,11 @@ export const ItemNameResolver: ResolveFn<string> = async (route, state) => {
 
   return response.value;
 };
+
+export const OrderReferenceResolver: ResolveFn<string> = async (route, state) => {
+  let globalService = inject(GlobalService);
+  let orderId = route.paramMap.get('orderId');
+  let response = await globalService.getOrderReference(orderId).toPromise();
+
+  return response.value;
+};

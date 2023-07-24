@@ -36,13 +36,14 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
     //
 
   import { StoreProfileComponent } from './Pages/application/Pages/Store Profile/store-profile.component';
+  import { OrderComponent } from './Pages/application/Pages/Order/order.component';
 
 //Guards
 import { authenticationGuard } from './Shared/Guards/Authentication/authentication.guard';
 import { roleBasedAuthenticationGuard } from './Shared/Guards/Role-Based Authentication/role-based-authentication.guard';
 
 //Resolvers
-import { ItemNameResolver, StoreNameResolver } from './Shared/Services/Resolver/tab-title.resolver';
+import { ItemNameResolver, OrderReferenceResolver, StoreNameResolver } from './Shared/Services/Resolver/tab-title.resolver';
 
 const routes: Routes = [
   {path:'', component: SplashComponent},
@@ -75,10 +76,12 @@ const routes: Routes = [
         {path: 'orders', title: 'Tyenda - Cart', component: CustomerItemOrdersComponent},
       ]},
       {path: 'request-order/:itemId', title: 'Tyenda - Request Order', component: RequestOrderComponent},
-      {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent}
+      {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
+      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent}
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
-      {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent}
+      {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
+      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent}
     ]}
   ]},
   {path: '**', component: NotFoundComponent}

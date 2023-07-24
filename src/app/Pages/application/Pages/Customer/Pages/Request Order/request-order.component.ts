@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { RequestOrderService } from './Services/request-order.service';
@@ -28,8 +31,10 @@ export class RequestOrderComponent implements OnInit {
 
   @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
 
+  //The item to order
   public itemToOrder: ItemEntryView;
 
+  //Request Order Form
   public requestOrderForm: FormGroup = new FormGroup({
     receiverFirstname: new FormControl('', []),
     receiverLastname: new FormControl('', []),
@@ -46,10 +51,12 @@ export class RequestOrderComponent implements OnInit {
     colorSizes: new FormControl([])
   });
 
+  //Total Quantity Selected
+  public totalQuantity: number = 0;
+
+
   public countries: BasicCountryView[] = [];
   public cities: BasicCityView[] = [];
-
-  public totalQuantity: number = 0;//Total Quantity Selected
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -78,6 +85,7 @@ export class RequestOrderComponent implements OnInit {
     });
   }
 
+  /*--------- Set values to the request-order-form */
   public setValue(formControlName: string, value: any) {
     if (formControlName == 'country') {
       //get country's cities
@@ -129,6 +137,9 @@ export class RequestOrderComponent implements OnInit {
     if (formControlName == 'colors' || formControlName == 'sizes' || formControlName == 'colorSizes') this.totalQuantity = this.getTotalQuantitySelected(this.requestOrderForm.get(formControlName).value, formControlName == 'colorSizes' ? true : false);
 
   }
+  /*Set values to the request-order-form --------- */
+
+  /*--------- Update Quantity */
   public updateQuantity(formControlName: string, quantity: number, index: number | number[]) {
     if (formControlName == 'colors' && !Array.isArray(index)) this.requestOrderForm.get('colors').value[index].quantity = quantity;
     if (formControlName == 'sizes' && !Array.isArray(index)) this.requestOrderForm.get('sizes').value[index].quantity = quantity;
@@ -136,7 +147,9 @@ export class RequestOrderComponent implements OnInit {
 
     this.totalQuantity = this.getTotalQuantitySelected(this.requestOrderForm.get(formControlName).value, formControlName == 'colorSizes' ? true : false);
   }
+  /*Update Quantity ---------*/
 
+  /*--------- Confirm and (Request/Cancel) Order */
   private onRequestingOrder = false;
   public confirmOrder() {
 
@@ -173,7 +186,7 @@ export class RequestOrderComponent implements OnInit {
                     if (!response.error) {
                       setTimeout(() => {
                         dialogRef.close();
-                        this.router.navigate(['/application/Order/'+response.orderId]);
+                        this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/order/'+response.orderId]);
                       }, 3000)
                     }
                   });
@@ -187,6 +200,7 @@ export class RequestOrderComponent implements OnInit {
       this.toastrRef.onDanger('Request Order', 'Please complete the required information !', 5);
     }
   }
+  /*Confirm and (Request/Cancel) Order ---------*/
 
   /* ------------ Generate the total quantity selected (Color, Size or ColorSizes) ------------ */
   private getTotalQuantitySelected(array: any[], isColorSizes: boolean = false) {
