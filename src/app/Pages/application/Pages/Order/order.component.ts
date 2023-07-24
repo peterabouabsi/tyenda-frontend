@@ -14,6 +14,8 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 })
 export class OrderComponent implements OnInit {
 
+  public order: any = {orderStatus: 'Submitted'};
+
   constructor(private route: ActivatedRoute,
               private globalService: GlobalService) {
   }

@@ -1,5 +1,25 @@
 <div class="parent-container">
   <div class="inner-container">
-    s
+    <div class="header-container flex justify-space-between align-start">
+      <div class="text-container flex justify-center align-start">
+        <p class="text text-start font-black size-extra-large black">Order</p>
+      </div>
+      <div class="order-status-container flex justify-center align-center">
+        <div class="order-status-box-container flex justify-center align-center padding-tb-6 padding-lr-10"
+          [ngClass]="{'submitted':  order.orderStatus  == 'Submitted',
+                      'rejected' :  order.orderStatus  == 'Rejected',
+                      'approved' :  order.orderStatus  == 'Approved',
+                      'ongoing'  :   order.orderStatus == 'OnGoing',
+                      'completed':   order.orderStatus == 'Completed'}">
+
+          <p class="status text-center font-medium size-small white">Submitted</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-container margin-tb-30">
+      <div class="left-container padding-tb-10"></div>
+      <div class="right-container padding-tb-10"></div>
+    </div>
   </div>
 </div>

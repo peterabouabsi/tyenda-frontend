@@ -1,0 +1,51 @@
+.parent-container{
+  width: 100%;
+  .inner-container{
+    width: 100%;
+    .header-container{
+      .text-container{
+        height: 100%;
+      }
+      .order-status-container{
+        max-width: 50%;
+        height: 100%;
+        .order-status-box-container{
+          height: 100%;
+          border-radius: 6px;
+          &.submitted{
+            background-color: var(--black);
+          }
+          &.rejected{
+            background-color: var(--red);
+          }
+          &.approved{
+            background-color: var(--green-super-dark);
+          }
+          &.ongoing{
+            background-color: var(--orange);
+          }
+          &.completed{
+            background-color: var(--green);
+          }
+        }
+      }
+    }
+
+    .body-container{
+      width: 100%;
+      height: auto;
+      display: grid;
+      grid-template-columns: 450px auto;
+      grid-gap: 2rem;
+      .left-container{
+        width: 100%;
+        background-color: red;
+      }
+      .right-container{
+        width: 100%;
+        background-color: yellow;
+      }
+
+    }
+  }
+}
