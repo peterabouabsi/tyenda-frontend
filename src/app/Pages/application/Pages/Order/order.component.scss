@@ -39,7 +39,28 @@
       grid-gap: 2rem;
       .left-container{
         width: 100%;
-        background-color: red;
+        .item-container{
+          width: 100%;
+          height: auto;
+          border-radius: 10px;
+          img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+          }
+        }
+
+        .feedback-container{
+          width: 100%;
+          .input-form{
+            height: 200px;
+            ::ng-deep app-text-area .input{
+              height: 200px;
+              min-height: none;
+            }
+          }
+        }
       }
       .right-container{
         width: 100%;

@@ -5,8 +5,7 @@
         <p class="text text-start font-black size-extra-large black">Order</p>
       </div>
       <div class="order-status-container flex justify-center align-center">
-        <div class="order-status-box-container flex justify-center align-center padding-tb-6 padding-lr-10"
-          [ngClass]="{'submitted':  order.orderStatus  == 'Submitted',
+        <div class="order-status-box-container flex justify-center align-center padding-tb-6 padding-lr-10" [ngClass]="{'submitted':  order.orderStatus  == 'Submitted',
                       'rejected' :  order.orderStatus  == 'Rejected',
                       'approved' :  order.orderStatus  == 'Approved',
                       'ongoing'  :   order.orderStatus == 'OnGoing',
@@ -18,7 +17,23 @@
     </div>
 
     <div class="body-container margin-tb-30">
-      <div class="left-container padding-tb-10"></div>
+      <div class="left-container padding-tb-10">
+        <div class="item-container">
+          <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg" alt="">
+        </div>
+        <div class="feedback-container section shadow padding-20 margin-tb-20">
+          <div class="text-container">
+            <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Order Feedbacks</p>
+            <p class="sub-title text-start font-regular size-small black">We'd love to hear what you think about the ordering experience. Feel free to provide your feedback.</p>
+          </div>
+          <div class="input-form margin-tb-20">
+            <app-text-area [placeholder]="'Add your feedback ...'" [formControl]="feedbackFrom.controls['feedback']"></app-text-area>
+          </div>
+          <div class="button-container">
+            <app-button [color]="'gray'" [value]="'Send Your Feedback'"></app-button>
+          </div>
+        </div>
+      </div>
       <div class="right-container padding-tb-10"></div>
     </div>
   </div>

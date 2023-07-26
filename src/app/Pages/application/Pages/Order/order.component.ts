@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 //Constants
@@ -15,6 +16,10 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 export class OrderComponent implements OnInit {
 
   public order: any = {orderStatus: 'Submitted'};
+
+  public feedbackFrom: FormGroup = new FormGroup({
+    feedback: new FormControl('', [Validators.required])
+  });
 
   constructor(private route: ActivatedRoute,
               private globalService: GlobalService) {
