@@ -35,4 +35,7 @@ export class OrderComponent implements OnInit {
   }
   /* Display the order reference on the tab */
 
+  public setValue(formControlName: string, value: any){
+    this.feedbackFrom.get(formControlName).setValue(value);
+  }
 }

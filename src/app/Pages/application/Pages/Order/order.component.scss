@@ -64,7 +64,16 @@
       }
       .right-container{
         width: 100%;
-        background-color: yellow;
+        .top-container{
+          width: 100%;
+          height: auto;
+          .reference-container{
+            background-color: var(--gray-light-alpha);
+            border-radius: 3px;
+            width: fit-content;
+            height: fit-content;
+          }
+        }
       }
 
     }
