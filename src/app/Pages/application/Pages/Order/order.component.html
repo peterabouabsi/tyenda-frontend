@@ -42,8 +42,8 @@
               <p class="name text-start font-semi-bold size-regular black capitalize">Google Inc.</p>
             </div>
           </div>
-          <div class="reference-container padding-lr-6 padding-tb-3">
-            <p class="referene text-center font-medium size-extra-small gray-dark">#OR-123123123123</p>
+          <div class="reference-container padding-lr-10 padding-tb-3">
+            <p class="referene text-center font-medium size-semi-small gray-dark">#OR-123123123123</p>
           </div>
         </div>
         <div class="item-container padding-tb-30">
@@ -55,13 +55,39 @@
         </div>
         <div class="colors-sizes-container"></div>
         <div class="section shadow receiver-container padding-20 margin-tb-20">
-          <div class="title-container">
+          <div class="title-container margin-b-10">
             <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Receiver</p>
+          </div>
+          <div class="content-container flex justify-space-between">
+            <div class="box-container flex justify-center align-start flex-column">
+              <p class="title text-start font-regular size-small black">Firstname</p>
+              <p class="value text-start font-regular size-small gray-dark">Leonel</p>
+            </div>
+            <div class="box-container flex justify-center align-start flex-column">
+              <p class="title text-start font-regular size-small black">Lastname</p>
+              <p class="value text-start font-regular size-small gray-dark">Messi</p>
+            </div>
+            <div class="box-container flex justify-center align-start flex-column">
+              <p class="title text-start font-regular size-small black">Email</p>
+              <p class="value text-start font-regular size-small gray-dark">leomessi@email.com</p>
+            </div>
+            <div class="box-container flex justify-center align-start flex-column">
+              <p class="title text-start font-regular size-small black">Phone</p>
+              <p class="value text-start font-regular size-small gray-dark">+961 01 123123</p>
+            </div>
           </div>
         </div>
         <div class="section shadow location-container padding-20 margin-tb-20">
           <div class="title-container">
             <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Delivery Location</p>
+          </div>
+          <div class="content-container">
+            <div class="info-container padding-10">
+
+            </div>
+            <div class="map-container padding-10">
+              <app-map-view [lat]="30" [lng]="10" [zoomControlVisible]="false"></app-map-view>
+            </div>
           </div>
         </div>
       </div>
