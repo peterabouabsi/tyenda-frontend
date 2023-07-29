@@ -19,7 +19,7 @@
     <div class="body-container margin-tb-30">
       <div class="left-container padding-tb-10">
         <div class="item-container">
-          <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg" alt="">
+          <img [src]="order.itemImage" alt="">
         </div>
         <div class="feedback-container section shadow padding-20 margin-tb-20">
           <div class="text-container">
@@ -40,28 +40,26 @@
       <div class="right-container padding-tb-10 padding-lr-10">
         <div class="top-container flex justify-space-between align-center">
           <div class="store-container flex justify-start align-center">
-            <app-avatar src="https://m.media-amazon.com/images/I/71z4q-mBNhL._SS400_.png"></app-avatar>
+            <app-avatar [src]="order.storeProfileImage"></app-avatar>
             <div class="info-container padding-l-10 flex justify-center align-start flex-column relative">
-              <p class="name text-start font-semi-bold size-regular black capitalize">Google Inc.</p>
+              <p class="name text-start font-semi-bold size-regular black capitalize">{{order.storeName}}</p>
             </div>
           </div>
           <div class="reference-container padding-lr-10 padding-tb-3">
-            <p class="referene text-center font-medium size-semi-small gray-dark">#OR-123123123123</p>
+            <p class="referene text-center font-medium size-semi-small gray-dark">#{{order.reference}}</p>
           </div>
         </div>
         <div class="item-container padding-tb-30">
           <div class="name-price-container flex justify-space-between align-center">
-            <p class="name text-start font-black size-large">Play Station 5</p>
+            <p class="name text-start font-black size-large">{{order.itemName}}</p>
             <div class="discount-price-container flex justify-start align-center margin-t-10">
-              <p class="dicount font-regular size-large red-dark margin-r-10">-10%</p>
-              <p class="price font-medium size-large black"><sup class="size-medium">$</sup>10.00</p>
+              <p class="dicount font-regular size-large red-dark margin-r-10">-{{order.discount}}%</p>
+              <p class="price font-medium size-large black"><sup class="size-medium">$</sup>{{order.price}}</p>
             </div>
           </div>
 
-          <p class="rejected-note text-start font-black size-regular red margin-t-13">Rejected Review</p>
-          <p class="rejected-note text-start font-regular size-regular red">Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Quaerat praesentium velit ipsam odio dignissimos unde ea tempore. Mollitia, id
-            quo!</p>
+          <p class="rejected-note text-start font-black size-regular red margin-t-13" *ngIf="order.rejectDescription">Rejected Review</p>
+          <p class="rejected-note text-start font-regular size-regular red" *ngIf="order.rejectDescription">{{order.rejectDescription}}</p>
         </div>
 
         <div class="colors-and-sizes-container">
@@ -95,20 +93,16 @@
           </div>
           <div class="content-container flex justify-space-between">
             <div class="box-container flex justify-center align-start flex-column">
-              <p class="title text-start font-regular size-small black">Firstname</p>
-              <p class="value text-start font-regular size-small gray-dark">Leonel</p>
-            </div>
-            <div class="box-container flex justify-center align-start flex-column">
-              <p class="title text-start font-regular size-small black">Lastname</p>
-              <p class="value text-start font-regular size-small gray-dark">Messi</p>
+              <p class="title text-start font-regular size-small black">Fullname</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order.receiverName}}</p>
             </div>
             <div class="box-container flex justify-center align-start flex-column">
               <p class="title text-start font-regular size-small black">Email</p>
-              <p class="value text-start font-regular size-small gray-dark">leomessi@email.com</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order.receiverEmail}}</p>
             </div>
             <div class="box-container flex justify-center align-start flex-column">
               <p class="title text-start font-regular size-small black">Phone</p>
-              <p class="value text-start font-regular size-small gray-dark">+961 01 123123</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order.receiverPhone}}</p>
             </div>
           </div>
         </div>
@@ -120,27 +114,23 @@
             <div class="info-container padding-10">
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Country</p>
-                <p class="title text-start font-regular size-small gray">Lebanon</p>
+                <p class="title text-start font-regular size-small gray">{{order.country}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">City</p>
-                <p class="title text-start font-regular size-small gray">Beirut</p>
+                <p class="title text-start font-regular size-small gray">{{order.city}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Address Details</p>
-                <p class="title text-start font-regular size-small gray">Lorem, ipsum dolor sit amet consectetur
-                  adipisicing elit. Dolores expedita quia eaque, possimus incidunt aliquam facere accusantium libero
-                  voluptas? Voluptatibus.</p>
+                <p class="title text-start font-regular size-small gray">{{order.addressDetails}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Note</p>
-                <p class="title text-start font-regular size-small gray">Lorem ipsum, dolor sit amet consectetur
-                  adipisicing elit. Commodi voluptatum veritatis sed est provident, repellat nam animi harum adipisci
-                  et.</p>
+                <p class="title text-start font-regular size-small gray">{{order.note}}</p>
               </div>
             </div>
             <div class="map-container padding-10">
-              <app-map-view [lat]="30" [lng]="10" [zoomControlVisible]="false"></app-map-view>
+              <app-map-view [lat]="order.latitude" [lng]="order.longitude" [zoomControlVisible]="false"></app-map-view>
             </div>
           </div>
         </div>
