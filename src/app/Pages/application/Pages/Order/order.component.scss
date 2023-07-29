@@ -64,6 +64,7 @@
       }
       .right-container{
         width: 100%;
+        overflow: hidden;
         .top-container{
           width: 100%;
           height: auto;
@@ -72,6 +73,30 @@
             border-radius: 3px;
             width: fit-content;
             height: fit-content;
+          }
+        }
+        .colors-sizes-container{
+          width: 100%;
+          .colors-container{
+            width: 100%;
+            .color-container{
+              width: 30px;
+              height: 30px;
+              border-radius: 50px;
+            }
+          }
+
+          .sizes-container{
+            width: 100%;
+            .size-container{
+              min-width: 50px;
+              width: auto;
+              height: 30px;
+              border-radius: 3px;
+              background-color: var(--gray-light-alpha);
+              border: 1px solid var(--gray-light);
+              transition: 0.3s ease-in-out;
+            }
           }
         }
         .location-container{

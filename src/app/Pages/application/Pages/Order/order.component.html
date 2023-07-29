@@ -24,17 +24,19 @@
         <div class="feedback-container section shadow padding-20 margin-tb-20">
           <div class="text-container">
             <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Order Feedbacks</p>
-            <p class="sub-title text-start font-regular size-small black">We'd love to hear what you think about the ordering experience. Feel free to provide your feedback.</p>
+            <p class="sub-title text-start font-regular size-small black">We'd love to hear what you think about the
+              ordering experience. Feel free to provide your feedback.</p>
           </div>
           <div class="input-form margin-tb-20">
-            <app-text-area [placeholder]="'Add your feedback ...'" [formControl]="feedbackFrom.controls['feedback']" (onInputEvent)="setValue('feedback', $event)"></app-text-area>
+            <app-text-area [placeholder]="'Add your feedback ...'" [formControl]="feedbackFrom.controls['feedback']"
+              (onInputEvent)="setValue('feedback', $event)"></app-text-area>
           </div>
           <div class="button-container">
             <app-button [color]="'gray'" [value]="'Send Your Feedback'"></app-button>
           </div>
         </div>
       </div>
-      <div class="right-container padding-tb-10">
+      <div class="right-container padding-tb-10 padding-lr-10">
         <div class="top-container flex justify-space-between align-center">
           <div class="store-container flex justify-start align-center">
             <app-avatar src="https://m.media-amazon.com/images/I/71z4q-mBNhL._SS400_.png"></app-avatar>
@@ -47,13 +49,37 @@
           </div>
         </div>
         <div class="item-container padding-tb-30">
-          <p class="name text-start font-black size-large">Play Station 5</p>
-          <div class="discount-price-container flex justify-start align-center margin-t-10">
-            <p class="dicount font-regular size-large red-dark margin-r-10">-10%</p>
-            <p class="price font-medium size-large black"><sup class="size-medium">$</sup>10.00</p>
+          <div class="name-price-container flex justify-space-between align-center">
+            <p class="name text-start font-black size-large">Play Station 5</p>
+            <div class="discount-price-container flex justify-start align-center margin-t-10">
+              <p class="dicount font-regular size-large red-dark margin-r-10">-10%</p>
+              <p class="price font-medium size-large black"><sup class="size-medium">$</sup>10.00</p>
+            </div>
           </div>
+
+          <p class="rejected-note text-start font-black size-regular red margin-t-13">Rejected Review</p>
+          <p class="rejected-note text-start font-regular size-regular red">Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Quaerat praesentium velit ipsam odio dignissimos unde ea tempore. Mollitia, id
+            quo!</p>
         </div>
-        <div class="colors-sizes-container"></div>
+
+        <div class="colors-sizes-container">
+          <app-slider>
+            <div class="box-container padding-lr-10" *ngFor="let data of [1,1,1,1,1,1,1,1,1,1,1,1]">
+              <div class="colors-container flex justify-center align-center flex-column" *ngIf="false">
+                <div class="color-container" [ngStyle]="{'background-color': 'red'}"></div>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+              </div>
+              <div class="sizes-container" *ngIf="false">
+                <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">No. 1</div>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+              </div>
+              <div class="color-sizes-container"></div>
+            </div>
+          </app-slider>
+
+        </div>
+
         <div class="section shadow receiver-container padding-20 margin-tb-20">
           <div class="title-container margin-b-10">
             <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Receiver</p>
@@ -83,11 +109,38 @@
           </div>
           <div class="content-container">
             <div class="info-container padding-10">
-
+              <div class="info-item-container margin-b-10">
+                <p class="title text-start font-regular size-small black">Country</p>
+                <p class="title text-start font-regular size-small gray">Lebanon</p>
+              </div>
+              <div class="info-item-container margin-b-10">
+                <p class="title text-start font-regular size-small black">City</p>
+                <p class="title text-start font-regular size-small gray">Beirut</p>
+              </div>
+              <div class="info-item-container margin-b-10">
+                <p class="title text-start font-regular size-small black">Address Details</p>
+                <p class="title text-start font-regular size-small gray">Lorem, ipsum dolor sit amet consectetur
+                  adipisicing elit. Dolores expedita quia eaque, possimus incidunt aliquam facere accusantium libero
+                  voluptas? Voluptatibus.</p>
+              </div>
+              <div class="info-item-container margin-b-10">
+                <p class="title text-start font-regular size-small black">Note</p>
+                <p class="title text-start font-regular size-small gray">Lorem ipsum, dolor sit amet consectetur
+                  adipisicing elit. Commodi voluptatum veritatis sed est provident, repellat nam animi harum adipisci
+                  et.</p>
+              </div>
             </div>
             <div class="map-container padding-10">
               <app-map-view [lat]="30" [lng]="10" [zoomControlVisible]="false"></app-map-view>
             </div>
+          </div>
+        </div>
+        <div class="buttons-container flex justify-end align-center">
+          <div class="button-container margin-l-10">
+            <app-button [value]="'Decline'" [color]="'red'" (click)="null"></app-button>
+          </div>
+          <div class="button-container margin-l-10">
+            <app-button [value]="'Confirm'" [color]="'blue'" (click)="null"></app-button>
           </div>
         </div>
       </div>
