@@ -34,6 +34,12 @@
         width: fit-content;
         height: 100%;
         .icon-container{
+          .notification-badge{
+            border-radius: 50px;
+            background-color: var(--red-light);
+            top: 2px;
+            right: 10px;
+          }
           .icon{
             cursor: pointer;
           }

@@ -1,0 +1,257 @@
+.navbar-container{
+  width: 100%;
+  height: 65px;
+  background-color: var(--blue-dark);
+  user-select: none;
+
+  .inner-container{
+    width: 100%;
+    height: 100%;
+    .logo-container{
+      width: fit-content;
+      height: auto;
+      img{
+        width: 95px;
+        height: auto;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+    .links-container{
+      width: fit-content;
+      height: 100%;
+      .link-container{
+        width: fit-content;
+        .link{
+          cursor: pointer;
+        }
+      }
+    }
+    .others-container{
+      width: 100%;
+      height: 100%;
+      .icons-container{
+        width: fit-content;
+        height: 100%;
+        .icon-container{
+          .notification-badge{
+            border-radius: 50px;
+            background-color: var(--red-light);
+            top: 2px;
+            right: 10px;
+          }
+          .icon{
+            cursor: pointer;
+          }
+          .notifications-container{
+            width: 500px;
+            height: fit-content;
+            background: var(--white);
+            max-height: 600px;
+            overflow-y: scroll;
+            top: 30px;
+            right: 11px;
+            border-radius: 20px;
+            box-shadow: 0px 1px 3px 1px var(--gray-light);
+            display: none;
+            transition: 0.3s ease-in-out;
+            &.show{
+              display: block;
+              transition: 0.3s ease-in-out;
+            }
+
+            .notification-container{
+              width: 100%;
+              border-radius: 5px;
+              transition: 0.3s ease-in-out;
+            }
+          }
+        }
+      }
+      .profile-container{
+        width: fit-content;
+        height: 100%;
+        .image-container{
+          border-radius: 50%;
+          overflow: hidden;
+          cursor: pointer;
+          background-color: var(--white);
+          box-shadow: 0px 1px 4px 1px var(--gray-alpha);
+          padding: 3px;
+          img{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+        .options-container{
+          width: 200px;
+          height: fit-content;
+          background: var(--white);
+          top: 51px;
+          right: 11px;
+          border-radius: 20px 0px 20px 20px;
+          box-shadow: 0px 1px 3px 1px var(--gray-light);
+          display: none;
+          transition: 0.3s ease-in-out;
+          &.show{
+            display: block;
+            transition: 0.3s ease-in-out;}
+
+          .option-container{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            &:hover{
+              transition: 0.3s ease-in-out;
+              background-color: var(--gray-alpha);
+            }
+            &:active{
+              background-color: var(--gray-light);
+              transition: 0.3s ease-in-out;
+            }
+
+            &:last-child{
+              &:hover{
+                transition: 0.3s ease-in-out;
+                background-color: var(--red-light-alpha);
+              }
+              &:active{
+                background-color: var(--red-alpha);
+                transition: 0.3s ease-in-out;
+              }
+            }
+          }
+        }
+      }
+
+      .hamburger-container{
+        height: 100%;
+        display: none;
+        .hamburger {
+          width: 24px;
+          height: 20px;
+          cursor: pointer;
+          .bar {
+            width: 100%;
+            height: 3px;
+            border-radius: 50px;
+            background-color: white;
+            transition: 0.3s ease-in-out;
+          }
+          &.opened {
+            .bar:nth-child(2) {
+              opacity: 0;
+              transition: 0.3s ease-in-out;
+            }
+
+            .bar:first-child {
+              transform: translateY(8px) rotate(45deg);
+              transition: 0.3s ease-in-out;
+            }
+
+            .bar:last-child {
+              transform: translateY(-9px) rotate(-45deg);
+              transition: 0.3s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar-container{
+    .inner-container{
+      .others-container{
+        .icons-container{
+          .icon-container{
+            .notifications-container{
+              transition: 0.3s ease-in-out;
+              position: fixed;
+              height: 100%;
+              left: 0;
+              top: 50px;
+              width: 100%;
+              max-height: none;
+              box-shadow: none;
+              border-radius: 0;
+              padding-bottom: 45px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 650px) {
+  .navbar-container{
+    position: relative;
+    height: 50px;
+    .inner-container{
+      padding: 0 13px 0 13px;
+      .logo-container{
+        img{
+          width: 80px;
+        }
+      }
+      .links-container{
+        position: absolute;
+        width: 100%;
+        height: fit-content;
+        background-color: var(--blue-dark);
+        left: 0px;
+        top: 49px;
+        height: 0px;
+        overflow: hidden;
+        flex-direction: column;
+        border-radius: 0px 0px 20px 20px;
+        .link-container{
+          height: 40px;
+          width: 100%;
+          .link{
+            width: 100%;
+          }
+        }
+
+        &.opened{
+          height: fit-content;
+          padding: 10px 0;
+          .link-container{
+            .link{
+              height: 30px;
+              padding-top: 4px;
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+      .others-container{
+        .icons-container{
+          .icon-container{
+            .icon{
+              width: 19px;
+            }
+          }
+        }
+
+        .profile-container{
+          .image-container{
+            img{
+              width: 27px;
+              height: 27px;
+            }
+          }
+        }
+
+        .hamburger-container{
+          display: flex;
+        }
+      }
+    }
+  }
+}

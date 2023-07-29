@@ -24,6 +24,7 @@ export class NavbarCustomerComponent implements OnInit{
   @ViewChild('toastr') toastr: ToastrComponent; public viewToastr: boolean = false;
 
   public notifications: ViewModerateNotification[] = [];
+  public profileImage: string = '';
 
   constructor(private router: Router,
               private globalService: GlobalService) {
@@ -32,12 +33,21 @@ export class NavbarCustomerComponent implements OnInit{
   ngOnInit(): void {
     this.onWindowWidth();
     this.readNotifications();
+    this.readProfileImage();
   }
 
   private readNotifications(){
     this.globalService.getMyNotifications().subscribe((response: any) => {
       if(!response.error){
         this.notifications = response;
+      }
+    });
+  }
+
+  private readProfileImage(){
+    this.globalService.getProfileImage().subscribe((response: any) => {
+      if(!response.error){
+        this.profileImage = response.profileImage;
       }
     });
   }

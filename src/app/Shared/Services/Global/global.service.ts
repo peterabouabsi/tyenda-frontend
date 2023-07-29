@@ -49,6 +49,9 @@ export class GlobalService {
   public getMyNotifications(){
     return this.apiService.get('/Notification');
   }
+  public getProfileImage(){
+    return this.apiService.get('/Account/Profile/Image');
+  }
   public getItemComments(itemId: string){
     return this.apiService.get('/Comment/'+itemId);
   }
