@@ -30,6 +30,7 @@
           <div class="input-form margin-tb-20">
             <app-text-area [placeholder]="'Add your feedback ...'" [formControl]="feedbackFrom.controls['feedback']"
               (onInputEvent)="setValue('feedback', $event)"></app-text-area>
+              //Here you should replace the area with a container that display all the feedbacks (store role)
           </div>
           <div class="button-container">
             <app-button [color]="'gray'" [value]="'Send Your Feedback'"></app-button>
@@ -63,7 +64,7 @@
             quo!</p>
         </div>
 
-        <div class="colors-sizes-container">
+        <div class="colors-and-sizes-container">
           <app-slider>
             <div class="box-container padding-lr-10" *ngFor="let data of [1,1,1,1,1,1,1,1,1,1,1,1]">
               <div class="colors-container flex justify-center align-center flex-column" *ngIf="false">
@@ -74,7 +75,15 @@
                 <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">No. 1</div>
                 <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
               </div>
-              <div class="color-sizes-container"></div>
+              <div class="colors-sizes-container flex justify-center align-center">
+                <div class="color-sizes-container flex justify-start align-start">
+                  <div class="color-container margin-r-10 padding-16" [ngStyle]="{'background-color': 'red'}"></div>
+                  <div class="sizes-container margin-r-10" *ngFor="let size of [1,1,1]">
+                    <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">No. 1</div>
+                    <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </app-slider>
 

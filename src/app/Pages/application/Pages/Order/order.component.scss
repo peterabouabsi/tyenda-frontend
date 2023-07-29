@@ -1,49 +1,61 @@
-.parent-container{
+.parent-container {
   width: 100%;
-  .inner-container{
+
+  .inner-container {
     width: 100%;
-    .header-container{
-      .text-container{
+
+    .header-container {
+      .text-container {
         height: 100%;
       }
-      .order-status-container{
+
+      .order-status-container {
         max-width: 50%;
         height: 100%;
-        .order-status-box-container{
+
+        .order-status-box-container {
           height: 100%;
           border-radius: 6px;
-          &.submitted{
+
+          &.submitted {
             background-color: var(--black);
           }
-          &.rejected{
+
+          &.rejected {
             background-color: var(--red);
           }
-          &.approved{
+
+          &.approved {
             background-color: var(--green-super-dark);
           }
-          &.ongoing{
+
+          &.ongoing {
             background-color: var(--orange);
           }
-          &.completed{
+
+          &.completed {
             background-color: var(--green);
           }
         }
       }
     }
 
-    .body-container{
+    .body-container {
       width: 100%;
       height: auto;
       display: grid;
       grid-template-columns: 450px auto;
       grid-gap: 2rem;
-      .left-container{
+
+      .left-container {
         width: 100%;
-        .item-container{
+
+        .item-container {
           width: 100%;
           height: auto;
           border-radius: 10px;
-          img{
+
+          img {
             width: 100%;
             height: auto;
             object-fit: cover;
@@ -51,44 +63,53 @@
           }
         }
 
-        .feedback-container{
+        .feedback-container {
           width: 100%;
-          .input-form{
+
+          .input-form {
             height: 200px;
-            ::ng-deep app-text-area .input{
+
+            ::ng-deep app-text-area .input {
               height: 200px;
               min-height: none;
             }
           }
         }
       }
-      .right-container{
+
+      .right-container {
         width: 100%;
         overflow: hidden;
-        .top-container{
+
+        .top-container {
           width: 100%;
           height: auto;
-          .reference-container{
+
+          .reference-container {
             background-color: var(--gray-light-alpha);
             border-radius: 3px;
             width: fit-content;
             height: fit-content;
           }
         }
-        .colors-sizes-container{
+
+        .colors-and-sizes-container {
           width: 100%;
-          .colors-container{
+
+          .colors-container {
             width: 100%;
-            .color-container{
+
+            .color-container {
               width: 30px;
               height: 30px;
               border-radius: 50px;
             }
           }
 
-          .sizes-container{
+          .sizes-container {
             width: 100%;
-            .size-container{
+
+            .size-container {
               min-width: 50px;
               width: auto;
               height: 30px;
@@ -98,15 +119,46 @@
               transition: 0.3s ease-in-out;
             }
           }
+
+          .colors-sizes-container {
+            width: fit-content;
+
+            .color-sizes-container {
+              width: auto;
+              .color-container {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: yellow !important;
+              }
+
+              .sizes-container {
+                width: 100%;
+
+                .size-container {
+                  min-width: 50px;
+                  width: auto;
+                  height: 30px;
+                  border-radius: 3px;
+                  background-color: var(--gray-light-alpha);
+                  border: 1px solid var(--gray-light);
+                  transition: 0.3s ease-in-out;
+                }
+              }
+            }
+          }
         }
-        .location-container{
-          .content-container{
+
+        .location-container {
+          .content-container {
             display: grid;
             grid-template-columns: 50% 50%;
             grid-gap: 10px;
             min-height: 300px;
             height: auto;
-            .info-container, .map-container{
+
+            .info-container,
+            .map-container {
               width: 100%;
               height: 100%;
             }
