@@ -27,7 +27,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
 export class LoginComponent implements OnInit{
 
   @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
-  public buttonConfig: ButtonConfig = {isBlue: true};
+  @ViewChild('loginButton') loginButton: ButtonLoaderComponent; public buttonConfig: ButtonConfig = {isBlue: true};
 
   public loginForm: FormGroup = new FormGroup({
     usernameEmail: new FormControl('', [Validators.required]),
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit{
     this.loginForm.get(controleName).setValue(value);
   }
 
-  @ViewChild('loginButton') loginButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public login(){
     this.loginButton.onClick(() => {

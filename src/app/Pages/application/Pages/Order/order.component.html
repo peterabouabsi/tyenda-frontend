@@ -5,13 +5,14 @@
         <p class="text text-start font-black size-extra-large black">Order</p>
       </div>
       <div class="order-status-container flex justify-center align-center">
-        <div class="order-status-box-container flex justify-center align-center padding-tb-6 padding-lr-10" [ngClass]="{'submitted':  order.orderStatus  == 'Submitted',
-                      'rejected' :  order.orderStatus  == 'Rejected',
-                      'approved' :  order.orderStatus  == 'Approved',
-                      'ongoing'  :   order.orderStatus == 'OnGoing',
-                      'completed':   order.orderStatus == 'Completed'}">
+        <div class="order-status-box-container flex justify-center align-center padding-tb-6 padding-lr-10"
+          [ngClass]="{'submitted':  order?.orderStatus  == 'Submitted',
+                      'rejected' :  order?.orderStatus  == 'Rejected',
+                      'approved' :  order?.orderStatus  == 'Approved',
+                      'ongoing'  :   order?.orderStatus == 'OnGoing',
+                      'completed':   order?.orderStatus == 'Completed'}">
 
-          <p class="status text-center font-medium size-small white">Submitted</p>
+          <p class="status text-center font-medium size-small white">{{order?.orderStatus}}</p>
         </div>
       </div>
     </div>
@@ -19,9 +20,10 @@
     <div class="body-container margin-tb-30">
       <div class="left-container padding-tb-10">
         <div class="item-container">
-          <img [src]="order.itemImage" alt="">
+          <img [src]="order?.itemImage" alt="">
         </div>
-        <div class="feedback-container section shadow padding-20 margin-tb-20">
+
+        <div class="feedback-container section shadow padding-20 margin-tb-20" *ngRolePermission="'Customer'">
           <div class="text-container">
             <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Order Feedbacks</p>
             <p class="sub-title text-start font-regular size-small black">We'd love to hear what you think about the
@@ -30,55 +32,75 @@
           <div class="input-form margin-tb-20">
             <app-text-area [placeholder]="'Add your feedback ...'" [formControl]="feedbackFrom.controls['feedback']"
               (onInputEvent)="setValue('feedback', $event)"></app-text-area>
-              //Here you should replace the area with a container that display all the feedbacks (store role)
           </div>
-          <div class="button-container">
-            <app-button [color]="'gray'" [value]="'Send Your Feedback'"></app-button>
+          <div class="button-container relative">
+            <div class="spinner-container padding-t-1 flex justify-center align-center" [ngClass]="{'loading': addFeedbackLoading}" *ngIf="addFeedbackLoading">
+              <div class="spinner gray"></div>
+            </div>
+            <app-button [value]="'Send Your Feedback'" [color]="'gray'" (click)="addFeedback()" *ngIf="!addFeedbackLoading"></app-button>
           </div>
         </div>
+
+        <div class="feedback-container section padding-20 margin-tb-20" *ngRolePermission="'Store'">
+          <div class="text-container">
+            <p class="title text-start font-extra-bold size-regular black capitalize margin-b-6">Order Feedbacks</p>
+          </div>
+          <div class="cards-container margin-tb-20" *ngIf="order?.feedbacks.length > 0">
+            <div class="card-container flex justify-start align-start padding-10" *ngFor="let feedback of order?.feedbacks">
+              <app-avatar [src]="feedback?.customerProfileImage"></app-avatar>
+              <p class="value text-start font-regular size-small gray-dark padding-l-10 padding-t-10">{{feedback?.value}}</p>
+            </div>
+          </div>
+          <app-empty [value]="'Order Has No Feedbacks'" *ngIf="order?.feedbacks.length == 0"></app-empty>
+        </div>
+
       </div>
       <div class="right-container padding-tb-10 padding-lr-10">
         <div class="top-container flex justify-space-between align-center">
           <div class="store-container flex justify-start align-center">
-            <app-avatar [src]="order.storeProfileImage"></app-avatar>
+            <app-avatar [src]="order?.storeProfileImage"></app-avatar>
             <div class="info-container padding-l-10 flex justify-center align-start flex-column relative">
-              <p class="name text-start font-semi-bold size-regular black capitalize">{{order.storeName}}</p>
+              <p class="name text-start font-semi-bold size-regular black capitalize">{{order?.storeName}}</p>
             </div>
           </div>
           <div class="reference-container padding-lr-10 padding-tb-3">
-            <p class="referene text-center font-medium size-semi-small gray-dark">#{{order.reference}}</p>
+            <p class="referene text-center font-medium size-semi-small gray-dark">#{{order?.reference}}</p>
           </div>
         </div>
         <div class="item-container padding-tb-30">
           <div class="name-price-container flex justify-space-between align-center">
-            <p class="name text-start font-black size-large">{{order.itemName}}</p>
+            <p class="name text-start font-black size-large">{{order?.itemName}}</p>
             <div class="discount-price-container flex justify-start align-center margin-t-10">
-              <p class="dicount font-regular size-large red-dark margin-r-10">-{{order.discount}}%</p>
-              <p class="price font-medium size-large black"><sup class="size-medium">$</sup>{{order.price}}</p>
+              <p class="dicount font-regular size-large red-dark margin-r-10">-{{order?.discount}}%</p>
+              <p class="price font-medium size-large black"><sup class="size-medium">$</sup>{{order?.price}}</p>
             </div>
           </div>
 
-          <p class="rejected-note text-start font-black size-regular red margin-t-13" *ngIf="order.rejectDescription">Rejected Review</p>
-          <p class="rejected-note text-start font-regular size-regular red" *ngIf="order.rejectDescription">{{order.rejectDescription}}</p>
+          <p class="rejected-note text-start font-black size-regular red margin-t-13" *ngIf="order?.rejectDescription">Rejected Review</p>
+          <p class="rejected-note text-start font-regular size-regular red" *ngIf="order?.rejectDescription">{{order?.rejectDescription}}</p>
         </div>
 
         <div class="colors-and-sizes-container">
           <app-slider>
-            <div class="box-container padding-lr-10" *ngFor="let data of [1,1,1,1,1,1,1,1,1,1,1,1]">
-              <div class="colors-container flex justify-center align-center flex-column" *ngIf="false">
-                <div class="color-container" [ngStyle]="{'background-color': 'red'}"></div>
-                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+            <div class="box-container padding-lr-10" *ngFor="let color of order?.colors">
+              <div class="colors-container flex justify-center align-center flex-column">
+                <div class="color-container" [ngStyle]="{'background-color': color?.color}"></div>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{color?.quantity}} pieces</p>
               </div>
-              <div class="sizes-container" *ngIf="false">
-                <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">No. 1</div>
-                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+            </div>
+            <div class="box-container padding-lr-10" *ngFor="let size of order?.sizes">
+              <div class="sizes-container">
+                <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">{{size.number? 'No. '+size?.number : size?.code}}</div>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} pieces</p>
               </div>
+            </div>
+            <div class="box-container padding-lr-10" *ngFor="let color of order?.colorSizes">
               <div class="colors-sizes-container flex justify-center align-center">
                 <div class="color-sizes-container flex justify-start align-start">
-                  <div class="color-container margin-r-10 padding-16" [ngStyle]="{'background-color': 'red'}"></div>
-                  <div class="sizes-container margin-r-10" *ngFor="let size of [1,1,1]">
-                    <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">No. 1</div>
-                    <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">10 pieces</p>
+                  <div class="color-container margin-r-10 padding-16" [ngStyle]="{'background-color': color?.color}"></div>
+                  <div class="sizes-container margin-r-10" *ngFor="let size of color?.sizes">
+                    <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">{{size?.number? 'No. '+size?.number : size?.code}}</div>
+                    <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} pieces</p>
                   </div>
                 </div>
               </div>
@@ -94,15 +116,15 @@
           <div class="content-container flex justify-space-between">
             <div class="box-container flex justify-center align-start flex-column">
               <p class="title text-start font-regular size-small black">Fullname</p>
-              <p class="value text-start font-regular size-small gray-dark">{{order.receiverName}}</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order?.receiverName}}</p>
             </div>
             <div class="box-container flex justify-center align-start flex-column">
               <p class="title text-start font-regular size-small black">Email</p>
-              <p class="value text-start font-regular size-small gray-dark">{{order.receiverEmail}}</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order?.receiverEmail}}</p>
             </div>
             <div class="box-container flex justify-center align-start flex-column">
               <p class="title text-start font-regular size-small black">Phone</p>
-              <p class="value text-start font-regular size-small gray-dark">{{order.receiverPhone}}</p>
+              <p class="value text-start font-regular size-small gray-dark">{{order?.receiverPhone}}</p>
             </div>
           </div>
         </div>
@@ -114,23 +136,23 @@
             <div class="info-container padding-10">
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Country</p>
-                <p class="title text-start font-regular size-small gray">{{order.country}}</p>
+                <p class="title text-start font-regular size-small gray">{{order?.country}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">City</p>
-                <p class="title text-start font-regular size-small gray">{{order.city}}</p>
+                <p class="title text-start font-regular size-small gray">{{order?.city}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Address Details</p>
-                <p class="title text-start font-regular size-small gray">{{order.addressDetails}}</p>
+                <p class="title text-start font-regular size-small gray">{{order?.addressDetails}}</p>
               </div>
               <div class="info-item-container margin-b-10">
                 <p class="title text-start font-regular size-small black">Note</p>
-                <p class="title text-start font-regular size-small gray">{{order.note}}</p>
+                <p class="title text-start font-regular size-small gray">{{order?.note}}</p>
               </div>
             </div>
             <div class="map-container padding-10">
-              <app-map-view [lat]="order.latitude" [lng]="order.longitude" [zoomControlVisible]="false"></app-map-view>
+              <app-map-view [lat]="order?.latitude" [lng]="order?.longitude" [zoomControlVisible]="false"></app-map-view>
             </div>
           </div>
         </div>

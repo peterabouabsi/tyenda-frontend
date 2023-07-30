@@ -74,6 +74,23 @@
               min-height: none;
             }
           }
+          .button-container{
+            width: 100%;
+            height: 2.3rem;
+            ::ng-deep app-button-loader{
+              .button.gray-button{
+                width: 100%;
+              }
+            }
+          }
+          .cards-container{
+            min-height: 360px;
+            max-height: 500px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar{
+              width: 3px;
+            }
+          }
         }
       }
 
@@ -110,7 +127,7 @@
             width: 100%;
 
             .size-container {
-              min-width: 50px;
+              min-width: 60px;
               width: auto;
               height: 30px;
               border-radius: 3px;
@@ -129,14 +146,13 @@
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
-                background-color: yellow !important;
               }
 
               .sizes-container {
                 width: 100%;
 
                 .size-container {
-                  min-width: 50px;
+                  min-width: 60px;
                   width: auto;
                   height: 30px;
                   border-radius: 3px;

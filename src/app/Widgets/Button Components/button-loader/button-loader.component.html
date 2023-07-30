@@ -1,4 +1,4 @@
-<div class="button flex justify-center align-center" [ngClass]="{'disabled': config.disabled, 'blue-button': config.isBlue, 'white-button': config.isWhite}" (click)="onClick()">
+<div class="button flex justify-center align-center" [ngClass]="{'disabled': config.disabled, 'blue-button': config.isBlue, 'white-button': config.isWhite, 'gray-button': config.isGray}" (click)="onClick()">
   <div class="text-container padding-b-1 flex justify-center align-center" [ngClass]="{'loading': loading}">
     <p class="value text-center size-regular font-medium capitalize">{{value}}</p>
   </div>

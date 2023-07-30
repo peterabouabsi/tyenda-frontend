@@ -61,13 +61,12 @@ import { OrderComponent } from '../Pages/Order/order.component';
 
     StoreProfileComponent,
     OrderComponent
-
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    SharedModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule
   ],
   exports: [
     ApplicationComponent,

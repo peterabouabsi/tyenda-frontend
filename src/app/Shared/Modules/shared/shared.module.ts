@@ -56,6 +56,10 @@ import { VideoComponent } from 'src/app/Widgets/Video Components/video/video.com
 import { MapViewComponent } from './../../../Widgets/Map Components/map-view/map-view.component';
 import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
 
+//Directives
+import { RolePermissionDirective } from '../../Directives/role-permission.directive';
+
+
 @NgModule({
   declarations: [
     //Pipes
@@ -103,7 +107,10 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
     VideoComponent,
 
     MapViewComponent,
-    MapComponent
+    MapComponent,
+
+    //Directives
+    RolePermissionDirective
   ],
   imports: [
     CommonModule,
@@ -156,7 +163,10 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
     VideoComponent,
 
     MapViewComponent,
-    MapComponent
+    MapComponent,
+
+    //Directives
+    RolePermissionDirective
   ],
   providers: [
     StoreCardService,

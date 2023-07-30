@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
 //Services
-import { ApiService } from './../../../../../Shared/Services/Api/api.service';
+import { ApiService } from 'src/app/Shared/Services/Api/api.service';
+
+//Forms
+import { AddFeedbackForm } from 'src/app/Shared/Models/Forms/AddFeedbackForm.form';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +15,9 @@ export class OrderService {
 
   public getOrder(orderId: string){
     return this.apiService.get('/Order/'+orderId);
+  }
+
+  public addFeedback(form: AddFeedbackForm){
+    return this.apiService.post('/Order/Feedback/Add()', form);
   }
 }
