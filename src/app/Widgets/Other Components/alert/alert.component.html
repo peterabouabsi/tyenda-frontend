@@ -7,8 +7,19 @@
   </div>
   <div class="buttons-container flex justify-end align-center margin-t-50">
     <div class="button-container margin-l-10" *ngFor="let button of data.buttons">
-      <app-button *ngIf="!button.isLoaderButton" [color]="button.color" [value]="button.value" (click)="button.onButtonClick(dialogRef)"></app-button>
-      <app-button-loader *ngIf="button.isLoaderButton" [value]="button.value" [config]="requestOrderButtonConfig" (click)="button.onButtonClick(dialogRef)"></app-button-loader>
+      <app-button
+        [color]="button.color"
+        [value]="button.value"
+        (click)="button.onButtonClick(dialogRef)"
+        *ngIf="!button.isLoaderButton">
+      </app-button>
+
+      <app-button-loader
+        [value]="button.value"
+        [config]="{isBlue: button.color == 'blue', isRed: button.color == 'red', isGray: button.color == 'gray', isWhite: button.color == 'white', isOrange: button.color == 'orange'}"
+        (click)="button.onButtonClick(dialogRef)"
+        *ngIf="button.isLoaderButton">
+      </app-button-loader>
     </div>
   </div>
 </div>

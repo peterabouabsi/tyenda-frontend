@@ -1,3 +1,4 @@
+<app-toastr #toastr *ngIf="viewToastr"></app-toastr>
 <div class="parent-container">
   <div class="inner-container">
     <div class="header-container flex justify-space-between align-start">
@@ -48,7 +49,10 @@
           <div class="cards-container margin-tb-20" *ngIf="order?.feedbacks.length > 0">
             <div class="card-container flex justify-start align-start padding-10" *ngFor="let feedback of order?.feedbacks">
               <app-avatar [src]="feedback?.customerProfileImage"></app-avatar>
-              <p class="value text-start font-regular size-small gray-dark padding-l-10 padding-t-10">{{feedback?.value}}</p>
+              <div class="text-container padding-l-10">
+                <p class="timestamp text-start font-regular size-extra-small gray-dark">{{feedback.createdAt | timestamp}}</p>
+                <p class="value text-start font-medium size-semi-small gray-super-dark">{{feedback?.value}}</p>
+              </div>
             </div>
           </div>
           <app-empty [value]="'Order Has No Feedbacks'" *ngIf="order?.feedbacks.length == 0"></app-empty>
@@ -158,10 +162,10 @@
         </div>
         <div class="buttons-container flex justify-end align-center">
           <div class="button-container margin-l-10">
-            <app-button [value]="'Decline'" [color]="'red'" (click)="null"></app-button>
+            <app-button [value]="'Decline'" [color]="'red'" (click)="decline()"></app-button>
           </div>
           <div class="button-container margin-l-10">
-            <app-button [value]="'Confirm'" [color]="'blue'" (click)="null"></app-button>
+            <app-button [value]="'Confirm'" [color]="'blue'" (click)="confirm()"></app-button>
           </div>
         </div>
       </div>

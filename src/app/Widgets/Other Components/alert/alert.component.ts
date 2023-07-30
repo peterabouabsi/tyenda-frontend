@@ -15,7 +15,6 @@ import { ButtonConfig } from '../../Button Components/button-loader/ButtonConfig
 export class AlertComponent implements OnInit{
 
   @ViewChild('requestOrderButton') requestOrderButtonRef: ButtonLoaderComponent;
-  public requestOrderButtonConfig: ButtonConfig = {isBlue: true};
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: AlertConfig,
               public dialogRef: MatDialogRef<AlertComponent>) {
