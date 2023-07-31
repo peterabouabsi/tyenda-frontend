@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
@@ -11,6 +11,7 @@ import { OrderService } from './Services/order.service';
 
 //Forms
 import { AddFeedbackForm } from 'src/app/Shared/Models/Forms/AddFeedbackForm.form';
+import { ConfirmOrderForm } from 'src/app/Shared/Models/Forms/ConfirmOrderForm.form';
 
 //Views
 import { OrderAdvancedView } from 'src/app/Shared/Models/Views/Order/OrderAdvancedView.view';
@@ -35,6 +36,7 @@ export class OrderComponent implements OnInit {
   });
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private globalService: GlobalService,
               private orderService: OrderService) {
   }
@@ -90,16 +92,24 @@ export class OrderComponent implements OnInit {
   }
 
   public onDeletingOrder: boolean = false;
-  public decline(){
+  public deleteOrder(){
     this.globalService.openDialog(AlertComponent,
       {
-        title: 'Decline Order',
+        title: 'Delete Order',
         message: 'Are you sure you want to delete this order?',
         buttons: [
           { value: 'Delete Order', color: 'red', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
               if(this.onDeletingOrder == false) {
                 this.onDeletingOrder = true;
+                this.orderService.deleteOrder(this.order.id).subscribe((response: any) => {
+                  setTimeout(() => {
+                    dialogRef.close();
+                    if(!response.error){
+                      this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/orders']);
+                    }
+                  }, 3000)
 
+                });
 
               }
             }
@@ -111,7 +121,7 @@ export class OrderComponent implements OnInit {
 
 
   public onConfirmationOrder: boolean = false;
-  public confirm(){
+  public confirmOrder(){
     this.globalService.openDialog(AlertComponent,
       {
         title: 'Order Confirmation',
@@ -120,8 +130,17 @@ export class OrderComponent implements OnInit {
           { value: 'Confirm Order', color: 'blue', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
               if(this.onConfirmationOrder == false) {
                 this.onConfirmationOrder = true;
-
-
+                let form: ConfirmOrderForm = {
+                  orderId: this.order.id
+                }
+                this.orderService.confirmOrder(form).subscribe((response: any) => {
+                  setTimeout(() => {
+                    dialogRef.close();
+                    if(!response.error){
+                      this.order = response;
+                    }
+                  }, 3000)
+                });
               }
             }
           },

@@ -164,7 +164,7 @@ export class RequestOrderComponent implements OnInit {
           title: 'Request Order',
           message: 'Are you sure you want to proceed with the request?',
           buttons: [
-            { value: 'Request Order', color: 'gray', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+            { value: 'Request Order', color: 'blue', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
                 if(this.onRequestingOrder == false) {
                   this.onRequestingOrder = true;
 

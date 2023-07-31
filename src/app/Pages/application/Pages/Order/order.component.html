@@ -160,12 +160,20 @@
             </div>
           </div>
         </div>
-        <div class="buttons-container flex justify-end align-center">
-          <div class="button-container margin-l-10">
-            <app-button [value]="'Decline'" [color]="'red'" (click)="decline()"></app-button>
+        <!-- Customer Role -->
+        <div class="buttons-container flex justify-end align-center" *ngRolePermission="'Customer'">
+          <div class="button-container margin-l-10"  *ngIf="order?.orderStatus  == 'Approved'">
+            <app-button [value]="'Delete'" [color]="'red'" (click)="deleteOrder()"></app-button>
           </div>
+          <div class="button-container margin-l-10" *ngIf="order?.orderStatus  == 'Approved'">
+            <app-button [value]="'Confirm'" [color]="'blue'" (click)="confirmOrder()"></app-button>
+          </div>
+        </div>
+
+        <!-- Store Role -->
+        <div class="buttons-container flex justify-end align-center" *ngRolePermission="'Store'">
           <div class="button-container margin-l-10">
-            <app-button [value]="'Confirm'" [color]="'blue'" (click)="confirm()"></app-button>
+            <app-button [value]="'Delete'" [color]="'red'" (click)="deleteOrder()"></app-button>
           </div>
         </div>
       </div>
