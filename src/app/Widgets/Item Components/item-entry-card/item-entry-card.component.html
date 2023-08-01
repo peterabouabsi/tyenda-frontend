@@ -3,7 +3,7 @@
     <img [src]="data?.imageUrl" alt="">
   </div>
   <div class="info-container padding-lr-6">
-    <p class="value text-start font-bold size-small capitalize black">Play Station 5</p>
+    <p class="value text-start font-bold size-small capitalize black">{{data?.value}}</p>
     <app-badge [color]="'orange'" [value]="data?.rate+'/5'"></app-badge>
     <div class="discount-price-container flex justify-start align-center margin-t-1">
       <p class="dicount font-regular size-regular red-dark margin-r-10">-{{data?.discount}}%</p>

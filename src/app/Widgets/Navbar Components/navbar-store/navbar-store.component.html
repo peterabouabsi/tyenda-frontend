@@ -9,13 +9,10 @@
         <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('home')">Home</p>
       </div>
       <div class="link-container padding-lr-10 flex justify-center align-center">
-        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('search')">Search</p>
+        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('items')">Items</p>
       </div>
       <div class="link-container padding-lr-10 flex justify-center align-center">
         <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('orders')">Orders</p>
-      </div>
-      <div class="link-container padding-lr-10 flex justify-center align-center">
-        <p class="link text-center capitalize font-regular size-regular white" (click)="onLinkClick('cart')">Cart</p>
       </div>
     </div>
     <div class="others-container flex justify-end align-end">
@@ -35,7 +32,7 @@
         </div>
         <div class="options-container padding-20 absolute" [ngClass]="{'show': optionsOpenIndex == 2}">
           <div class="option-container margin-b-3" (click)="editProfile()">
-            <p class="value text-start font-medium size-regular black padding-9">Edit profile</p>
+            <p class="value text-start font-medium size-regular black padding-9">Profile</p>
           </div>
           <div class="option-container margin-b-3" (click)="changePassword()">
             <p class="value text-start font-medium size-regular black padding-9">Change password</p>

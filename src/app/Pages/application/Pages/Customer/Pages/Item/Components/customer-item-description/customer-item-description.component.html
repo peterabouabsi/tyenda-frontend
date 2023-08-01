@@ -72,8 +72,8 @@
         <p class="value text-start font-medium size-regular black">Sizes</p>
       </div>
       <div class="sizes-container flex justify-start align-center flex-wrap padding-t-1">
-        <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3"
-          *ngFor="let size of item?.sizes">{{size}}</div>
+        <div class="size-container flex justify-center align-center font-medium size-small gray-super-dark margin-r-10 margin-tb-20 padding-20"
+          *ngFor="let size of item?.sizes">{{(size | numberFormat: "isNumber")? 'No. ' + size : size}}</div>
       </div>
     </div>
     <div class="row-data-container justify-start align-start flex-wrap margin-tb-3" *ngIf="item?.colorSizes.length > 0">
@@ -83,7 +83,7 @@
       <div class="colors-sizes-container padding-t-1">
         <div class="color-sizes-container flex justify-start align-center flex-wrap padding-t-10" *ngFor="let colorSize of item?.colorSizes">
           <div class="color-container margin-r-10 margin-b-10" [ngStyle]="{'background-color': colorSize?.value}"></div>
-          <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-r-10 margin-b-10 padding-b-1 padding-lr-3" *ngFor="let size of colorSize?.sizes">{{(size | numberFormat: "isNumber")? 'No. '+size : size}}</div>
+          <div class="size-container flex justify-center align-center font-medium size-small gray-super-dark margin-r-10 margin-b-10 gray-super-dark margin-r-10 margin-tb-20 padding-20" *ngFor="let size of colorSize?.sizes">{{(size | numberFormat: "isNumber")? 'No. '+size : size}}</div>
         </div>
       </div>
     </div>
