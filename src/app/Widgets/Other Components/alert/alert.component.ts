@@ -4,9 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 //Components
 import { ButtonLoaderComponent } from '../../Button Components/button-loader/button-loader.component';
 
-//Config
-import { ButtonConfig } from '../../Button Components/button-loader/ButtonConfig.form';
-
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
@@ -28,10 +25,18 @@ export class AlertComponent implements OnInit{
 export interface AlertConfig {
   title: string;
   message: string;
-  buttons: AlertButtonConfig[]
+  inputs?: InputConfig[];
+  buttons: AlertButtonConfig[];
 }
 
-export interface AlertButtonConfig {
+interface InputConfig{
+  type: string;
+  placeholder: string;
+  formControl: any,
+  onInput: (value: string) => void;
+}
+
+interface AlertButtonConfig {
   value: string;
   color: string;
   isLoaderButton?: boolean;

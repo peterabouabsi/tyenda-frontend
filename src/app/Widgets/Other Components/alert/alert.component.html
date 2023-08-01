@@ -5,6 +5,23 @@
   <div class="message-container text-start align-start margin-b-10">
     <p class="title text-start font-regular size-small gray-dark">{{data.message}}</p>
   </div>
+  <div class="inputs-container">
+    <div class="input-form margin-b-40" *ngFor="let input of data.inputs">
+      <app-text-field
+        [placeholder]="input.placeholder"
+        [formControl]="input.formControl"
+        (onInputEvent)="input.onInput($event)"
+        *ngIf="input.type === 'text'">
+      </app-text-field>
+
+      <app-text-area
+        [placeholder]="input.placeholder"
+        [formControl]="input.formControl"
+        (onInputEvent)="input.onInput($event)"
+        *ngIf="input.type === 'textarea'">
+      </app-text-area>
+    </div>
+  </div>
   <div class="buttons-container flex justify-end align-center margin-t-50">
     <div class="button-container margin-l-10" *ngFor="let button of data.buttons">
       <app-button

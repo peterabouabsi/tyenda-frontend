@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/Shared/Services/Api/api.service';
 //Forms
 import { AddFeedbackForm } from 'src/app/Shared/Models/Forms/AddFeedbackForm.form';
 import { ConfirmOrderForm } from 'src/app/Shared/Models/Forms/ConfirmOrderForm.form';
+import { ApproveRejectForm } from 'src/app/Shared/Models/Forms/ApproveRejectForm.form';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class OrderService {
 
   public deleteOrder(orderId: string){
     return this.apiService.delete('/Order/Delete/' + orderId);
+  }
+
+  public approveReject(form: ApproveRejectForm){
+    return this.apiService.post('/Order/ApproveReject()', form);
   }
 
 }
