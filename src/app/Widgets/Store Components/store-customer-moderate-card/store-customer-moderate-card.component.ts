@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -20,6 +23,8 @@ import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModera
   styleUrls: ['./store-customer-moderate-card.component.scss']
 })
 export class StoreCustomerModerateCardComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: StoreModerateView | any;
 

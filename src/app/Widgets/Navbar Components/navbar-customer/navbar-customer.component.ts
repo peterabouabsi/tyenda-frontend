@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -20,6 +23,8 @@ import { ViewModerateNotification } from 'src/app/Shared/Models/Views/Notificati
   styleUrls: ['./navbar-customer.component.scss']
 })
 export class NavbarCustomerComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @ViewChild('toastr') toastr: ToastrComponent; public viewToastr: boolean = false;
 

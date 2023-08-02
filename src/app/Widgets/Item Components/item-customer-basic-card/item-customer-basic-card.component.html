@@ -1,6 +1,6 @@
 <div class="item-container margin-t-30 padding-tb-10">
   <div class="store-container flex justify-start align-center">
-    <app-avatar [src]="data?.profileImage"></app-avatar>
+    <app-avatar [src]="data?.profileImage? fileBaseUrl+data?.profileImage : './assets/Images/no-profile-image.png'"></app-avatar>
     <div class="info-container padding-l-10 flex justify-center align-start flex-column relative">
       <p class="name text-start font-semi-bold size-regular black capitalize">{{data?.storeName}}</p>
       <p class="email text-start font-medium size-small cyan lowercase">{{data?.storeEmail}}</p>

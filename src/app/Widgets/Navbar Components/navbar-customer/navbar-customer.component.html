@@ -31,7 +31,7 @@
       </div>
       <div class="profile-container padding-10 flex justify-center align-center relative" (focusout)="onFocusOut()" tabindex="1">
         <div class="image-container flex justify-center align-center" (click)="onFocus(2)">
-          <img [src]="profileImage" alt="">
+          <img [src]="profileImage? fileBaseUrl+profileImage : './assets/Images/no-profile-image.png'" alt="">
         </div>
         <div class="options-container padding-20 absolute" [ngClass]="{'show': optionsOpenIndex == 2}">
           <div class="option-container margin-b-3" (click)="editProfile()">

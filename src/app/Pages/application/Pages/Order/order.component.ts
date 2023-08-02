@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -27,6 +30,8 @@ import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.com
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
 

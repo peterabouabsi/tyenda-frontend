@@ -62,7 +62,7 @@
       <div class="right-container padding-tb-10 padding-lr-10">
         <div class="top-container flex justify-space-between align-center">
           <div class="store-container flex justify-start align-center">
-            <app-avatar [src]="order?.storeProfileImage"></app-avatar>
+            <app-avatar [src]="order?.storeProfileImage? fileBaseUrl+order?.storeProfileImage : './assets/Images/no-profile-image.png'"></app-avatar>
             <div class="info-container padding-l-10 flex justify-center align-start flex-column relative">
               <p class="name text-start font-semi-bold size-regular black capitalize">{{order?.storeName}}</p>
             </div>

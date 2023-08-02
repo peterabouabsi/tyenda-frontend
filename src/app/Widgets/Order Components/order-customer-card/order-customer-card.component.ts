@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+//environments
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -13,6 +16,8 @@ import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView
   styleUrls: ['./order-customer-card.component.scss']
 })
 export class OrderCustomerCardComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: OrderBasicView;
 

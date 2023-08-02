@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -23,6 +26,8 @@ import { ItemCustomerBasicCardConfig } from './ItemCustomerBasicCardConfig.confi
   styleUrls: ['./item-customer-basic-card.component.scss']
 })
 export class ItemCustomerBasicCardComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: ItemBasicView | any;
   @Input() config?: ItemCustomerBasicCardConfig = {showLike: true, showCartButton: true, showOrderButton: true}

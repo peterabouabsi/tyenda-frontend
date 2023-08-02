@@ -1,7 +1,7 @@
 <div class="order-container relative padding-15" (click)="openOrder()">
   <div class="header-container flex justify-space-between">
     <div class="profile-container flex justify-start align-center">
-      <app-avatar [src]="data.profileImage"></app-avatar>
+      <app-avatar [src]="data.profileImage? fileBaseUrl+data.profileImage : './assets/Images/no-profile-image.png'"></app-avatar>
       <div class="info-container padding-l-10 flex justify-center align-start flex-column">
         <p class="name text-start font-semi-bold size-regular black capitalize">{{data.storeName}}</p>
       </div>

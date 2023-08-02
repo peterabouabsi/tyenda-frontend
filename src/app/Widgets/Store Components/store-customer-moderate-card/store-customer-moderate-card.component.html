@@ -1,8 +1,8 @@
 <div class="store-container margin-t-30 padding-tb-10">
   <div class="images-container relative" (click)="openStoreProfile()">
-    <img class="background-image" [src]="data.backgroundImage" alt="">
+    <img class="background-image" [src]="data?.backgroundImage != null? fileBaseUrl+data?.backgroundImage : './assets/Images/no-background-image.png'" alt="">
     <div class="profile-image-container absolute">
-      <img class="profile-image padding-6" [src]="data.profileImage" alt="">
+      <img class="profile-image padding-6" [src]="data.profileImage != null? fileBaseUrl+data.profileImage : './assets/Images/no-profile-image.png'" alt="">
     </div>
   </div>
   <div class="store-info-container padding-tb-10">

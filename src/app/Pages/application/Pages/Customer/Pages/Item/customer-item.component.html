@@ -4,7 +4,7 @@
       <p class="item-name font-black size-large black">{{item?.value}}</p>
       <p class="timestamp font-regular size-small gray-dark">Posted {{item?.createdAt | timestamp}}</p>
       <div class="store-info-container flex justify-start align-center padding-tb-10">
-        <app-avatar [src]="item?.storeImage"></app-avatar>
+        <app-avatar [src]="item?.storeImage? fileBaseUrl+item?.storeImage: './assets/Images/no-profile-image.png'"></app-avatar>
         <p class="store-name font-bold size-regular black margin-lr-10">{{item?.storeName}}</p>
       </div>
     </div>

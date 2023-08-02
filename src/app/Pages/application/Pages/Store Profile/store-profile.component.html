@@ -3,12 +3,12 @@
     <div class="overview-container">
       <div class="left-container padding-15">
         <div class="background-image-container">
-          <img [src]="store?.backgroundImage" alt="">
+          <img [src]="store?.backgroundImage? fileBaseUrl+store?.backgroundImage : './assets/Images/no-background-image.png'" alt="">
         </div>
 
         <div class="profile-info-container flex justify-start align-start padding-tb-15">
           <div class="image-container flex justify-center align-start">
-            <img [src]="store?.profileImage" alt="">
+            <img [src]="store?.profileImage? fileBaseUrl+store?.profileImage : './assets/Images/no-store-image.png'" alt="">
           </div>
           <div class="info-container flex justify-start align-start flex-column padding-lr-15">
             <p class="title text-start font-extra-bold size-large ellipse-1 black">{{store?.name}}</p>

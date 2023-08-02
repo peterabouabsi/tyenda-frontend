@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -25,6 +28,8 @@ import { FollowUnfollowForm } from 'src/app/Shared/Models/Forms/FollowUnfollowFo
   styleUrls: ['./store-profile.component.scss']
 })
 export class StoreProfileComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   public store: StoreAdvancedView;
   public storeTopItems: StoreTopItemBasicView[] = [];

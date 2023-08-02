@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -19,6 +22,8 @@ import { CartItemBasicView } from 'src/app/Shared/Models/Views/Cart/CartItemBasi
   styleUrls: ['./item-customer-moderate-card.component.scss']
 })
 export class ItemCustomerModerateCardComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: CartItemBasicView | any;
   @Output() onRemoveEvent = new EventEmitter();

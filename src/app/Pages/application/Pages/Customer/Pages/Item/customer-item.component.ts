@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -17,6 +20,8 @@ import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedV
   styleUrls: ['./customer-item.component.scss']
 })
 export class CustomerItemComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   public item: ItemAdvancedView; //item data (description)
   public itemOrders: any[] = []; //My item orders (orders)
