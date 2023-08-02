@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private globalService: GlobalService,
-              private authenticationService: AuthenticationService) {
+    private globalService: GlobalService,
+    private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -48,14 +48,15 @@ export class LoginComponent implements OnInit {
   }
 
   /* -------------------- init and login (if yes) using google account ----------------------- */
-  private initGoogleSignIn(){
+  private initGoogleSignIn() {
     const clientId = environment.googleOAuthClientId;
     // @ts-ignore
     google.accounts.id.initialize({
       client_id: clientId,
       callback: this.loginWithGoogle.bind(this),
       auto_select: false,
-      cancel_on_tap_outside: true
+      cancel_on_tap_outside: true,
+
     });
     // @ts-ignore
     google.accounts.id.renderButton(
@@ -69,12 +70,20 @@ export class LoginComponent implements OnInit {
   }
   private async loginWithGoogle(response: any) {
     let loginGoogleForm: LoginGoogleForm = {
-      clientId: response.clientId,
-      client_id: response.client_Id,
-      credential: response.credential,
-      select_by: response.select_by
+      credential: response.credential
     }
     await this.authenticationService.loginWithGoogle(loginGoogleForm).subscribe((response: any) => {
+      if (response.error) {
+        this.toastrRef.onDanger('Login', response.message, 5);
+      } else {
+        //This means you received your tokens and ready to move on
+        this.globalService.setStorage(Constants.STORAGE_SESSION, response);
+        this.globalService.getAccountRole().subscribe((response: any) => {
+          if (!response.error) {
+            this.router.navigate(['/application/' + response.role.toLowerCase()]);
+          }
+        });
+      }
 
     });
   }
