@@ -2,6 +2,9 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+//Environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -14,6 +17,7 @@ import { ToastrComponent } from 'src/app/Widgets/Other Components/toastr/toastr.
 
 //Forms
 import { LoginForm } from 'src/app/Shared/Models/Forms/LoginForm.form';
+import { LoginGoogleForm } from 'src/app/Shared/Models/Forms/LoginGoogleForm.form';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -24,10 +28,10 @@ import { AuthenticationService } from '../../Services/authentication.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
-  @ViewChild('loginButton') loginButton: ButtonLoaderComponent; public buttonConfig: ButtonConfig = {isBlue: true};
+  @ViewChild('loginButton') loginButton: ButtonLoaderComponent; public buttonConfig: ButtonConfig = { isBlue: true };
 
   public loginForm: FormGroup = new FormGroup({
     usernameEmail: new FormControl('', [Validators.required]),
@@ -40,17 +44,50 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.initGoogleSignIn();
   }
 
-  public setValue(controleName: string, value: string){
+  /* -------------------- init and login (if yes) using google account ----------------------- */
+  private initGoogleSignIn(){
+    const clientId = environment.googleOAuthClientId;
+    // @ts-ignore
+    google.accounts.id.initialize({
+      client_id: clientId,
+      callback: this.loginWithGoogle.bind(this),
+      auto_select: false,
+      cancel_on_tap_outside: true
+    });
+    // @ts-ignore
+    google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById("google-signin-button"),
+      { size: "large", width: 100, type: 'icon', shape: 'circle', theme: 'outline' }
+    );
+    // @ts-ignore
+    google.accounts.id.prompt();
+
+  }
+  private async loginWithGoogle(response: any) {
+    let loginGoogleForm: LoginGoogleForm = {
+      clientId: response.clientId,
+      client_id: response.client_Id,
+      credential: response.credential,
+      select_by: response.select_by
+    }
+    await this.authenticationService.loginWithGoogle(loginGoogleForm).subscribe((response: any) => {
+
+    });
+  }
+  /* -------------------- init and login (if yes) using google account ----------------------- */
+
+  public setValue(controleName: string, value: string) {
     this.loginForm.get(controleName).setValue(value);
   }
 
   @HostListener('document: keyup.enter')
-  public login(){
+  public login() {
     this.loginButton.onClick(() => {
-      if(this.loginForm.valid){
-
+      if (this.loginForm.valid) {
         let loginFrom: LoginForm = {
           usernameOrEmail: this.loginForm.get('usernameEmail').value,
           password: this.loginForm.get('password').value
@@ -58,25 +95,25 @@ export class LoginComponent implements OnInit{
 
         this.authenticationService.login(loginFrom).subscribe((response: any) => {
           this.loginButton.loading = false
-          if(response.error){
+          if (response.error) {
             this.toastrRef.onDanger('Login', response.message, 5);
-          }else{
+          } else {
             //This means you received your tokens and ready to move on
-            if(response.isActive == undefined){
+            if (response.isActive == undefined) {
               this.globalService.setStorage(Constants.STORAGE_SESSION, response);
               this.globalService.getAccountRole().subscribe((response: any) => {
-                if(!response.error){
-                  this.router.navigate(['/application/'+response.role.toLowerCase()]);
+                if (!response.error) {
+                  this.router.navigate(['/application/' + response.role.toLowerCase()]);
                 }
               });
-            //This means the account is not activated yet
-            }else{
-              this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: response.email}});
+              //This means the account is not activated yet
+            } else {
+              this.router.navigate([Constants.AUTH_MAIN_ROUTE + 'email-activation'], { queryParams: { email: response.email } });
             }
           }
         });
 
-      }else{
+      } else {
         this.loginButton.loading = false;
         this.markFormAsDirty();
       }
@@ -89,10 +126,10 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  public forgetPassword(){
-    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'forget-password']);
+  public forgetPassword() {
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE + 'forget-password']);
   }
-  public signup(path: string){
-    this.router.navigate([Constants.AUTH_MAIN_ROUTE+'signup/'+path]);
+  public signup(path: string) {
+    this.router.navigate([Constants.AUTH_MAIN_ROUTE + 'signup/' + path]);
   }
 }

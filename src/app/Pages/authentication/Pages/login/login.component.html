@@ -1,14 +1,14 @@
 <app-toastr #toastr *ngIf="viewToastr"></app-toastr>
 <div class="page-container">
   <div class="inner-container padding-10 flex justify-center align-center flex-column">
-    <div class="box-container padding-20 flex justify-start align-center flex-column">
+    <div class="box-container padding-lr-20 padding-tb-20 flex justify-start align-center flex-column">
       <div class="box-row padding-tb-10 flex justify-center align-center">
         <img class="image" src="./assets/Icons/Icon 2.png" alt="">
       </div>
       <div class="box-row flex justify-center align-center">
         <p class="sub-title text-start black size-regular font-medium">New store? <span class="contact-us cyan-light" (click)="signup('store')">Open yours now</span></p>
       </div>
-      <div class="box-row input-forms flex justify-center align-center flex-column margin-t-20">
+      <div class="box-row input-forms margin-t-20 padding-tb-10">
         <div class="input-form margin-t-20">
           <app-text-field [placeholder]="'Username or email'" [formControl]="loginForm.controls['usernameEmail']" (onInputEvent)="setValue('usernameEmail', $event)"></app-text-field>
         </div>
@@ -16,15 +16,23 @@
           <app-password-field [placeholder]="'Password'" [formControl]="loginForm.controls['password']" (onInputEvent)="setValue('password', $event)"></app-password-field>
         </div>
       </div>
-      <div class="box-row forget-password-container flex justify-end align-center">
+      <div class="box-row forget-password-container flex justify-end align-start">
         <p class="forget-password text-end red size-small font-medium" (click)="forgetPassword()">Forget password?</p>
       </div>
-      <div class="box-row button-container flex justify-center align-center relative">
+      <div class="login-with-container flex justify-center align-center margin-tb-40">
+        <div class="text-container padding-lr-10">
+          <p class="text text-start font-regular size-small gray-dark">signin with</p>
+        </div>
+        <div class="buttons-container flex justify-start align-start">
+          <div id="google-signin-button"></div>
+        </div>
+      </div>
+      <div class="box-row button-container flex justify-center align-center">
         <app-button-loader #loginButton [value]="'Login'" [config]="buttonConfig" (click)="login()"></app-button-loader>
       </div>
     </div>
     <div class="sign-up-container flex justify-center align-center padding-t-30">
-      <p class="text-center size-regular font-regular white">Don't have an account? <span class="sign-up cyan-light" (click)="signup('customer')">Sign up</span> </p>
+      <p class="text-center size-regular font-regular white">New customer? <span class="sign-up cyan-light" (click)="signup('customer')">Sign up</span> </p>
     </div>
   </div>
 </div>

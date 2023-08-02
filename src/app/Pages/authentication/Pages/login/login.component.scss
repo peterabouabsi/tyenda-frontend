@@ -3,12 +3,13 @@
     background: var(--blue-gradient);
     .box-container{
       width: 550px;
-      height: 430px;
+      height: 450px;
       border-radius: 50px;
       box-shadow: 0 0 100px 10px #34343443;
       background-color: var(--white);
       animation: fade-in 0.2s ease-in-out;
       .box-row{
+        height: auto;
         .image{
           width: 150px;
           height: auto;
@@ -22,7 +23,6 @@
         &.input-forms{
           width: 330px;
           height: auto;
-          min-height: 40%;
           .input-form{
             width: 100%;
             height: auto;
@@ -38,9 +38,12 @@
         &.button-container{
           width: 100%;
           height: auto;
-          top: 80px;
         }
       }
+    }
+
+    .login-with-container{
+      width: 100%;
     }
 
     .sign-up-container{

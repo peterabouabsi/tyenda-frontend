@@ -12,6 +12,7 @@ import { CustomerSignupForm } from 'src/app/Shared/Models/Forms/CustomerSignupFo
 import { SendActivationEmailForm } from 'src/app/Shared/Models/Forms/SendActivationEmailForm.form';
 import { ActivateAccountForm } from 'src/app/Shared/Models/Forms/ActivateAccountForm.form';
 import { RefreshTokenForm } from '../../../Shared/Models/Forms/RefreshTokenForm.form';
+import { LoginGoogleForm } from './../../../Shared/Models/Forms/LoginGoogleForm.form';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class AuthenticationService {
 
   public login(loginForm: LoginForm){
     return this.apiService.post('/Account/Login()', loginForm);
+  }
+
+  public loginWithGoogle(form: LoginGoogleForm) {
+    return this.apiService.post("/Account/LoginGoogle()", form);
   }
 
   public forgetPassword(forgetPasswordForm: ForgetPasswordForm){
