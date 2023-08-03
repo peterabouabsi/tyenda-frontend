@@ -59,29 +59,27 @@ export class ResetPasswordComponent implements OnInit{
   @ViewChild('resetPasswordButton') resetPasswordButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public resetPassword(){
-    this.resetPasswordButton.onClick(() => {
-      if(this.resetPasswordForm.valid){
+    if(this.resetPasswordForm.valid){
 
-        let resetPasswordForm: ResetPasswordForm = {
-          newPassword: this.resetPasswordForm.get('password').value,
-          confirmPassword: this.resetPasswordForm.get('confirmPassword').value,
-          token: this.resetPasswordForm.get('token').value
-        };
+      let resetPasswordForm: ResetPasswordForm = {
+        newPassword: this.resetPasswordForm.get('password').value,
+        confirmPassword: this.resetPasswordForm.get('confirmPassword').value,
+        token: this.resetPasswordForm.get('token').value
+      };
 
-        this.authenticationService.resetPassword(resetPasswordForm).subscribe((response: any) => {
-          this.resetPasswordButton.loading = false;
-          if(response.error){
-            this.toastrRef.onDanger('Reset Password', response.message, 5);
-          }else{
-            this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
-          }
-        });
-
-      }else{
-        this.markFormAsDirty();
+      this.authenticationService.resetPassword(resetPasswordForm).subscribe((response: any) => {
         this.resetPasswordButton.loading = false;
-      }
-    });
+        if(response.error){
+          this.toastrRef.onDanger('Reset Password', response.message, 5);
+        }else{
+          this.router.navigate([Constants.AUTH_MAIN_ROUTE+'login']);
+        }
+      });
+
+    }else{
+      this.markFormAsDirty();
+      this.resetPasswordButton.loading = false;
+    }
   }
 
   public markFormAsDirty() {

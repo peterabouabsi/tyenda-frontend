@@ -10,6 +10,7 @@ import { Constants } from '../../Models/constants.model';
 //Forms
 import { LogoutForm } from 'src/app/Shared/Models/Forms/LogoutForm.form';
 import { ChangePasswordForm } from './../../Models/Forms/ChangePasswordForm.form';
+import { UpdateProfileForm } from '../../Models/Forms/UpdateProfileForm.form';
 
 //Services
 import { ApiService } from './../Api/api.service';
@@ -33,6 +34,9 @@ export class GlobalService {
   }
   public getProfile(){
     return this.apiService.get('/Account/Profile');
+  }
+  public updateProfile(form: UpdateProfileForm){
+    return this.apiService.post('/Account/Update()', form);
   }
   public changePassword(changePasswordForm: ChangePasswordForm){
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);

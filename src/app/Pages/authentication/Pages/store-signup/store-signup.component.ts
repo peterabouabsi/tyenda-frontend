@@ -92,8 +92,7 @@ export class StoreSignupComponent implements OnInit {
 
   @ViewChild('signupButton') signupButton: ButtonLoaderComponent;
   private signup() {
-    this.signupButton.onClick(() => {
-      let storeData = this.globalService.getStorage(Constants.STORAGE_STORE_DATA);
+    let storeData = this.globalService.getStorage(Constants.STORAGE_STORE_DATA);
 
       let storeSignupForm: StoreSignupForm = {
         email: storeData.email? storeData.email : '',
@@ -122,9 +121,6 @@ export class StoreSignupComponent implements OnInit {
           this.toastrRef.onDanger('Store Signup', 'Required fields missing', 5);
         }
       });
-
-    });
-
   }
   //------------------------------------------------------------------------------
 

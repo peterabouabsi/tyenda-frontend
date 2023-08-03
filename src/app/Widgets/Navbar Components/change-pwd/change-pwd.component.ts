@@ -46,25 +46,23 @@ export class ChangePwdComponent implements OnInit{
   public errorMessage: string = "";
   @HostListener('document: keyup.enter')
   public changePassword(){
-    this.changePwdButton.onClick(() => {
-      if(this.changePasswordForm.valid){
-        let changePasswordForm: ChangePasswordForm = {
-          oldPassword: this.changePasswordForm.get('oldPassword').value,
-          newPassword: this.changePasswordForm.get('newPassword').value,
-          confirmPassword: this.changePasswordForm.get('confirmPassword').value
-        }
-
-        this.globalService.changePassword(changePasswordForm).subscribe((response: any) => {
-          this.changePwdButton.loading = false;
-          if(response.error){
-            this.errorMessage = response.message;
-          }else{
-            this.dialogRef.close(response);
-          }
-        }, (err: any) => {
-          this.changePwdButton.loading = false;
-        });
+    if(this.changePasswordForm.valid){
+      let changePasswordForm: ChangePasswordForm = {
+        oldPassword: this.changePasswordForm.get('oldPassword').value,
+        newPassword: this.changePasswordForm.get('newPassword').value,
+        confirmPassword: this.changePasswordForm.get('confirmPassword').value
       }
-    });
+
+      this.globalService.changePassword(changePasswordForm).subscribe((response: any) => {
+        this.changePwdButton.loading = false;
+        if(response.error){
+          this.errorMessage = response.message;
+        }else{
+          this.dialogRef.close(response);
+        }
+      }, (err: any) => {
+        this.changePwdButton.loading = false;
+      });
+    }
   }
 }

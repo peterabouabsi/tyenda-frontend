@@ -14,6 +14,9 @@ import { ButtonLoaderComponent } from '../../Button Components/button-loader/but
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
+//Forms
+import { UpdateProfileForm } from './../../../Shared/Models/Forms/UpdateProfileForm.form';
+
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
@@ -26,8 +29,6 @@ export class EditCustomerComponent implements OnInit {
   @ViewChild('saveProfileButton') saveProfileButton: ButtonLoaderComponent; public saveProfileButtonConfig: ButtonConfig = {isBlue: true}
 
   public editProfileForm: FormGroup = new FormGroup({
-    accountId: new FormControl('', []),
-    customerId: new FormControl('', []),
     profileImage: new FormControl('', []),
     firstname: new FormControl('', []),
     lastname: new FormControl('', []),
@@ -48,16 +49,18 @@ export class EditCustomerComponent implements OnInit {
     this.globalService.getProfile().subscribe((response: any) => {
       if(!response.error){
         for(let key of Object.keys(response)){
-          this.setValue(key, response[key]? response[key] : '');
+          this.setValue(key, response[key]? (key == 'profileImage'? this.fileBaseUrl+response[key] : response[key]) : '');
         }
       }
     });
   }
 
+  public selectedFile: any = null;
   public onProfileImage(event: any) {
     let file = event.target.files[0];
-    const reader = new FileReader();
+    this.selectedFile = file;
 
+    const reader = new FileReader();
     reader.onload = (event) => {
       let fileBlob = event.target.result;
       this.setValue('profileImage', fileBlob);
@@ -73,7 +76,30 @@ export class EditCustomerComponent implements OnInit {
     this.dialogRef.close();
   }
   public saveProfile(){
-    this.saveProfileButton.onClick(() => {
+    let updateProfileForm: UpdateProfileForm = {
+      updateCustomerForm: {
+        firstname: this.editProfileForm.get('firstname').value,
+        lastname: this.editProfileForm.get('lastname').value,
+        email: this.editProfileForm.get('email').value,
+        phone: this.editProfileForm.get('phone').value,
+        username: this.editProfileForm.get('username').value
+      }
+    }
+
+    this.globalService.updateProfile(updateProfileForm).subscribe((response: any) => {
+      if(!response.error){
+        this.dialogRef.close();
+      }else{
+        if(this.selectedFile){
+          //Update profile image - pass selectedFile as FromData blob
+
+        }else{
+          setTimeout(() => {
+            this.saveProfileButton.loading = false;
+            this.dialogRef.close(response);
+          } ,1500)
+        }
+      }
     });
   }
 }

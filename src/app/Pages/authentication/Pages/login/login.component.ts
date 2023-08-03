@@ -95,38 +95,36 @@ export class LoginComponent implements OnInit {
 
   @HostListener('document: keyup.enter')
   public login() {
-    this.loginButton.onClick(() => {
-      if (this.loginForm.valid) {
-        let loginFrom: LoginForm = {
-          usernameOrEmail: this.loginForm.get('usernameEmail').value,
-          password: this.loginForm.get('password').value
-        }
-
-        this.authenticationService.login(loginFrom).subscribe((response: any) => {
-          this.loginButton.loading = false
-          if (response.error) {
-            this.toastrRef.onDanger('Login', response.message, 5);
-          } else {
-            //This means you received your tokens and ready to move on
-            if (response.isActive == undefined) {
-              this.globalService.setStorage(Constants.STORAGE_SESSION, response);
-              this.globalService.getAccountRole().subscribe((response: any) => {
-                if (!response.error) {
-                  this.router.navigate(['/application/' + response.role.toLowerCase()]);
-                }
-              });
-              //This means the account is not activated yet
-            } else {
-              this.router.navigate([Constants.AUTH_MAIN_ROUTE + 'email-activation'], { queryParams: { email: response.email } });
-            }
-          }
-        });
-
-      } else {
-        this.loginButton.loading = false;
-        this.markFormAsDirty();
+    if (this.loginForm.valid) {
+      let loginFrom: LoginForm = {
+        usernameOrEmail: this.loginForm.get('usernameEmail').value,
+        password: this.loginForm.get('password').value
       }
-    });
+
+      this.authenticationService.login(loginFrom).subscribe((response: any) => {
+        this.loginButton.loading = false
+        if (response.error) {
+          this.toastrRef.onDanger('Login', response.message, 5);
+        } else {
+          //This means you received your tokens and ready to move on
+          if (response.isActive == undefined) {
+            this.globalService.setStorage(Constants.STORAGE_SESSION, response);
+            this.globalService.getAccountRole().subscribe((response: any) => {
+              if (!response.error) {
+                this.router.navigate(['/application/' + response.role.toLowerCase()]);
+              }
+            });
+            //This means the account is not activated yet
+          } else {
+            this.router.navigate([Constants.AUTH_MAIN_ROUTE + 'email-activation'], { queryParams: { email: response.email } });
+          }
+        }
+      });
+
+    } else {
+      this.loginButton.loading = false;
+      this.markFormAsDirty();
+    }
   }
 
   public markFormAsDirty() {

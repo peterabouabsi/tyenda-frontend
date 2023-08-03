@@ -51,32 +51,30 @@ export class CustomerSignupComponent implements OnInit{
   @ViewChild('signupButton') signupButton: ButtonLoaderComponent;
   @HostListener('document: keyup.enter')
   public signup(){
-    this.signupButton.onClick(() => {
-      if(this.signupForm.valid){
+    if(this.signupForm.valid){
 
-        let customerSignupForm: CustomerSignupForm = {
-          firstname: this.signupForm.get('firstname').value,
-          lastname: this.signupForm.get('lastname').value,
-          username: this.signupForm.get('username').value,
-          password: this.signupForm.get('password').value,
-          email: this.signupForm.get('email').value,
-          phoneNumber: this.signupForm.get('phoneNumber').value
-        }
-
-        this.authenticationService.signup('/Account/Customer/Signup()', customerSignupForm).subscribe((response: any) => {
-          setTimeout(() => {this.signupButton.loading = false}, 1500);
-          if(response.error){
-            this.toastrRef.onDanger('Signup', response.message, 5);
-          }else{
-            this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: customerSignupForm.email}});
-          }
-        });
-
-      }else{
-        this.markFormAsDirty();
-        this.signupButton.loading = false;
+      let customerSignupForm: CustomerSignupForm = {
+        firstname: this.signupForm.get('firstname').value,
+        lastname: this.signupForm.get('lastname').value,
+        username: this.signupForm.get('username').value,
+        password: this.signupForm.get('password').value,
+        email: this.signupForm.get('email').value,
+        phoneNumber: this.signupForm.get('phoneNumber').value
       }
-    });
+
+      this.authenticationService.signup('/Account/Customer/Signup()', customerSignupForm).subscribe((response: any) => {
+        setTimeout(() => {this.signupButton.loading = false}, 1500);
+        if(response.error){
+          this.toastrRef.onDanger('Signup', response.message, 5);
+        }else{
+          this.router.navigate([Constants.AUTH_MAIN_ROUTE+'email-activation'], {queryParams: {email: customerSignupForm.email}});
+        }
+      });
+
+    }else{
+      this.markFormAsDirty();
+      this.signupButton.loading = false;
+    }
   }
 
   public markFormAsDirty() {

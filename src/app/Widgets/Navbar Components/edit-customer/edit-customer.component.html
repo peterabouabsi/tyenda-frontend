@@ -5,7 +5,7 @@
   <div class="content-container flex justify-start align-start margin-t-30">
     <div class="left-container padding-30 flex justify-center align-start">
       <div class="profile-image-container flex justify-center align-center relative">
-        <img [src]="editProfileForm.controls['profileImage'].value? fileBaseUrl+editProfileForm.controls['profileImage'].value: './assets/Images/no-profile-image.png'" alt="">
+        <img [src]="editProfileForm.controls['profileImage'].value? editProfileForm.controls['profileImage'].value: './assets/Images/no-profile-image.png'" alt="">
         <input type="file" class="absolute" accept="image/*" (change)="onProfileImage($event)"/>
       </div>
     </div>
