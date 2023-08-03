@@ -75,9 +75,13 @@ export class NavbarCustomerComponent implements OnInit{
   /*Profile Options*/
   public editProfile(){
     this.globalService.openDialog(EditCustomerComponent, {}, (dialog: any, response: any) => {
-      if(!response.error){
+      if(response){
         this.viewToastr = true;
-        setTimeout(() => {this.toastr.onSuccess('Edit Profile', response.message, 5)}, 100);
+        if(!response.error){
+          setTimeout(() => {this.toastr.onSuccess('Edit Profile', response.message, 5)}, 100);
+        }else{
+          setTimeout(() => {this.toastr.onDanger('Edit Profile', response.error, 5)}, 100);
+        }
       }
     });
   }

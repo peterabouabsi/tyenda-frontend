@@ -68,11 +68,11 @@ export class LoginComponent implements OnInit {
     google.accounts.id.prompt();
 
   }
-  private async loginWithGoogle(response: any) {
+  private loginWithGoogle(response: any) {
     let loginGoogleForm: LoginGoogleForm = {
       credential: response.credential
     }
-    await this.authenticationService.loginWithGoogle(loginGoogleForm).subscribe((response: any) => {
+    this.authenticationService.loginWithGoogle(loginGoogleForm).subscribe((response: any) => {
       if (response.error) {
         this.toastrRef.onDanger('Login', response.message, 5);
       } else {

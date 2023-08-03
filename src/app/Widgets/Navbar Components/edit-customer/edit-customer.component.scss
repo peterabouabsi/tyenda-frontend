@@ -1,0 +1,35 @@
+.dialog-container{
+  .content-container{
+    .left-container{
+      width: 200px;
+      .profile-image-container{
+        width: 300px;
+        img{
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: contain;
+        }
+        input{
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          opacity: 0;
+          cursor: pointer;
+          &::file-selector-button {
+            height: 100%;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .right-container{
+      width: 100%;
+      height: fit-content;
+      .inputs-container{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

@@ -31,6 +31,9 @@ export class GlobalService {
   public getAccountRole() {
     return this.apiService.get('/Account/Role()');
   }
+  public getProfile(){
+    return this.apiService.get('/Account/Profile');
+  }
   public changePassword(changePasswordForm: ChangePasswordForm){
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
   }

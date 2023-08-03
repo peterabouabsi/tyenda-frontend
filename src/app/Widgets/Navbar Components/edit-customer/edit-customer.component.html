@@ -2,8 +2,55 @@
   <div class="text-container flex justify-center align-center">
     <p class="title text-center font-bold size-medium black">Edit Profile</p>
   </div>
-  <div class="inputs-container padding-t-20">
-  </div>
-  <div class="button-container flex justify-center align-center margin-t-10">
+  <div class="content-container flex justify-start align-start margin-t-30">
+    <div class="left-container padding-30 flex justify-center align-start">
+      <div class="profile-image-container flex justify-center align-center relative">
+        <img [src]="editProfileForm.controls['profileImage'].value? fileBaseUrl+editProfileForm.controls['profileImage'].value: './assets/Images/no-profile-image.png'" alt="">
+        <input type="file" class="absolute" accept="image/*" (change)="onProfileImage($event)"/>
+      </div>
+    </div>
+    <div class="right-container padding-30">
+      <div class="inputs-container">
+        <div class="input-form padding-b-30">
+          <app-text-field
+            [placeholder]="'Firstname'"
+            [formControl]="editProfileForm.controls['firstname']"
+            (onInputEvent)="setValue('firstname', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-30">
+          <app-text-field
+            [placeholder]="'Lastname'"
+            [formControl]="editProfileForm.controls['lastname']"
+            (onInputEvent)="setValue('lastname', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-30">
+          <app-text-field
+            [placeholder]="'Username'"
+            [formControl]="editProfileForm.controls['username']"
+            (onInputEvent)="setValue('username', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-30">
+          <app-text-field
+            [placeholder]="'Email'"
+            [formControl]="editProfileForm.controls['email']"
+            (onInputEvent)="setValue('email', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-30">
+          <app-text-field
+            [placeholder]="'Phone Number'"
+            [formControl]="editProfileForm.controls['phone']"
+            (onInputEvent)="setValue('phone', $event)">
+          </app-text-field>
+        </div>
+      </div>
+      <div class="button-container flex justify-space-between align-center">
+        <app-button [value]="'Cancel'" [color]="'gray'" (click)="closeEditProfile()"></app-button>
+        <app-button-loader #saveProfileButton [value]="'Save'" [config]="saveProfileButtonConfig" (click)="saveProfile()"></app-button-loader>
+      </div>
+    </div>
   </div>
 </div>
