@@ -38,6 +38,9 @@ export class GlobalService {
   public updateProfile(form: UpdateProfileForm){
     return this.apiService.post('/Account/Update()', form);
   }
+  public uploadProfileImage(formData: FormData){
+    return this.apiService.post('/Account/Profile/Upload', formData);
+  }
   public changePassword(changePasswordForm: ChangePasswordForm){
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
   }

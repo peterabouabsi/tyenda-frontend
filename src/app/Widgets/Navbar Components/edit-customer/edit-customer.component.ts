@@ -26,7 +26,7 @@ export class EditCustomerComponent implements OnInit {
 
   public fileBaseUrl: string = environment.fileBaseUrl;
 
-  @ViewChild('saveProfileButton') saveProfileButton: ButtonLoaderComponent; public saveProfileButtonConfig: ButtonConfig = {isBlue: true}
+  @ViewChild('saveProfileButton') saveProfileButton: ButtonLoaderComponent; public saveProfileButtonConfig: ButtonConfig = { isBlue: true }
 
   public editProfileForm: FormGroup = new FormGroup({
     profileImage: new FormControl('', []),
@@ -38,27 +38,27 @@ export class EditCustomerComponent implements OnInit {
   });
 
   constructor(private dialogRef: MatDialogRef<EditCustomerComponent>,
-              private globalService: GlobalService) {
+    private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
     this.readCustomerProfile();
   }
 
-  private readCustomerProfile(){
+  private readCustomerProfile() {
     this.globalService.getProfile().subscribe((response: any) => {
-      if(!response.error){
-        for(let key of Object.keys(response)){
-          this.setValue(key, response[key]? (key == 'profileImage'? this.fileBaseUrl+response[key] : response[key]) : '');
+      if (!response.error) {
+        for (let key of Object.keys(response)) {
+          this.setValue(key, response[key] ? (key == 'profileImage' ? this.fileBaseUrl + response[key] : response[key]) : '');
         }
       }
     });
   }
 
-  public selectedFile: any = null;
+  public selectedProfileImageFile: any = null;
   public onProfileImage(event: any) {
     let file = event.target.files[0];
-    this.selectedFile = file;
+    this.selectedProfileImageFile = file;
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -66,16 +66,17 @@ export class EditCustomerComponent implements OnInit {
       this.setValue('profileImage', fileBlob);
     };
     reader.readAsDataURL(file);
+
   }
 
-  public setValue(formControlName: string, value: any){
+  public setValue(formControlName: string, value: any) {
     this.editProfileForm.get(formControlName).setValue(value);
   }
 
-  public closeEditProfile(){
+  public closeEditProfile() {
     this.dialogRef.close();
   }
-  public saveProfile(){
+  public saveProfile() {
     let updateProfileForm: UpdateProfileForm = {
       updateCustomerForm: {
         firstname: this.editProfileForm.get('firstname').value,
@@ -87,17 +88,23 @@ export class EditCustomerComponent implements OnInit {
     }
 
     this.globalService.updateProfile(updateProfileForm).subscribe((response: any) => {
-      if(!response.error){
-        this.dialogRef.close();
-      }else{
-        if(this.selectedFile){
-          //Update profile image - pass selectedFile as FromData blob
+      if (!response.error) {
+        response['message']='Profile updated successfully'
+        if(this.selectedProfileImageFile){
+          //Update profile image
+          let formData = new FormData();
+          formData.append('File', this.selectedProfileImageFile);
+          this.globalService.uploadProfileImage(formData).subscribe((response: any) => {
+            if (!response.error) {
+              this.setValue('profileImage', this.fileBaseUrl + response.profileImage)
 
+              this.saveProfileButton.loading = false;
+              this.dialogRef.close(response);
+            }
+          });
         }else{
-          setTimeout(() => {
-            this.saveProfileButton.loading = false;
-            this.dialogRef.close(response);
-          } ,1500)
+          this.saveProfileButton.loading = false;
+          this.dialogRef.close(response);
         }
       }
     });
