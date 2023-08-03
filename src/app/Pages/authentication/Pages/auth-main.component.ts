@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
+
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
@@ -22,6 +25,8 @@ export class AuthMainComponent implements OnInit{
     this.globalService.isAuthenticated().then((data) => {
       if(data.isAuth){
         this.router.navigate(['/application/'+data.role.toLowerCase()]);
+      }else{
+        this.router.navigate([Constants.AUTH_MAIN_ROUTE])
       }
     });
   }

@@ -49,24 +49,28 @@ export class LoginComponent implements OnInit {
 
   /* -------------------- init and login (if yes) using google account ----------------------- */
   private initGoogleSignIn() {
-    const clientId = environment.googleOAuthClientId;
-    // @ts-ignore
-    google.accounts.id.initialize({
-      client_id: clientId,
-      callback: this.loginWithGoogle.bind(this),
-      auto_select: false,
-      cancel_on_tap_outside: true,
+    this.globalService.isAuthenticated().then((data: any) => {
+      if (!data.isAuth) {
+        const clientId = environment.googleOAuthClientId;
+        // @ts-ignore
+        google.accounts.id.initialize({
+          client_id: clientId,
+          callback: this.loginWithGoogle.bind(this),
+          auto_select: false,
+          cancel_on_tap_outside: true,
 
-    });
-    // @ts-ignore
-    google.accounts.id.renderButton(
-      // @ts-ignore
-      document.getElementById("google-signin-button"),
-      { size: "large", width: 100, type: 'icon', shape: 'circle', theme: 'outline' }
-    );
-    // @ts-ignore
-    google.accounts.id.prompt();
+        });
+        // @ts-ignore
+        google.accounts.id.renderButton(
+          // @ts-ignore
+          document.getElementById("google-signin-button"),
+          { size: "large", width: 100, type: 'icon', shape: 'circle', theme: 'outline' }
+        );
+        // @ts-ignore
+        google.accounts.id.prompt();
 
+      }
+    })
   }
   private loginWithGoogle(response: any) {
     let loginGoogleForm: LoginGoogleForm = {
