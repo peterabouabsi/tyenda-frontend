@@ -7,7 +7,11 @@
         </div>
         <div class="item-card-container flex justify-center align-center">
           <app-empty [value]="'No item sold'" *ngIf="!topSellingItem"></app-empty>
-          <app-item-customer-basic-card [data]="topSellingItem" [config]="{showLike: false, showCartButton: false}" *ngIf="topSellingItem"></app-item-customer-basic-card>
+          <app-item-customer-basic-card
+            [data]="topSellingItem"
+            [config]="{showLike: false, showCartButton: false}"
+            *ngIf="topSellingItem">
+          </app-item-customer-basic-card>
         </div>
       </div>
 
@@ -17,8 +21,11 @@
         </div>
         <div class="overview-cards-container flex justify-center align-center flex-wrap margin-tb-10">
           <div class="overview-card-container padding-10" *ngFor="let overview of overviews">
-            <app-overview-card [data]="overview"></app-overview-card>
+            <app-overview-card
+              [data]="overview">
+            </app-overview-card>
           </div>
+          <app-empty [value]="'You have no overview'" *ngIf="overviews.length == 0"></app-empty>
         </div>
       </div>
     </div>
@@ -35,8 +42,11 @@
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let item of itemsData.data">
-              <app-item-customer-basic-card [data]="item"></app-item-customer-basic-card>
+              <app-item-customer-basic-card
+                [data]="item">
+              </app-item-customer-basic-card>
             </div>
+            <app-empty [value]="'No items found'" *ngIf="itemsData.data.length == 0"></app-empty>
           </div>
         </app-pager>
       </div>
@@ -52,8 +62,11 @@
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let store of storesData.data">
-              <app-store-customer-moderate-card [data]="store"></app-store-customer-moderate-card>
+              <app-store-customer-moderate-card
+                [data]="store">
+              </app-store-customer-moderate-card>
             </div>
+            <app-empty [value]="'No stores found'" *ngIf="storesData.data.length == 0"></app-empty>
           </div>
         </app-pager>
       </div>
@@ -65,11 +78,28 @@
         <div class="order-cards-container margin-t-30">
           <div class="order-card-container padding-6"
             *ngFor="let order of orders">
-            <app-order-customer-card [data]="order"></app-order-customer-card>
+            <app-order-customer-card
+              [data]="order">
+            </app-order-customer-card>
           </div>
         </div>
+        <div class="empty-container flex justify-center align-center">
+          <app-empty [value]="'You have no orders'" *ngIf="orders.length == 0"></app-empty>
+        </div>
         <div class="button-container flex justify-center align-center margin-t-50">
-          <app-button [color]="'black'" [value]="'View All Orders'" (click)="routeTo('orders')"></app-button>
+          <app-button
+            [color]="'orange'"
+            [value]="'Explore Items'"
+            (click)="routeTo('search', {type: 'Item'})"
+            *ngIf="orders.length == 0">
+          </app-button>
+
+          <app-button
+            [color]="'black'"
+            [value]="'View All Orders'"
+            (click)="routeTo('orders')"
+            *ngIf="orders.length > 0">
+          </app-button>
         </div>
       </div>
 

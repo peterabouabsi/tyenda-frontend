@@ -16,6 +16,7 @@ import { RequestOrderService } from '../Pages/Customer/Pages/Request Order/Servi
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
 import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd/change-pwd.component';
+import { EditCustomerComponent } from 'src/app/Widgets/Navbar Components/edit-customer/edit-customer.component';
 
 import { CustomerMainComponent } from '../Pages/Customer/customer-main.component';
   import { NavbarCustomerComponent } from 'src/app/Widgets/Navbar Components/navbar-customer/navbar-customer.component';
@@ -40,6 +41,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
   declarations: [
     ApplicationComponent,
     ChangePwdComponent,
+    EditCustomerComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,
@@ -71,6 +73,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
   exports: [
     ApplicationComponent,
     ChangePwdComponent,
+    EditCustomerComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,

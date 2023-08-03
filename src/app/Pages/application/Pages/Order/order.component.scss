@@ -74,21 +74,24 @@
               min-height: none;
             }
           }
-          .button-container{
+
+          .button-container {
             width: 100%;
             height: 2.3rem;
-            ::ng-deep app-button-loader{
-              .button.gray-button{
+
+            ::ng-deep app-button-loader {
+              .button.gray-button {
                 width: 100%;
               }
             }
           }
 
-          .cards-container{
+          .cards-container {
             min-height: 360px;
             max-height: 500px;
             overflow-y: scroll;
-            &::-webkit-scrollbar{
+
+            &::-webkit-scrollbar {
               width: 3px;
             }
           }
@@ -143,6 +146,7 @@
 
             .color-sizes-container {
               width: auto;
+
               .color-container {
                 width: 30px;
                 height: 30px;
@@ -184,6 +188,132 @@
         }
       }
 
+    }
+  }
+}
+
+@media (max-width: 1185.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        grid-template-columns: 350px auto;
+
+        .right-container {
+          .location-container {
+            .content-container {
+              grid-template-columns: 40% 60%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1070.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        .right-container {
+          .item-container{
+            .name-price-container{
+              .name{
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        grid-template-columns: 350px auto;
+
+        .right-container {
+          .location-container {
+            .content-container {
+              display: block;
+              .info-container,
+              .map-container {
+                width: 100%;
+                height: 300px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 800.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 470.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        display: block;
+        .receiver-container{
+          .content-container{
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450.5px) {
+  .parent-container {
+    .inner-container {
+      .body-container {
+        display: block;
+        .top-container{
+          justify-content: center;
+          flex-direction: column;
+          .store-container{
+            margin: 10px 0;
+          }
+        }
+        .item-container{
+          .name-price-container{
+            display: block;
+            p{
+              text-align: center;
+            }
+            .discount-price-container{
+              justify-content: center;
+              .discount, .price{
+                font-size: 1.1rem;
+                sup{
+                  font-size: 0.8rem;
+                }
+              }
+
+            }
+          }
+        }
+        .receiver-container{
+          .content-container{
+            display: block;
+          }
+        }
+      }
     }
   }
 }

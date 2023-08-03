@@ -89,7 +89,7 @@ export class HomeCustomerComponent implements OnInit{
     }
   }
 
-  public routeTo(path: string){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+path]);
+  public routeTo(path: string, queryParams: any = {}){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+path], {queryParams: queryParams});
   }
 }

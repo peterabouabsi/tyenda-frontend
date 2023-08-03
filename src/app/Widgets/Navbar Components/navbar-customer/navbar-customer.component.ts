@@ -12,7 +12,9 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
 //Components
 import { ChangePwdComponent } from '../change-pwd/change-pwd.component';
+import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 import { ToastrComponent } from '../../Other Components/toastr/toastr.component';
+import { AlertComponent } from '../../Other Components/alert/alert.component';
 
 //Views
 import { ViewModerateNotification } from 'src/app/Shared/Models/Views/Notification/ViewModerateNotification.view';
@@ -71,19 +73,46 @@ export class NavbarCustomerComponent implements OnInit{
   /*------------------------------------------------*/
 
   /*Profile Options*/
-  public editProfile(){}
+  public editProfile(){
+    this.globalService.openDialog(EditCustomerComponent, {}, (dialog: any, response: any) => {
+      if(!response.error){
+        this.viewToastr = true;
+        setTimeout(() => {this.toastr.onSuccess('Edit Profile', response.message, 5)}, 100);
+      }
+    });
+  }
   public changePassword(){
-    this.globalService.openDialog(ChangePwdComponent, {}, (response: any) => {
-      if(response && !response.error){
+    this.globalService.openDialog(ChangePwdComponent, {}, (dialog: any, response: any) => {
+      if(!response.error){
         this.viewToastr = true;
         setTimeout(() => {this.toastr.onSuccess('Change Password', response.message, 5)}, 100);
       }
     });
   }
+
+  public onLogout: boolean = false;
   public logout(){
-    this.globalService.logout().then(() => {
-      this.router.navigate([Constants.AUTH_MAIN_ROUTE]);
-    });
+    this.globalService.openDialog(AlertComponent,
+      {
+        title: 'Logout',
+        message: 'Are you sure you want to logout?',
+        buttons: [
+          {
+            value: 'Logout', color: 'red', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+              if (this.onLogout == false) {
+                this.globalService.logout().then(() => {
+                  setTimeout(() => {
+                    dialogRef.close();
+                    this.router.navigate([Constants.AUTH_MAIN_ROUTE]);
+                  }, 3000)
+                });
+              }
+            }
+          },
+          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
+        ]
+      }
+      , null);
   }
   /*------------------------------------------------*/
 

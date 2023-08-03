@@ -22,7 +22,7 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 export class ChangePwdComponent implements OnInit{
 
   public changePasswordForm: FormGroup = new FormGroup({
-    oldPassword: new FormControl('', [Validators.required]),
+    oldPassword: new FormControl('', []),
     newPassword : new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
   });
