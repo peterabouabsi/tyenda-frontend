@@ -13,7 +13,7 @@
           <div class="info-container flex justify-start align-start flex-column padding-lr-15">
             <p class="title text-start font-extra-bold size-large ellipse-1 black">{{store?.name}}</p>
             <p class="timestamp text-start font-regular size-semi-small ellipse-1 gray-dark">Created 2 weeks ago</p>
-            <div class="buttons-container flex justify-end align-center relative">
+            <div class="buttons-container flex justify-end align-center relative" *ngRolePermission="'Customer'">
               <div class="button-container flex justify-end align-center margin-l-10">
                 <app-button
                   [color]="'gray'"

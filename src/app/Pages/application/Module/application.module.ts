@@ -32,6 +32,7 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
 
 import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { NavbarStoreComponent } from 'src/app/Widgets/Navbar Components/navbar-store/navbar-store.component';
+  import { HomeStoreComponent } from '../Pages/Store/Pages/Home/home-store.component';
   //
 
 import { StoreProfileComponent } from '../Pages/Store Profile/store-profile.component';
@@ -60,6 +61,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Navbar
       NavbarStoreComponent,
       //Store Pages
+      HomeStoreComponent,
 
     StoreProfileComponent,
     OrderComponent
@@ -92,6 +94,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Navbar
       NavbarStoreComponent,
       //Store Pages
+      HomeStoreComponent,
 
     StoreProfileComponent,
     OrderComponent

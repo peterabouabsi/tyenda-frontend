@@ -13,6 +13,7 @@ export class SelectFieldComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() placeholder: string = '';
   @Input() formControl: any = null;
+  @Input() selectedOptionId?: string = '';
   @Input() disabled?: boolean = false;
 
   @Output() onSelectEvent = new EventEmitter();
@@ -25,6 +26,10 @@ export class SelectFieldComponent implements OnInit {
   ngOnInit(): void {
     if (this.formControl.value) this.selectedOption = this.formControl.value;
     if (Array.isArray(this.formControl.value)) this.isFormControlArray = true;
+
+    //Select the option onInit if condition match
+    if(this.selectedOptionId)
+      this.setOption(this.data.find(data => data.id == this.selectedOptionId));
   }
 
   //Select option

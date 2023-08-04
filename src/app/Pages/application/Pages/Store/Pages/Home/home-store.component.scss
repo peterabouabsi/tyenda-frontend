@@ -1,0 +1,24 @@
+.parent-container{
+  .inner-container{
+    .left-container{
+      width: 100%;
+      max-width: 300px;
+      .store-profile-image-container{
+        width: 100%;
+        .image-container{
+          img{
+            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .right-container{
+      width: 100%;
+      height: fit-content;
+
+    }
+  }
+}

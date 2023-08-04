@@ -1,0 +1,29 @@
+<div class="parent-container">
+  <div class="inner-container flex justify-start align-start">
+    <div class="left-container padding-tb-20 padding-lr-10">
+      <div class="store-profile-image-container flex justify-center align-start">
+        <div class="image-container">
+          <img src="https://127.0.0.1:5001/files/Profiles/12341234-tesla.png" alt="">
+        </div>
+      </div>
+      <div class="text-container padding-tb-10">
+        <p class="store-name text-center font-extra-bold size-semi-large black">Tesla Inc.</p>
+      </div>
+      <div class="incomes-container">
+        <div class="text-container padding-tb-10 margin-t-20">
+          <p class="store-name text-start font-medium size-regular black">Monthly Incomes</p>
+        </div>
+        <div class="input-container">
+          <div class="input-form">
+            <app-select-field [data]="months" [selectedOptionId]="todayMonthIndex" [placeholder]="'Select Month'" [formControl]="monthlyIncomeForm.controls['month']" (onSelectEvent)="setValue('month', $event)"></app-select-field>
+          </div>
+        </div>
+
+        <div class="cards-container">
+          <div class="card-container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="right-container padding-tb-20 padding-lr-30">a</div>
+  </div>
+</div>

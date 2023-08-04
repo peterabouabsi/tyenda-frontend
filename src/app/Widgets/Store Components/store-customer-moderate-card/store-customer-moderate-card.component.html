@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="buttons-container flex justify-space-between align-center flex-wrap margin-t-20">
+  <div class="buttons-container flex justify-space-between align-center flex-wrap margin-t-20" *ngRolePermission="'Customer'">
     <app-button [color]="'gray'" [value]="!data.isAddedToCart? 'Add to cart' : 'Remove from cart'" (click)="addRemoveCart()"></app-button>
     <app-button [color]="!data.isFollowed? 'red' : 'red-white'" [value]="!data.isFollowed? 'Follow': 'Unfollow'" (click)="followUnfollow()"></app-button>
   </div>
