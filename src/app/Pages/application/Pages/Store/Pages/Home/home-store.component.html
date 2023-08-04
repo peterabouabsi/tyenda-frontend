@@ -11,7 +11,7 @@
       </div>
       <div class="incomes-container">
         <div class="text-container padding-tb-10 margin-t-20">
-          <p class="store-name text-start font-medium size-regular black">Monthly Incomes</p>
+          <p class="store-name text-start font-semi-bold size-regular black">Monthly Incomes</p>
         </div>
         <div class="input-container">
           <div class="input-form">
@@ -20,7 +20,30 @@
         </div>
 
         <div class="cards-container">
-          <div class="card-container"></div>
+          <div class="card-container margin-tb-13">
+            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
+            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : true, 'down': false}">
+              <p class="price text-start font-medium size-small" [ngClass]="{'up' : true, 'down': false}">$ 10.00</p>
+            </div>
+          </div>
+          <div class="card-container margin-tb-13">
+            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
+            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : false, 'down': true}">
+              <p class="price text-start font-medium size-small" [ngClass]="{'up' : false, 'down': true}">$ 10.00</p>
+            </div>
+          </div>
+          <div class="card-container margin-tb-13">
+            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
+            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : true, 'down': false}">
+              <p class="price text-start font-medium size-small" [ngClass]="{'up' : true, 'down': false}">$ 10.00</p>
+            </div>
+          </div>
+          <div class="card-container margin-tb-13">
+            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
+            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : false, 'down': true}">
+              <p class="price text-start font-medium size-small" [ngClass]="{'up' : false, 'down': true}">$ 10.00</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

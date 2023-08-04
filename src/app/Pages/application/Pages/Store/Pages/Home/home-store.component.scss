@@ -14,6 +14,32 @@
           }
         }
       }
+      .incomes-container{
+        width: 100%;
+        .cards-container{
+          .card-container{
+            .income-box{
+              border-radius: 3px;
+              width: 100%;
+                &.up{
+                  background-color: var(--green-light-alpha);
+                }
+                &.down{
+                  background-color: var(--red-light-alpha);
+                }
+              .price{
+                width: 100%;
+                &.up{
+                  color: var(--green-super-dark);
+                }
+                &.down{
+                  color: var(--red-super-dark);
+                }
+              }
+            }
+          }
+        }
+      }
     }
     .right-container{
       width: 100%;
