@@ -22,12 +22,15 @@ import { CustomerHomeService } from './Services/customer-home.service';
   styleUrls: ['./home-customer.component.scss']
 })
 export class HomeCustomerComponent implements OnInit{
+  /* ----------- Global Properties */
+  public appMainRouteCustomer: string = Constants.APP_MAIN_ROUTE_CUSTOMER;
+  /* Global Properties ----------- */
 
   public topSellingItem: ItemBasicView;
   public overviews: OrderOverview[] = [];
   public itemsData: PagerDataConfig<ItemBasicView> = {data: [], count: 0, dataPerPage: 3}
   public storesData: PagerDataConfig<StoreModerateView> = {data: [], count: 0, dataPerPage: 3}
-  public orders: OrderBasicView[] = [];
+  public recentOrders: OrderBasicView[] = [];
 
   constructor(private router: Router,
               private customerHomeService: CustomerHomeService) {
@@ -72,7 +75,7 @@ export class HomeCustomerComponent implements OnInit{
   private readOrders(){
     this.customerHomeService.getRecentOrders().subscribe((response: any) => {
       if(!response.error){
-        this.orders = response;
+        this.recentOrders = response;
       }
     })
   }

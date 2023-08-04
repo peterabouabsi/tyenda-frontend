@@ -12,6 +12,7 @@ import { CustomerSearchService } from '../Pages/Customer/Pages/Search/Services/c
 import { CartService } from '../Pages/Customer/Pages/Cart/Services/cart.service';
 import { CustomerItemService } from '../Pages/Customer/Pages/Item/Services/customer-item.service';
 import { RequestOrderService } from '../Pages/Customer/Pages/Request Order/Services/request-order.service';
+import { StoreHomeService } from '../Pages/Store/Pages/Home/Services/store-home.service';
 
 //Components
 import { ApplicationComponent } from '../Pages/application.component';
@@ -106,7 +107,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     CartService,
     CustomerItemService,
     RequestOrderService,
-
+    StoreHomeService,
     DecimalPipe
   ]
 })

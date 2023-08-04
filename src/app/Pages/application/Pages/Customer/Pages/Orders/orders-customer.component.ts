@@ -1,5 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
@@ -20,7 +21,6 @@ import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView
 
 //Forms
 import { OrdersSearchForm } from 'src/app/Shared/Models/Forms/OrdersSearchForm.form';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders-customer',
@@ -28,6 +28,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./orders-customer.component.scss']
 })
 export class OrdersCustomerComponent implements OnInit {
+  /* ----------- Global Properties */
+  public appMainRouteCustomer: string = Constants.APP_MAIN_ROUTE_CUSTOMER;
+  /* Global Properties ----------- */
 
   public dates: BasicTimestampView[] = [];
   public orderStatuses: string[] = [];

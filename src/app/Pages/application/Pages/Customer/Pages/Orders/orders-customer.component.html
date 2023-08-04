@@ -82,7 +82,10 @@
       <div class="result-body-container padding-tb-30">
         <div class="cards-container flex justify-center align-start flex-wrap" *ngIf="searchResultConfig.loaded">
           <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
-            <app-order-customer-card [data]="dataCard"></app-order-customer-card>
+            <app-order-card
+              [data]="dataCard"
+              [onClickRoute]="appMainRouteCustomer">
+            </app-order-card>
           </div>
         </div>
       </div>

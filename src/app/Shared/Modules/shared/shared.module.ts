@@ -46,7 +46,7 @@ import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/
 import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
 import { StoreCustomerModerateCardComponent } from 'src/app/Widgets/Store Components/store-customer-moderate-card/store-customer-moderate-card.component';
 import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Components/store-customer-basic-card/store-customer-basic-card.component';
-import { OrderCustomerCardComponent } from 'src/app/Widgets/Order Components/order-customer-card/order-customer-card.component';
+import { OrderCardComponent } from 'src/app/Widgets/Order Components/order-card/order-card.component';
 import { OverviewCardComponent } from 'src/app/Widgets/Overview Components/overview-card/overview-card.component';
 import { NotificationCardComponent } from 'src/app/Widgets/Notification Components/notification-card/notification-card.component';
 
@@ -59,7 +59,6 @@ import { MapComponent } from 'src/app/Widgets/Map Components/map/map.component';
 
 //Directives
 import { RolePermissionDirective } from '../../Directives/role-permission.directive';
-
 
 @NgModule({
   declarations: [
@@ -101,7 +100,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,
     StoreCustomerBasicCardComponent,
-    OrderCustomerCardComponent,
+    OrderCardComponent,
     OverviewCardComponent,
     NotificationCardComponent,
     CommentCardComponent,
@@ -158,7 +157,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     ItemCustomerModerateCardComponent,
     StoreCustomerModerateCardComponent,
     StoreCustomerBasicCardComponent,
-    OrderCustomerCardComponent,
+    OrderCardComponent,
     OverviewCardComponent,
     NotificationCardComponent,
     CommentCardComponent,

@@ -45,6 +45,17 @@
       width: 100%;
       height: fit-content;
 
+      .section{
+        width: 100%;
+
+        .order-cards-container{
+          display: grid;
+          grid-template-columns: 50% 50%;
+          .order-card-container{
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }

@@ -4,22 +4,20 @@ import { Router } from '@angular/router';
 //environments
 import { environment } from 'src/environments/environments';
 
-//Constants
-import { Constants } from 'src/app/Shared/Models/constants.model';
-
 //Views
 import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
 
 @Component({
-  selector: 'app-order-customer-card',
-  templateUrl: './order-customer-card.component.html',
-  styleUrls: ['./order-customer-card.component.scss']
+  selector: 'app-order-card',
+  templateUrl: './order-card.component.html',
+  styleUrls: ['./order-card.component.scss']
 })
-export class OrderCustomerCardComponent implements OnInit{
+export class OrderCardComponent implements OnInit{
 
   public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: OrderBasicView;
+  @Input() onClickRoute: string;
 
   constructor(private router: Router) {
   }
@@ -28,7 +26,7 @@ export class OrderCustomerCardComponent implements OnInit{
   }
 
   public openOrder(){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"/order/"+this.data.id]);
+    this.router.navigate([this.onClickRoute+"/order/"+this.data.id]);
   }
 
 }

@@ -77,28 +77,29 @@
         </div>
         <div class="order-cards-container margin-t-30">
           <div class="order-card-container padding-6"
-            *ngFor="let order of orders">
-            <app-order-customer-card
-              [data]="order">
-            </app-order-customer-card>
+            *ngFor="let order of recentOrders">
+            <app-order-card
+              [data]="order"
+              [onClickRoute]="appMainRouteCustomer">
+            </app-order-card>
           </div>
         </div>
         <div class="empty-container flex justify-center align-center">
-          <app-empty [value]="'You have no orders'" *ngIf="orders.length == 0"></app-empty>
+          <app-empty [value]="'You have no orders'" *ngIf="recentOrders.length == 0"></app-empty>
         </div>
         <div class="button-container flex justify-center align-center margin-t-50">
           <app-button
             [color]="'orange'"
             [value]="'Explore Items'"
             (click)="routeTo('search', {type: 'Item'})"
-            *ngIf="orders.length == 0">
+            *ngIf="recentOrders.length == 0">
           </app-button>
 
           <app-button
             [color]="'black'"
             [value]="'View All Orders'"
             (click)="routeTo('orders')"
-            *ngIf="orders.length > 0">
+            *ngIf="recentOrders.length > 0">
           </app-button>
         </div>
       </div>
