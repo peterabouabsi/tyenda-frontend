@@ -1,0 +1,4 @@
+<div class="toggle" [ngClass]="{'toggle--on': isChecked}">
+  <input type="checkbox" [id]="'toggleSwitch' + id" class="toggle__input" [(ngModel)]="isChecked" (input)="onToggle()">
+  <label [for]="'toggleSwitch' + id" class="toggle__label"></label>
+</div>

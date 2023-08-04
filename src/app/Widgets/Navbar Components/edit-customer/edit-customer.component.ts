@@ -34,7 +34,9 @@ export class EditCustomerComponent implements OnInit {
     lastname: new FormControl('', []),
     username: new FormControl('', []),
     email: new FormControl('', []),
-    phone: new FormControl('', [])
+    phone: new FormControl('', []),
+    onItem: new FormControl(false, []),
+    onReminder: new FormControl(false, [])
   });
 
   constructor(private dialogRef: MatDialogRef<EditCustomerComponent>,
@@ -49,7 +51,7 @@ export class EditCustomerComponent implements OnInit {
     this.globalService.getProfile().subscribe((response: any) => {
       if (!response.error) {
         for (let key of Object.keys(response)) {
-          this.setValue(key, response[key] ? (key == 'profileImage' ? this.fileBaseUrl + response[key] : response[key]) : '');
+          this.setValue(key, key == 'profileImage' ? this.fileBaseUrl + response[key] : response[key]);
         }
       }
     });
@@ -83,7 +85,9 @@ export class EditCustomerComponent implements OnInit {
         lastname: this.editProfileForm.get('lastname').value,
         email: this.editProfileForm.get('email').value,
         phone: this.editProfileForm.get('phone').value,
-        username: this.editProfileForm.get('username').value
+        username: this.editProfileForm.get('username').value,
+        onItem: this.editProfileForm.get('onItem').value,
+        onReminder: this.editProfileForm.get('onReminder').value
       }
     }
 

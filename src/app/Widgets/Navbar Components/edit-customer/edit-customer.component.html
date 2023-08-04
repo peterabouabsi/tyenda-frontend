@@ -3,10 +3,23 @@
     <p class="title text-center font-bold size-medium black">Edit Profile</p>
   </div>
   <div class="content-container flex justify-start align-start margin-t-30">
-    <div class="left-container padding-30 flex justify-center align-start">
+    <div class="left-container padding-30 flex justify-start align-center flex-column">
       <div class="profile-image-container flex justify-center align-center relative">
         <img [src]="editProfileForm.controls['profileImage'].value? editProfileForm.controls['profileImage'].value: './assets/Images/no-profile-image.png'" alt="">
         <input type="file" class="absolute" accept="image/*" (change)="onProfileImage($event)"/>
+      </div>
+      <div class="notification-settings-container margin-t-30">
+        <div class="title-container padding-b-20">
+          <p class="title text-start font-medium size-small black">Notification Settings</p>
+        </div>
+        <div class="notification-setting-container flex justify-start align-start padding-b-10">
+          <app-toggle [id]="1" [isChecked]="editProfileForm.controls['onItem'].value" (onToggleEvent)="setValue('onItem', $event)"></app-toggle>
+          <p class="label text-start font-regular size-semi-small gray-super-dark margin-lr-10">New Item</p>
+        </div>
+        <div class="notification-setting-container flex justify-start align-start padding-b-10">
+          <app-toggle [id]="2" [isChecked]="editProfileForm.controls['onReminder'].value" (onToggleEvent)="setValue('onReminder', $event)"></app-toggle>
+          <p class="label text-start font-regular size-semi-small gray-super-dark margin-lr-10">Reminder</p>
+        </div>
       </div>
     </div>
     <div class="right-container padding-30">

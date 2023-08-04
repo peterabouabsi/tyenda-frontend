@@ -20,6 +20,7 @@ import { PasswordFieldComponent } from 'src/app/Widgets/Form Components/password
 import { SalaryRangeSelectComponent } from 'src/app/Widgets/Form Components/salary-range-select/salary-range-select.component';
 import { RateSelectorComponent } from 'src/app/Widgets/Form Components/rate-selector/rate-selector.component';
 import { SingleCheckboxComponent } from './../../../Widgets/Form Components/single-checkbox/single-checkbox.component';
+import { ToggleComponent } from 'src/app/Widgets/Form Components/toggle/toggle.component';
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
@@ -74,6 +75,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     SalaryRangeSelectComponent,
     RateSelectorComponent,
     SingleCheckboxComponent,
+    ToggleComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -131,6 +133,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     SalaryRangeSelectComponent,
     RateSelectorComponent,
     SingleCheckboxComponent,
+    ToggleComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
