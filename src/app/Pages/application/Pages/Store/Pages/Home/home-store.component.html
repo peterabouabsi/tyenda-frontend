@@ -3,17 +3,18 @@
     <div class="left-container padding-tb-20 padding-lr-10">
       <div class="store-profile-image-container flex justify-center align-start">
         <div class="image-container">
-          <img src="https://127.0.0.1:5001/files/Profiles/12341234-tesla.png" alt="">
+          <img [src]="profileImage? fileBaseUrl+profileImage : './assets/Images/no-profile-image.png'" alt="">
         </div>
       </div>
       <div class="text-container padding-tb-10">
         <p class="store-name text-center font-extra-bold size-semi-large black">Tesla Inc.</p>
       </div>
-      <div class="incomes-container">
-        <div class="text-container padding-tb-10 margin-t-20">
-          <p class="store-name text-start font-semi-bold size-regular black">Monthly Incomes</p>
+      <div class="section incomes-container padding-20">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-bold size-small black capitalize">Monthly Incomes</p>
         </div>
-        <div class="input-container">
+
+        <div class="input-container margin-t-10">
           <div class="input-form">
             <app-select-field [data]="months" [selectedOptionId]="todayMonthIndex" [placeholder]="'Select Month'" [formControl]="monthlyIncomeForm.controls['month']" (onSelectEvent)="setValue('month', $event)"></app-select-field>
           </div>
@@ -46,7 +47,25 @@
           </div>
         </div>
       </div>
+      <div class="section my-customers-container padding-20 margin-t-10">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-bold size-small black capitalize">My Customers</p>
+        </div>
+      </div>
     </div>
-    <div class="right-container padding-tb-20 padding-lr-30">a</div>
+
+    <div class="right-container padding-tb-20 padding-lr-30">
+      <div class="section shadow recent-orders-container padding-20 margin-b-50">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-bold size-medium black capitalize">Recent Orders</p>
+        </div>
+      </div>
+
+      <div class="section shadow similar-stores-container padding-20 margin-b-50">
+        <div class="text-container flex jusitfy-start align-center">
+          <p class="title text-start font-bold size-medium black capitalize">Similar Stores</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

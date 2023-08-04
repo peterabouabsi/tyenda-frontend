@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,10 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
   styleUrls: ['./home-store.component.scss']
 })
 export class HomeStoreComponent implements OnInit {
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
+
+  public profileImage: string = '';
 
   public months: any[] = []; //[{id:'1', value: 'Januray'}, etc.]
   public todayMonthIndex: string = ''; //'1'(January), etc.
@@ -19,11 +24,18 @@ export class HomeStoreComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.readProfileImage();
     this.getMonth();
     this.getMonthIncomes();
   }
 
-
+  private readProfileImage(){
+    this.globalService.getProfileImage().subscribe((response: any) => {
+      if(!response.error){
+        this.profileImage = response.profileImage;
+      }
+    });
+  }
   private getMonth(){
     let {months, todayMonth} = this.globalService.getMonths();
     this.months = months;
@@ -32,6 +44,8 @@ export class HomeStoreComponent implements OnInit {
   private getMonthIncomes(){
     //Backend
   }
+  private getRecentOrders(){}
+  private getSimilarStores(){}
 
   public setValue(formControlName: string, value: string){
     this.monthlyIncomeForm.get(formControlName).setValue(value);
