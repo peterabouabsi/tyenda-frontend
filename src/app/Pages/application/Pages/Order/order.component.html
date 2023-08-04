@@ -48,7 +48,7 @@
           </div>
           <div class="cards-container margin-tb-20" *ngIf="order?.feedbacks.length > 0">
             <div class="card-container flex justify-start align-start padding-10" *ngFor="let feedback of order?.feedbacks">
-              <app-avatar [src]="feedback?.customerProfileImage"></app-avatar>
+              <app-avatar [src]="fileBaseUrl+feedback?.customerProfileImage"></app-avatar>
               <div class="text-container padding-l-10">
                 <p class="timestamp text-start font-regular size-extra-small gray-dark">{{feedback.createdAt | timestamp}}</p>
                 <p class="value text-start font-medium size-semi-small gray-super-dark">{{feedback?.value}}</p>
