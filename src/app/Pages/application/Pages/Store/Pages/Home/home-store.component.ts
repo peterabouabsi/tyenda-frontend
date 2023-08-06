@@ -33,6 +33,7 @@ export class HomeStoreComponent implements OnInit {
   public currentYear: string = '';
 
   public recentOrders: OrderBasicView[] = [];
+  public similarStores: any[] = [];
 
   constructor(private globalService: GlobalService,
               private storeHomeService: StoreHomeService) {
@@ -41,7 +42,9 @@ export class HomeStoreComponent implements OnInit {
   ngOnInit(): void {
     this.readProfileImage();
     this.getMonthlyIncomes();
+
     this.getRecentOrders();
+    this.getSimilarStores();
   }
 
   private readProfileImage(){
@@ -74,7 +77,13 @@ export class HomeStoreComponent implements OnInit {
       }
     })
   }
-  private getSimilarStores(){}
+  private getSimilarStores(){
+    this.storeHomeService.getSimilarStores().subscribe((response: any) => {
+      if(!response.error){
+        this.similarStores = response;
+      }
+    })
+  }
 
   public setValue(formControlName: string, value: any){
     this.monthlyIncomeForm.get(formControlName).setValue(value);

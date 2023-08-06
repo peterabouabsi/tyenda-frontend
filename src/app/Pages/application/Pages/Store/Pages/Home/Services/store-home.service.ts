@@ -17,4 +17,7 @@ export class StoreHomeService {
   public getRecentOrders(){
     return this.apiService.get('/Order/Recent()');
   }
+  public getSimilarStores(){
+    return this.apiService.get('/Store/Similar');
+  }
 }

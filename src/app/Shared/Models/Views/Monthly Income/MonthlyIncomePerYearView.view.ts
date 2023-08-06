@@ -11,4 +11,5 @@ interface YearView{
 interface MonthlyIncomeView{
   month: string;
   price: number;
+  isUp: boolean;
 }

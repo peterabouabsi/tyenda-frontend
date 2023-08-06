@@ -23,8 +23,8 @@
         <div class="cards-container" [ngClass]="{'on-loading' : onIncomesloading}">
           <div class="card-container margin-tb-13" *ngFor="let income of monthlyIncomes?.incomes">
             <p class="dates text-start font-regular size-semi-small gray-super-dark">{{income?.month}} {{currentYear}}</p>
-            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : true, 'down': false}">
-              <p class="price text-start font-medium size-small" [ngClass]="{'up' : true, 'down': false}">$ 10.00</p>
+            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : income?.isUp, 'down': !income?.isUp}">
+              <p class="price text-start font-medium size-small" [ngClass]="{'up' : income?.isUp, 'down': !income?.isUp}">$ {{income?.price}}</p>
             </div>
           </div>
         </div>
