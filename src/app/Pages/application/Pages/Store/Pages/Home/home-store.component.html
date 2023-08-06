@@ -16,33 +16,15 @@
 
         <div class="input-container margin-t-10">
           <div class="input-form">
-            <app-select-field [data]="months" [selectedOptionId]="todayMonthIndex" [placeholder]="'Select Month'" [formControl]="monthlyIncomeForm.controls['month']" (onSelectEvent)="setValue('month', $event)"></app-select-field>
+            <app-select-field [data]="monthlyIncomes?.years" [placeholder]="'Select Year'" [formControl]="monthlyIncomeForm.controls['year']" (onSelectEvent)="setValue('year', $event)"></app-select-field>
           </div>
         </div>
 
-        <div class="cards-container">
-          <div class="card-container margin-tb-13">
-            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
+        <div class="cards-container" [ngClass]="{'on-loading' : onIncomesloading}">
+          <div class="card-container margin-tb-13" *ngFor="let income of monthlyIncomes?.incomes">
+            <p class="dates text-start font-regular size-semi-small gray-super-dark">{{income?.month}} {{currentYear}}</p>
             <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : true, 'down': false}">
               <p class="price text-start font-medium size-small" [ngClass]="{'up' : true, 'down': false}">$ 10.00</p>
-            </div>
-          </div>
-          <div class="card-container margin-tb-13">
-            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
-            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : false, 'down': true}">
-              <p class="price text-start font-medium size-small" [ngClass]="{'up' : false, 'down': true}">$ 10.00</p>
-            </div>
-          </div>
-          <div class="card-container margin-tb-13">
-            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
-            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : true, 'down': false}">
-              <p class="price text-start font-medium size-small" [ngClass]="{'up' : true, 'down': false}">$ 10.00</p>
-            </div>
-          </div>
-          <div class="card-container margin-tb-13">
-            <p class="dates text-start font-regular size-semi-small gray-super-dark">Tu 1 2023 - Sat 5 2023</p>
-            <div class="income-box flex justify-space-between align-center padding-10" [ngClass]="{'up' : false, 'down': true}">
-              <p class="price text-start font-medium size-small" [ngClass]="{'up' : false, 'down': true}">$ 10.00</p>
             </div>
           </div>
         </div>

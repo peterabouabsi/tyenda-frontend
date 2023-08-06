@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environments';
 
 //Views
 import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
+import { MonthlyIncomePerYearView } from 'src/app/Shared/Models/Views/Monthly Income/MonthlyIncomePerYearView.view';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -27,9 +28,9 @@ export class HomeStoreComponent implements OnInit {
 
   public profileImage: string = '';
 
-  public months: any[] = []; //[{id:'1', value: 'Januray'}, etc.]
-  public todayMonthIndex: string = ''; //'1'(January), etc.
-  public monthlyIncomeForm: FormGroup = new FormGroup({ month: new FormControl(null, [Validators.required]) });
+  public monthlyIncomeForm: FormGroup = new FormGroup({ year: new FormControl(null, [Validators.required]) });
+  public monthlyIncomes: MonthlyIncomePerYearView = {years: [], incomes: []};
+  public currentYear: string = '';
 
   public recentOrders: OrderBasicView[] = [];
 
@@ -38,17 +39,9 @@ export class HomeStoreComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMonth();
-
     this.readProfileImage();
-    this.getMonthIncomes();
+    this.getMonthlyIncomes();
     this.getRecentOrders();
-  }
-
-  private getMonth(){
-    let {months, todayMonth} = this.globalService.getMonths();
-    this.months = months;
-    this.todayMonthIndex = todayMonth.toString();
   }
 
   private readProfileImage(){
@@ -58,9 +51,20 @@ export class HomeStoreComponent implements OnInit {
       }
     });
   }
-
-  private getMonthIncomes(){
-    //Backend
+  public onIncomesloading: boolean = false;
+  private getMonthlyIncomes(year: number = new Date().getFullYear()){
+    this.onIncomesloading = true;
+    this.storeHomeService.getMonthlyIncome(year).subscribe((response: any) => {
+      setTimeout(() => {
+        this.onIncomesloading = false;
+        if(!response.error){
+          response.incomes = response.incomes.reverse();
+          this.monthlyIncomes = response;
+          if(year == new Date().getFullYear()) this.currentYear = this.monthlyIncomes.years[this.monthlyIncomes.years.length - 1].id.toString();
+          else this.currentYear = this.monthlyIncomes.years.find((data: any) => {return data.id === year}).id.toString();
+        }
+      }, 1000);
+    });
   }
 
   private getRecentOrders(){
@@ -70,12 +74,11 @@ export class HomeStoreComponent implements OnInit {
       }
     })
   }
-
   private getSimilarStores(){}
 
-  public setValue(formControlName: string, value: string){
+  public setValue(formControlName: string, value: any){
     this.monthlyIncomeForm.get(formControlName).setValue(value);
-    this.getMonthIncomes();
+    this.getMonthlyIncomes(value.value);
   }
 
 }

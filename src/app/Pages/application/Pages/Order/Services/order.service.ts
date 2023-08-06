@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/Shared/Services/Api/api.service';
 
 //Forms
 import { AddFeedbackForm } from 'src/app/Shared/Models/Forms/AddFeedbackForm.form';
-import { ConfirmOrderForm } from 'src/app/Shared/Models/Forms/ConfirmOrderForm.form';
+import { ConfirmCompleteOrderForm } from 'src/app/Shared/Models/Forms/ConfirmCompleteOrderForm.form';
 import { ApproveRejectForm } from 'src/app/Shared/Models/Forms/ApproveRejectForm.form';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class OrderService {
     return this.apiService.post('/Order/Feedback/Add()', form);
   }
 
-  public confirmOrder(form: ConfirmOrderForm){
+  public confirmOrder(form: ConfirmCompleteOrderForm){
     return this.apiService.post('/Order/Confirm()', form);
   }
 
@@ -35,4 +35,7 @@ export class OrderService {
     return this.apiService.post('/Order/ApproveReject()', form);
   }
 
+  public completeOrder(form: ConfirmCompleteOrderForm){
+    return this.apiService.post('/Order/Complete()', form);
+  }
 }

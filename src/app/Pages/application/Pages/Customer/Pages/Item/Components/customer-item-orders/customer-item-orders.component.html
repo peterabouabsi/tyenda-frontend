@@ -4,7 +4,7 @@
   </div>
   <div class="cards-container flex justify-center align-start flex-wrap margin-tb-10">
     <div class="card-container padding-3" *ngFor="let order of itemOrders">
-      <app-order-customer-card [data]="order"></app-order-customer-card>
+      <app-order-card [data]="order" [onClickRoute]="appMainRouteCustomer"></app-order-card>
     </div>
   </div>
 </div>

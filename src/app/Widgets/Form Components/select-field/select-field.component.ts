@@ -28,8 +28,9 @@ export class SelectFieldComponent implements OnInit {
     if (Array.isArray(this.formControl.value)) this.isFormControlArray = true;
 
     //Select the option onInit if condition match
-    if(this.selectedOptionId)
+    if(this.selectedOptionId){
       this.setOption(this.data.find(data => data.id == this.selectedOptionId));
+    }
   }
 
   //Select option

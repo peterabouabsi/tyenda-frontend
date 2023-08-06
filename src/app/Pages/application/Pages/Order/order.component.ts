@@ -14,8 +14,8 @@ import { OrderService } from './Services/order.service';
 
 //Forms
 import { AddFeedbackForm } from 'src/app/Shared/Models/Forms/AddFeedbackForm.form';
-import { ConfirmOrderForm } from 'src/app/Shared/Models/Forms/ConfirmOrderForm.form';
-import { ApproveRejectForm } from './../../../../Shared/Models/Forms/ApproveRejectForm.form';
+import { ConfirmCompleteOrderForm } from 'src/app/Shared/Models/Forms/ConfirmCompleteOrderForm.form';
+import { ApproveRejectForm } from 'src/app/Shared/Models/Forms/ApproveRejectForm.form';
 
 //Views
 import { OrderAdvancedView } from 'src/app/Shared/Models/Views/Order/OrderAdvancedView.view';
@@ -41,9 +41,9 @@ export class OrderComponent implements OnInit {
   public rejectionForm: FormGroup = new FormGroup({ reason: new FormControl('', [Validators.required]) });
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private globalService: GlobalService,
-    private orderService: OrderService) {
+              private router: Router,
+              private globalService: GlobalService,
+              private orderService: OrderService) {
   }
 
   ngOnInit(): void {
@@ -204,7 +204,7 @@ export class OrderComponent implements OnInit {
             value: 'Confirm Order', color: 'blue', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
               if (this.onConfirmationOrder == false) {
                 this.onConfirmationOrder = true;
-                let form: ConfirmOrderForm = {
+                let form: ConfirmCompleteOrderForm = {
                   orderId: this.order.id
                 }
                 this.orderService.confirmOrder(form).subscribe((response: any) => {
@@ -221,6 +221,37 @@ export class OrderComponent implements OnInit {
           { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
         ]
       }, null);
+  }
+
+  public onCompletionOrder: boolean = false;
+  public completeOrder(){
+    this.globalService.openDialog(AlertComponent,
+      {
+        title: 'Order Confirmation',
+        message: 'Are you sure you want to close the order?',
+        buttons: [
+          {
+            value: 'Complete Order', color: 'blue', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+              if (this.onCompletionOrder == false) {
+                this.onCompletionOrder = true;
+                let form: ConfirmCompleteOrderForm = {
+                  orderId: this.order.id
+                }
+                this.orderService.completeOrder(form).subscribe((response: any) => {
+                  setTimeout(() => {
+                    dialogRef.close();
+                    if (!response.error) {
+                      this.order = response;
+                    }
+                  }, 3000)
+                });
+              }
+            }
+          },
+          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
+        ]
+      }, null);
+
   }
 
   private markFormAsDirty() {

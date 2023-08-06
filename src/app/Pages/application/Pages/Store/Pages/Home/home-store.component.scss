@@ -17,6 +17,11 @@
       .incomes-container{
         width: 100%;
         .cards-container{
+          transition: 0.3s ease-in-out;
+          &.on-loading{
+            opacity: 0.2;
+            transition: 0.3s ease-in-out;
+          }
           .card-container{
             .income-box{
               border-radius: 3px;

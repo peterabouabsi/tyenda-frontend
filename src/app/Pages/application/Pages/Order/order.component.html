@@ -180,6 +180,9 @@
           <div class="button-container margin-l-10" *ngIf="order?.orderStatus == 'Submitted'">
             <app-button [value]="'Approve'" [color]="'blue'" (click)="approveRejectOrder(true, false)"></app-button>
           </div>
+          <div class="button-container margin-l-10" *ngIf="order?.orderStatus == 'Submitted'">
+            <app-button [value]="'Complete'" [color]="'blue'" (click)="completeOrder()"></app-button>
+          </div>
         </div>
       </div>
     </div>

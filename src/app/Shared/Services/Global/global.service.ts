@@ -91,21 +91,6 @@ export class GlobalService {
     ];
     return timestamps;
   }
-  public getMonths(){
-    const months = [
-      'January', 'February', 'March', 'April',
-      'May', 'June', 'July', 'August', 'September',
-      'October', 'November', 'December'
-    ];
-
-    const result = [];
-    for (let i = 0; i < months.length; i++) {
-      result.push({ id: i + 1, value: months[i] });
-    }
-
-    let todayMonth = new Date().getMonth() + 1;
-    return {months: result, todayMonth: todayMonth};
-  }
   public getOrderStatuses(){
     return ['Submitted', 'Rejected', 'Approved', 'OnGoing', 'Completed']
   }
