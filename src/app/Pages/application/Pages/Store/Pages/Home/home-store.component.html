@@ -33,6 +33,18 @@
         <div class="text-container flex jusitfy-start align-center">
           <p class="title text-start font-bold size-small black capitalize">My Customers</p>
         </div>
+        <div class="cards-container">
+          <div class="card-container flex justify-start align-start margin-tb-10 padding-10" *ngFor="let customer of topCustomers">
+            <div class="image-container">
+              <img [src]="fileBaseUrl+customer.profileImage" alt="">
+            </div>
+            <div class="customer-container padding-lr-10">
+              <p class="name text-start font-medium size-semi-small ellipse-1 capitalize">{{customer.firstname}} {{customer.lastname}}</p>
+              <p class="email text-start font-regular size-semi-small ellipse-1 lowercase">{{customer.email}}</p>
+              <div class="count-box flex justify-center align-center white font-medium size-semi-small margin-t-6 padding-lr-6 padding-b-3">{{customer.totalOrders}} orders</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

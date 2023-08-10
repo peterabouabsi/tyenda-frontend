@@ -45,6 +45,36 @@
           }
         }
       }
+      .my-customers-container{
+        width: 100%;
+        .cards-container{
+          width: 100%;
+          .card-container{
+            width: 100%;
+            height: fit-content;
+            border-radius: 3px;
+            .image-container{
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+            }
+            .customer-container{
+              .count-box{
+                border-radius: 3px;
+                width: fit-content;
+                height: 20px;
+                background-color: var(--blue);
+              }
+            }
+          }
+        }
+      }
     }
     .right-container{
       width: 100%;

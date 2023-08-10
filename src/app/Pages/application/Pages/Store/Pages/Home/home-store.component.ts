@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environments';
 //Views
 import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
 import { MonthlyIncomePerYearView } from 'src/app/Shared/Models/Views/Monthly Income/MonthlyIncomePerYearView.view';
+import { TopCustomerView } from 'src/app/Shared/Models/Views/Customer/TopCustomerView.view';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -32,6 +33,7 @@ export class HomeStoreComponent implements OnInit {
   public monthlyIncomes: MonthlyIncomePerYearView = {years: [], incomes: []};
   public currentYear: string = '';
 
+  public topCustomers: TopCustomerView[] = [];
   public recentOrders: OrderBasicView[] = [];
   public similarStores: any[] = [];
 
@@ -42,9 +44,9 @@ export class HomeStoreComponent implements OnInit {
   ngOnInit(): void {
     this.readProfileImage();
     this.getMonthlyIncomes();
-
+    this.getTopCustomers();
     this.getRecentOrders();
-    this.getSimilarStores();
+    //this.getSimilarStores();
   }
 
   private readProfileImage(){
@@ -69,7 +71,13 @@ export class HomeStoreComponent implements OnInit {
       }, 1000);
     });
   }
-
+  private getTopCustomers(){
+    this.storeHomeService.getTopCustomers().subscribe((response: any) => {
+      if(!response.error){
+        this.topCustomers = response;
+      }
+    });
+  }
   private getRecentOrders(){
     this.storeHomeService.getRecentOrders().subscribe((response: any) => {
       if(!response.error){
