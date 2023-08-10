@@ -25,8 +25,6 @@ export class AuthMainComponent implements OnInit{
     this.globalService.isAuthenticated().then((data) => {
       if(data.isAuth){
         this.router.navigate(['/application/'+data.role.toLowerCase()]);
-      }else{
-        this.router.navigate([Constants.AUTH_MAIN_ROUTE])
       }
     });
   }
