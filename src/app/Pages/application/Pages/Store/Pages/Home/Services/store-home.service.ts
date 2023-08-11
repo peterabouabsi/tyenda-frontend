@@ -19,7 +19,8 @@ export class StoreHomeService {
   public getRecentOrders(){
     return this.apiService.get('/Order/Recent()');
   }
-  public getSimilarStores(){
-    return this.apiService.get('/Store/Similar');
+  public getSimilarStores(take: number = -1){
+    let queryParam = take != -1? '?take='+take : '';
+    return this.apiService.get('/Store/SimilarStores()'+queryParam);
   }
 }

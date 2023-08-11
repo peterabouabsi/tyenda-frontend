@@ -171,7 +171,7 @@
 
         <!-- Store Role -->
         <div class="buttons-container flex justify-end align-center" *ngRolePermission="'Store'">
-          <div class="button-container margin-l-10">
+          <div class="button-container margin-l-10" *ngIf="order?.orderStatus != 'Completed'">
             <app-button [value]="'Delete'" [color]="'red'" (click)="deleteOrder()"></app-button>
           </div>
           <div class="button-container margin-l-10" *ngIf="order?.orderStatus == 'Submitted'">

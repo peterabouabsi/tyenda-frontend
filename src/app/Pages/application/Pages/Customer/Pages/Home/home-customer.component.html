@@ -62,9 +62,9 @@
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let store of storesData.data">
-              <app-store-customer-moderate-card
+              <app-store-moderate-card
                 [data]="store">
-              </app-store-customer-moderate-card>
+              </app-store-moderate-card>
             </div>
             <app-empty [value]="'No stores found'" *ngIf="storesData.data.length == 0"></app-empty>
           </div>

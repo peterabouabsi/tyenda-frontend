@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environments';
 import { OrderBasicView } from 'src/app/Shared/Models/Views/Order/OrderBasicView.view';
 import { MonthlyIncomePerYearView } from 'src/app/Shared/Models/Views/Monthly Income/MonthlyIncomePerYearView.view';
 import { TopCustomerView } from 'src/app/Shared/Models/Views/Customer/TopCustomerView.view';
+import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModerateView.view';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -35,7 +36,7 @@ export class HomeStoreComponent implements OnInit {
 
   public topCustomers: TopCustomerView[] = [];
   public recentOrders: OrderBasicView[] = [];
-  public similarStores: any[] = [];
+  public similarStores: StoreModerateView[] = [];
 
   constructor(private globalService: GlobalService,
               private storeHomeService: StoreHomeService) {
@@ -46,7 +47,7 @@ export class HomeStoreComponent implements OnInit {
     this.getMonthlyIncomes();
     this.getTopCustomers();
     this.getRecentOrders();
-    //this.getSimilarStores();
+    this.getSimilarStores(3);
   }
 
   private readProfileImage(){
@@ -85,8 +86,8 @@ export class HomeStoreComponent implements OnInit {
       }
     })
   }
-  private getSimilarStores(){
-    this.storeHomeService.getSimilarStores().subscribe((response: any) => {
+  private getSimilarStores(take: number = -1){
+    this.storeHomeService.getSimilarStores(take).subscribe((response: any) => {
       if(!response.error){
         this.similarStores = response;
       }

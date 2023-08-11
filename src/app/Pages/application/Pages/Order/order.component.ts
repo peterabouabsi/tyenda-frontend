@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 //environment
 import { environment } from 'src/environments/environments';
@@ -31,7 +32,9 @@ import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.com
 })
 export class OrderComponent implements OnInit {
 
+  /* ----------- Global Properties */
   public fileBaseUrl: string = environment.fileBaseUrl;
+  /* Global Properties ----------- */
 
   @ViewChild('toastr') toastrRef: ToastrComponent; public viewToastr: boolean = true;
 
@@ -41,7 +44,7 @@ export class OrderComponent implements OnInit {
   public rejectionForm: FormGroup = new FormGroup({ reason: new FormControl('', [Validators.required]) });
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
+              private location: Location,
               private globalService: GlobalService,
               private orderService: OrderService) {
   }
@@ -179,7 +182,7 @@ export class OrderComponent implements OnInit {
                   setTimeout(() => {
                     dialogRef.close();
                     if (!response.error) {
-                      this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER + '/orders']);
+                      this.location.back();
                     }
                   }, 3000)
 

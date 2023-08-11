@@ -83,11 +83,20 @@
       .section{
         width: 100%;
 
-        .order-cards-container{
-          display: grid;
-          grid-template-columns: 50% 50%;
-          .order-card-container{
+        &.recent-orders-container{
+          .cards-container{
+            display: grid;
+            grid-template-columns: 50% 50%;
+          }
+        }
+
+        &.similar-stores-container{
+          .cards-container{
             width: 100%;
+            .card-container{
+              width: 100%;
+              max-width: 300px;
+            }
           }
         }
       }

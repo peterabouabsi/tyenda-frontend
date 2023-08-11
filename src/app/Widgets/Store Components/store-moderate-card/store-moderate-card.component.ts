@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environments';
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Forms
-import { FollowUnfollowForm } from './../../../Shared/Models/Forms/FollowUnfollowForm.form';
+import { FollowUnfollowForm } from '../../../Shared/Models/Forms/FollowUnfollowForm.form';
 import { AddRemoveCartForm } from '../../../Shared/Models/Forms/AddRemoveCartForm.form';
 
 //Services
@@ -18,11 +18,11 @@ import { StoreCardService } from 'src/app/Widgets/Store Components/Services/stor
 import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModerateView.view';
 
 @Component({
-  selector: 'app-store-customer-moderate-card',
-  templateUrl: './store-customer-moderate-card.component.html',
-  styleUrls: ['./store-customer-moderate-card.component.scss']
+  selector: 'app-store-moderate-card',
+  templateUrl: './store-moderate-card.component.html',
+  styleUrls: ['./store-moderate-card.component.scss']
 })
-export class StoreCustomerModerateCardComponent implements OnInit{
+export class StoreModerateCardComponent implements OnInit{
 
   public fileBaseUrl: string = environment.fileBaseUrl;
 
