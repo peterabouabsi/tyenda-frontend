@@ -1,9 +1,9 @@
 <div class="store-container margin-t-30 padding-tb-10">
   <div class="background-image-container"  (click)="openStoreProfile()">
-    <img class="background-image" [src]="data?.backgroundImage != null? fileBaseUrl+data?.backgroundImage : './assets/Images/no-background-image.png'" alt="">
+    <img class="background-image" [src]="data?.backgroundImage? fileBaseUrl+data?.backgroundImage : './assets/Images/no-background-image.png'" alt="">
   </div>
   <div class="profile-image-container flex justify-center align-center padding-tb-20" (click)="openStoreProfile()">
-    <img class="profile-image padding-3" [src]="data.profileImage != null? fileBaseUrl+data.profileImage : './assets/Images/no-profile-image.png'" alt="">
+    <img class="profile-image padding-3" [src]="data.profileImage? fileBaseUrl+data.profileImage : './assets/Images/no-profile-image.png'" alt="">
   </div>
   <div class="info-container flex justify-start align-center flex-column">
     <p class="name text-center font-extra-bold size-regular black">{{data?.storeName}}</p>
