@@ -35,7 +35,8 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     import { HomeStoreComponent } from './Pages/application/Pages/Store/Pages/Home/home-store.component';
     import { OrdersStoreComponent } from './Pages/application/Pages/Store/Pages/Orders/orders-store.component';
-    import { StoreItemComponent } from './Pages/application/Pages/Store/Pages/Items/store-item.component';
+    import { StoreItemsComponent } from './Pages/application/Pages/Store/Pages/Items/store-items.component';
+    import { StoreItemComponent } from './Pages/application/Pages/Store/Pages/Item/store-item.component';
     //
 
   import { StoreProfileComponent } from './Pages/application/Pages/Store Profile/store-profile.component';
@@ -86,8 +87,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeStoreComponent, title: 'Tyenda | Home'},
       {path: 'orders', component: OrdersStoreComponent, title: 'Tyenda | Orders'},
-      {path: 'items', component: StoreItemComponent, data: {title: 'Tyenda | Items'}},
-
+      {path: 'items', component: StoreItemsComponent, data: {title: 'Tyenda | Items'}},
+      {path: 'item/:itemId', component: StoreItemComponent, data: {title: 'Tyenda | Item'}},
       {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
       {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
     ]}

@@ -43,6 +43,7 @@ import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.com
 
 import { ItemEntryCardComponent } from 'src/app/Widgets/Item Components/item-entry-card/item-entry-card.component';
 import { ItemCustomerBasicCardComponent } from 'src/app/Widgets/Item Components/item-customer-basic-card/item-customer-basic-card.component';
+import { ItemStoreBasicCardComponent } from 'src/app/Widgets/Item Components/item-store-basic-card/item-store-basic-card.component';
 import { ItemCustomerModerateCardComponent } from 'src/app/Widgets/Item Components/item-customer-moderate-card/item-customer-moderate-card.component';
 import { StoreModerateCardComponent } from 'src/app/Widgets/Store Components/store-moderate-card/store-moderate-card.component';
 import { StoreCustomerBasicCardComponent } from 'src/app/Widgets/Store Components/store-customer-basic-card/store-customer-basic-card.component';
@@ -97,6 +98,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
 
     ItemEntryCardComponent,
     ItemCustomerBasicCardComponent,
+    ItemStoreBasicCardComponent,
     ItemCustomerModerateCardComponent,
     StoreModerateCardComponent,
     StoreCustomerBasicCardComponent,
@@ -154,6 +156,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
 
     ItemEntryCardComponent,
     ItemCustomerBasicCardComponent,
+    ItemStoreBasicCardComponent,
     ItemCustomerModerateCardComponent,
     StoreModerateCardComponent,
     StoreCustomerBasicCardComponent,

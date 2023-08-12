@@ -45,7 +45,8 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
 
   import { HomeStoreComponent } from '../Pages/Store/Pages/Home/home-store.component';
   import { OrdersStoreComponent } from '../Pages/Store/Pages/Orders/orders-store.component';
-  import { StoreItemComponent } from '../Pages/Store/Pages/Items/store-item.component';
+  import { StoreItemsComponent } from '../Pages/Store/Pages/Items/store-items.component';
+  import { StoreItemComponent } from '../Pages/Store/Pages/Item/store-item.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -77,6 +78,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Store Pages
       HomeStoreComponent,
       OrdersStoreComponent,
+      StoreItemsComponent,
       StoreItemComponent,
 
     StoreProfileComponent,
@@ -112,6 +114,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Store Pages
       HomeStoreComponent,
       OrdersStoreComponent,
+      StoreItemsComponent,
       StoreItemComponent,
 
     StoreProfileComponent,

@@ -124,6 +124,7 @@ export class OrderComponent implements OnInit {
                       dialogRef.close();
                       if (!response.error) {
                         this.order = response;
+                        this.onApprovingRejectingOrder = false;
                       }
                     }, 3000)
 
@@ -152,6 +153,7 @@ export class OrderComponent implements OnInit {
                         dialogRef.close();
                         if (!response.error) {
                           this.order = response;
+                          this.onApprovingRejectingOrder = false;
                         }
                       }, 3000)
 

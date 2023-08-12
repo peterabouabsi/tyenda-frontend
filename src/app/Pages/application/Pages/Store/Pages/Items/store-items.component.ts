@@ -23,10 +23,10 @@ import { StoreItemSearchService } from './Services/store-item-search.service';
 
 @Component({
   selector: 'app-store-item',
-  templateUrl: './store-item.component.html',
-  styleUrls: ['./store-item.component.scss']
+  templateUrl: './store-items.component.html',
+  styleUrls: ['./store-items.component.scss']
 })
-export class StoreItemComponent implements OnInit{
+export class StoreItemsComponent implements OnInit{
 
   //Data required for the filter expansion section
   public countries: BasicCountryView[] = [];

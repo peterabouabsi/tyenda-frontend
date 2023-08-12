@@ -48,7 +48,7 @@ export class ItemCustomerModerateCardComponent implements OnInit{
   }
 
   public orderNow(){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"request-order/"+this.data.id]);
+    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+"request-order/"+this.data.itemId]);
   }
 
 }
