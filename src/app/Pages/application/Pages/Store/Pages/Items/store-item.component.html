@@ -1,0 +1,105 @@
+<div class="parent-container">
+  <div class="inner-container">
+    <div class="header-container flex justify-start align-center flex-wrap">
+      <div class="text-container">
+        <p class="text text-start font-black size-extra-large black">Search</p>
+      </div>
+    </div>
+    <div class="expansion-panel-container margin-tb-30">
+      <app-expansion-panel #expansionPanel [title]="'Filters'" [titleIcon]="'filter'">
+        <div class="inputs-container flex justify-center align-start flex-wrap">
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Name</p>
+            </div>
+            <div class="input-form">
+              <app-text-field
+                [placeholder]="'Keywords, etc.'"
+                [formControl]="searchFilter.controls['name']"
+                (onInputEvent)="setValue('name', $event)">
+              </app-text-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Creation date</p>
+            </div>
+            <div class="input-form">
+              <app-select-field
+                [data]="dates"
+                [placeholder]="'Created date'"
+                [formControl]="searchFilter.controls['createdAt']"
+                (onSelectEvent)="setValue('createdAt', $event)">
+              </app-select-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Category</p>
+            </div>
+            <div class="input-form">
+              <app-select-field
+                [data]="categories"
+                [placeholder]="'Select category'"
+                [formControl]="searchFilter.controls['categories']"
+                (onSelectEvent)="setValue('categories', $event)">
+              </app-select-field>
+              <div class="chips-container flex justify-start align-start flex-wrap">
+                <div class="chip-container margin-r-6 margin-t-6" *ngFor="let category of searchFilter.controls['categories'].value; let i = index">
+                  <app-selector-chip
+                    [data]="category"
+                    (onDelete)="removeValue('categories', i)">
+                  </app-selector-chip>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="input-form">
+              <div class="label-container padding-tb-10">
+                <p class="label text-start font-bold size-regular black">Price</p>
+              </div>
+              <app-salary-range-select
+                [min]="minPrice"
+                [max]="maxPrice"
+                [step]="100"
+                (onRangeEvent)="setValue('price', $event)">
+              </app-salary-range-select>
+            </div>
+            <div class="price-container flex justify-space-between align-center margin-t-10">
+              <div
+                class="price-box padding-10 flex justify-center align-center font-medium size-small gray-super-dark text-center">
+                {{searchFilter.controls['price'].value[0] | currency:'':'symbol':'1.0-0'}}</div>
+              <div
+                class="price-box padding-10 flex justify-center align-center font-medium size-small gray-super-dark text-center">
+                {{searchFilter.controls['price'].value[1] | currency:'':'symbol':'1.0-0'}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container flex justify-center align-start margin-tb-30">
+          <app-button [color]="'blue'" [value]="'Search'" (click)="search()"></app-button>
+        </div>
+      </app-expansion-panel>
+    </div>
+
+    <div class="result-container">
+      <div class="result-header-container flex justify-end align-center flex-wrap">
+        <div class="chip-container flex justify-center align-center">
+          <app-selector-chip
+            [color]="'gray-dark'"
+            [value]="itemSearchResultConfig.value"
+            (onDelete)="clearSearchResult()"
+            *ngIf="itemSearchResultConfig.value">
+          </app-selector-chip>
+        </div>
+      </div>
+      <div class="result-body-container padding-tb-30">
+        <div class="cards-container flex justify-center align-start flex-wrap">
+          <div class="card-container padding-15" *ngFor="let dataCard of itemSearchResultConfig.data">
+            <app-item-customer-basic-card [data]="dataCard"></app-item-customer-basic-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

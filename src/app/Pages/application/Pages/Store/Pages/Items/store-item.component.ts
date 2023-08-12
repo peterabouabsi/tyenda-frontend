@@ -1,42 +1,32 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-
-//Constants
-import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Config
 import { SearchResultConfig } from 'src/app/Shared/Models/Config/Search/SearchResultConfig.config';
+
+//Forms
+import { ItemStoreSearchForm } from 'src/app/Shared/Models/Forms/ItemStoreSearchForm.form';
+
+//Views
+import { BasicCategoryView } from 'src/app/Shared/Models/Views/Category/BasicCategoryView.view';
+import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.view';
+import { BasicCountryView } from 'src/app/Shared/Models/Views/Country/BasicCountryView.view';
+import { ItemBasicView } from 'src/app/Shared/Models/Views/Item/ItemBasicView.view';
+import { BasicTimestampView } from 'src/app/Shared/Models/Views/Timestamp/BasicTimestampView.view';
 
 //Components
 import { ExpansionPanelComponent } from 'src/app/Widgets/Other Components/expansion-panel/expansion-panel.component';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
-import { CustomerSearchService } from './Services/customer-search.service';
-
-//Views
-import { BasicCountryView } from 'src/app/Shared/Models/Views/Country/BasicCountryView.view';
-import { BasicCityView } from 'src/app/Shared/Models/Views/City/BasicCityView.view';
-import { BasicCategoryView } from 'src/app/Shared/Models/Views/Category/BasicCategoryView.view';
-import { BasicTimestampView } from 'src/app/Shared/Models/Views/Timestamp/BasicTimestampView.view';
-
-//Views
-import { StoreModerateView } from 'src/app/Shared/Models/Views/Store/StoreModerateView.view';
-import { ItemBasicView } from 'src/app/Shared/Models/Views/Item/ItemBasicView.view';
-
-//Forms
-import { ItemStoreSearchForm } from 'src/app/Shared/Models/Forms/ItemStoreSearchForm.form';
+import { StoreItemSearchService } from './Services/store-item-search.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-store-item',
+  templateUrl: './store-item.component.html',
+  styleUrls: ['./store-item.component.scss']
 })
-export class SearchComponent implements OnInit {
-
-  //active index: store = 1 ; item = 2
-  public FilterIndexConfig: any = {options: [Constants.STORE_TYPE, Constants.ITEM_TYPE], active: 1};
+export class StoreItemComponent implements OnInit{
 
   //Data required for the filter expansion section
   public countries: BasicCountryView[] = [];
@@ -47,7 +37,7 @@ export class SearchComponent implements OnInit {
   public maxPrice: number = 30000;
 
   //Search result
-  public searchResultConfig: SearchResultConfig<StoreModerateView | ItemBasicView> = { value: "", data: [], loaded: false };
+  public itemSearchResultConfig: SearchResultConfig<ItemBasicView> = { value: "", data: [], loaded: false };
 
   //Search filter
   public searchFilter: FormGroup = new FormGroup({
@@ -59,9 +49,8 @@ export class SearchComponent implements OnInit {
     price: new FormControl([this.minPrice, this.maxPrice], []),
   });
 
-  constructor(private route: ActivatedRoute,
-              private globalService: GlobalService,
-              private customerSearchService: CustomerSearchService) {
+  constructor(private globalService: GlobalService,
+              private storeItemSearchService: StoreItemSearchService) {
   }
 
   ngOnInit(): void {
@@ -101,18 +90,9 @@ export class SearchComponent implements OnInit {
       categories: this.searchFilter.get('categories').value.map(category => category.id)
     };
 
-    let type = this.route.snapshot.queryParams['type'];
-
-    if(type == Constants.ITEM_TYPE) this.FilterIndexConfig.active = 2;
-    if(type == Constants.STORE_TYPE) this.FilterIndexConfig.active = 1;
-    if(type == undefined){
-      if (this.FilterIndexConfig.active == 1) type = Constants.STORE_TYPE;
-      if (this.FilterIndexConfig.active == 2) type = Constants.ITEM_TYPE;
-    }
-
-    this.customerSearchService.searchData(type, form).subscribe((response: any) => {
+    this.storeItemSearchService.searchData(form).subscribe((response: any) => {
       if (!response.error) {
-        this.searchResultConfig = { value: onSearchButton ? `${response.length} ${(response.length > 1? type.toLowerCase()+'s' : type.toLowerCase())} found` : ``, data: response, loaded: true }
+        this.itemSearchResultConfig = { value: onSearchButton ? `${response.length} ${(response.length > 1? 'items' : 'item')} found` : ``, data: response, loaded: true }
       }
     });
 
@@ -145,18 +125,6 @@ export class SearchComponent implements OnInit {
       this.searchFilter.get(formControlName).value.splice(index, 1);
     }
   }
-  /*----------- Set value to the corresponding formControl ----------*/
-
-  /*----------- Switch between Store/Item filter options ------------*/
-  public setFilterIndex(index: number) {
-    this.globalService.removeQueryParameterAsync().then(() => {
-      this.searchFilter = this.resetForm();
-      this.FilterIndexConfig.active = index;
-      this.readData();
-      this.expansionPanelRef.isExpansionOpened = false;
-    });
-  }
-  /*----------- Switch between Store/Item filter options ------------*/
 
   /*----------- Reset form group ------------*/
   public resetForm() {
@@ -170,4 +138,5 @@ export class SearchComponent implements OnInit {
     });
   /*----------- Reset form group ------------*/
   }
+
 }
