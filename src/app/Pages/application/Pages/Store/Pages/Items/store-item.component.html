@@ -1,8 +1,11 @@
 <div class="parent-container">
   <div class="inner-container">
-    <div class="header-container flex justify-start align-center flex-wrap">
+    <div class="header-container flex justify-space-between align-center flex-wrap">
       <div class="text-container">
         <p class="text text-start font-black size-extra-large black">Search</p>
+      </div>
+      <div class="button-container">
+        <app-button [color]="'orange'" [value]="'Post New Item'" (click)="null"></app-button>
       </div>
     </div>
     <div class="expansion-panel-container margin-tb-30">

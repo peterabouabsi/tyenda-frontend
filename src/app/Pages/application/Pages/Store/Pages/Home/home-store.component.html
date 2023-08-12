@@ -53,7 +53,7 @@
         <div class="text-container flex jusitfy-start align-center">
           <p class="title text-start font-bold size-medium black capitalize">Recent Orders</p>
         </div>
-        <div class="cards-container margin-t-30">
+        <div class="cards-container margin-t-30" *ngIf="recentOrders.length > 0">
           <div class="card-container padding-6"
             *ngFor="let order of recentOrders">
             <app-order-card
@@ -62,6 +62,7 @@
             </app-order-card>
           </div>
         </div>
+        <app-empty *ngIf="recentOrders.length == 0" [value]="'No Recent Orders'"></app-empty>
       </div>
 
       <div class="section shadow similar-stores-container padding-20 margin-b-50">
@@ -69,11 +70,16 @@
           <p class="title text-start font-bold size-medium black capitalize">Similar Stores</p>
         </div>
 
-        <div class="cards-container flex justify-start align-start flex-wrap">
+        <div class="cards-container flex justify-start align-start flex-wrap" *ngIf="similarStores.length > 0">
           <div class="card-container padding-10" *ngFor="let store of similarStores">
-            <app-store-moderate-card [data]="store"></app-store-moderate-card>
+            <app-store-moderate-card
+              [data]="store"
+              [onClickRoute]="appMainRouteStore">
+            </app-store-moderate-card>
           </div>
         </div>
+        <app-empty *ngIf="similarStores.length == 0" [value]="'No Similar Stores'"></app-empty>
+
       </div>
 
       <div class="section charts-container flex justify-center align-start">

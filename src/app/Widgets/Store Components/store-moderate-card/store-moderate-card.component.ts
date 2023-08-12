@@ -27,6 +27,7 @@ export class StoreModerateCardComponent implements OnInit{
   public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: StoreModerateView | any;
+  @Input() onClickRoute: string;
 
   constructor(private router: Router,
               private storeCardService: StoreCardService) {
@@ -58,7 +59,7 @@ export class StoreModerateCardComponent implements OnInit{
   }
 
   public openStoreProfile(){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+'/store/'+this.data.id]);
+    this.router.navigate([this.onClickRoute+'/'+this.data.id]);
   }
 
 

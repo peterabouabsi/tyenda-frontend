@@ -126,7 +126,7 @@
       <div class="result-body-container padding-tb-30">
         <div class="cards-container flex justify-center align-start flex-wrap">
           <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
-            <app-store-moderate-card [data]="dataCard" *ngIf="FilterIndexConfig.active == 1"></app-store-moderate-card>
+            <app-store-moderate-card [data]="dataCard" [onClickRoute]="appMainRouteCustomer" *ngIf="FilterIndexConfig.active == 1"></app-store-moderate-card>
             <app-item-customer-basic-card [data]="dataCard" *ngIf="FilterIndexConfig.active == 2"></app-item-customer-basic-card>
           </div>
         </div>

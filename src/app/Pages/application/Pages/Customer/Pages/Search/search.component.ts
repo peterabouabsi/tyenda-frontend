@@ -34,6 +34,9 @@ import { ItemStoreSearchForm } from 'src/app/Shared/Models/Forms/ItemStoreSearch
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  /* ------------ Global Properties */
+  public appMainRouteCustomer: string = Constants.APP_MAIN_ROUTE_CUSTOMER;
+  /* Global Properties --------- */
 
   //active index: store = 1 ; item = 2
   public FilterIndexConfig: any = {options: [Constants.STORE_TYPE, Constants.ITEM_TYPE], active: 1};

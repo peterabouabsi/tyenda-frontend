@@ -89,7 +89,6 @@ const routes: Routes = [
       {path: 'items', component: StoreItemComponent, data: {title: 'Tyenda | Items'}},
 
       {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
-
       {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
     ]}
   ]},
