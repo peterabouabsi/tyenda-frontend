@@ -1,0 +1,91 @@
+<div class="parent-container">
+  <div class="inner-container">
+    <div class="header-container flex justify-start align-center">
+      <div class="text-container flex justify-center align-center">
+        <p class="text text-start font-black size-extra-large black">Orders</p>
+      </div>
+    </div>
+    <div class="expansion-panel-container margin-tb-30">
+      <app-expansion-panel
+        #filterPanel
+        [title]="'Filters'"
+        [titleIcon]="'filter'">
+        <div class="inputs-container flex justify-center align-start flex-wrap">
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Keywords</p>
+            </div>
+            <div class="input-form">
+              <app-text-field
+                [placeholder]="'Keywords, etc.'"
+                [formControl]="searchFilter.controls['keywords']"
+                (onInputEvent)="setValue('keywords', $event)">
+              </app-text-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Reference</p>
+            </div>
+            <div class="input-form">
+              <app-text-field
+                [placeholder]="'Order reference'"
+                [formControl]="searchFilter.controls['reference']"
+                (onInputEvent)="setValue('reference', $event)">
+              </app-text-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Creation Date</p>
+            </div>
+            <div class="input-form">
+              <app-select-field
+                [data]="dates"
+                [placeholder]="'Created date'"
+                [formControl]="searchFilter.controls['timestamp']"
+                (onSelectEvent)="setValue('timestamp', $event)">
+              </app-select-field>
+            </div>
+          </div>
+          <div class="input-container margin-10">
+            <div class="label-container padding-tb-10">
+              <p class="label text-start font-bold size-regular black">Status</p>
+            </div>
+            <div class="input-form">
+              <app-select-multi-box
+                [data]="orderStatuses"
+                (onSelectEvent)="setValue('statuses', $event)">
+              </app-select-multi-box>
+            </div>
+          </div>
+        </div>
+        <div class="button-container flex justify-center align-start margin-tb-30">
+          <app-button [color]="'blue'" [value]="'Search'" (click)="search()"></app-button>
+        </div>
+      </app-expansion-panel>
+    </div>
+    <div class="result-container" [ngClass]="{'skeleton-loader' : !searchResultConfig.loaded}">
+      <div class="result-header-container flex justify-end align-center flex-wrap">
+        <div class="chip-container flex justify-center align-center">
+          <app-selector-chip
+            [color]="'gray-dark'"
+            [value]="searchResultConfig.value"
+            (onDelete)="clearSearchResult()"
+            *ngIf="searchResultConfig.value">
+          </app-selector-chip>
+        </div>
+      </div>
+      <div class="result-body-container padding-tb-30">
+        <div class="cards-container flex justify-center align-start flex-wrap" *ngIf="searchResultConfig.loaded">
+          <div class="card-container padding-15" *ngFor="let dataCard of searchResultConfig.data">
+            <app-order-card
+              [data]="dataCard"
+              [onClickRoute]="appMainRouteStore">
+            </app-order-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

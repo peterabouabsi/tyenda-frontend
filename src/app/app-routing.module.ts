@@ -34,6 +34,7 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
 
   import { StoreMainComponent } from './Pages/application/Pages/Store/store-main.component';
     import { HomeStoreComponent } from './Pages/application/Pages/Store/Pages/Home/home-store.component';
+    import { OrdersStoreComponent } from './Pages/application/Pages/Store/Pages/Orders/orders-store.component';
     //
 
   import { StoreProfileComponent } from './Pages/application/Pages/Store Profile/store-profile.component';
@@ -83,8 +84,10 @@ const routes: Routes = [
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeStoreComponent, title: 'Tyenda | Home'},
+      {path: 'orders', component: OrdersStoreComponent, title: 'Tyenda | Orders'},
+      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
+
       {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
-      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent}
     ]}
   ]},
   {path: '**', component: NotFoundComponent}

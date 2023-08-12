@@ -109,7 +109,7 @@ export class NavbarStoreComponent implements OnInit{
 
   /*on link click*/
   public onLinkClick(link: string){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_CUSTOMER+link]);
+    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+link]);
     this.isLinksOpened = false;
     this.optionsOpenIndex = 0;
   }
