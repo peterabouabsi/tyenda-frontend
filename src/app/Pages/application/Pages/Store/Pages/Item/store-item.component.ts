@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 //Environment
 import { environment } from 'src/environments/environments';
@@ -13,6 +13,9 @@ import { StoreItemService } from './Services/store-item.service';
 
 //Views
 import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedView.view';
+
+//Components
+import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
 
 @Component({
   selector: 'app-store-item',
@@ -28,6 +31,7 @@ export class StoreItemComponent implements OnInit {
   public item: ItemAdvancedView;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private globalService: GlobalService,
               private storeItemService: StoreItemService) {
   }
@@ -58,5 +62,32 @@ export class StoreItemComponent implements OnInit {
 
   public openCommentsSection() {
     this.globalService.openDialog(null, this.item.id);
+  }
+
+  public editItem(){}
+
+  public onDeleteItem: boolean = false;
+  public deleteItem(){
+    this.globalService.openDialog(AlertComponent,
+      {
+        title: 'Approve Order',
+        message: 'Are you sure you want to delete this item?',
+        buttons: [
+            {
+              value: 'Delete Item', color: 'red', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+                if (this.onDeleteItem == false) {
+                  this.onDeleteItem = true;
+                  this.storeItemService.deleteItem(this.item.id).subscribe((response: any) => {
+                    setTimeout(() => {
+                      dialogRef.close();
+                      if(!response.error) this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'items']);
+                    }, 3000)
+                  });
+                }
+              }
+            },
+          { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
+        ]
+      });
   }
 }

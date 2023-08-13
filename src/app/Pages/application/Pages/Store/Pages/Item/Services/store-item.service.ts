@@ -14,4 +14,7 @@ export class StoreItemService {
     return this.apiService.get('/Item/'+itemId);
   }
 
+  public deleteItem(itemId: string){
+    return this.apiService.delete('/Item/'+itemId);
+  }
 }
