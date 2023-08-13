@@ -129,9 +129,7 @@ export class OrderComponent implements OnInit {
                     }, 3000)
 
                   });
-
                 }
-
               }
             }
             :
