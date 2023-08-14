@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //Config
 import { SearchResultConfig } from 'src/app/Shared/Models/Config/Search/SearchResultConfig.config';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Forms
 import { ItemStoreSearchForm } from 'src/app/Shared/Models/Forms/ItemStoreSearchForm.form';
@@ -49,7 +53,8 @@ export class StoreItemsComponent implements OnInit{
     price: new FormControl([this.minPrice, this.maxPrice], []),
   });
 
-  constructor(private globalService: GlobalService,
+  constructor(private router: Router,
+              private globalService: GlobalService,
               private storeItemSearchService: StoreItemSearchService) {
   }
 
@@ -120,10 +125,16 @@ export class StoreItemsComponent implements OnInit{
     }
     this.searchFilter.get(formControlName).setValue(value);
   }
+  /*----------- Set value to the corresponding formControl ----------*/
+
   public removeValue(formControlName: string, index: number) {
     if (Array.isArray(this.searchFilter.get(formControlName).value)) {
       this.searchFilter.get(formControlName).value.splice(index, 1);
     }
+  }
+
+  public addNewItem(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'add-new-item']);
   }
 
   /*----------- Reset form group ------------*/

@@ -47,6 +47,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { OrdersStoreComponent } from '../Pages/Store/Pages/Orders/orders-store.component';
   import { StoreItemsComponent } from '../Pages/Store/Pages/Items/store-items.component';
   import { StoreItemComponent } from '../Pages/Store/Pages/Item/store-item.component';
+  import { AddNewItemComponent } from '../Pages/Store/Pages/Add Item/add-new-item.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -80,6 +81,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       OrdersStoreComponent,
       StoreItemsComponent,
       StoreItemComponent,
+      AddNewItemComponent,
 
     StoreProfileComponent,
     OrderComponent
@@ -116,6 +118,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       OrdersStoreComponent,
       StoreItemsComponent,
       StoreItemComponent,
+      AddNewItemComponent,
 
     StoreProfileComponent,
     OrderComponent

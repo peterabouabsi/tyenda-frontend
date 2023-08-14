@@ -89,12 +89,12 @@
               <div class="label-container padding-tb-10">
                 <p class="label text-start font-bold size-regular black">Price</p>
               </div>
-              <app-salary-range-select
+              <app-price-range-select
                 [min]="minPrice"
                 [max]="maxPrice"
                 [step]="100"
                 (onRangeEvent)="setValue('price', $event)">
-              </app-salary-range-select>
+              </app-price-range-select>
             </div>
             <div class="price-container flex justify-space-between align-center margin-t-10">
               <div

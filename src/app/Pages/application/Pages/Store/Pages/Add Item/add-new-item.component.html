@@ -1,0 +1,98 @@
+<div class="parent-container">
+  <div class="inner-container flex justify-start align-start flex-column">
+    <div class="header-container flex justify-start align-center margin-tb-30">
+      <div class="text-container flex justify-center align-center flex-column">
+        <p class="header text-center font-black size-extra-large black">Post Item</p>
+        <p class="sub-header text-center font-regular size-regular gray margin-tb-10">
+          Welcome to the Product Addition Page! This is the place where you can effortlessly expand your inventory.
+          This page makes the process smooth and intuitive. Enter the item name, specify essential details, such as
+          description and price, and let
+          your customers explore your ever-growing collection.
+        </p>
+      </div>
+    </div>
+
+    <div class="section body-container padding-30 margin-tb-50">
+      <div class="left-container">
+        <div class="images-container flex justify-start align-start flex-column">
+          <div class="initial-image-container flex justify-center align-center padding-10">
+            <img src="./assets/Images/no-background-image.png" alt="">
+          </div>
+          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
+            <div class="image-container padding-10" [ngClass]="{'scale-out': true}" (click)="null"
+              *ngFor="let image of []; let index = index">
+              <img src="./assets/Images/no-background-image.png" alt="">
+            </div>
+            <div
+              class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4"
+              (click)="null">+</div>
+          </div>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="text-container">
+          <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Item
+            name</p>
+        </div>
+        <div class="inputs-container">
+          <div class="input-form margin-b-10">
+            <app-text-field [placeholder]="'Type the name . . .'" [formControl]="postItemForm.controls['name']"
+              (onInputEvent)="setValue('name', $event)">
+            </app-text-field>
+          </div>
+          <div class="input-form margin-b-10">
+            <app-text-editor [placeholder]="'Item description'" [formControl]="postItemForm.controls['description']"
+              [isBold]="true" [isItalic]="true" [isOrderedList]="true" [isUnorderedList]="true"
+              (onInputEvent)="setValue('description', $event)">
+            </app-text-editor>
+          </div>
+          <div class="input-form margin-b-10">
+            <div class="text-container">
+              <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
+                Item Categories</p>
+            </div>
+            <app-select-field [placeholder]="'Select category'" [data]="categories"
+              [formControl]="postItemForm.controls['categories']" (onSelectEvent)="setValueList('categories', $event)">
+            </app-select-field>
+            <div class="chips-container flex justify-start align-start flex-wrap margin-tb-10">
+              <app-selector-chip class="margin-r-10" [color]="'blue'" [value]="category.value"
+                (onDelete)="onChipDelete('categories', index)"
+                *ngFor="let category of postItemForm.controls['categories'].value; let index = index">
+              </app-selector-chip>
+            </div>
+          </div>
+          <div class="price-container flex justify-space-between align-center margin-b-10">
+            <div class="left-container flex justify-start align-center">
+              <div class="input-form margin-r-10">
+                <div class="text-container">
+                  <p
+                    class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
+                    Price</p>
+                </div>
+                <app-number-field [min]="0" [formControl]="postItemForm.controls['price']" (onInputEvent)="setValue('price', $event)">
+                </app-number-field>
+              </div>
+              <div class="input-form margin-r-10">
+                <div class="text-container">
+                  <p
+                    class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
+                    Discount</p>
+                </div>
+                <app-number-field [min]="0" [max]="100" [formControl]="postItemForm.controls['discount']" (onInputEvent)="setValue('discount', $event)">
+                </app-number-field>
+              </div>
+            </div>
+            <div class="right-container">
+              <div class="text-container">
+                <p class="text text-end font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Final Price</p>
+              </div>
+              <div class="text-container flex justify-start align-center">
+                <p class="discoutn text text-start font-regular size-medium red margin-r-10">- %{{postItemForm.controls['discount'].value}}</p>
+                <p class="text text-start font-bold size-medium black text-start padding-tb-10 ellipse-1">$ {{ postItemForm.controls['price'].value - (postItemForm.controls['price'].value * (postItemForm.controls['discount'].value / 100)) | numberFormat}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

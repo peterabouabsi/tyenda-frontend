@@ -1,0 +1,39 @@
+.field-container{
+  width: 100%;
+  height: 35px;
+  .input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--white);
+    border: 1.3px solid var(--gray-light);
+    transition: 0.2s ease-in-out;
+
+    &::placeholder{
+      color: var(--gray-dark);
+      font-family: 'tyenda-regular';
+    }
+    &:focus{
+      border-color: var(--gray-dark);
+      transition: 0.2s ease-in-out;
+    }
+    &:disabled{
+      border-color: var(--gray-light-alpha);
+      color: var(--gray-light);
+
+      &::placeholder{
+        color: var(--gray-light);
+      }
+    }
+    &.danger{
+      border-color: var(--red);
+    }
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0; /* Adjust this if you want to control spacing */
+    }
+}

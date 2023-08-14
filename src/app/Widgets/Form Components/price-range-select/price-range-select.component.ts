@@ -1,18 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-salary-range-select',
-  templateUrl: './salary-range-select.component.html',
-  styleUrls: ['./salary-range-select.component.scss'],
+  selector: 'app-price-range-select',
+  templateUrl: './price-range-select.component.html',
+  styleUrls: ['./price-range-select.component.scss'],
 })
-export class SalaryRangeSelectComponent implements OnInit {
+export class PriceRangeSelectComponent implements OnInit {
 
   @Output() onRangeEvent = new EventEmitter();
 
   @Input() max: number;
   @Input() min: number;
   @Input() step: number;
-
 
   //Results
   public minSalary: number = 0;

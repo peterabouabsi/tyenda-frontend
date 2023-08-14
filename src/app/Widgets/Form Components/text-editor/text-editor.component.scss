@@ -1,0 +1,50 @@
+.text-editor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    .header-container{
+      .style-btns {
+        padding: 10px 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+
+        .btn {
+            border: 1.3px solid var(--gray-dark);
+            background-color: var(--gray-light);
+            outline: none;
+            border-radius: 50%;
+            box-shadow: none;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            width: 35px;
+            height: 35px;
+            transition: 0.3s ease-in-out;
+            &.active{
+              background-color: var(--blue);
+              color: var(--white);
+              transition: 0.3s ease-in-out;
+            }
+        }
+    }
+    }
+
+    #content {
+        border-radius: 5px;
+        border: 1.3px solid var(--gray-light);
+        outline: none;
+        height: 300px;
+        overflow-y: scroll;
+        &.invalid{
+          border-color: var(--red);
+        }
+    }
+    #content:focus{
+        border: 1.3px solid var(--gray-dark);
+    }
+
+}

@@ -16,11 +16,13 @@ import { NumberFormatPipe } from '../../Pipes/Number/number-format.pipe';
 import { TextFieldComponent } from 'src/app/Widgets/Form Components/text-field/text-field.component';
 import { SelectFieldComponent } from 'src/app/Widgets/Form Components/select-field/select-field.component';
 import { TextAreaComponent } from 'src/app/Widgets/Form Components/text-area/text-area.component';
+import { PriceRangeSelectComponent } from 'src/app/Widgets/Form Components/price-range-select/price-range-select.component';
 import { PasswordFieldComponent } from 'src/app/Widgets/Form Components/password-field/password-field.component';
-import { SalaryRangeSelectComponent } from 'src/app/Widgets/Form Components/salary-range-select/salary-range-select.component';
 import { RateSelectorComponent } from 'src/app/Widgets/Form Components/rate-selector/rate-selector.component';
 import { SingleCheckboxComponent } from './../../../Widgets/Form Components/single-checkbox/single-checkbox.component';
+import { NumberFieldComponent } from 'src/app/Widgets/Form Components/number-field/number-field.component';
 import { ToggleComponent } from 'src/app/Widgets/Form Components/toggle/toggle.component';
+import { TextEditorComponent } from 'src/app/Widgets/Form Components/text-editor/text-editor.component';
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
@@ -72,10 +74,12 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     TextAreaComponent,
     PasswordFieldComponent,
     SelectFieldComponent,
-    SalaryRangeSelectComponent,
+    PriceRangeSelectComponent,
     RateSelectorComponent,
     SingleCheckboxComponent,
     ToggleComponent,
+    NumberFieldComponent,
+    TextEditorComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -131,10 +135,12 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     TextAreaComponent,
     PasswordFieldComponent,
     SelectFieldComponent,
-    SalaryRangeSelectComponent,
+    PriceRangeSelectComponent,
     RateSelectorComponent,
     SingleCheckboxComponent,
+    NumberFieldComponent,
     ToggleComponent,
+    TextEditorComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
