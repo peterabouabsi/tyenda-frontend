@@ -28,6 +28,36 @@
               (click)="null">+</div>
           </div>
         </div>
+        <div class="section color-size-container">
+          <div class="filters-container flex justify-start align-center">
+            <div
+              class="selector-container flex justify-center align-center font-regular size-semi-small gray-super-dark padding-10 margin-lr-10"
+              [ngClass]="{'active': colorSizeIndex == 0}" (click)="setColorSizeIndex(0)">
+              Colors
+            </div>
+            <div
+              class="selector-container flex justify-center align-center font-regular size-semi-small gray-super-dark padding-10 margin-lr-10"
+              [ngClass]="{'active': colorSizeIndex == 1}" (click)="setColorSizeIndex(1)">
+              Sizes
+            </div>
+            <div
+              class="selector-container flex justify-center align-center font-regular size-semi-small gray-super-dark padding-10 margin-lr-10"
+              [ngClass]="{'active': colorSizeIndex == 2}" (click)="setColorSizeIndex(2)">
+              Color & Sizes
+            </div>
+          </div>
+
+          <div class="colors-container flex justify-start align-start padding-20" *ngIf="colorSizeIndex == 0">
+            <div class="color-box margin-r-10" [ngStyle]="{'background-color': color}" *ngFor="let color of ['red', 'orange', 'yellow']"></div>
+            <div class="add-box flex justify-center align-center font-bold size-medium blue add-color-box padding-b-3">+</div>
+          </div>
+          <div class="sizes-container flex justify-start align-start padding-20" *ngIf="colorSizeIndex == 1">
+            <div class="size-box"></div>
+            <div class="add-box flex justify-center align-center font-bold size-medium blue add-size-box">+</div>
+          </div>
+          <div class="colors-sizes-container padding-20" *ngIf="colorSizeIndex == 2">
+          </div>
+        </div>
       </div>
       <div class="right-container">
         <div class="text-container">
@@ -69,7 +99,8 @@
                     class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
                     Price</p>
                 </div>
-                <app-number-field [min]="0" [formControl]="postItemForm.controls['price']" (onInputEvent)="setValue('price', $event)">
+                <app-number-field [min]="0" [formControl]="postItemForm.controls['price']"
+                  (onInputEvent)="setValue('price', $event)">
                 </app-number-field>
               </div>
               <div class="input-form margin-r-10">
@@ -78,17 +109,22 @@
                     class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
                     Discount</p>
                 </div>
-                <app-number-field [min]="0" [max]="100" [formControl]="postItemForm.controls['discount']" (onInputEvent)="setValue('discount', $event)">
+                <app-number-field [min]="0" [max]="100" [formControl]="postItemForm.controls['discount']"
+                  (onInputEvent)="setValue('discount', $event)">
                 </app-number-field>
               </div>
             </div>
             <div class="right-container">
               <div class="text-container">
-                <p class="text text-end font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Final Price</p>
+                <p class="text text-end font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
+                  Final Price</p>
               </div>
-              <div class="text-container flex justify-start align-center">
-                <p class="discoutn text text-start font-regular size-medium red margin-r-10">- %{{postItemForm.controls['discount'].value}}</p>
-                <p class="text text-start font-bold size-medium black text-start padding-tb-10 ellipse-1">$ {{ postItemForm.controls['price'].value - (postItemForm.controls['price'].value * (postItemForm.controls['discount'].value / 100)) | numberFormat}}</p>
+              <div class="text-container flex justify-end align-center">
+                <p class="discount text text-start font-regular size-medium red margin-r-10">-
+                  %{{postItemForm.controls['discount'].value}}</p>
+                <p class="text text-start font-bold size-medium black text-start padding-tb-10 ellipse-1">$ {{
+                  postItemForm.controls['price'].value - (postItemForm.controls['price'].value *
+                  (postItemForm.controls['discount'].value / 100)) | numberFormat}}</p>
               </div>
             </div>
           </div>

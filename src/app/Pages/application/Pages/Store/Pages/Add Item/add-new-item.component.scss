@@ -65,9 +65,50 @@
             }
           }
         }
+        .color-size-container{
+          width: 100%;
+          .filters-container{
+            width: 100%;
+            .selector-container{
+              width: 100px;
+              height: 35px;
+              cursor: pointer;
+              border-radius: 10px;
+              background-color: var(--gray-light);
+              border: 1px solid var(--gray);
+              transition: 0.3s ease-in-out;
+              &.active{
+                background-color: var(--blue);
+                transition: 0.3s ease-in-out;
+                color: var(--white);
+                border: 1px solid var(--white);
+              }
+            }
+          }
+
+          .colors-container, .sizes-container, .colors-sizes-container{
+            transition: 0.3s ease-in-out;
+            animation: fade-in 0.3s ease-in-out;
+            .add-box{
+              border: 2px dashed var(--blue);
+              cursor: pointer;
+            }
+
+            .color-box{
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+            }
+            .add-color-box{
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+            }
+          }
+        }
       }
       .right-container{
-
+        width: 100%;
       }
     }
   }

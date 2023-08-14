@@ -56,4 +56,9 @@ export class AddNewItemComponent implements OnInit{
     selectedDataList.splice(index, 1);
     this.postItemForm.get(formControlName).setValue(selectedDataList);
   }
+
+  public colorSizeIndex: number = 0;
+  public setColorSizeIndex(index: number){
+    this.colorSizeIndex = index;
+  }
 }
