@@ -15,6 +15,7 @@ import { BasicCategoryView } from 'src/app/Shared/Models/Views/Category/BasicCat
 export class AddNewItemComponent implements OnInit{
 
   public categories: BasicCategoryView[] = [];
+  public sizeCodes: string[] = [];
 
   public postItemForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -32,12 +33,17 @@ export class AddNewItemComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCategories();
+    this.getSizeCodes();
   }
 
   private getCategories(){
     this.globalService.getCategories().subscribe((response: any) => {
       if(!response.error) this.categories = response;
     });
+  }
+
+  private getSizeCodes(){
+    this.sizeCodes = ['XSmall', 'Small', 'Medium', 'Large', 'XLarge', 'XxLarge']
   }
 
   public setValue(formControlName: string, value: any){
@@ -76,7 +82,5 @@ export class AddNewItemComponent implements OnInit{
   public sizeInput: string | number = '';
   public onSizeDelete: boolean = false;
   public sizeNumberFormControl: FormControl = new FormControl(0, []);
-
-
 
 }

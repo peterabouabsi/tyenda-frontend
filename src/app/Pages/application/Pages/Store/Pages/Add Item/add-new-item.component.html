@@ -101,17 +101,15 @@
 
           <div class="sizes-container flex justify-start align-start flex-wrap padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 2">
-            <div class="size-boxes flex justify-start align-center padding-r-10"
-              *ngIf="postItemForm.controls['sizes'].value.length > 0">
-              <div class="size-box flex justify-center align-center font-regular size-small blue margin-r-10 margin-b-10 padding-lr-10"
-                  (click)="sizeInput = size; sizeNumberFormControl.setValue(sizeInput); onSizeDelete = true"
-                  *ngFor="let size of postItemForm.controls['sizes'].value">
-                  {{size}}
-              </div>
-            </div>
 
             <div class="inputs-container flex justify-start align-center">
-              <div class="input-form size-number-input-form relative margin-r-10">
+              <div class="input-form size-code-input-form flex justify-start align-start margin-r-10">
+                <div class="size-box flex justify-center align-center flex-wrap font-regular size-small gray margin-r-10 padding-lr-10"
+                    [ngClass]="{'active': sizeInput == size}"
+                    (click)="sizeInput = size; onSizeDelete = false"
+                    *ngFor="let size of sizeCodes">
+                  {{size}}
+                </div>
               </div>
 
               <div class="add-box flex justify-center align-center font-bold size-medium blue padding-b-3 margin-r-10"
@@ -120,10 +118,20 @@
                 {{!onSizeDelete? '+' : '-'}}
               </div>
             </div>
+
+            <div class="size-boxes flex justify-start align-center padding-r-10"
+              *ngIf="postItemForm.controls['sizes'].value.length > 0">
+              <div class="size-box flex justify-center align-center font-regular size-small blue margin-r-10 margin-tb-10 padding-lr-10"
+                  (click)="sizeInput = size; sizeNumberFormControl.setValue(sizeInput); onSizeDelete = true"
+                  *ngFor="let size of postItemForm.controls['sizes'].value">
+                  {{size}}
+              </div>
+            </div>
           </div>
 
           <div class="colors-sizes-container padding-20" *ngIf="colorSizeIndex == 3">
           </div>
+
         </div>
       </div>
       <div class="right-container">
