@@ -119,11 +119,12 @@ export class GlobalService {
   public checkExistancy(array: any[], filter: any, callback = (exist: boolean, index?: number) => { }) {
     let exist = false;
     let existAtIndex = -1;
-    if(typeof filter !== 'object'){
+    if(typeof filter != 'object'){
       for (const item of array) {
         if(item == filter){
           exist = true;
           existAtIndex = array.indexOf(item);
+          console.log(existAtIndex);
           break;
         }
       }

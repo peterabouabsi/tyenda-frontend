@@ -43,12 +43,18 @@ export class AddNewItemComponent implements OnInit{
   public setValue(formControlName: string, value: any){
     this.postItemForm.get(formControlName).setValue(value);
   }
-  public setValueList(formControlName: string, value: any){
-    let selectedCategories = this.postItemForm.get(formControlName).value;
-    this.globalService.checkExistancy(selectedCategories, {id: value.id}, (exist: boolean, index: number) => {
-      if(exist) selectedCategories.splice(index, 1);
-      else selectedCategories.push(value)
-    });
+  public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, includeFilter: boolean = true){
+    if(value){
+      let selectedData = this.postItemForm.get(formControlName).value;
+      this.globalService.checkExistancy(selectedData, includeFilter? {id: value.id} : value, (exist: boolean, index: number) => {
+        if(exist) {
+          if(includeDeletion)
+            selectedData.splice(index, 1);
+        }else {
+          selectedData.push(value);
+        }
+      });
+    }
   }
 
   public onChipDelete(formControlName: string, index: number){
@@ -57,8 +63,17 @@ export class AddNewItemComponent implements OnInit{
     this.postItemForm.get(formControlName).setValue(selectedDataList);
   }
 
+
+  public colorInput: string = '';
+  public onColorDelete: boolean = false;
+
+  public sizeInput: string = '';
+  public onSizeDelete: boolean = false;
+
   public colorSizeIndex: number = 0;
   public setColorSizeIndex(index: number){
     this.colorSizeIndex = index;
   }
+
+
 }

@@ -93,16 +93,32 @@
               border: 2px dashed var(--blue);
               cursor: pointer;
             }
-
-            .color-box{
-              width: 35px;
-              height: 35px;
-              border-radius: 50%;
+            .delete-box{
+              border: 2px dashed var(--red);
+              cursor: pointer;
             }
-            .add-color-box{
-              width: 35px;
-              height: 35px;
-              border-radius: 50%;
+
+            .color-boxes{
+              .color-box{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 1px solid var(--gray-light);
+              }
+            }
+            .inputs-container{
+              transition: 0.3s ease-in-out;
+              .input-form{
+                width: 130px;
+                transition: 0.3s ease-in-out;
+              }
+              .add-color-box, .delete-color-box{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                transition: 0.3s ease-in-out;
+              }
             }
           }
         }

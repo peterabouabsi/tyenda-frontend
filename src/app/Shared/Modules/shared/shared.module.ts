@@ -23,6 +23,7 @@ import { SingleCheckboxComponent } from './../../../Widgets/Form Components/sing
 import { NumberFieldComponent } from 'src/app/Widgets/Form Components/number-field/number-field.component';
 import { ToggleComponent } from 'src/app/Widgets/Form Components/toggle/toggle.component';
 import { TextEditorComponent } from 'src/app/Widgets/Form Components/text-editor/text-editor.component';
+import { ColorFieldComponent } from 'src/app/Widgets/Form Components/color-field/color-field.component';
 
 import { ButtonLoaderComponent } from 'src/app/Widgets/Button Components/button-loader/button-loader.component';
 import { ButtonComponent } from 'src/app/Widgets/Button Components/button/button.component';
@@ -80,6 +81,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     ToggleComponent,
     NumberFieldComponent,
     TextEditorComponent,
+    ColorFieldComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
@@ -141,6 +143,7 @@ import { RolePermissionDirective } from '../../Directives/role-permission.direct
     NumberFieldComponent,
     ToggleComponent,
     TextEditorComponent,
+    ColorFieldComponent,
 
     ButtonLoaderComponent,
     ButtonComponent,
