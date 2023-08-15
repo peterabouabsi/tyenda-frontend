@@ -23,7 +23,7 @@ export class AddNewItemComponent implements OnInit{
     price: new FormControl(0, [Validators.required]),
     discount: new FormControl(0, []),
     colors: new FormControl([], []),
-    sizes: new FormControl([1,2,3], []),
+    sizes: new FormControl([], []),
     colorSizes: new FormControl([], [])
   })
 
@@ -63,7 +63,6 @@ export class AddNewItemComponent implements OnInit{
     this.postItemForm.get(formControlName).setValue(selectedDataList);
   }
 
-
   public colorSizeIndex: number = 1;
   public setColorSizeIndex(index: number){
     this.colorSizeIndex = index;
@@ -72,9 +71,12 @@ export class AddNewItemComponent implements OnInit{
 
   public colorInput: string = '';
   public onColorDelete: boolean = false;
+  public colorFormControl: FormControl = new FormControl(0, []);
 
   public sizeInput: string | number = '';
   public onSizeDelete: boolean = false;
-  public sizeNumberFormControl: FormControl = new FormControl(0, [Validators.required]);
+  public sizeNumberFormControl: FormControl = new FormControl(0, []);
+
+
 
 }

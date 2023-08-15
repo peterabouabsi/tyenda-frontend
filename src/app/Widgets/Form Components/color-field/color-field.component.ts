@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ColorFieldComponent implements OnInit{
 
   @Input() color: string = '';
+  @Input() formControl: any;
   @Output() onInputEvent = new EventEmitter();
 
   constructor() {
