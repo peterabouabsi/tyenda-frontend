@@ -89,34 +89,41 @@
           .colors-container, .sizes-container, .colors-sizes-container{
             transition: 0.3s ease-in-out;
             animation: fade-in 0.3s ease-in-out;
+            .add-box, .delete-box{
+              width: 35px;
+              height: 35px;
+              border-radius: 6px;
+              transition: 0.3s ease-in-out;
+              cursor: pointer;
+            }
             .add-box{
               border: 2px dashed var(--blue);
-              cursor: pointer;
             }
             .delete-box{
               border: 2px dashed var(--red);
-              cursor: pointer;
             }
 
-            .color-boxes{
-              .color-box{
-                width: 35px;
+            .color-boxes, .size-boxes{
+              .color-box, .size-box{
                 height: 35px;
-                border-radius: 50%;
                 cursor: pointer;
                 border: 1px solid var(--gray-light);
               }
+              .color-box{
+                width: 35px;
+                border-radius: 50%;
+              }
+              .size-box{
+                min-width: 35px;
+                width: auto;
+                border-radius: 6px;
+              }
             }
+
             .inputs-container{
               transition: 0.3s ease-in-out;
               .input-form{
                 width: 130px;
-                transition: 0.3s ease-in-out;
-              }
-              .add-color-box, .delete-color-box{
-                width: 35px;
-                height: 35px;
-                border-radius: 50%;
                 transition: 0.3s ease-in-out;
               }
             }

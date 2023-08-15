@@ -70,7 +70,7 @@ export class AddNewItemComponent implements OnInit{
   public sizeInput: string = '';
   public onSizeDelete: boolean = false;
 
-  public colorSizeIndex: number = 0;
+  public colorSizeIndex: number = 1;
   public setColorSizeIndex(index: number){
     this.colorSizeIndex = index;
   }
