@@ -107,16 +107,17 @@
               .color-box, .size-box{
                 height: 35px;
                 cursor: pointer;
-                border: 1px solid var(--gray-light);
               }
               .color-box{
                 width: 35px;
                 border-radius: 50%;
+                border: 1px solid var(--gray-light);
               }
               .size-box{
                 min-width: 35px;
                 width: auto;
                 border-radius: 6px;
+                background-color: var(--blue);
               }
             }
 
@@ -125,6 +126,21 @@
               .input-form{
                 width: 130px;
                 transition: 0.3s ease-in-out;
+                &.size-number-input-form{
+                  width: 130px;
+                  .note-container{
+                    top: 4px;
+                    left: 4px;
+                    height: 78%;
+                    width: 30px;
+                    border-radius: 6px;
+                  }
+                  ::ng-deep app-number-field{
+                    .input{
+                      padding-left: 2.2rem;
+                    }
+                  }
+                }
               }
             }
           }
