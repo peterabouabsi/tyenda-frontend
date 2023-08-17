@@ -28,7 +28,7 @@ export class AddNewItemComponent implements OnInit {
     colorSizes: new FormControl([], [])
   })
 
-  public itemColorsSizesSelectionForm: FormGroup = new FormGroup({
+  public inputForm: FormGroup = new FormGroup({
     color: new FormControl('', []),
     sizeNumber: new FormControl(0, []),
     sizeCode: new FormControl('', [])
@@ -77,21 +77,28 @@ export class AddNewItemComponent implements OnInit {
   public colorSizeIndex: number = 0;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
-    this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []])
-    this.globalService.clearFormValue(this.itemColorsSizesSelectionForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, ''])
+    this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
+    this.globalService.clearFormValue(this.inputForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, '']);
   }
 
-  public onDelete: boolean = false;
-  public onItemColorSizeEvent(formControlName: string, value: any) {
-    if(typeof value == 'object') this.itemColorsSizesSelectionForm.get(formControlName).setValue(value.value);
-    else this.itemColorsSizesSelectionForm.get(formControlName).setValue(value);
+  public setInputValue(formControlName: string, value: any){
+    this.inputForm.get(formControlName).setValue(value);
   }
 
-  public onSelectedBoxClick(formControlName: string, value: any){
-    this.onDelete = true;
-    this.itemColorsSizesSelectionForm.get(formControlName).setValue(value);
+  public setColorValueList(){
+    let typedColor = this.inputForm.get('color').value;
+    if(typedColor != ''){this.setValueList('colors', {color: typedColor, quantity: 1}, false, false)}
+
+    this.inputForm = this.globalService.clearFormValue(this.inputForm, ['color'], ['']);
   }
+  public updateColorQuantity(quantity: number, index: number){
+    this.postItemForm.get('colors').value[index].quantity = quantity;
+  }
+  public deleteColor(index: number){
+    this.postItemForm.get('colors').value.splice(index, 1)
+  }
+
+
   /* Color, Sizes, Color Sizes Section ------------------ */
-
 
 }
