@@ -56,6 +56,10 @@ export class GlobalService {
   public getCategories() {
     return this.apiService.getAnonymous('/Category');
   }
+  public getSizeCodes(){
+    return [{id: 1, value: 'XSmall'}, {id: 2, value: 'Small'}, {id: 3, value: 'Medium'},
+            {id: 4, value: 'Large'}, {id: 5, value: 'XLarge'}, {id: 6, value: 'XxLarge'}];
+  }
   public getMyNotifications(){
     return this.apiService.get('/Notification');
   }

@@ -9,7 +9,7 @@ import { GlobalService } from './../../Services/Global/global.service';
 
 export const authenticationGuard: CanActivateChildFn = async (route, state) => {
   const globalService = inject(GlobalService);
-  const router = inject(Router)
+  const router = inject(Router);
 
   const session = globalService.getStorage(Constants.STORAGE_SESSION);
 

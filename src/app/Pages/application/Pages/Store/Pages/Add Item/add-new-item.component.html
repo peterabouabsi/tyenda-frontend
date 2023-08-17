@@ -52,84 +52,89 @@
             </div>
           </div>
 
-          <div class="colors-container flex justify-start align-start flex-wrap padding-tb-20 padding-lr-10"
+          <div class="colors-container padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 0">
-            <div class="color-boxes flex justify-start align-center padding-r-10"
-              *ngIf="postItemForm.controls['colors'].value.length > 0">
-              <div class="color-box margin-r-10 margin-b-10" [ngStyle]="{'background-color': color}"
-                (click)="colorInput = color; colorFormControl.setValue(colorInput); onColorDelete = true;"
+
+            <div class="inputs-container flex justify-start align-center">
+              <div class="input-form">
+                <app-color-field
+                  [color]="itemColorsSizesSelectionForm.controls['color'].value"
+                  [formControl]="itemColorsSizesSelectionForm.controls['color']"
+                  (click)="onDelete = false"
+                  (onInputEvent)="onItemColorSizeEvent('color', $event)"></app-color-field>
+              </div>
+              <div class="add-delete-button flex justify-center align-center text-center font-medium size-medium padding-b-3 margin-l-10"
+                  [ngClass]="{'add-button blue': !onDelete, 'delete-button red': onDelete}"
+                  (click)="setValueList('colors', itemColorsSizesSelectionForm.controls['color'].value, onDelete? true : false, false); onDelete = false">
+                  {{!onDelete? '+' : '-'}}
+              </div>
+            </div>
+
+            <div class="result-container flex justify-start align-start flex-wrap padding-tb-10">
+              <div class="color-selected-container padding-10 margin-r-10"
+                [ngStyle]="{'background-color': color}"
+                (click)="onSelectedBoxClick('color', color)"
                 *ngFor="let color of postItemForm.controls['colors'].value"></div>
             </div>
 
-            <div class="inputs-container flex justify-start align-center">
-              <div class="input-form margin-r-10">
-                <app-color-field [color]="colorInput" [formControl]="colorFormControl" (click)="onColorDelete = false"
-                  (onInputEvent)="colorInput = $event; onColorDelete = false"></app-color-field>
-              </div>
-              <div class="flex justify-center align-center font-bold size-medium blue padding-b-3 margin-r-10"
-                [ngClass]="{'add-box blue' : !onColorDelete, 'delete-box red' : onColorDelete}"
-                (click)="setValueList('colors', colorInput, (!onColorDelete? false : true), false); colorInput = ''; onColorDelete = false;">
-                {{!onColorDelete? '+' : '-'}}
-              </div>
-            </div>
           </div>
 
-          <div class="sizes-container flex justify-start align-start flex-wrap padding-tb-20 padding-lr-10"
+          <div class="sizes-container padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 1">
-            <div class="size-boxes flex justify-start align-center padding-r-10"
-              *ngIf="postItemForm.controls['sizes'].value.length > 0">
-              <div class="size-box flex justify-center align-center font-regular size-small blue margin-r-10 margin-b-10 padding-lr-10"
-                  (click)="sizeInput = size; sizeNumberFormControl.setValue(sizeInput); onSizeDelete = true"
-                  *ngFor="let size of postItemForm.controls['sizes'].value">
-                No. {{size}}
-              </div>
-            </div>
 
             <div class="inputs-container flex justify-start align-center">
-              <div class="input-form size-number-input-form relative margin-r-10">
-                <div class="note-container flex justify-center align-center font-medium size-semi-small gray-super-dark padding-b-1 absolute">No.</div>
-                <app-number-field [min]="0" [formControl]="sizeNumberFormControl" (click)="onSizeDelete = false"
-                  (onInputEvent)="sizeInput = $event; onSizeDelete = false"></app-number-field>
+              <div class="input-form">
+                <app-number-field
+                  [formControl]="itemColorsSizesSelectionForm.controls['sizeNumber']"
+                  (click)="onDelete = false"
+                  (onInputEvent)="onItemColorSizeEvent('sizeNumber', $event)"></app-number-field>
               </div>
-              <div class="add-box flex justify-center align-center font-bold size-medium blue padding-b-3 margin-r-10"
-                [ngClass]="{'add-box blue' : !onSizeDelete, 'delete-box red' : onSizeDelete}"
-                (click)="setValueList('sizes', sizeInput, (!onSizeDelete? false : true), false); sizeInput = 0; sizeNumberFormControl.setValue(sizeInput); onSizeDelete = false;">
-                {{!onSizeDelete? '+' : '-'}}
+              <div class="add-delete-button flex justify-center align-center text-center font-medium size-medium padding-b-3 margin-l-10"
+                  [ngClass]="{'add-button blue': !onDelete, 'delete-button red': onDelete}"
+                  (click)="setValueList('sizes', itemColorsSizesSelectionForm.controls['sizeNumber'].value, onDelete? true : false, false); onDelete = false">
+                  {{!onDelete? '+' : '-'}}
               </div>
             </div>
+
+            <div class="result-container flex justify-start align-start flex-wrap padding-tb-10">
+              <div class="size-selected-container font-medium size-small white padding-lr-10 padding-t-5 margin-r-10"
+                (click)="onSelectedBoxClick('sizeNumber', size)"
+                *ngFor="let size of postItemForm.controls['sizes'].value">No. {{size}}</div>
+            </div>
+
           </div>
 
-          <div class="sizes-container flex justify-start align-start flex-wrap padding-tb-20 padding-lr-10"
+          <div class="sizes-container padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 2">
 
             <div class="inputs-container flex justify-start align-center">
-              <div class="input-form size-code-input-form flex justify-start align-start margin-r-10">
-                <div class="size-box flex justify-center align-center flex-wrap font-regular size-small gray margin-r-10 padding-lr-10"
-                    [ngClass]="{'active': sizeInput == size}"
-                    (click)="sizeInput = size; onSizeDelete = false"
-                    *ngFor="let size of sizeCodes">
-                  {{size}}
-                </div>
+              <div class="input-form select-form">
+                <app-select-field
+                  [data]="sizeCodes"
+                  [placeholder]="'Size Code'"
+                  [formControl]="itemColorsSizesSelectionForm.controls['sizeCode']"
+                  (click)="onDelete = false"
+                  (onSelectEvent)="onItemColorSizeEvent('sizeCode', $event)"                  >
+                </app-select-field>
               </div>
-
-              <div class="add-box flex justify-center align-center font-bold size-medium blue padding-b-3 margin-r-10"
-                [ngClass]="{'add-box blue' : !onSizeDelete, 'delete-box red' : onSizeDelete}"
-                (click)="setValueList('sizes', sizeInput, (!onSizeDelete? false : true), false); sizeInput = ''; onSizeDelete = false;">
-                {{!onSizeDelete? '+' : '-'}}
-              </div>
-            </div>
-
-            <div class="size-boxes flex justify-start align-center padding-r-10"
-              *ngIf="postItemForm.controls['sizes'].value.length > 0">
-              <div class="size-box flex justify-center align-center font-regular size-small blue margin-r-10 margin-tb-10 padding-lr-10"
-                  (click)="sizeInput = size; sizeNumberFormControl.setValue(sizeInput); onSizeDelete = true"
-                  *ngFor="let size of postItemForm.controls['sizes'].value">
-                  {{size}}
+              <div class="add-delete-button flex justify-center align-center text-center font-medium size-medium padding-b-3 margin-l-10"
+                  [ngClass]="{'add-button blue': !onDelete, 'delete-button red': onDelete}"
+                  (click)="setValueList('sizes', itemColorsSizesSelectionForm.controls['sizeCode'].value, onDelete? true : false, false); onDelete = false">
+                  {{!onDelete? '+' : '-'}}
               </div>
             </div>
+
+            <div class="result-container flex justify-start align-start flex-wrap padding-tb-10">
+              <div class="size-selected-container font-medium size-small white padding-lr-10 padding-t-5 margin-r-10"
+                (click)="onSelectedBoxClick('sizeCode', size)"
+                *ngFor="let size of postItemForm.controls['sizes'].value">{{size}}</div>
+            </div>
+
           </div>
 
-          <div class="colors-sizes-container padding-20" *ngIf="colorSizeIndex == 3">
+          <div class="colors-sizes-container padding-20"
+            *ngIf="colorSizeIndex == 3">
+
           </div>
 
         </div>
