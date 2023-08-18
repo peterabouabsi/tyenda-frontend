@@ -23,6 +23,8 @@ export class AddNewItemComponent implements OnInit {
     categories: new FormControl([], []),
     price: new FormControl(0, [Validators.required]),
     discount: new FormControl(0, []),
+    initialImage: new FormControl(null, [Validators.required]),
+    images: new FormControl([], []),
     colors: new FormControl([], []),
     sizes: new FormControl([], []),
     colorSizes: new FormControl([], [])
@@ -65,6 +67,19 @@ export class AddNewItemComponent implements OnInit {
         }
       });
     }
+  }
+  public onItemImage(formControlName: string, event: any, index: number = -1){
+    let file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      let fileBlob = event.target.result;
+      if(formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, fileBlob);
+      if(formControlName == 'images') {
+        if(index == -1) this.postItemForm.get(formControlName).value.push(fileBlob); //adding image
+        else  this.postItemForm.get(formControlName).value[index] = fileBlob//Updating image
+      }
+    };
+    reader.readAsDataURL(file);
   }
 
   public onChipDelete(formControlName: string, index: number) {

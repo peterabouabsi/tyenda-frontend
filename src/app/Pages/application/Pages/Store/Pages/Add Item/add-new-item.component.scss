@@ -24,13 +24,18 @@
 
           .initial-image-container {
             width: 100%;
-            height: auto;
+            height: 400px;
             overflow: hidden;
             img {
               width: 100%;
-              height: auto;
+              height: 100%;
               object-fit: cover;
               border-radius: 10px;
+              cursor: pointer;
+            }
+            .delete-container{
+              top: -30px;
+              right: 10px;
             }
           }
 
@@ -39,21 +44,23 @@
             height: auto;
 
             .image-container {
-              width: 110px;
-              height: 74px;
+              width: 100px;
+              height: 64px;
               cursor: pointer;
               transition: 0.3s ease-in-out;
-
-              &.scale-out {
-                transform: scale(0.8, 0.8);
-                transition: 0.3s ease-in-out;
-              }
+              overflow: hidden;
 
               img {
                 border-radius: 10px;
                 width: 100%;
-                height: auto;
+                height: 100%;
                 object-fit: cover;
+                cursor: pointer;
+                overflow: hidden;
+              }
+              .delete-container{
+                top: -30px;
+                right: 3px;
               }
             }
             .add-image-container{
@@ -62,6 +69,20 @@
                 border-radius: 10px;
                 cursor: pointer;
                 border: 2px dashed var(--blue);
+            }
+          }
+
+          input{
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            padding: 10px;
+            left: 0;
+            top: 0;
+            &::file-selector-button {
+              height: 100%;
+              cursor: pointer;
             }
           }
         }

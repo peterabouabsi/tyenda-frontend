@@ -15,17 +15,21 @@
     <div class="section body-container padding-30 margin-tb-50">
       <div class="left-container">
         <div class="images-container flex justify-start align-start flex-column">
-          <div class="initial-image-container flex justify-center align-center padding-10">
-            <img src="./assets/Images/no-background-image.png" alt="">
+          <div class="initial-image-container flex justify-center align-center margin-10 relative">
+            <img [src]="postItemForm.controls['initialImage'].value? postItemForm.controls['initialImage'].value : './assets/Images/no-background-image.png'" alt="">
+            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event)"/>
           </div>
           <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
-            <div class="image-container padding-10" [ngClass]="{'scale-out': true}" (click)="null"
-              *ngFor="let image of []; let index = index">
-              <img src="./assets/Images/no-background-image.png" alt="">
+            <div class="image-container margin-10 relative"
+              *ngFor="let image of postItemForm.controls['images'].value; let index = index">
+              <img [src]="image? image : './assets/Images/no-background-image.png'" alt="">
+              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index)"/>
             </div>
             <div
-              class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4"
-              (click)="null">+</div>
+              class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4 relative">
+              +
+              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event)"/>
+            </div>
           </div>
         </div>
         <div class="section color-size-container">
