@@ -52,12 +52,12 @@ export class AddNewItemComponent implements OnInit {
     this.sizeCodes = this.globalService.getSizeCodes();
   }
 
-  public setValue(formControlName: string, value: any) {
-    this.postItemForm.get(formControlName).setValue(value);
+  public setValue(formGroup: any, formControlName: string, value: any) {
+    formGroup.get(formControlName).setValue(value);
   }
-  public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, includeFilterion: any = {}) {
+  public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, searchFilter: any = null) {
     if(value){
-      this.globalService.checkExistancy(this.postItemForm.get(formControlName).value, includeFilterion? { id: value.id } : value, (exist: boolean, index: number) => {
+      this.globalService.checkExistancy(this.postItemForm.get(formControlName).value, searchFilter? searchFilter : { id: value.id }, (exist: boolean, index: number) => {
         if (exist) {
           if(includeDeletion) this.postItemForm.get(formControlName).value.splice(index, 1);
         } else {
@@ -81,11 +81,6 @@ export class AddNewItemComponent implements OnInit {
     this.globalService.clearFormValue(this.inputForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, '']);
   }
 
-  //Set values to inputForm controls
-  public setInputValue(formControlName: string, value: any){
-    this.inputForm.get(formControlName).setValue(value);
-  }
-
   //Color, SizeNumber and SizeCode
   public setInputValueList(type: string, formControlName: string){
     if(type == 'color'){
@@ -101,9 +96,17 @@ export class AddNewItemComponent implements OnInit {
 
       this.inputForm = this.globalService.clearFormValue(this.inputForm, ['sizeNumber'], [0]);
     }
+
+    if(type == 'sizeCode'){
+      let typedSizeCode = this.inputForm.get(type).value.value;//{id: 1, value: ''}.value
+      if(typedSizeCode != ''){this.setValueList(formControlName, {code: typedSizeCode, number: null, quantity: 1}, false, {code: typedSizeCode})}
+
+      this.inputForm = this.globalService.clearFormValue(this.inputForm, ['sizeCode'], ['']);
+    }
   }
   public updateInputQuantity(formControlName: string, quantity: number, index: number){
     this.postItemForm.get(formControlName).value[index].quantity = quantity;
+    console.log(this.postItemForm.get(formControlName).value[index])
   }
   public deleteInput(formControlName: string, index: number){
     this.postItemForm.get(formControlName).value.splice(index, 1)

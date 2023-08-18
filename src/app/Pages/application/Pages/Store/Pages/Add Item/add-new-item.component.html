@@ -60,12 +60,12 @@
                 <app-color-field
                   [color]="inputForm.controls['color'].value"
                   [formControl]="inputForm.controls['color']"
-                  (onInputEvent)="setInputValue('color', $event)">
+                  (onInputEvent)="setValue(inputForm, 'color', $event)">
                 </app-color-field>
               </div>
               <div class="button-container">
                 <app-button
-                  [color]="'orange'"
+                  [color]="'gray'"
                   [value]="'+ Add Color'"
                   (click)="setInputValueList('color', 'colors')">
                 </app-button>
@@ -102,12 +102,12 @@
                   [min]="0"
                   [max]="99999999999999"
                   [formControl]="inputForm.controls['sizeNumber']"
-                  (onInputEvent)="setInputValue('sizeNumber', $event)">
+                  (onInputEvent)="setValue(inputForm, 'sizeNumber', $event)">
                 </app-number-field>
               </div>
               <div class="button-container">
                 <app-button
-                  [color]="'orange'"
+                  [color]="'gray'"
                   [value]="'+ Add Size'"
                   (click)="setInputValueList('sizeNumber', 'sizes')">
                 </app-button>
@@ -139,7 +139,45 @@
 
           <div class="sizes-container padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 2">
+            <div class="inputs-container flex justify-space-between align-start">
+              <div class="input-form">
+                <app-select-field
+                  [data]="sizeCodes"
+                  [placeholder]="'Select Code'"
+                  [formControl]="inputForm.controls['sizeCode']"
+                  (onSelectEvent)="setValue(inputForm, 'sizeCode', $event)">
+                </app-select-field>
+              </div>
+              <div class="button-container">
+                <app-button
+                  [color]="'gray'"
+                  [value]="'+ Add Size'"
+                  (click)="setInputValueList('sizeCode', 'sizes')">
+                </app-button>
+              </div>
+            </div>
 
+            <div class="results-container margin-b-10 margin-t-30">
+              <div class="selected-option flex justify-start align-center margin-tb-10"
+                  *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
+
+                <div class="delete-container flex justify-center align-center margin-r-10">
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('sizes', index)"></mat-icon>
+                </div>
+
+                <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
+                  {{size.code}}
+                </div>
+
+                <div class="quantity-container">
+                  <app-button-quantity
+                    [quantity]="size.quantity"
+                    [maxQuantity]="999999999"
+                    (onCounterClick)="updateInputQuantity('sizes', $event, index)">
+                  </app-button-quantity>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="colors-sizes-container padding-20"
@@ -157,13 +195,13 @@
         <div class="inputs-container">
           <div class="input-form margin-b-10">
             <app-text-field [placeholder]="'Type the name . . .'" [formControl]="postItemForm.controls['name']"
-              (onInputEvent)="setValue('name', $event)">
+              (onInputEvent)="setValue(postItemForm, 'name', $event)">
             </app-text-field>
           </div>
           <div class="input-form margin-b-10">
             <app-text-editor [placeholder]="'Item description'" [formControl]="postItemForm.controls['description']"
               [isBold]="true" [isItalic]="true" [isOrderedList]="true" [isUnorderedList]="true"
-              (onInputEvent)="setValue('description', $event)">
+              (onInputEvent)="setValue(postItemForm, 'description', $event)">
             </app-text-editor>
           </div>
           <div class="input-form margin-b-10">
@@ -190,7 +228,7 @@
                     Price</p>
                 </div>
                 <app-number-field [min]="0" [formControl]="postItemForm.controls['price']"
-                  (onInputEvent)="setValue('price', $event)">
+                  (onInputEvent)="setValue(postItemForm, 'price', $event)">
                 </app-number-field>
               </div>
               <div class="input-form margin-r-10">
@@ -200,7 +238,7 @@
                     Discount</p>
                 </div>
                 <app-number-field [min]="0" [max]="100" [formControl]="postItemForm.controls['discount']"
-                  (onInputEvent)="setValue('discount', $event)">
+                  (onInputEvent)="setValue(postItemForm, 'discount', $event)">
                 </app-number-field>
               </div>
             </div>
