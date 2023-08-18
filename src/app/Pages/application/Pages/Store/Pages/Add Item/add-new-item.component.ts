@@ -55,7 +55,7 @@ export class AddNewItemComponent implements OnInit {
   public setValue(formControlName: string, value: any) {
     this.postItemForm.get(formControlName).setValue(value);
   }
-  public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, includeFilterion: boolean = true) {
+  public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, includeFilterion: any = {}) {
     if(value){
       this.globalService.checkExistancy(this.postItemForm.get(formControlName).value, includeFilterion? { id: value.id } : value, (exist: boolean, index: number) => {
         if (exist) {
@@ -81,23 +81,33 @@ export class AddNewItemComponent implements OnInit {
     this.globalService.clearFormValue(this.inputForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, '']);
   }
 
+  //Set values to inputForm controls
   public setInputValue(formControlName: string, value: any){
     this.inputForm.get(formControlName).setValue(value);
   }
 
-  public setColorValueList(){
-    let typedColor = this.inputForm.get('color').value;
-    if(typedColor != ''){this.setValueList('colors', {color: typedColor, quantity: 1}, false, false)}
+  //Color, SizeNumber and SizeCode
+  public setInputValueList(type: string, formControlName: string){
+    if(type == 'color'){
+      let typedColor = this.inputForm.get(type).value;
+      if(typedColor != ''){this.setValueList(formControlName, {color: typedColor, quantity: 1}, false, {color: typedColor})}
 
-    this.inputForm = this.globalService.clearFormValue(this.inputForm, ['color'], ['']);
-  }
-  public updateColorQuantity(quantity: number, index: number){
-    this.postItemForm.get('colors').value[index].quantity = quantity;
-  }
-  public deleteColor(index: number){
-    this.postItemForm.get('colors').value.splice(index, 1)
-  }
+      this.inputForm = this.globalService.clearFormValue(this.inputForm, ['color'], ['']);
+    }
 
+    if(type == 'sizeNumber'){
+      let typedSizeNumber = this.inputForm.get(type).value;
+      if(typedSizeNumber > 0){this.setValueList(formControlName, {code: null, number: typedSizeNumber, quantity: 1}, false, {number: typedSizeNumber})}
+
+      this.inputForm = this.globalService.clearFormValue(this.inputForm, ['sizeNumber'], [0]);
+    }
+  }
+  public updateInputQuantity(formControlName: string, quantity: number, index: number){
+    this.postItemForm.get(formControlName).value[index].quantity = quantity;
+  }
+  public deleteInput(formControlName: string, index: number){
+    this.postItemForm.get(formControlName).value.splice(index, 1)
+  }
 
   /* Color, Sizes, Color Sizes Section ------------------ */
 

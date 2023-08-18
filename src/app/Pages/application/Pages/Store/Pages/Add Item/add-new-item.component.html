@@ -67,7 +67,7 @@
                 <app-button
                   [color]="'orange'"
                   [value]="'+ Add Color'"
-                  (click)="setColorValueList()">
+                  (click)="setInputValueList('color', 'colors')">
                 </app-button>
               </div>
             </div>
@@ -77,7 +77,7 @@
                   *ngFor="let color of postItemForm.controls['colors'].value; let index = index">
 
                 <div class="delete-container flex justify-center align-center margin-r-10">
-                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteColor(index)"></mat-icon>
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('colors', index)"></mat-icon>
                 </div>
 
                 <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : color.color}"></div>
@@ -86,7 +86,7 @@
                   <app-button-quantity
                     [quantity]="color.quantity"
                     [maxQuantity]="999999999"
-                    (onCounterClick)="updateColorQuantity($event, index)">
+                    (onCounterClick)="updateInputQuantity('colors', $event, index)">
                   </app-button-quantity>
                 </div>
               </div>
@@ -96,7 +96,45 @@
 
           <div class="sizes-container padding-tb-20 padding-lr-10"
             *ngIf="colorSizeIndex == 1">
+            <div class="inputs-container flex justify-space-between align-start">
+              <div class="input-form">
+                <app-number-field
+                  [min]="0"
+                  [max]="99999999999999"
+                  [formControl]="inputForm.controls['sizeNumber']"
+                  (onInputEvent)="setInputValue('sizeNumber', $event)">
+                </app-number-field>
+              </div>
+              <div class="button-container">
+                <app-button
+                  [color]="'orange'"
+                  [value]="'+ Add Size'"
+                  (click)="setInputValueList('sizeNumber', 'sizes')">
+                </app-button>
+              </div>
+            </div>
 
+            <div class="results-container margin-b-10 margin-t-30">
+              <div class="selected-option flex justify-start align-center margin-tb-10"
+                  *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
+
+                <div class="delete-container flex justify-center align-center margin-r-10">
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('sizes', index)"></mat-icon>
+                </div>
+
+                <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
+                  No. {{size.number}}
+                </div>
+
+                <div class="quantity-container">
+                  <app-button-quantity
+                    [quantity]="size.quantity"
+                    [maxQuantity]="999999999"
+                    (onCounterClick)="updateInputQuantity('sizes', $event, index)">
+                  </app-button-quantity>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="sizes-container padding-tb-20 padding-lr-10"

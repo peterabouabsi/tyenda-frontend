@@ -113,6 +113,13 @@
                   height: 30px;
                   border-radius: 50%;
                 }
+                .size-container{
+                  min-width: 30px;
+                  width: fit-content;
+                  height: 30px;
+                  border-radius: 6px;
+                  background-color: var(--blue);
+                }
               }
             }
           }
