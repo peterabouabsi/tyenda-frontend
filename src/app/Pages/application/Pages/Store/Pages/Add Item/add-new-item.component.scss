@@ -141,6 +141,23 @@
                   border-radius: 6px;
                   background-color: var(--blue);
                 }
+                .inputs-container{
+                  .filters-container{
+                    .filter-container{
+                      background-color: var(--gray-light);
+                      border-radius: 10px;
+                      width: fit-content;
+                      height: 30px;
+                      cursor: pointer;
+                      transition: 0.3s ease-in-out;
+                      &.active{
+                        transition: 0.3s ease-in-out;
+                        background-color: var(--blue);
+                        color: var(--white);
+                      }
+                    }
+                  }
+                }
               }
             }
           }

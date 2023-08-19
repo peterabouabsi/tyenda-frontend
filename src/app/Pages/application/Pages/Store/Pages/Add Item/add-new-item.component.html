@@ -193,7 +193,16 @@
                 <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : colorSize.color}"></div>
 
                 <div class="inputs-container flex justify-end align-center">
-                  s
+                  <div class="input-form" *ngIf="colorSize.index == 0">
+
+                  </div>
+                  <div class="input-form" *ngIf="colorSize.index == 1">
+
+                  </div>
+                  <div class="filters-container flex justify-end align-center">
+                    <div class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark" [ngClass]="{'active': colorSize.index == 0 }" (click)="setColorSizesIndex(0, index)">Code</div>
+                    <div class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark" [ngClass]="{'active': colorSize.index == 1 }" (click)="setColorSizesIndex(1, index)">Number</div>
+                  </div>
                 </div>
               </div>
             </div>
