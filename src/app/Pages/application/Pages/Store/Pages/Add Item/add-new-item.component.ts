@@ -33,7 +33,8 @@ export class AddNewItemComponent implements OnInit {
   public inputForm: FormGroup = new FormGroup({
     color: new FormControl('', []),
     sizeNumber: new FormControl(0, []),
-    sizeCode: new FormControl('', [])
+    sizeCode: new FormControl('', []),
+    colorSizes: new FormControl({color: '', sizes: []}, [])
   })
 
   constructor(private globalService: GlobalService) {
@@ -55,7 +56,10 @@ export class AddNewItemComponent implements OnInit {
   }
 
   public setValue(formGroup: any, formControlName: string, value: any) {
-    formGroup.get(formControlName).setValue(value);
+    if(formControlName == 'colorSizes')
+      formGroup.get(formControlName).setValue({color: value, sizes: []});
+    else
+      formGroup.get(formControlName).setValue(value);
   }
   public setValueList(formControlName: string, value: any, includeDeletion: boolean = true, searchFilter: any = null) {
     if(value){
@@ -89,7 +93,7 @@ export class AddNewItemComponent implements OnInit {
   }
 
   /* ---------------- Color, Sizes, Color Sizes Section */
-  public colorSizeIndex: number = 0;
+  public colorSizeIndex: number = 3;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
     this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
@@ -117,6 +121,13 @@ export class AddNewItemComponent implements OnInit {
       if(typedSizeCode != ''){this.setValueList(formControlName, {code: typedSizeCode, number: null, quantity: 1}, false, {code: typedSizeCode})}
 
       this.inputForm = this.globalService.clearFormValue(this.inputForm, ['sizeCode'], ['']);
+    }
+
+    if(type == 'colorSizes'){
+      let typedColor = this.inputForm.get(type).value.color;
+      if(typedColor != ''){this.setValueList(formControlName, {color: typedColor, sizes: []}, false, {color: typedColor})}
+
+      this.inputForm = this.globalService.clearFormValue(this.inputForm, ['colorSizes'], [{color: '', sizes: []}]);
     }
   }
   public updateInputQuantity(formControlName: string, quantity: number, index: number){

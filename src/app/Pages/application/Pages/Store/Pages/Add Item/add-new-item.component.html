@@ -16,19 +16,21 @@
       <div class="left-container">
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center margin-10 relative">
-            <img [src]="postItemForm.controls['initialImage'].value? postItemForm.controls['initialImage'].value : './assets/Images/no-background-image.png'" alt="">
-            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event)"/>
+            <img
+              [src]="postItemForm.controls['initialImage'].value? postItemForm.controls['initialImage'].value : './assets/Images/no-background-image.png'"
+              alt="">
+            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event)" />
           </div>
           <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
             <div class="image-container margin-10 relative"
               *ngFor="let image of postItemForm.controls['images'].value; let index = index">
               <img [src]="image? image : './assets/Images/no-background-image.png'" alt="">
-              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index)"/>
+              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index)" />
             </div>
             <div
               class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4 relative">
               +
-              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event)"/>
+              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event)" />
             </div>
           </div>
         </div>
@@ -56,40 +58,34 @@
             </div>
           </div>
 
-          <div class="colors-container padding-tb-20 padding-lr-10"
-            *ngIf="colorSizeIndex == 0">
+          <div class="colors-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 0">
 
             <div class="inputs-container flex justify-space-between align-start">
               <div class="input-form">
-                <app-color-field
-                  [color]="inputForm.controls['color'].value"
-                  [formControl]="inputForm.controls['color']"
+                <app-color-field [color]="inputForm.controls['color'].value" [formControl]="inputForm.controls['color']"
                   (onInputEvent)="setValue(inputForm, 'color', $event)">
                 </app-color-field>
               </div>
               <div class="button-container">
-                <app-button
-                  [color]="'gray'"
-                  [value]="'+ Add Color'"
-                  (click)="setInputValueList('color', 'colors')">
+                <app-button [color]="'gray'" [value]="'+ Add Color'" (click)="setInputValueList('color', 'colors')">
                 </app-button>
               </div>
             </div>
 
             <div class="results-container margin-b-10 margin-t-30">
               <div class="selected-option flex justify-start align-center margin-tb-10"
-                  *ngFor="let color of postItemForm.controls['colors'].value; let index = index">
+                *ngFor="let color of postItemForm.controls['colors'].value; let index = index">
 
                 <div class="delete-container flex justify-center align-center margin-r-10">
-                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('colors', index)"></mat-icon>
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
+                    (click)="deleteInput('colors', index)"></mat-icon>
                 </div>
 
-                <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : color.color}"></div>
+                <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : color.color}">
+                </div>
 
                 <div class="quantity-container">
-                  <app-button-quantity
-                    [quantity]="color.quantity"
-                    [maxQuantity]="999999999"
+                  <app-button-quantity [quantity]="color.quantity" [maxQuantity]="999999999"
                     (onCounterClick)="updateInputQuantity('colors', $event, index)">
                   </app-button-quantity>
                 </div>
@@ -98,42 +94,35 @@
 
           </div>
 
-          <div class="sizes-container padding-tb-20 padding-lr-10"
-            *ngIf="colorSizeIndex == 1">
+          <div class="sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 1">
             <div class="inputs-container flex justify-space-between align-start">
               <div class="input-form">
-                <app-number-field
-                  [min]="0"
-                  [max]="99999999999999"
-                  [formControl]="inputForm.controls['sizeNumber']"
+                <app-number-field [min]="0" [max]="99999999999999" [formControl]="inputForm.controls['sizeNumber']"
                   (onInputEvent)="setValue(inputForm, 'sizeNumber', $event)">
                 </app-number-field>
               </div>
               <div class="button-container">
-                <app-button
-                  [color]="'gray'"
-                  [value]="'+ Add Size'"
-                  (click)="setInputValueList('sizeNumber', 'sizes')">
+                <app-button [color]="'gray'" [value]="'+ Add Size'" (click)="setInputValueList('sizeNumber', 'sizes')">
                 </app-button>
               </div>
             </div>
 
             <div class="results-container margin-b-10 margin-t-30">
               <div class="selected-option flex justify-start align-center margin-tb-10"
-                  *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
+                *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
 
                 <div class="delete-container flex justify-center align-center margin-r-10">
-                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('sizes', index)"></mat-icon>
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
+                    (click)="deleteInput('sizes', index)"></mat-icon>
                 </div>
 
-                <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
+                <div
+                  class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
                   No. {{size.number}}
                 </div>
 
                 <div class="quantity-container">
-                  <app-button-quantity
-                    [quantity]="size.quantity"
-                    [maxQuantity]="999999999"
+                  <app-button-quantity [quantity]="size.quantity" [maxQuantity]="999999999"
                     (onCounterClick)="updateInputQuantity('sizes', $event, index)">
                   </app-button-quantity>
                 </div>
@@ -141,42 +130,36 @@
             </div>
           </div>
 
-          <div class="sizes-container padding-tb-20 padding-lr-10"
-            *ngIf="colorSizeIndex == 2">
+          <div class="sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 2">
             <div class="inputs-container flex justify-space-between align-start">
               <div class="input-form">
-                <app-select-field
-                  [data]="sizeCodes"
-                  [placeholder]="'Select Code'"
+                <app-select-field [data]="sizeCodes" [placeholder]="'Select Code'"
                   [formControl]="inputForm.controls['sizeCode']"
                   (onSelectEvent)="setValue(inputForm, 'sizeCode', $event)">
                 </app-select-field>
               </div>
               <div class="button-container">
-                <app-button
-                  [color]="'gray'"
-                  [value]="'+ Add Size'"
-                  (click)="setInputValueList('sizeCode', 'sizes')">
+                <app-button [color]="'gray'" [value]="'+ Add Size'" (click)="setInputValueList('sizeCode', 'sizes')">
                 </app-button>
               </div>
             </div>
 
             <div class="results-container margin-b-10 margin-t-30">
               <div class="selected-option flex justify-start align-center margin-tb-10"
-                  *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
+                *ngFor="let size of postItemForm.controls['sizes'].value; let index = index">
 
                 <div class="delete-container flex justify-center align-center margin-r-10">
-                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus" (click)="deleteInput('sizes', index)"></mat-icon>
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
+                    (click)="deleteInput('sizes', index)"></mat-icon>
                 </div>
 
-                <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
+                <div
+                  class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10">
                   {{size.code}}
                 </div>
 
                 <div class="quantity-container">
-                  <app-button-quantity
-                    [quantity]="size.quantity"
-                    [maxQuantity]="999999999"
+                  <app-button-quantity [quantity]="size.quantity" [maxQuantity]="999999999"
                     (onCounterClick)="updateInputQuantity('sizes', $event, index)">
                   </app-button-quantity>
                 </div>
@@ -184,8 +167,36 @@
             </div>
           </div>
 
-          <div class="colors-sizes-container padding-20"
-            *ngIf="colorSizeIndex == 3">
+          <div class="colors-sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 3">
+            <div class="inputs-container flex justify-space-between align-start">
+              <div class="input-form">
+                <app-color-field
+                  [color]="inputForm.controls['colorSizes'].value.color"
+                  [formControl]="inputForm.controls['colorSizes']"
+                  (onInputEvent)="setValue(inputForm, 'colorSizes', $event)">
+                </app-color-field>
+              </div>
+              <div class="button-container flex justify-end align-center">
+                <app-button [color]="'gray'" [value]="'+ Add Color'" (click)="setInputValueList('colorSizes', 'colorSizes')"></app-button>
+              </div>
+            </div>
+
+
+            <div class="results-container margin-b-10 margin-t-30">
+              <div class="selected-option flex justify-start align-center margin-tb-10"
+                *ngFor="let colorSize of postItemForm.controls['colorSizes'].value; let index = index">
+                <div class="delete-container flex justify-center align-center margin-r-10">
+                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
+                    (click)="deleteInput('colorSizes', index)"></mat-icon>
+                </div>
+
+                <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : colorSize.color}"></div>
+
+                <div class="inputs-container flex justify-end align-center">
+                  s
+                </div>
+              </div>
+            </div>
 
           </div>
 
