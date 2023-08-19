@@ -138,6 +138,7 @@ export class AddNewItemComponent implements OnInit {
     this.postItemForm.get(formControlName).value.splice(index, 1)
   }
 
+  //---- Color-Sizes -----
   public setColorSizesIndex(index: number, colorSizesIndex: number) {
     this.inputForm.get('colorSizes').value.index = index;
     this.postItemForm.get('colorSizes').value[colorSizesIndex].index = index;
@@ -145,6 +146,28 @@ export class AddNewItemComponent implements OnInit {
     this.inputForm.get('colorSizes').value.sizes = [];
     this.postItemForm.get('colorSizes').value[colorSizesIndex].sizes = [];
   }
+  public addColorSize(colorSizeFilterIndex: number, colorIndex: number, value: any){
+    this.globalService.checkExistancy(
+      this.postItemForm.get('colorSizes').value[colorIndex].sizes,
+      { code: colorSizeFilterIndex == 0? value.value : null, number: colorSizeFilterIndex == 1? value : null },
+      (exist: boolean) => {
+        if (!exist) {
+          this.inputForm.get('colorSizes').value.sizes.push({
+            code: colorSizeFilterIndex == 0? value : null,
+            number: colorSizeFilterIndex == 1? value : null,
+            quantity: 1
+          });
+          this.postItemForm.get('colorSizes').value[colorIndex].sizes.push({
+            code: colorSizeFilterIndex == 0? value.value : null,
+            number: colorSizeFilterIndex == 1? value : null,
+            quantity: 1
+          });
+        }
+  });
+
+  }
+  public addSizeToColor(){}
+  //---- Color-Sizes -----
 
   /* Color, Sizes, Color Sizes Section ------------------ */
 

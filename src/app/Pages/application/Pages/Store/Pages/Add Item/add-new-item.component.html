@@ -170,41 +170,68 @@
           <div class="colors-sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 3">
             <div class="inputs-container flex justify-space-between align-start">
               <div class="input-form">
-                <app-color-field
-                  [color]="inputForm.controls['colorSizes'].value.color"
+                <app-color-field [color]="inputForm.controls['colorSizes'].value.color"
                   [formControl]="inputForm.controls['colorSizes']"
                   (onInputEvent)="setValue(inputForm, 'colorSizes', $event)">
                 </app-color-field>
               </div>
               <div class="button-container flex justify-end align-center">
-                <app-button [color]="'gray'" [value]="'+ Add Color'" (click)="setInputValueList('colorSizes', 'colorSizes')"></app-button>
+                <app-button [color]="'gray'" [value]="'+ Add Color'"
+                  (click)="setInputValueList('colorSizes', 'colorSizes')"></app-button>
               </div>
             </div>
 
 
             <div class="results-container margin-b-10 margin-t-30">
-              <div class="selected-option flex justify-start align-center margin-tb-10"
+              <div class="selected-option margin-tb-10"
                 *ngFor="let colorSize of postItemForm.controls['colorSizes'].value; let index = index">
-                <div class="delete-container flex justify-center align-center margin-r-10">
-                  <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
-                    (click)="deleteInput('colorSizes', index)"></mat-icon>
+                <div class="color-filters-container flex justify-start align-center">
+                  <div class="delete-container flex justify-center align-center margin-r-10">
+                    <mat-icon class="icon red padding-t-6" svgIcon="circle-minus"
+                      (click)="deleteInput('colorSizes', index)"></mat-icon>
+                  </div>
+
+                  <div class="color-container margin-lr-10 padding-10"
+                    [ngStyle]="{'background-color' : colorSize.color}"></div>
+
+                  <div class="filters-container flex justify-end align-center">
+                    <div
+                      class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark"
+                      [ngClass]="{'active': colorSize.index == 0 }" (click)="setColorSizesIndex(0, index)">Code</div>
+                    <div
+                      class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark"
+                      [ngClass]="{'active': colorSize.index == 1 }" (click)="setColorSizesIndex(1, index)">Number</div>
+                  </div>
                 </div>
 
-                <div class="color-container margin-lr-10 padding-10" [ngStyle]="{'background-color' : colorSize.color}"></div>
-
-                <div class="inputs-container flex justify-end align-center">
+                <div class="inputs-container flex justify-end align-center margin-t-15">
                   <div class="input-form" *ngIf="colorSize.index == 0">
-
+                    <app-select-field [data]="sizeCodes" [placeholder]="'Select Code'"
+                      [formControl]="inputForm.controls['sizeCode']"
+                      (onSelectEvent)="addColorSize(colorSize.index, index, $event)">
+                    </app-select-field>
                   </div>
                   <div class="input-form" *ngIf="colorSize.index == 1">
 
                   </div>
-                  <div class="filters-container flex justify-end align-center">
-                    <div class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark" [ngClass]="{'active': colorSize.index == 0 }" (click)="setColorSizesIndex(0, index)">Code</div>
-                    <div class="filter-container flex justify-center align-center font-medium size-small padding-10 margin-l-6 gray-super-dark" [ngClass]="{'active': colorSize.index == 1 }" (click)="setColorSizesIndex(1, index)">Number</div>
+                </div>
+
+                <div class="selected-option flex justify-start align-center margin-tb-30">
+                  <div class="chip-container margin-lr-10" *ngFor="let size of colorSize.sizes">
+                    <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10 margin-b-10">
+                      {{size.code}}
+                    </div>
+
+                    <div class="quantity-container">
+                      <app-button-quantity [quantity]="size.quantity" [maxQuantity]="999999999"
+                        (onCounterClick)="updateInputQuantity('sizes', $event, index)">
+                      </app-button-quantity>
+                    </div>
                   </div>
                 </div>
+
               </div>
+
             </div>
 
           </div>
