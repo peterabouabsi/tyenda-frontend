@@ -50,7 +50,6 @@ export class AddNewItemComponent implements OnInit {
       if (!response.error) this.categories = response;
     });
   }
-
   private getSizeCodes() {
     this.sizeCodes = this.globalService.getSizeCodes();
   }
@@ -85,7 +84,6 @@ export class AddNewItemComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
-
   public onChipDelete(formControlName: string, index: number) {
     let selectedDataList: any[] = this.postItemForm.get(formControlName).value;
     selectedDataList.splice(index, 1);
@@ -132,11 +130,11 @@ export class AddNewItemComponent implements OnInit {
   }
   public updateInputQuantity(formControlName: string, quantity: number, index: number){
     this.postItemForm.get(formControlName).value[index].quantity = quantity;
-    console.log(this.postItemForm.get(formControlName).value[index])
   }
   public deleteInput(formControlName: string, index: number){
     this.postItemForm.get(formControlName).value.splice(index, 1)
   }
+  // Color, SizeNumber and SizeCode
 
   //---- Color-Sizes -----
   public setColorSizesIndex(index: number, colorSizesIndex: number) {
@@ -166,9 +164,19 @@ export class AddNewItemComponent implements OnInit {
   });
 
   }
-  public addSizeToColor(){}
+  public updateColorSizeQuantity(quantity: number, colorIndex: number, sizeIndex: number){
+    this.postItemForm.get('colorSizes').value[colorIndex].sizes[sizeIndex].quantity = quantity;
+  }
+  public onSizeChipDelete(colorIndex: number, sizeIndex: number){
+    if(this.postItemForm.get('colorSizes').value[colorIndex].sizes.length == 1){
+      this.deleteInput('colorSizes', colorIndex);
+    }else{
+      this.postItemForm.get('colorSizes').value[colorIndex].sizes.splice(sizeIndex, 1);
+    }
+
+  }
   //---- Color-Sizes -----
 
-  /* Color, Sizes, Color Sizes Section ------------------ */
+  public addItem(){}
 
 }

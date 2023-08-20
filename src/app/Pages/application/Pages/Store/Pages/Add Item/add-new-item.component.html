@@ -217,14 +217,14 @@
                 </div>
 
                 <div class="selected-option flex justify-start align-center margin-tb-30">
-                  <div class="chip-container margin-lr-10" *ngFor="let size of colorSize.sizes">
-                    <div class="size-container flex justify-center align-center font-medium size-small white margin-lr-10 padding-lr-10 margin-b-10">
-                      {{size.code}}
-                    </div>
+                  <div class="chip-container margin-lr-10" *ngFor="let size of colorSize.sizes; let sizeIndex = index">
+                    <app-selector-chip class="margin-r-10" [color]="'blue'" [value]="size.code"
+                      (onDelete)="onSizeChipDelete(index, sizeIndex)">
+                    </app-selector-chip>
 
                     <div class="quantity-container">
                       <app-button-quantity [quantity]="size.quantity" [maxQuantity]="999999999"
-                        (onCounterClick)="updateInputQuantity('sizes', $event, index)">
+                        (onCounterClick)="updateColorSizeQuantity($event, index, sizeIndex)">
                       </app-button-quantity>
                     </div>
                   </div>
@@ -306,6 +306,9 @@
                   (postItemForm.controls['discount'].value / 100)) | numberFormat}}</p>
               </div>
             </div>
+          </div>
+          <div class="submit-container flex justify-end align-center padding-tb-10 margin-t-30">
+            <app-button [color]="'blue'" [value]="'Add Item'" (click)="addItem()"></app-button>
           </div>
         </div>
       </div>
