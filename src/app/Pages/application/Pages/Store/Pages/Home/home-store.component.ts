@@ -63,11 +63,13 @@ export class HomeStoreComponent implements OnInit {
     this.storeHomeService.getMonthlyIncome(year).subscribe((response: any) => {
       setTimeout(() => {
         this.onIncomesloading = false;
-        if(!response.error){
+        if(!response.error && response.years){
           response.incomes = response.incomes.reverse();
           this.monthlyIncomes = response;
-          if(year == new Date().getFullYear()) this.currentYear = this.monthlyIncomes.years[this.monthlyIncomes.years.length - 1].id.toString();
-          else this.currentYear = this.monthlyIncomes.years.find((data: any) => {return data.id === year}).id.toString();
+          if(this.monthlyIncomes.years.length > 0){
+            if(year == new Date().getFullYear()) this.currentYear = this.monthlyIncomes.years[this.monthlyIncomes.years.length - 1].id.toString();
+            else this.currentYear = this.monthlyIncomes.years.find((data: any) => {return data.id === year}).id.toString();
+          }
         }
       }, 1000);
     });

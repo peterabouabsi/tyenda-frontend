@@ -15,6 +15,7 @@ import { CartService } from '../Pages/Customer/Pages/Cart/Services/cart.service'
 import { CustomerItemService } from '../Pages/Customer/Pages/Item/Services/customer-item.service';
 import { RequestOrderService } from '../Pages/Customer/Pages/Request Order/Services/request-order.service';
 import { StoreHomeService } from '../Pages/Store/Pages/Home/Services/store-home.service';
+import { AddUpdateItemService } from '../Pages/Store/Pages/Add-Update Item/services/add-update-item.service';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -47,7 +48,7 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { OrdersStoreComponent } from '../Pages/Store/Pages/Orders/orders-store.component';
   import { StoreItemsComponent } from '../Pages/Store/Pages/Items/store-items.component';
   import { StoreItemComponent } from '../Pages/Store/Pages/Item/store-item.component';
-  import { AddNewItemComponent } from '../Pages/Store/Pages/Add Item/add-new-item.component';
+  import { AddUpdateItemComponent } from '../Pages/Store/Pages/Add-Update Item/add-update-item.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -81,7 +82,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       OrdersStoreComponent,
       StoreItemsComponent,
       StoreItemComponent,
-      AddNewItemComponent,
+      AddUpdateItemComponent,
 
     StoreProfileComponent,
     OrderComponent
@@ -118,7 +119,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
       OrdersStoreComponent,
       StoreItemsComponent,
       StoreItemComponent,
-      AddNewItemComponent,
+      AddUpdateItemComponent,
 
     StoreProfileComponent,
     OrderComponent
@@ -131,6 +132,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     CustomerItemService,
     RequestOrderService,
     StoreHomeService,
+    AddUpdateItemService,
     DecimalPipe
   ]
 })

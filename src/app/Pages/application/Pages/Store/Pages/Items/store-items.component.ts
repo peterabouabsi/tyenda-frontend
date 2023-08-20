@@ -134,7 +134,7 @@ export class StoreItemsComponent implements OnInit{
   }
 
   public addNewItem(){
-    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'add-new-item']);
+    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'add-update-item']);
   }
 
   /*----------- Reset form group ------------*/

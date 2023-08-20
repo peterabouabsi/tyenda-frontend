@@ -1,3 +1,4 @@
 <div class="field-container">
   <input class="input padding-lr-10 padding-b-1 black font-medium size-small" [ngClass]="{'danger': formControl.dirty && !formControl.valid}" type="number" min="0" [value]="formControl.value" [disabled]="disabled" (input)="onInput($event)">
+  <app-button class="margin-tb-10" [color]="'gray'" [value]="'+ Add Number'" (click)="onClick()" *ngIf="setClickEvent"></app-button>
 </div>
