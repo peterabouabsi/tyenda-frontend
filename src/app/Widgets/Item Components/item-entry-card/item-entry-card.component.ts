@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
+//Environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -14,6 +17,8 @@ import { ItemEntryView } from 'src/app/Shared/Models/Views/Item/ItemEntryView.vi
   styleUrls: ['./item-entry-card.component.scss']
 })
 export class ItemEntryCardComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   @Input() data: StoreTopItemBasicView | ItemEntryView | any;
   @Input() showStatus?: boolean = true;

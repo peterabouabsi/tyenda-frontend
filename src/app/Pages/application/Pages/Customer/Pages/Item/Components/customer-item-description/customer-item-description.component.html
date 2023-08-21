@@ -2,18 +2,18 @@
   <div class="left-container">
     <div class="images-container flex justify-start align-start flex-column">
       <div class="initial-image-container flex justify-center align-center padding-10">
-        <img [src]="item?.displayedImage" alt="">
+        <img [src]="item?.displayedImage? fileBaseUrl+item?.displayedImage : './assets/Images/no-background-image.png'" alt="">
       </div>
       <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
         <div class="image-container padding-10" [ngClass]="{'scale-out': activeImageIndex != index}"
           (click)="displaySelectedImage(image, index)" *ngFor="let image of item?.otherImages; let index = index">
-          <img [src]="image" alt="">
+          <img [src]="image? fileBaseUrl+image : './assets/Images/no-background-image.png'" alt="">
         </div>
       </div>
     </div>
 
     <div class="buttons-container flex justify-space-between align-center flex-wrap">
-      <div class="button-container flex justify-start align-center flex-wrap">
+      <div class="button-container flex justify-start align-center flex-wrap margin-tb-6">
         <app-button [value]="item?.isAddedToCart?'Remove from cart' : 'Add to cart'" [color]="'gray'"
           (click)="addRemoveCart()">
         </app-button>
@@ -21,7 +21,7 @@
         <app-button [value]="'Comments'" [color]="'gray'" (click)="openCommentsSection()">
         </app-button>
       </div>
-      <div class="button-container flex justify-center align-center">
+      <div class="button-container flex justify-center align-center margin-tb-6">
         <app-button [color]="'blue'" [value]="'Order'" (click)="order()">
         </app-button>
       </div>
@@ -96,7 +96,7 @@
       </app-chip>
     </div>
     <div class="row-data-container">
-      <div class="description text-start font-regular size-regular gray-super-dark" [innerHtml]="item?.description">
+      <div class="description text-start font-regular size-regular gray-super-dark margin-tb-10" [innerHtml]="item?.description">
       </div>
     </div>
   </div>

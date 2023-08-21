@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+//Constants
+import { Constants } from 'src/app/Shared/Models/constants.model';
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
@@ -41,6 +44,8 @@ export class AddUpdateItemComponent implements OnInit {
   })
 
   public inputForm: FormGroup = new FormGroup({
+    initialImage: new FormControl('', []),
+    images: new FormControl([], []),
     color: new FormControl('', []),
     sizeNumber: new FormControl(0, []),
     sizeCode: new FormControl('', []),
@@ -48,8 +53,9 @@ export class AddUpdateItemComponent implements OnInit {
   })
 
   constructor(private route: ActivatedRoute,
-    private globalService: GlobalService,
-    private addUpdateItemService: AddUpdateItemService) {
+              private router: Router,
+              private globalService: GlobalService,
+              private addUpdateItemService: AddUpdateItemService) {
   }
 
   ngOnInit(): void {
@@ -89,13 +95,19 @@ export class AddUpdateItemComponent implements OnInit {
   }
   public onItemImage(formControlName: string, event: any, index: number = -1) {
     let file = event.target.files[0];
+    if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, file);
+      if (formControlName == 'images') {
+        if (index == -1) this.postItemForm.get(formControlName).value.push(file); //adding image
+        else this.postItemForm.get(formControlName).value[index] = file//Updating image
+      }
+
     const reader = new FileReader();
     reader.onload = (event) => {
       let fileBlob = event.target.result;
-      if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, fileBlob);
+      if (formControlName == 'initialImage') this.setValue(this.inputForm, formControlName, fileBlob);
       if (formControlName == 'images') {
-        if (index == -1) this.postItemForm.get(formControlName).value.push(fileBlob); //adding image
-        else this.postItemForm.get(formControlName).value[index] = fileBlob//Updating image
+        if (index == -1) this.inputForm.get(formControlName).value.push(fileBlob); //adding image
+        else this.inputForm.get(formControlName).value[index] = fileBlob//Updating image
       }
     };
     reader.readAsDataURL(file);
@@ -220,14 +232,30 @@ export class AddUpdateItemComponent implements OnInit {
                   form.id = this.itemId;
                 }
 
-                this.addUpdateItemService.addUpdate(form).subscribe((response: any) => {
-                  setTimeout(() => {
-                    dialogRef.close();
-                    if (!response.error) {
-                      alert('Done');
+                let initialImage = this.postItemForm.get('initialImage').value;
+                let otherImages = this.postItemForm.get('images').value;
+                let allImages = [initialImage, ...otherImages];
+
+                if(allImages.length > 0){
+
+                  this.addUpdateItemService.addUpdate(form).subscribe((response: any) => {
+                    let itemId = response.id;
+                    if (itemId) {
+                      for(let image of allImages){
+                        let formData = new FormData();
+                        formData.append('File', image);
+                        formData.append('ItemId', itemId);
+                        this.addUpdateItemService.addUpdateImage(formData).subscribe((response: any) => {});
+                      }
+                      setTimeout(() => {
+                        dialogRef.close();
+                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE, 'item/'+itemId]);
+                      }, 3000)
                     }
-                  }, 3000)
-                });
+                  });
+                }else{
+                  alert('Item requires at least one image');
+                }
               }
             }
           },

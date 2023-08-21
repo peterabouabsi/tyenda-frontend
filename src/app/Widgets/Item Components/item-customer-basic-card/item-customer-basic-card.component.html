@@ -15,7 +15,7 @@
   </div>
   <div class="info-container margin-tb-10" (click)="openItem()">
     <div class="image-container relative">
-      <img [src]="data?.itemImage" alt="">
+      <img [src]="data?.itemImage? fileBaseUrl+data?.itemImage : './assets/Images/no-profile-image.png'" alt="">
       <div class="badge-rate-container absolute">
         <app-badge
           [color]="'var(--orange)'"

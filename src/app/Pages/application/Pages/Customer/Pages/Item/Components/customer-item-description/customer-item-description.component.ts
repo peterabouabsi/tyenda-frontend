@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+//Environment
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -25,6 +28,8 @@ import { CustomerItemCommentsComponent } from './Components/customer-item-commen
   styleUrls: ['./customer-item-description.component.scss']
 })
 export class CustomerItemDescriptionComponent implements OnInit{
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   public item: ItemAdvancedView;
 

@@ -17,13 +17,13 @@
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center margin-10 relative">
             <img
-              [src]="postItemForm.controls['initialImage'].value? postItemForm.controls['initialImage'].value : './assets/Images/no-background-image.png'"
+              [src]="inputForm.controls['initialImage'].value? inputForm.controls['initialImage'].value : './assets/Images/no-background-image.png'"
               alt="">
             <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event)" />
           </div>
-          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
+          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30" *ngIf="postItemForm.controls['initialImage'].value">
             <div class="image-container margin-10 relative"
-              *ngFor="let image of postItemForm.controls['images'].value; let index = index">
+              *ngFor="let image of inputForm.controls['images'].value; let index = index">
               <img [src]="image? image : './assets/Images/no-background-image.png'" alt="">
               <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index)" />
             </div>

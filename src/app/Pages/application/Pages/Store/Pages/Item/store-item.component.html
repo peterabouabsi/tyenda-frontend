@@ -4,12 +4,12 @@
       <div class="left-container">
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center padding-10">
-            <img [src]="item?.displayedImage" alt="">
+            <img [src]="item?.displayedImage? fileBaseUrl+item?.displayedImage : './assets/Images/no-background-image.png'" alt="">
           </div>
           <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30">
             <div class="image-container padding-10" [ngClass]="{'scale-out': activeImageIndex != index}"
               (click)="displaySelectedImage(image, index)" *ngFor="let image of item?.otherImages; let index = index">
-              <img [src]="image" alt="">
+              <img [src]="image? fileBaseUrl+image : './assets/Images/no-background-image.png'" alt="">
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
             <app-rate-selector [value]="item?.myRate">
             </app-rate-selector>
           </div>
-          <div class="p value font-regular size-small gray-super-dark">{{item?.ratersCount}} people rated this item
+          <div class="p value font-regular size-small gray-super-dark margin-tb-10">{{item?.ratersCount}} people rated this item
           </div>
         </div>
         <div class="rate-container padding-tb-10">
