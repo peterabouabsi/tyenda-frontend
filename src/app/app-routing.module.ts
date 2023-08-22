@@ -90,7 +90,7 @@ const routes: Routes = [
       {path: 'orders', component: OrdersStoreComponent, title: 'Tyenda | Orders'},
       {path: 'items', component: StoreItemsComponent, title: 'Tyenda | Items'},
       {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: StoreItemComponent, title: 'Tyenda'},
-      {path: 'add-update-item', component: AddUpdateItemComponent, title: 'Tyenda | Add Item'},
+      {path: 'add-update-item', component: AddUpdateItemComponent, title: 'Tyenda | Add Update Item'},
       {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
       {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
     ]}

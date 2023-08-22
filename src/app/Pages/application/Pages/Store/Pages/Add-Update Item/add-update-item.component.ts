@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//Environments
+import { environment } from 'src/environments/environments';
+
 //Constants
 import { Constants } from 'src/app/Shared/Models/constants.model';
 
@@ -24,6 +27,8 @@ import { AddUpdateItemForm } from 'src/app/Shared/Models/Forms/AddUpdateItemForm
   styleUrls: ['./add-update-item.component.scss']
 })
 export class AddUpdateItemComponent implements OnInit {
+
+  public fileBaseUrl: string = environment.fileBaseUrl;
 
   public item: any = {};
 
@@ -53,9 +58,9 @@ export class AddUpdateItemComponent implements OnInit {
   })
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private globalService: GlobalService,
-              private addUpdateItemService: AddUpdateItemService) {
+    private router: Router,
+    private globalService: GlobalService,
+    private addUpdateItemService: AddUpdateItemService) {
   }
 
   ngOnInit(): void {
@@ -66,9 +71,9 @@ export class AddUpdateItemComponent implements OnInit {
 
   private getItemStatus() {
     this.item.Id = this.route.snapshot.queryParams['itemId'];
-    if(this.item.Id){
+    if (this.item.Id) {
       this.addUpdateItemService.getItemDescription(this.item.Id).subscribe((response: any) => {
-        if(!response.error){
+        if (!response.error) {
           this.item = response;
           this.setValue(this.postItemForm, 'name', this.item.value);
           this.setValue(this.postItemForm, 'description', this.item.description);
@@ -76,8 +81,12 @@ export class AddUpdateItemComponent implements OnInit {
           this.setValue(this.postItemForm, 'price', this.item.price);
           this.setValue(this.postItemForm, 'discount', this.item.discount);
 
-          //initialImage: new FormControl(null, [Validators.required]),
-          //images: new FormControl([], []),
+          let initialImage = this.item.images.shift();
+          this.inputForm.get('initialImage').setValue({ id: initialImage.id, url: this.fileBaseUrl+initialImage.url });
+          for (let image of this.item.images) {
+            this.inputForm.get('images').value.push({ id: image.id, url: this.fileBaseUrl+image.url });
+          }
+
           //colors: new FormControl([], []),
           //sizes: new FormControl([], []),
           //colorSizes: new FormControl([], [])
@@ -111,13 +120,14 @@ export class AddUpdateItemComponent implements OnInit {
       });
     }
   }
-  public onItemImage(formControlName: string, event: any, index: number = -1) {
+  public onItemImage(formControlName: string, event: any, index: number = -1, imageId: string = undefined) {
+    //When New Item
     let file = event.target.files[0];
-    if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, file);
-      if (formControlName == 'images') {
-        if (index == -1) this.postItemForm.get(formControlName).value.push(file); //adding image
-        else this.postItemForm.get(formControlName).value[index] = file//Updating image
-      }
+    if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, imageId? {id: imageId, file: file} : file);
+    if (formControlName == 'images') {
+      if (index == -1) this.postItemForm.get(formControlName).value.push(imageId? {id: imageId, file: file} : file); //adding image
+      else this.postItemForm.get(formControlName).value[index] = imageId? {id: imageId, file: file} : file//Updating image
+    }
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -252,26 +262,35 @@ export class AddUpdateItemComponent implements OnInit {
 
                 let initialImage = this.postItemForm.get('initialImage').value;
                 let otherImages = this.postItemForm.get('images').value;
-                let allImages = [initialImage, ...otherImages];
 
-                if(allImages.length > 0){
+                let allImages = [];
+
+                if(initialImage == null) allImages  = otherImages
+                else allImages = [initialImage, ...otherImages]
+
+                if (allImages.length > 0 || this.item) {
 
                   this.addUpdateItemService.addUpdate(addUpdateItemForm).subscribe((response: any) => {
                     let itemId = response.id;
                     if (itemId) {
-                      for(let image of allImages){
+                      for (let image of allImages) {
                         let formData = new FormData();
-                        formData.append('File', image);
                         formData.append('ItemId', itemId);
-                        this.addUpdateItemService.addUpdateImage(formData).subscribe((response: any) => {});
+                        if (image.id) {
+                          formData.append('ItemId', image.id);
+                          formData.append('File', image.file);
+                        } else {
+                          formData.append('File', image);
+                        }
+                        this.addUpdateItemService.addUpdateImage(formData).subscribe((response: any) => { });
                       }
                       setTimeout(() => {
                         dialogRef.close();
-                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'item/'+itemId]);
+                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE + 'item/' + itemId]);
                       }, 3000)
                     }
                   });
-                }else{
+                } else {
                   alert('Item requires at least one image');
                 }
               }

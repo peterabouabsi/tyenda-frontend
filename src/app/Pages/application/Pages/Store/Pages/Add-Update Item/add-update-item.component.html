@@ -16,16 +16,14 @@
       <div class="left-container">
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center margin-10 relative">
-            <img
-              [src]="inputForm.controls['initialImage'].value? inputForm.controls['initialImage'].value : './assets/Images/no-background-image.png'"
-              alt="">
-            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event)" />
+            <img [src]="inputForm.controls['initialImage'].value? (inputForm.controls['initialImage'].value.id? inputForm.controls['initialImage'].value.url : inputForm.controls['initialImage'].value) : './assets/Images/no-background-image.png'" alt="">
+            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event, inputForm.controls['initialImage'].value.id)" />
           </div>
-          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30" *ngIf="postItemForm.controls['initialImage'].value">
+          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30" *ngIf="item || postItemForm.controls['initialImage'].value">
             <div class="image-container margin-10 relative"
               *ngFor="let image of inputForm.controls['images'].value; let index = index">
-              <img [src]="image? image : './assets/Images/no-background-image.png'" alt="">
-              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index)" />
+              <img [src]="image? (image.id? image.url : image) : './assets/Images/no-background-image.png'" alt="">
+              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index, image.id)" />
             </div>
             <div
               class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4 relative">
