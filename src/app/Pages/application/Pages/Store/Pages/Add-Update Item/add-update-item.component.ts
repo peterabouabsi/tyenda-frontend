@@ -30,7 +30,7 @@ export class AddUpdateItemComponent implements OnInit {
 
   public fileBaseUrl: string = environment.fileBaseUrl;
 
-  public item: any = {};
+  public item: any;
 
   public categories: BasicCategoryView[] = [];
   public sizeCodes: any[] = [];
@@ -70,9 +70,9 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   private getItemStatus() {
-    this.item.Id = this.route.snapshot.queryParams['itemId'];
-    if (this.item.Id) {
-      this.addUpdateItemService.getItemDescription(this.item.Id).subscribe((response: any) => {
+    let id = this.route.snapshot.queryParams['itemId'];
+    if (id) {
+      this.addUpdateItemService.getItemDescription(id).subscribe((response: any) => {
         if (!response.error) {
           this.item = response;
           this.setValue(this.postItemForm, 'name', this.item.value);
@@ -245,6 +245,7 @@ export class AddUpdateItemComponent implements OnInit {
                 this.onConfirmationItem = true;
 
                 let addUpdateItemForm: AddUpdateItemForm = {
+                  id: this.item? this.item.id : null,
                   value: this.postItemForm.get('name').value,
                   description: this.postItemForm.get('description').value,
                   price: this.postItemForm.get('price').value,
@@ -253,11 +254,6 @@ export class AddUpdateItemComponent implements OnInit {
                   colors: this.postItemForm.get('colors').value,
                   sizes: this.postItemForm.get('sizes').value,
                   colorSizes: this.postItemForm.get('colorSizes').value
-                }
-
-                if (this.item.Id) {
-                  //update
-                  addUpdateItemForm.id = this.item.Id;
                 }
 
                 let initialImage = this.postItemForm.get('initialImage').value;
@@ -271,23 +267,25 @@ export class AddUpdateItemComponent implements OnInit {
                 if (allImages.length > 0 || this.item) {
 
                   this.addUpdateItemService.addUpdate(addUpdateItemForm).subscribe((response: any) => {
-                    let itemId = response.id;
-                    if (itemId) {
-                      for (let image of allImages) {
-                        let formData = new FormData();
-                        formData.append('ItemId', itemId);
-                        if (image.id) {
-                          formData.append('ItemId', image.id);
-                          formData.append('File', image.file);
-                        } else {
-                          formData.append('File', image);
+                    if(!response.error){
+                      let itemId = response.id;
+                      if (itemId) {
+                        for (let image of allImages) {
+                          let formData = new FormData();
+                          formData.append('ItemId', itemId);
+                          if (image.id) {
+                            formData.append('ItemId', image.id);
+                            formData.append('File', image.file);
+                          } else {
+                            formData.append('File', image);
+                          }
+                          this.addUpdateItemService.addUpdateImage(formData).subscribe((response: any) => { });
                         }
-                        this.addUpdateItemService.addUpdateImage(formData).subscribe((response: any) => { });
+                        setTimeout(() => {
+                          dialogRef.close();
+                          this.router.navigate([Constants.APP_MAIN_ROUTE_STORE + 'item/' + itemId]);
+                        }, 3000)
                       }
-                      setTimeout(() => {
-                        dialogRef.close();
-                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE + 'item/' + itemId]);
-                      }, 3000)
                     }
                   });
                 } else {
