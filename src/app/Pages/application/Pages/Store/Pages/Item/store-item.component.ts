@@ -64,7 +64,9 @@ export class StoreItemComponent implements OnInit {
     this.globalService.openDialog(null, this.item.id);
   }
 
-  public editItem(){}
+  public editItem(){
+    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'add-update-item'], {queryParams: {itemId: this.item.id}});
+  }
 
   public onDeleteItem: boolean = false;
   public deleteItem(){

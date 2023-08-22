@@ -66,6 +66,9 @@ export class AddUpdateItemComponent implements OnInit {
 
   private getItemStatus() {
     this.itemId = this.route.snapshot.queryParams['itemId'];
+    if(this.itemId){
+
+    }
   }
   private getCategories() {
     this.globalService.getCategories().subscribe((response: any) => {
@@ -249,7 +252,7 @@ export class AddUpdateItemComponent implements OnInit {
                       }
                       setTimeout(() => {
                         dialogRef.close();
-                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE, 'item/'+itemId]);
+                        this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'item/'+itemId]);
                       }, 3000)
                     }
                   });

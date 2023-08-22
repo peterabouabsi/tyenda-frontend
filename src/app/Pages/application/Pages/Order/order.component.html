@@ -21,7 +21,7 @@
     <div class="body-container margin-tb-30">
       <div class="left-container padding-tb-10">
         <div class="item-container">
-          <img [src]="order?.itemImage" alt="">
+          <img [src]="order?.itemImage? fileBaseUrl+order?.itemImage : './assets/Images/no-background-image.png'" alt="">
         </div>
 
         <div class="feedback-container section shadow padding-20 margin-tb-20" *ngRolePermission="'Customer'">
@@ -84,26 +84,32 @@
         </div>
 
         <div class="colors-and-sizes-container">
-          <app-slider>
+          <app-slider *ngIf="order?.colors">
             <div class="box-container padding-lr-10" *ngFor="let color of order?.colors">
               <div class="colors-container flex justify-center align-center flex-column">
                 <div class="color-container" [ngStyle]="{'background-color': color?.color}"></div>
-                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{color?.quantity}} pieces</p>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{color?.quantity}} {{color?.quantity > 1? 'pieces' : 'piece'}}</p>
               </div>
             </div>
+          </app-slider>
+
+          <app-slider *ngIf="order?.sizes">
             <div class="box-container padding-lr-10" *ngFor="let size of order?.sizes">
               <div class="sizes-container">
                 <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">{{size.number? 'No. '+size?.number : size?.code}}</div>
-                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} pieces</p>
+                <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} {{size?.quantity > 1? 'pieces' : 'piece'}}</p>
               </div>
             </div>
+          </app-slider>
+
+          <app-slider *ngIf="order?.colorSizes">
             <div class="box-container padding-lr-10" *ngFor="let color of order?.colorSizes">
               <div class="colors-sizes-container flex justify-center align-center">
                 <div class="color-sizes-container flex justify-start align-start">
                   <div class="color-container margin-r-10 padding-16" [ngStyle]="{'background-color': color?.color}"></div>
                   <div class="sizes-container margin-r-10" *ngFor="let size of color?.sizes">
                     <div class="size-container flex justify-center align-center font-medium size-semi-small gray-super-dark margin-b-10">{{size?.number? 'No. '+size?.number : size?.code}}</div>
-                    <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} pieces</p>
+                    <p class="quantity text-center font-regular size-small gray-dark padding-tb-3">{{size?.quantity}} {{size?.quantity > 1? 'pieces' : 'piece'}}</p>
                   </div>
                 </div>
               </div>

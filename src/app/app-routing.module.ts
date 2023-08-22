@@ -88,9 +88,9 @@ const routes: Routes = [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: HomeStoreComponent, title: 'Tyenda | Home'},
       {path: 'orders', component: OrdersStoreComponent, title: 'Tyenda | Orders'},
-      {path: 'items', component: StoreItemsComponent, data: {title: 'Tyenda | Items'}},
-      {path: 'item/:itemId', component: StoreItemComponent, data: {title: 'Tyenda | Item'}},
-      {path: 'add-update-item', component: AddUpdateItemComponent, data: {title: 'Tyenda | Add Item'}},
+      {path: 'items', component: StoreItemsComponent, title: 'Tyenda | Items'},
+      {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: StoreItemComponent, title: 'Tyenda'},
+      {path: 'add-update-item', component: AddUpdateItemComponent, title: 'Tyenda | Add Item'},
       {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
       {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
     ]}
