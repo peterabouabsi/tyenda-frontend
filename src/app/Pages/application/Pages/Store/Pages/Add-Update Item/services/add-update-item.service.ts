@@ -13,6 +13,10 @@ export class AddUpdateItemService {
 
   constructor(private apiService: ApiService) { }
 
+  public getItemDescription(itemId: string){
+    return this.apiService.get('/Item/Update/'+itemId);
+  }
+
   public addUpdate(form: AddUpdateItemForm){
     return this.apiService.post('/Item/AddUpdate()', form);
   }

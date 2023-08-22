@@ -25,7 +25,7 @@ import { AddUpdateItemForm } from 'src/app/Shared/Models/Forms/AddUpdateItemForm
 })
 export class AddUpdateItemComponent implements OnInit {
 
-  public itemId: string = '';
+  public item: any = {};
 
   public categories: BasicCategoryView[] = [];
   public sizeCodes: any[] = [];
@@ -65,9 +65,24 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   private getItemStatus() {
-    this.itemId = this.route.snapshot.queryParams['itemId'];
-    if(this.itemId){
+    this.item.Id = this.route.snapshot.queryParams['itemId'];
+    if(this.item.Id){
+      this.addUpdateItemService.getItemDescription(this.item.Id).subscribe((response: any) => {
+        if(!response.error){
+          this.item = response;
+          this.setValue(this.postItemForm, 'name', this.item.value);
+          this.setValue(this.postItemForm, 'description', this.item.description);
+          this.setValue(this.postItemForm, 'categories', this.item.categories);
+          this.setValue(this.postItemForm, 'price', this.item.price);
+          this.setValue(this.postItemForm, 'discount', this.item.discount);
 
+          //initialImage: new FormControl(null, [Validators.required]),
+          //images: new FormControl([], []),
+          //colors: new FormControl([], []),
+          //sizes: new FormControl([], []),
+          //colorSizes: new FormControl([], [])
+        }
+      });
     }
   }
   private getCategories() {
@@ -219,7 +234,7 @@ export class AddUpdateItemComponent implements OnInit {
               if (this.onConfirmationItem == false) {
                 this.onConfirmationItem = true;
 
-                let form: AddUpdateItemForm = {
+                let addUpdateItemForm: AddUpdateItemForm = {
                   value: this.postItemForm.get('name').value,
                   description: this.postItemForm.get('description').value,
                   price: this.postItemForm.get('price').value,
@@ -230,9 +245,9 @@ export class AddUpdateItemComponent implements OnInit {
                   colorSizes: this.postItemForm.get('colorSizes').value
                 }
 
-                if (this.itemId) {
+                if (this.item.Id) {
                   //update
-                  form.id = this.itemId;
+                  addUpdateItemForm.id = this.item.Id;
                 }
 
                 let initialImage = this.postItemForm.get('initialImage').value;
@@ -241,7 +256,7 @@ export class AddUpdateItemComponent implements OnInit {
 
                 if(allImages.length > 0){
 
-                  this.addUpdateItemService.addUpdate(form).subscribe((response: any) => {
+                  this.addUpdateItemService.addUpdate(addUpdateItemForm).subscribe((response: any) => {
                     let itemId = response.id;
                     if (itemId) {
                       for(let image of allImages){

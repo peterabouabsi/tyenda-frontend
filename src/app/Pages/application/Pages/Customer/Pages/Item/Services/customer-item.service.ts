@@ -16,7 +16,6 @@ export class CustomerItemService {
 
   constructor(private apiService: ApiService) { }
 
-
   public getItemDescription(itemId: string){
     return this.apiService.get('/Item/'+itemId);
   }

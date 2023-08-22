@@ -32,5 +32,6 @@
     (input)="modifyText()"
     class="font-regular size-small padding-20"
     [ngClass]="{'invalid': formIsDirty && !formControl.valid}"
+    [innerHTML]="formControl.value"
     contenteditable="true" spellcheck="false"></div>
 </div>
