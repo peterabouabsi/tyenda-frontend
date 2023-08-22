@@ -86,7 +86,6 @@ export class AddUpdateItemComponent implements OnInit {
           for (let image of this.item.images) {
             this.inputForm.get('images').value.push({ id: image.id, url: this.fileBaseUrl+image.url });
           }
-
           //colors: new FormControl([], []),
           //sizes: new FormControl([], []),
           //colorSizes: new FormControl([], [])
@@ -120,13 +119,14 @@ export class AddUpdateItemComponent implements OnInit {
       });
     }
   }
-  public onItemImage(formControlName: string, event: any, index: number = -1, imageId: string = undefined) {
+  public onItemImage(formControlName: string, event: any, index: number = -1, imageId: any = undefined) {
     //When New Item
     let file = event.target.files[0];
+    console.log(imageId)
     if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, imageId? {id: imageId, file: file} : file);
     if (formControlName == 'images') {
-      if (index == -1) this.postItemForm.get(formControlName).value.push(imageId? {id: imageId, file: file} : file); //adding image
-      else this.postItemForm.get(formControlName).value[index] = imageId? {id: imageId, file: file} : file//Updating image
+      if (index == -1) this.postItemForm.get(formControlName).value.push(imageId != undefined? {id: imageId, file: file} : file); //adding image
+      else this.postItemForm.get(formControlName).value[index] = imageId != undefined? {id: imageId, file: file} : file//Updating image
     }
 
     const reader = new FileReader();
@@ -265,6 +265,7 @@ export class AddUpdateItemComponent implements OnInit {
                 else allImages = [initialImage, ...otherImages]
 
                 if (allImages.length > 0 || this.item) {
+                  console.log(allImages);
 
                   this.addUpdateItemService.addUpdate(addUpdateItemForm).subscribe((response: any) => {
                     if(!response.error){
@@ -274,7 +275,7 @@ export class AddUpdateItemComponent implements OnInit {
                           let formData = new FormData();
                           formData.append('ItemId', itemId);
                           if (image.id) {
-                            formData.append('ItemId', image.id);
+                            formData.append('Id', image.id);
                             formData.append('File', image.file);
                           } else {
                             formData.append('File', image);

@@ -17,7 +17,7 @@
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center margin-10 relative">
             <img [src]="inputForm.controls['initialImage'].value? (inputForm.controls['initialImage'].value.id? inputForm.controls['initialImage'].value.url : inputForm.controls['initialImage'].value) : './assets/Images/no-background-image.png'" alt="">
-            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event, inputForm.controls['initialImage'].value.id)" />
+            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event, -1, inputForm.controls['initialImage'].value.id)" />
           </div>
           <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30" *ngIf="item || postItemForm.controls['initialImage'].value">
             <div class="image-container margin-10 relative"
