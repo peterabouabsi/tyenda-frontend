@@ -35,6 +35,7 @@ export class AddUpdateItemComponent implements OnInit {
   public categories: BasicCategoryView[] = [];
   public sizeCodes: any[] = [];
 
+  //Final Result
   public postItemForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -48,6 +49,7 @@ export class AddUpdateItemComponent implements OnInit {
     colorSizes: new FormControl([], [])
   })
 
+  //Input Process
   public inputForm: FormGroup = new FormGroup({
     initialImage: new FormControl('', []),
     images: new FormControl([], []),
@@ -58,9 +60,9 @@ export class AddUpdateItemComponent implements OnInit {
   })
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private globalService: GlobalService,
-    private addUpdateItemService: AddUpdateItemService) {
+              private router: Router,
+              private globalService: GlobalService,
+              private addUpdateItemService: AddUpdateItemService) {
   }
 
   ngOnInit(): void {
@@ -86,9 +88,17 @@ export class AddUpdateItemComponent implements OnInit {
           for (let image of this.item.images) {
             this.inputForm.get('images').value.push({ id: image.id, url: this.fileBaseUrl+image.url });
           }
-          //colors: new FormControl([], []),
-          //sizes: new FormControl([], []),
-          //colorSizes: new FormControl([], [])
+
+          if(this.item.colors){
+            this.colorSizeIndex = 0;
+            this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
+          }
+          if(this.item.sizes){
+            this.setValue(this.postItemForm, 'sizes', this.item.colors.map((size: any) => {return {code: size.code, number: size.number, quantity: size.quantity}}));
+          }
+          if(this.item.colorSizes){
+            //this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
+          }
         }
       });
     }
@@ -147,7 +157,7 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   /* ---------------- Color, Sizes, Color Sizes Section */
-  public colorSizeIndex: number = 3;
+  public colorSizeIndex: number = -1;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
     this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
