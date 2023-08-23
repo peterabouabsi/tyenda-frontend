@@ -93,14 +93,20 @@ export class AddUpdateItemComponent implements OnInit {
             this.colorSizeIndex = 0;
             this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
           }
-          if(this.item.sizes){
+          if(this.item.sizes.length > 0){
             if(this.item.sizes[0].number) this.colorSizeIndex = 1;
             if(this.item.sizes[0].code) this.colorSizeIndex = 2;
             this.setValue(this.postItemForm, 'sizes', this.item.sizes.map((size: any) => {return {code: size.code, number: size.number, quantity: size.quantity}}));
           }
-          if(this.item.colorSizes){
-            //this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
+          if (this.item.colorSizes.length > 0) {
+            this.colorSizeIndex = 3;
+            this.item.colorSizes.forEach((color: any) => {
+              this.postItemForm.get('colorSizes').value.push({ value: color.value, sizes: color.sizes.map((size: any) => {
+                return {code: size.code, number: size.number, quantity: size.quantity, index: size.code? 0 : 1}
+              }), index: color.sizes.length > 0 && color.sizes[0].code? 0 : 1});
+            })
           }
+
         }
       });
     }
