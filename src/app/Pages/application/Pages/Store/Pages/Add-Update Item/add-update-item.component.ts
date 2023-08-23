@@ -94,7 +94,9 @@ export class AddUpdateItemComponent implements OnInit {
             this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
           }
           if(this.item.sizes){
-            this.setValue(this.postItemForm, 'sizes', this.item.colors.map((size: any) => {return {code: size.code, number: size.number, quantity: size.quantity}}));
+            if(this.item.sizes[0].number) this.colorSizeIndex = 1;
+            if(this.item.sizes[0].code) this.colorSizeIndex = 2;
+            this.setValue(this.postItemForm, 'sizes', this.item.sizes.map((size: any) => {return {code: size.code, number: size.number, quantity: size.quantity}}));
           }
           if(this.item.colorSizes){
             //this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
@@ -157,7 +159,7 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   /* ---------------- Color, Sizes, Color Sizes Section */
-  public colorSizeIndex: number = -1;
+  public colorSizeIndex: number = 0;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
     this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
