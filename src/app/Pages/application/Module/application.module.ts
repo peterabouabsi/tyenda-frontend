@@ -16,7 +16,7 @@ import { CustomerItemService } from '../Pages/Customer/Pages/Item/Services/custo
 import { RequestOrderService } from '../Pages/Customer/Pages/Request Order/Services/request-order.service';
 import { StoreHomeService } from '../Pages/Store/Pages/Home/Services/store-home.service';
 import { AddUpdateItemService } from '../Pages/Store/Pages/Add-Update Item/services/add-update-item.service';
-
+import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
 /* ----------------------------------------------------------------------------------------------- */
 
 //Components
@@ -133,6 +133,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     RequestOrderService,
     StoreHomeService,
     AddUpdateItemService,
+    NotificationService,
     DecimalPipe
   ]
 })

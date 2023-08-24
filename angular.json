@@ -28,6 +28,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/OneSignalSDKWorker.js",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -94,6 +95,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/OneSignalSDKWorker.js",
               "src/manifest.webmanifest"
             ],
             "styles": [
