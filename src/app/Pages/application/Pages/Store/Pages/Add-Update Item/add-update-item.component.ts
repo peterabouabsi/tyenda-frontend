@@ -42,7 +42,8 @@ export class AddUpdateItemComponent implements OnInit {
     categories: new FormControl([], []),
     price: new FormControl(0, [Validators.required]),
     discount: new FormControl(0, []),
-    initialImage: new FormControl(null, [Validators.required]),
+    notes: new FormControl([], []),
+    initialImage: new FormControl(null, []),
     images: new FormControl([], []),
     colors: new FormControl([], []),
     sizes: new FormControl([], []),
@@ -51,6 +52,7 @@ export class AddUpdateItemComponent implements OnInit {
 
   //Input Process
   public inputForm: FormGroup = new FormGroup({
+    note: new FormControl('', []),
     initialImage: new FormControl('', []),
     images: new FormControl([], []),
     color: new FormControl('', []),
@@ -82,6 +84,7 @@ export class AddUpdateItemComponent implements OnInit {
           this.setValue(this.postItemForm, 'categories', this.item.categories);
           this.setValue(this.postItemForm, 'price', this.item.price);
           this.setValue(this.postItemForm, 'discount', this.item.discount);
+          this.setValue(this.postItemForm, 'notes', this.item.notes);
 
           let initialImage = this.item.images.shift();
           this.inputForm.get('initialImage').setValue({ id: initialImage.id, url: this.fileBaseUrl+initialImage.url });
@@ -165,14 +168,14 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   /* ---------------- Color, Sizes, Color Sizes Section */
-  public colorSizeIndex: number = 0;
+  public colorSizeIndex: number = -1;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
     this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
     this.globalService.clearFormValue(this.inputForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, '']);
   }
 
-  //Color, SizeNumber and SizeCode
+  //Note, Color, SizeNumber and SizeCode
   public setInputValueList(type: string, formControlName: string) {
     if (type == 'color') {
       let typedColor = this.inputForm.get(type).value;
@@ -252,7 +255,16 @@ export class AddUpdateItemComponent implements OnInit {
 
   public onConfirmationItem: boolean = false;
   public addUpdateItem() {
-    this.globalService.openDialog(AlertComponent,
+    let isFormValid = false;
+    if(this.postItemForm.valid){
+      if(this.colorSizeIndex == 0 && this.postItemForm.get('colors').value.length > 0) isFormValid = true;
+      else if((this.colorSizeIndex == 1 || this.colorSizeIndex == 2) && this.postItemForm.get('sizes').value.length > 0) isFormValid = true;
+      else if(this.colorSizeIndex == 3 && this.postItemForm.get('colorSizes').value.length > 0) isFormValid = true;
+      else isFormValid = false
+    }
+
+    if(isFormValid){
+      this.globalService.openDialog(AlertComponent,
       {
         title: 'Confirm',
         message: 'Are you sure you want to confirm item creation?',
@@ -268,6 +280,7 @@ export class AddUpdateItemComponent implements OnInit {
                   description: this.postItemForm.get('description').value,
                   price: this.postItemForm.get('price').value,
                   discount: this.postItemForm.get('discount').value,
+                  notes: this.postItemForm.get('notes').value,
                   categories: this.postItemForm.get('categories').value.map((category: any) => category.id),
                   colors: this.postItemForm.get('colors').value,
                   sizes: this.postItemForm.get('sizes').value,
@@ -316,6 +329,7 @@ export class AddUpdateItemComponent implements OnInit {
           { value: 'Cancel', color: 'gray', onButtonClick: (dialogRef: any) => { dialogRef.close() } }
         ]
       }, null);
+    }
   }
 
 }

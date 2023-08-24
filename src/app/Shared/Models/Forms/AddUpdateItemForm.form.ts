@@ -4,6 +4,7 @@ export interface AddUpdateItemForm{
   description: string;
   price: number;
   discount: number;
+  notes: string[];
   categories: string[];
   colors: ColorForm[];
   sizes: SizeForm[];

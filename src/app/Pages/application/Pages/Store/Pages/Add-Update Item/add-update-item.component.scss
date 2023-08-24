@@ -166,6 +166,23 @@
       }
       .right-container{
         width: 100%;
+        .notes-container{
+          width: 100%;
+          .delete-note-container{
+            width: fit-content;
+            height: 100%;
+            .icon{
+              cursor: pointer;
+            }
+          }
+        }
+        .add-note-container{
+          .button-container{
+            border-radius: 10px;
+            border: 2px dashed var(--blue);
+            cursor: pointer;
+          }
+        }
       }
     }
   }

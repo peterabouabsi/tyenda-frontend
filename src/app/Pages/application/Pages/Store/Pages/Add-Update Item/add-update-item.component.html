@@ -89,7 +89,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 1">
@@ -241,8 +240,7 @@
       </div>
       <div class="right-container">
         <div class="text-container">
-          <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Item
-            name</p>
+          <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Item name</p>
         </div>
         <div class="inputs-container">
           <div class="input-form margin-b-10">
@@ -305,6 +303,33 @@
                 <p class="text text-start font-bold size-medium black text-start padding-tb-10 ellipse-1">$ {{
                   postItemForm.controls['price'].value - (postItemForm.controls['price'].value *
                   (postItemForm.controls['discount'].value / 100)) | numberFormat}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="notes-container">
+            <div class="text-container">
+              <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Notes <span class="red size-small">*optional</span></p>
+            </div>
+            <div class="note-container flex justify-space-between align-start margin-tb-10 padding-tb-10" *ngFor="let note of postItemForm.controls['notes'].value; let index = index">
+              <div class="text-container">
+                <p class="text text-start font-medium size-regular padding-r-10 black">{{note}}</p>
+              </div>
+              <div class="delete-note-container flex justify-center align-center">
+                <mat-icon class="icon red" svgIcon="circle-minus" (click)="deleteInput('notes', index)"></mat-icon>
+              </div>
+            </div>
+            <div class="add-note-container margin-tb-10 padding-tb-10">
+              <div class="inputs-container">
+                <div class="input-form margin-b-10">
+                  <app-text-field
+                    [placeholder]="'Add note ...'"
+                    [formControl]="inputForm.controls['note']"
+                    (onInputEvent)="setValue(inputForm, 'note', $event)">
+                  </app-text-field>
+                </div>
+              </div>
+              <div class="button-container margin-tb-10 padding-tb-10" (click)="setValueList('notes', inputForm.controls['note'].value, false, inputForm.controls['note'].value)">
+                <p class="text text-center font-medium size-medium blue">+ Add Note</p>
               </div>
             </div>
           </div>
