@@ -36,11 +36,11 @@ export class EditCustomerComponent implements OnInit {
     email: new FormControl('', []),
     phone: new FormControl('', []),
     onItem: new FormControl(false, []),
-    onReminder: new FormControl(false, [])
+    onOrder: new FormControl(false, [])
   });
 
   constructor(private dialogRef: MatDialogRef<EditCustomerComponent>,
-    private globalService: GlobalService) {
+              private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
@@ -87,7 +87,7 @@ export class EditCustomerComponent implements OnInit {
         phone: this.editProfileForm.get('phone').value,
         username: this.editProfileForm.get('username').value,
         onItem: this.editProfileForm.get('onItem').value,
-        onReminder: this.editProfileForm.get('onReminder').value
+        onOrder: this.editProfileForm.get('onOrder').value
       }
     }
 

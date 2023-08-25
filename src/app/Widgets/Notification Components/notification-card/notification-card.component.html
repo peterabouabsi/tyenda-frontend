@@ -1,6 +1,6 @@
 <div class="notification-card-container padding-15" [ngClass]="{'unseen': !notification.isViewed}" (click)="onClick()">
   <div class="header-container flex justify-start align-center">
-    <app-avatar [src]="notification.profileImageUrl"></app-avatar>
+    <app-avatar [src]="notification.profileImageUrl? fileBaseUrl+notification.profileImageUrl : './assets/Images/no-profile-image.png'"></app-avatar>
     <div class="text-container flex justify-start align-center padding-l-10">
       <p class="text text-start font-medium size-semi-small black" [innerHTML]="notification.title"></p>
     </div>
@@ -11,7 +11,7 @@
       <p class="timestamp text-start font-regular size-semi-small gray margin-t-10">{{notification.createdAt | timestamp}}</p>
     </div>
     <div class="image-container flex justify-center align-center" *ngIf="notification.itemImageUrl">
-      <img [src]="notification.itemImageUrl" alt="">
+      <img [src]="notification.itemImageUrl? fileBaseUrl+notification.itemImageUrl : './assets/Images/no-background-image.png'" alt="">
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //Services
-import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
+import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 
 @Component({
   selector: 'app-application',
@@ -10,10 +10,10 @@ import { NotificationService } from 'src/app/Shared/Services/Notification/notifi
 })
 export class ApplicationComponent implements OnInit{
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private globalService: GlobalService) {
   }
 
   ngOnInit(): void {
-    this.notificationService.subscribeToPushNotification();
+    this.globalService.subscribeToPushNotification();
   }
 }

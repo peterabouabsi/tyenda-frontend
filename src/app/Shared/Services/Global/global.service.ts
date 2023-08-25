@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
 import { Injectable } from '@angular/core';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 
@@ -25,6 +26,7 @@ export class GlobalService {
 
   constructor(private router: Router,
               private dialog: MatDialog,
+              private notificationService: NotificationService,
               private apiService: ApiService) {
   }
 
@@ -32,16 +34,16 @@ export class GlobalService {
   public getAccountRole() {
     return this.apiService.get('/Account/Role()');
   }
-  public getProfile(){
+  public getProfile() {
     return this.apiService.get('/Account/Profile');
   }
-  public updateProfile(form: UpdateProfileForm){
+  public updateProfile(form: UpdateProfileForm) {
     return this.apiService.post('/Account/Update()', form);
   }
-  public uploadProfileImage(formData: FormData){
+  public uploadProfileImage(formData: FormData) {
     return this.apiService.post('/Account/Profile/Upload', formData);
   }
-  public changePassword(changePasswordForm: ChangePasswordForm){
+  public changePassword(changePasswordForm: ChangePasswordForm) {
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
   }
   public isTokenExpired(token: string) {
@@ -56,26 +58,26 @@ export class GlobalService {
   public getCategories() {
     return this.apiService.getAnonymous('/Category');
   }
-  public getSizeCodes(){
-    return [{id: 1, value: 'XSmall'}, {id: 2, value: 'Small'}, {id: 3, value: 'Medium'},
-            {id: 4, value: 'Large'}, {id: 5, value: 'XLarge'}, {id: 6, value: 'XxLarge'}];
+  public getSizeCodes() {
+    return [{ id: 1, value: 'XSmall' }, { id: 2, value: 'Small' }, { id: 3, value: 'Medium' },
+    { id: 4, value: 'Large' }, { id: 5, value: 'XLarge' }, { id: 6, value: 'XxLarge' }];
   }
-  public getMyNotifications(){
+  public getMyNotifications() {
     return this.apiService.get('/Notification');
   }
-  public getProfileImage(){
+  public getProfileImage() {
     return this.apiService.get('/Account/Profile/Image');
   }
-  public getItemComments(itemId: string){
-    return this.apiService.get('/Comment/'+itemId);
+  public getItemComments(itemId: string) {
+    return this.apiService.get('/Comment/' + itemId);
   }
-  public deleteComment(commentId){
-    return this.apiService.delete('/Comment/'+commentId);
+  public deleteComment(commentId) {
+    return this.apiService.delete('/Comment/' + commentId);
   }
-  public viewNotification(notificationId: string){
-    return this.apiService.post('/Notification/View/'+notificationId);
+  public viewNotification(notificationId: string) {
+    return this.apiService.post('/Notification/View/' + notificationId);
   }
-  public getTimestamps(){
+  public getTimestamps() {
     var now = new Date();
     var last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     var last48Hours = new Date(now.getTime() - 48 * 60 * 60 * 1000);
@@ -95,27 +97,28 @@ export class GlobalService {
     ];
     return timestamps;
   }
-  public getOrderStatuses(){
+  public getOrderStatuses() {
     return ['Submitted', 'Rejected', 'Approved', 'OnGoing', 'Completed']
   }
-  public getStoreName(storeId: string){
-    return this.apiService.get('/Tab/Store/'+storeId);
+  public getStoreName(storeId: string) {
+    return this.apiService.get('/Tab/Store/' + storeId);
   }
-  public getItemName(itemId: string){
-    return this.apiService.get('/Tab/Item/'+itemId);
+  public getItemName(itemId: string) {
+    return this.apiService.get('/Tab/Item/' + itemId);
   }
-  public getOrderReference(orderId: string){
-    return this.apiService.get('/Tab/Order/'+orderId);
+  public getOrderReference(orderId: string) {
+    return this.apiService.get('/Tab/Order/' + orderId);
   }
-  public async logout(){
+  public async logout() {
     let session = this.getStorage(Constants.STORAGE_SESSION);
     let logoutForm: LogoutForm = {
-      accessToken: session? session.accessToken: '',
-      refreshToken: session? session.refreshToken: ''
+      accessToken: session ? session.accessToken : '',
+      refreshToken: session ? session.refreshToken : ''
     };
     let response = await this.apiService.post('/Account/logout()', logoutForm).toPromise();
-    if(!response.error){
+    if (!response.error) {
       this.clearStorage();
+      this.notificationService.unsubscribe();
     }
   }
 
@@ -123,16 +126,16 @@ export class GlobalService {
   public checkExistancy(array: any[], filter: any, callback = (exist: boolean, index?: number) => { }) {
     let exist = false;
     let existAtIndex = -1;
-    if(typeof filter != 'object'){
+    if (typeof filter != 'object') {
       for (const item of array) {
-        if(item == filter){
+        if (item == filter) {
           exist = true;
           existAtIndex = array.indexOf(item);
           console.log(existAtIndex);
           break;
         }
       }
-    }else{
+    } else {
       for (const item of array) {
         let match = true;
         for (const key in filter) {
@@ -156,8 +159,8 @@ export class GlobalService {
     // Check if required properties are empty objects, strings, or arrays
     properties.forEach(property => {
       if ((typeof form[property] === 'object' && Object.keys(form[property]).length === 0) ||
-          form[property] === '' ||
-          (Array.isArray(form[property]) && form[property].length === 0)) {
+        form[property] === '' ||
+        (Array.isArray(form[property]) && form[property].length === 0)) {
         invalid = true;
       }
     });
@@ -169,7 +172,7 @@ export class GlobalService {
     callback(!invalid);
   }
   //Add validator(s) to a formControl in formGroup
-  public addFormValidators(form: any, formControlNames: string[], validators: any[]){
+  public addFormValidators(form: any, formControlNames: string[], validators: any[]) {
     formControlNames.forEach(formControlName => {
       form.get(formControlName).addValidators(validators);
       form.get(formControlName).updateValueAndValidity();
@@ -177,7 +180,7 @@ export class GlobalService {
     return form;
   }
   //Clear validator(s) to a formControl in formGroup
-  public clearFormValidators(form: any, formControlNames: string[]){
+  public clearFormValidators(form: any, formControlNames: string[]) {
     formControlNames.forEach(formControlName => {
       form.get(formControlName).clearValidators();
       form.get(formControlName).updateValueAndValidity();
@@ -185,7 +188,7 @@ export class GlobalService {
     return form;
   }
   //Reset formControl value
-  public clearFormValue(form: any, formControlNames: string[], resetTo: any[]){
+  public clearFormValue(form: any, formControlNames: string[], resetTo: any[]) {
     formControlNames.forEach((formControlName, index) => {
       form.get(formControlName).setValue(resetTo[index]);
     });
@@ -193,16 +196,16 @@ export class GlobalService {
   }
 
   //Check authenticated user
-  public async isAuthenticated(){
+  public async isAuthenticated() {
     let session = this.getStorage(Constants.STORAGE_SESSION);
-    if(session){
+    if (session) {
       let response = await this.getAccountRole().toPromise();
-      return {isAuth: true, role: response.role}
+      return { isAuth: true, role: response.role }
     }
-    return {isAuth: false, role: null};
+    return { isAuth: false, role: null };
   }
   //Check if the device is touchable
-  public checkTouchDevice(){
+  public checkTouchDevice() {
     return 'ontouchstart' in window;
   }
 
@@ -230,13 +233,13 @@ export class GlobalService {
   }
 
   //Dialog Components
-  public openDialog(component: any, data: any = {}, callback = (dialogRef?:any, result?: any) => {}){
+  public openDialog(component: any, data: any = {}, callback = (dialogRef?: any, result?: any) => { }) {
     let dialog = this.dialog.open(component, {
       data: data
     });
 
     dialog.afterClosed().subscribe((result?: any) => {
-      if(callback) callback(dialog, result);
+      if (callback) callback(dialog, result);
     })
   }
 
@@ -260,11 +263,21 @@ export class GlobalService {
   }
 
   //Set data to tab bar
-  public setTab(route: ActivatedRoute, objectKey: string){
+  public setTab(route: ActivatedRoute, objectKey: string) {
     route.data.subscribe((data: any) => {
-      if(data[objectKey]){
+      if (data[objectKey]) {
         document.title += ` - ${data[objectKey]}`;
       }
     });
   }
+
+  //Push Notification
+  public subscribeToPushNotification() {
+    this.notificationService.onInit().then(() => {
+      this.notificationService.subscribe();
+      let accountId = JSON.parse(localStorage.getItem(Constants.STORAGE_SESSION)).accountId;
+      this.notificationService.setTag({ account_id: accountId });
+    })
+  }
+
 }

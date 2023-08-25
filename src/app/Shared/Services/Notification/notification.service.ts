@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Constants } from '../../Models/constants.model';
 
 //Services
-import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { OneSignal } from 'onesignal-ngx';
 
 //Environment
@@ -17,23 +16,27 @@ export class NotificationService {
 
   public appId: string = environment.oneSignal.appId;
 
-  constructor(private globalService: GlobalService,
-              private oneSignal: OneSignal) {
+  constructor(private oneSignal: OneSignal) {
   }
 
   async onInit() {
     await this.oneSignal.init({ appId: this.appId });
   }
+  public setTag(tag: any = {}){
+    this.oneSignal.User.addTags(tag);
+  }
 
-  //push notification
-  public subscribeToPushNotification() {
-    this.onInit().then(() => {
-      let accountId = this.globalService.getStorage(Constants.STORAGE_SESSION).accountId;
-      this.oneSignal.User.addTags({ account_id: accountId });
+  public subscribe() {
+    let permission = this.oneSignal.Notifications.permission;
+    if (!permission) {
+      this.oneSignal.Notifications.requestPermission().then(() => {});
+    } else {
+      this.oneSignal.User.PushSubscription.optIn().then(() => {});
+    }
+  }
+  public unsubscribe() {
+    this.oneSignal.User.PushSubscription.optOut().then(() => {
+      this.oneSignal.User.removeTag('account_id');
     });
   }
-  public unsubscribeToPushNotification() {
-    //this.unsubscribe();
-  }
-
 }

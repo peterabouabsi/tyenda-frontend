@@ -10,7 +10,7 @@ interface UpdateCustomerForm {
   email: string;
   phone: string;
   onItem: boolean;
-  onReminder: boolean;
+  onOrder: boolean;
 }
 
 interface UpdateStoreForm {

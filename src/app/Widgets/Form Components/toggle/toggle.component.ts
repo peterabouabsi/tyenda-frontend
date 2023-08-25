@@ -19,7 +19,7 @@ export class ToggleComponent implements OnInit{
   }
 
   public onToggle(){
-    this.onToggleEvent.emit(this.isChecked)
+    this.onToggleEvent.emit(!this.isChecked)
   }
 
 }

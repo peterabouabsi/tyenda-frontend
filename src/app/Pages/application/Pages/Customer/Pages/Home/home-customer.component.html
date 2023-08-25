@@ -64,7 +64,7 @@
               *ngFor="let store of storesData.data">
               <app-store-moderate-card
                 [data]="store"
-                [onClickRoute]="appMainRouteCustomer">
+                [onClickRoute]="appMainRouteCustomer+'/store'">
               </app-store-moderate-card>
             </div>
             <app-empty [value]="'No stores found'" *ngIf="storesData.data.length == 0"></app-empty>
