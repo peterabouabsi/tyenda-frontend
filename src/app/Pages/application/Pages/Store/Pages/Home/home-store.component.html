@@ -79,7 +79,7 @@
           <div class="card-container padding-10" *ngFor="let store of similarStores">
             <app-store-moderate-card
               [data]="store"
-              [onClickRoute]="appMainRouteStore">
+              [onClickRoute]="appMainRouteStore+'/profile'">
             </app-store-moderate-card>
           </div>
         </div>

@@ -15,7 +15,7 @@ export class StoreProfileService {
   constructor(private apiService: ApiService) { }
 
   public getStore(storeId: string){
-    return this.apiService.get('/Store/Profile/'+storeId);
+    return this.apiService.get('/Store/Profile'+(storeId? '?storeId='+storeId : ''));
   }
   public getStoreTopItems(storeId: string){
     return this.apiService.get('/Store/TopItems/'+storeId);

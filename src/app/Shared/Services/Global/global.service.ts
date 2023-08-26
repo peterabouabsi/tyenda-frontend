@@ -1,6 +1,7 @@
 import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
 import { Injectable } from '@angular/core';
-import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
+import { NavigationExtras, NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs';
 
 //Modules
 import { MatDialog } from '@angular/material/dialog';
@@ -25,9 +26,9 @@ import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampV
 export class GlobalService {
 
   constructor(private router: Router,
-              private dialog: MatDialog,
-              private notificationService: NotificationService,
-              private apiService: ApiService) {
+    private dialog: MatDialog,
+    private notificationService: NotificationService,
+    private apiService: ApiService) {
   }
 
   //Global HTTP Requests and Data
@@ -266,7 +267,7 @@ export class GlobalService {
   public setTab(route: ActivatedRoute, objectKey: string) {
     route.data.subscribe((data: any) => {
       if (data[objectKey]) {
-        document.title += ` - ${data[objectKey]}`;
+        document.title = `Tyenda - ${data[objectKey]}`;
       }
     });
   }

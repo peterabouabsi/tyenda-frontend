@@ -81,8 +81,8 @@ const routes: Routes = [
         {path: 'orders', title: 'Tyenda - Cart', component: CustomerItemOrdersComponent},
       ]},
       {path: 'request-order/:itemId', title: 'Tyenda - Request Order', component: RequestOrderComponent},
-      {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
-      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent}
+      {path: 'store/:storeId', resolve: {storeName: StoreNameResolver}, component: StoreProfileComponent},
+      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, component: OrderComponent}
     ]},
     {path: 'store', component: StoreMainComponent, data: {roles: [Constants.ROLE_STORE]}, canActivate: [roleBasedAuthenticationGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -91,8 +91,8 @@ const routes: Routes = [
       {path: 'items', component: StoreItemsComponent, title: 'Tyenda | Items'},
       {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: StoreItemComponent, title: 'Tyenda'},
       {path: 'add-update-item', component: AddUpdateItemComponent, title: 'Tyenda | Add Update Item'},
-      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, data: {title: 'Tyenda'}, component: OrderComponent},
-      {path: ':storeId', resolve: {storeName: StoreNameResolver}, data: {title: 'Tyenda'}, component: StoreProfileComponent},
+      {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, component: OrderComponent},
+      {path: 'profile/:storeId', resolve: {storeName: StoreNameResolver}, component: StoreProfileComponent},
     ]}
   ]},
   {path: '**', component: NotFoundComponent}

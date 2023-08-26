@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 //environment
 import { environment } from 'src/environments/environments';
@@ -27,44 +27,54 @@ import { FollowUnfollowForm } from 'src/app/Shared/Models/Forms/FollowUnfollowFo
   templateUrl: './store-profile.component.html',
   styleUrls: ['./store-profile.component.scss']
 })
-export class StoreProfileComponent implements OnInit{
+export class StoreProfileComponent implements OnInit {
 
   public fileBaseUrl: string = environment.fileBaseUrl;
 
   public store: StoreAdvancedView;
   public storeTopItems: StoreTopItemBasicView[] = [];
 
+  public onFirstAccess: boolean = true;
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private globalService: GlobalService,
               private storeProfileService: StoreProfileService) {
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (!this.onFirstAccess) this.readStore();
+      }
+    });
   }
 
   ngOnInit(): void {
     this.displayStoreNameOnTabBar();
     this.readStore();
-    this.readStoreTopItems();
   }
 
-  private readStore(){
-    let storeId = this.route.snapshot.params['storeId'];
+  private readStore() {
+    this.onFirstAccess = false;
+
+    let storeId = this.route.snapshot.params['storeId'] != 'edit-profile' ? this.route.snapshot.params['storeId'] : null;
     this.storeProfileService.getStore(storeId).subscribe((response: any) => {
-      if(!response.error){
+      if (!response.error) {
         this.store = response;
+        this.readStoreTopItems();
       }
     });
   }
 
-  private readStoreTopItems(){
+  private readStoreTopItems() {
     let storeId = this.route.snapshot.params['storeId'];
     this.storeProfileService.getStoreTopItems(storeId).subscribe((response: any) => {
-      if(!response.error){
+      if (!response.error) {
         this.storeTopItems = response;
       }
     });
   }
 
   /* Display the store name on the tab */
-  private displayStoreNameOnTabBar(){
+  private displayStoreNameOnTabBar() {
     this.globalService.setTab(this.route, Constants.STORE_NAME_RESOLVER)
   }
   /* Display the store name on the tab */
@@ -73,11 +83,11 @@ export class StoreProfileComponent implements OnInit{
   public doubleClickCounter: number = 0;
   @ViewChild('viewMap') viewMapRef: MapViewComponent;
   public activeBranchIndex = 0;
-  public displaySelectedBranch(latitude: number, longitude: number, index: number){
+  public displaySelectedBranch(latitude: number, longitude: number, index: number) {
     this.store.displayedBranch[0] = latitude;
     this.store.displayedBranch[1] = longitude;
     this.doubleClickCounter++;
-    if(this.doubleClickCounter == 2){
+    if (this.doubleClickCounter == 2) {
       this.activeBranchIndex = index;
       this.viewMapRef.updateMarkerPosition();
       this.doubleClickCounter = 0;
@@ -85,25 +95,25 @@ export class StoreProfileComponent implements OnInit{
   }
   /* Display Selected branch on the map on double click*/
 
-  public addRemoveCart(){
+  public addRemoveCart() {
     let form: AddRemoveCartForm = {
       storeId: this.store.id
     }
     this.storeProfileService.addRemoveCart(form).subscribe((response: any) => {
-      if(!response.error){
+      if (!response.error) {
         this.store.isAddedToCart = response.isAddedToCart;
       }
     });
   }
 
-  public followUnfollow(){
+  public followUnfollow() {
     let form: FollowUnfollowForm = {
       storeId: this.store.id
     }
     this.storeProfileService.followUnfollow(form).subscribe((response: any) => {
-      if(!response.error){
+      if (!response.error) {
         this.store.isFollowed = response.isFollowed;
-        if(this.store.isFollowed) this.store.countFollowers++;
+        if (this.store.isFollowed) this.store.countFollowers++;
         else this.store.countFollowers--;
       }
     });
