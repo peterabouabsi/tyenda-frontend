@@ -34,6 +34,14 @@
           width: 100%;
           height: auto;
 
+          .edit-container{
+            right: 10px;
+            top: 1.3rem;
+            .icon{
+              cursor: pointer;
+            }
+          }
+
           .image-container {
             width: 100px;
             height: 100px;
@@ -239,6 +247,10 @@
                 }
               }
             }
+          }
+
+          .edit-video-container{
+            width: 100%;
           }
         }
       }

@@ -72,5 +72,9 @@ export class IconService {
         'location',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/location.svg')
       );
+      this.matIconRegistry.addSvgIcon(
+        'pen',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/Svg/pen.svg')
+      );
     }
 }

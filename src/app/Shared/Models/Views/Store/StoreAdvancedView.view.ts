@@ -17,6 +17,7 @@ export interface StoreAdvancedView {
   displayedBranch: number[]; // [lat, lng]
   isFollowed: boolean;
   isAddedToCart: boolean;
+  isMyProfile: boolean;
   countOrders: number;
   countItems: number;
   countFollowers: number;

@@ -17,6 +17,7 @@ import { StoreTopItemBasicView } from 'src/app/Shared/Models/Views/Store/StoreTo
 
 //Components
 import { MapViewComponent } from 'src/app/Widgets/Map Components/map-view/map-view.component';
+import { EditStoreComponent } from 'src/app/Widgets/Navbar Components/edit-store/edit-store.component';
 
 //Forms
 import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
@@ -118,5 +119,13 @@ export class StoreProfileComponent implements OnInit {
       }
     });
   }
+
+  public editStore(){
+    this.globalService.openDialog(EditStoreComponent, {id: 1}, (dialogRef: any, result: any) => {
+
+    });
+  }
+
+  public uploadVideo(){}
 
 }

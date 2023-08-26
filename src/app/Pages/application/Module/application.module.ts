@@ -23,6 +23,7 @@ import { NotificationService } from 'src/app/Shared/Services/Notification/notifi
 import { ApplicationComponent } from '../Pages/application.component';
 import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd/change-pwd.component';
 import { EditCustomerComponent } from 'src/app/Widgets/Navbar Components/edit-customer/edit-customer.component';
+import { EditStoreComponent } from 'src/app/Widgets/Navbar Components/edit-store/edit-store.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -60,6 +61,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     ApplicationComponent,
     ChangePwdComponent,
     EditCustomerComponent,
+    EditStoreComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,
@@ -97,6 +99,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     ApplicationComponent,
     ChangePwdComponent,
     EditCustomerComponent,
+    EditStoreComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,

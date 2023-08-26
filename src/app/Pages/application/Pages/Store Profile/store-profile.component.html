@@ -6,7 +6,10 @@
           <img [src]="store?.backgroundImage? fileBaseUrl+store?.backgroundImage : './assets/Images/no-background-image.png'" alt="">
         </div>
 
-        <div class="profile-info-container flex justify-start align-start padding-tb-15">
+        <div class="profile-info-container flex justify-start align-start padding-tb-15 relative">
+          <div class="edit-container absolute" *ngIf="store?.isMyProfile">
+            <mat-icon class="icon gray" svgIcon="pen" (click)="editStore()"></mat-icon>
+          </div>
           <div class="image-container flex justify-center align-start">
             <img [src]="store?.profileImage? fileBaseUrl+store?.profileImage : './assets/Images/no-store-image.png'" alt="">
           </div>
@@ -125,7 +128,7 @@
           </div>
         </div>
 
-        <div class="profile-section-container margin-t-40 margin-b-60">
+        <div class="profile-section-container margin-t-40 margin-b-60" *ngIf="store?.branches.length > 0">
           <div class="title-container margin-b-30">
             <p class="title text-start font-bold size-medium black">{{store?.name}} Branches</p>
           </div>
@@ -153,7 +156,7 @@
         </div>
       </div>
       <div class="right-container padding-15">
-        <div class="top-selling-items">
+        <div class="top-selling-items" *ngIf="!store?.isMyProfile">
           <div class="title-container">
             <p class="title text-start font-bold size-medium capitalize black">Top Selling Items</p>
           </div>
@@ -180,6 +183,14 @@
               <div class="button-container flex justify-center align-center padding-t-4 padding-l-4">
                 <mat-icon class="icon gray" svgIcon="play"></mat-icon>
               </div>
+            </div>
+          </div>
+          <div class="edit-video-container flex justify-space-between align-center padding-tb-10" *ngIf="store?.isMyProfile">
+            <div class="text-container">
+              <p class="text text-start font-regular size-small gray-dark">Updated in 01/01/0000</p>
+            </div>
+            <div class="button-container">
+              <app-button [color]="'blue'" [value]="'Upload Video'" (click)="uploadVideo()"></app-button>
             </div>
           </div>
         </div>
