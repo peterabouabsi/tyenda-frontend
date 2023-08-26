@@ -14,6 +14,6 @@ export class ApplicationComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    //this.globalService.subscribeToPushNotification();
+    this.globalService.subscribeToPushNotification();
   }
 }
