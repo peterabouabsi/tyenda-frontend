@@ -57,7 +57,6 @@
           </div>
 
           <div class="colors-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 0">
-
             <div class="inputs-container flex justify-space-between align-start">
               <div class="input-form">
                 <app-color-field [color]="inputForm.controls['color'].value" [formControl]="inputForm.controls['color']"
@@ -263,7 +262,7 @@
               [formControl]="postItemForm.controls['categories']" (onSelectEvent)="setValueList('categories', $event)">
             </app-select-field>
             <div class="chips-container flex justify-start align-start flex-wrap margin-tb-10">
-              <app-selector-chip class="margin-r-10" [color]="'blue'" [value]="category.value"
+              <app-selector-chip class="margin-r-10 margin-b-10" [color]="'blue'" [value]="category.value"
                 (onDelete)="onChipDelete('categories', index)"
                 *ngFor="let category of postItemForm.controls['categories'].value; let index = index">
               </app-selector-chip>

@@ -103,3 +103,108 @@
     }
   }
 }
+
+@media (max-width: 1270.5px){
+  .parent-container{
+    .inner-container{
+      display: block;
+      .left-container{
+        width: 100%;
+        max-width: none;
+        .incomes-container, .my-customers-container{
+          width: 100%;
+          max-width: none;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          .input-container{
+            width: 100%;
+            max-width: 300px;
+          }
+          .cards-container{
+            width: 100%;
+            transition: 0.3s ease-in-out;
+            &.on-loading{
+              opacity: 0.2;
+              transition: 0.3s ease-in-out;
+            }
+            .card-container{
+              max-width: 300px;
+              width: 100%;
+              .income-box{
+                border-radius: 3px;
+                width: 100%;
+                  &.up{
+                    background-color: var(--green-light-alpha);
+                  }
+                  &.down{
+                    background-color: var(--red-light-alpha);
+                  }
+                .price{
+                  width: 100%;
+                  &.up{
+                    color: var(--green-super-dark);
+                  }
+                  &.down{
+                    color: var(--red-super-dark);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@media (max-width: 1000.5px){
+  .parent-container{
+    .inner-container{
+      display: block;
+      .right-container{
+        width: 100%;
+        .section{
+          &.recent-orders-container{
+            .cards-container{
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-wrap: wrap;
+              .card-container{
+                width: 100%;
+                flex-grow: 1;
+                max-width: none;
+              }
+            }
+          }
+          &.similar-stores-container{
+            .cards-container{
+              justify-content: center;
+              .card-container{
+                width: auto;
+                max-width: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 650.5px){
+  .parent-container{
+    .inner-container{
+      .right-container{
+        padding: 0;
+        .section{
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

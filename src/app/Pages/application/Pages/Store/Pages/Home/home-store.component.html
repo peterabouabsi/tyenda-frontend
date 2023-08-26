@@ -33,7 +33,7 @@
         <div class="text-container flex jusitfy-start align-center">
           <p class="title text-start font-bold size-small black capitalize">My Customers</p>
         </div>
-        <div class="cards-container">
+        <div class="cards-container" *ngIf="topCustomers.length > 0">
           <div class="card-container flex justify-start align-start margin-tb-10 padding-10" *ngFor="let customer of topCustomers">
             <div class="image-container">
               <img [src]="fileBaseUrl+customer.profileImage" alt="">
@@ -45,6 +45,11 @@
             </div>
           </div>
         </div>
+
+        <div class="cards-container" *ngIf="topCustomers.length == 0">
+          <app-empty [value]="'No Customer Found'"></app-empty>
+        </div>
+
       </div>
     </div>
 
