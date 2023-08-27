@@ -8,6 +8,7 @@ export interface RequestOrderForm{
   note: string;
   longitude: number;
   latitude: number;
+  quantity: number;
   colors: ColorForm[];
   sizes: SizeForm[];
   colorSizes: ColorSizeForm[];

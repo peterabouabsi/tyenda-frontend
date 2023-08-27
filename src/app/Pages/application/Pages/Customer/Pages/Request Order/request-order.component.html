@@ -80,7 +80,7 @@
           </div>
         </div>
       </div>
-      <div class="row-container margin-t-50">
+      <div class="row-container margin-t-50" *ngIf="!itemToOrder?.quantity">
         <div class="row-header-container padding-tb-10">
           <p class="title text-start font-bold size-regular black">Colors & Sizes</p>
         </div>
@@ -146,7 +146,7 @@
         </div>
         <div class="section-container margin-t-10">
           <div class="text-container padding-tb-3">
-            <p class="title text-start font-bold size-regular black">Colors & Sizes</p>
+            <p class="title text-start font-bold size-regular black">{{!itemToOrder?.quantity? 'Color / Sizes' : 'Quantity'}}</p>
             <div class="colors-container flex justify-start align-start flex-column"
               *ngIf="itemToOrder?.colors?.length > 0">
               <div class="box-container flex justify-start align-center margin-t-10"
@@ -183,6 +183,13 @@
                     (onCounterClick)="updateQuantity('colorSizes', $event, [colorIndex, sizeIndex])"></app-button-quantity>
                 </div>
               </div>
+            </div>
+
+            <div class="colors-sizes-container justify-start align-start flex-wrap margin-t-10"
+              *ngIf="itemToOrder?.quantity">
+              <app-button-quantity class="margin-b-10 margin-r-10" [quantity]="1"
+              [maxQuantity]="itemToOrder?.quantity"
+              (onCounterClick)="setValue('quantity', $event)"></app-button-quantity>
             </div>
           </div>
         </div>

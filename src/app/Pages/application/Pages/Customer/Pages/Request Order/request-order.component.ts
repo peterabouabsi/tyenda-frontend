@@ -46,6 +46,7 @@ export class RequestOrderComponent implements OnInit {
     note: new FormControl('', []),
     latitude: new FormControl(0, []),
     longitude: new FormControl(0, []),
+    quantity: new FormControl(0, []),
     colors: new FormControl([]),
     sizes: new FormControl([]),
     colorSizes: new FormControl([])
@@ -74,6 +75,7 @@ export class RequestOrderComponent implements OnInit {
     this.requestOrderService.getItem(itemId).subscribe((response: any) => {
       if (!response.error) {
         this.itemToOrder = response;
+        if(this.itemToOrder.quantity) this.setValue('quantity', 1);
       }
     })
   }
@@ -135,7 +137,7 @@ export class RequestOrderComponent implements OnInit {
     }
 
     if (formControlName == 'colors' || formControlName == 'sizes' || formControlName == 'colorSizes') this.totalQuantity = this.getTotalQuantitySelected(this.requestOrderForm.get(formControlName).value, formControlName == 'colorSizes' ? true : false);
-
+    else this.totalQuantity = this.requestOrderForm.get('quantity').value;
   }
   /*Set values to the request-order-form --------- */
 
@@ -156,8 +158,9 @@ export class RequestOrderComponent implements OnInit {
     var isColorsValid = this.requestOrderForm.get('colors').value.length > 0;
     var isSizesValid = this.requestOrderForm.get('sizes').value.length > 0;
     var isColorSizesValid = this.requestOrderForm.get('colorSizes').value.length > 0;
+    var isQuantityValid = this.requestOrderForm.get('quantity').value > 0;
 
-    if (this.requestOrderForm.valid && (isColorsValid || isSizesValid || isColorSizesValid)) {
+    if (this.requestOrderForm.valid && (isColorsValid || isSizesValid || isColorSizesValid || isQuantityValid)) {
 
       this.globalService.openDialog(AlertComponent,
         {
@@ -178,6 +181,7 @@ export class RequestOrderComponent implements OnInit {
                     note: this.requestOrderForm.get('note').value,
                     longitude: this.requestOrderForm.get('longitude').value,
                     latitude: this.requestOrderForm.get('latitude').value,
+                    quantity: this.requestOrderForm.get('quantity').value,
                     colors: this.requestOrderForm.get('colors').value,
                     sizes: this.requestOrderForm.get('sizes').value,
                     colorSizes: this.requestOrderForm.get('colorSizes').value

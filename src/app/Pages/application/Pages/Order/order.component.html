@@ -116,6 +116,9 @@
             </div>
           </app-slider>
 
+          <div class="quantity-container" *ngIf="order?.quantity">
+            <app-chip [color]="'gray'" [value]="order?.quantity+(order?.quantity > 1? ' Pieces' : ' Piece')"></app-chip>
+          </div>
         </div>
 
         <div class="section receiver-container padding-20 margin-tb-20">

@@ -20,6 +20,7 @@ export interface OrderAdvancedView {
   feedbacks: FeebackView[];
   price: number;
   discount: number;
+  quantity: number;
   colors?: ColorView[];
   sizes?: SizeView[];
   colorSizes?: ColorSizesView[];

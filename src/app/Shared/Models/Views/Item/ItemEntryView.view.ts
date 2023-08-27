@@ -26,6 +26,7 @@ export interface ItemEntryView{
   price: number;
   discount: number;
   stock: number;
+  quantity: number;
   colors: ColorView[];
   sizes: AdvancedSizeView[];
   colorSizes: ColorSizeView[];
