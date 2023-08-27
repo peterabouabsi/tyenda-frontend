@@ -16,14 +16,19 @@
       <div class="left-container">
         <div class="images-container flex justify-start align-start flex-column">
           <div class="initial-image-container flex justify-center align-center margin-10 relative">
-            <img [src]="inputForm.controls['initialImage'].value? (inputForm.controls['initialImage'].value.id? inputForm.controls['initialImage'].value.url : inputForm.controls['initialImage'].value) : './assets/Images/no-background-image.png'" alt="">
-            <input type="file" class="absolute" accept="image/*" (input)="onItemImage('initialImage', $event, -1, inputForm.controls['initialImage'].value.id)" />
+            <img
+              [src]="inputForm.controls['initialImage'].value? (inputForm.controls['initialImage'].value.id? inputForm.controls['initialImage'].value.url : inputForm.controls['initialImage'].value) : './assets/Images/no-background-image.png'"
+              alt="">
+            <input type="file" class="absolute" accept="image/*"
+              (input)="onItemImage('initialImage', $event, -1, inputForm.controls['initialImage'].value.id)" />
           </div>
-          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30" *ngIf="item || postItemForm.controls['initialImage'].value">
+          <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30"
+            *ngIf="item || postItemForm.controls['initialImage'].value">
             <div class="image-container margin-10 relative"
               *ngFor="let image of inputForm.controls['images'].value; let index = index">
               <img [src]="image? (image.id? image.url : image) : './assets/Images/no-background-image.png'" alt="">
-              <input type="file" class="absolute" accept="image/*" (input)="onItemImage('images', $event, index, image.id)" />
+              <input type="file" class="absolute" accept="image/*"
+                (input)="onItemImage('images', $event, index, image.id)" />
             </div>
             <div
               class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4 relative">
@@ -53,6 +58,11 @@
               class="selector-container flex justify-center align-center font-regular size-semi-small gray-super-dark padding-10 margin-lr-10"
               [ngClass]="{'active': colorSizeIndex == 3}" (click)="setColorSizeIndex(3)">
               Color & Sizes
+            </div>
+            <div
+              class="selector-container flex justify-center align-center font-regular size-semi-small gray-super-dark padding-10 margin-lr-10"
+              [ngClass]="{'active': colorSizeIndex == 4}" (click)="setColorSizeIndex(4)">
+              Quantity
             </div>
           </div>
 
@@ -209,15 +219,15 @@
                   </div>
                   <div class="input-form" *ngIf="colorSize.index == 1">
                     <app-number-field [min]="0" [max]="99999999999999" [formControl]="inputForm.controls['sizeNumber']"
-                      [setClickEvent]="true"
-                      (onClickEvent)="addColorSize(colorSize.index, index, $event)">
+                      [setClickEvent]="true" (onClickEvent)="addColorSize(colorSize.index, index, $event)">
                     </app-number-field>
                   </div>
                 </div>
 
                 <div class="selected-option flex justify-start align-center margin-tb-30">
                   <div class="chip-container margin-lr-10" *ngFor="let size of colorSize.sizes; let sizeIndex = index">
-                    <app-selector-chip class="margin-r-10" [color]="'blue'" [value]="colorSize.index == 0? size.code : 'No. '+size.number"
+                    <app-selector-chip class="margin-r-10" [color]="'blue'"
+                      [value]="colorSize.index == 0? size.code : 'No. '+size.number"
                       (onDelete)="onSizeChipDelete(index, sizeIndex)">
                     </app-selector-chip>
 
@@ -235,11 +245,21 @@
 
           </div>
 
+          <div class="colors-sizes-container padding-tb-20 padding-lr-10" *ngIf="colorSizeIndex == 4">
+            <div class="inputs-container flex justify-space-between align-start">
+              <p class="text text-start font-regular size-regular gray-dark">Item quantity</p>
+              <app-button-quantity [quantity]="postItemForm.controls['quantity'].value" [maxQuantity]="999999999"
+                (onCounterClick)="setValue(postItemForm, 'quantity', $event)">
+              </app-button-quantity>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="right-container">
         <div class="text-container">
-          <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Item name</p>
+          <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Item
+            name</p>
         </div>
         <div class="inputs-container">
           <div class="input-form margin-b-10">
@@ -307,9 +327,11 @@
           </div>
           <div class="notes-container">
             <div class="text-container">
-              <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">Notes <span class="red size-small">*optional</span></p>
+              <p class="text text-start font-medium size-regular gray-super-dark text-start padding-tb-10 ellipse-1">
+                Notes <span class="red size-small">*optional</span></p>
             </div>
-            <div class="note-container flex justify-space-between align-start margin-tb-10 padding-tb-10" *ngFor="let note of postItemForm.controls['notes'].value; let index = index">
+            <div class="note-container flex justify-space-between align-start margin-tb-10 padding-tb-10"
+              *ngFor="let note of postItemForm.controls['notes'].value; let index = index">
               <div class="text-container">
                 <p class="text text-start font-medium size-regular padding-r-10 black">{{note}}</p>
               </div>
@@ -320,20 +342,20 @@
             <div class="add-note-container margin-tb-10 padding-tb-10">
               <div class="inputs-container">
                 <div class="input-form margin-b-10">
-                  <app-text-field
-                    [placeholder]="'Add note ...'"
-                    [formControl]="inputForm.controls['note']"
+                  <app-text-field [placeholder]="'Add note ...'" [formControl]="inputForm.controls['note']"
                     (onInputEvent)="setValue(inputForm, 'note', $event)">
                   </app-text-field>
                 </div>
               </div>
-              <div class="button-container margin-tb-10 padding-tb-10" (click)="setValueList('notes', inputForm.controls['note'].value, false, inputForm.controls['note'].value)">
+              <div class="button-container margin-tb-10 padding-tb-10"
+                (click)="setValueList('notes', inputForm.controls['note'].value, false, inputForm.controls['note'].value)">
                 <p class="text text-center font-medium size-medium blue">+ Add Note</p>
               </div>
             </div>
           </div>
           <div class="submit-container flex justify-end align-center padding-tb-10 margin-t-30">
-            <app-button [color]="'blue'" [value]="!item? 'Add Item' : 'Update Item'" (click)="addUpdateItem()"></app-button>
+            <app-button [color]="'blue'" [value]="!item? 'Add Item' : 'Update Item'"
+              (click)="addUpdateItem()"></app-button>
           </div>
         </div>
       </div>

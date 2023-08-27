@@ -45,6 +45,7 @@ export class AddUpdateItemComponent implements OnInit {
     notes: new FormControl([], []),
     initialImage: new FormControl(null, []),
     images: new FormControl([], []),
+    quantity: new FormControl(1, []),
     colors: new FormControl([], []),
     sizes: new FormControl([], []),
     colorSizes: new FormControl([], [])
@@ -85,6 +86,7 @@ export class AddUpdateItemComponent implements OnInit {
           this.setValue(this.postItemForm, 'price', this.item.price);
           this.setValue(this.postItemForm, 'discount', this.item.discount);
           this.setValue(this.postItemForm, 'notes', this.item.notes);
+          this.setValue(this.postItemForm, 'notes', this.item.notes);
 
           let initialImage = this.item.images.shift();
           this.inputForm.get('initialImage').setValue({ id: initialImage.id, url: this.fileBaseUrl+initialImage.url });
@@ -92,24 +94,27 @@ export class AddUpdateItemComponent implements OnInit {
             this.inputForm.get('images').value.push({ id: image.id, url: this.fileBaseUrl+image.url });
           }
 
-          if(this.item.colors){
+          if(this.item.colors.length > 0){
             this.colorSizeIndex = 0;
             this.setValue(this.postItemForm, 'colors', this.item.colors.map((color: any) => {return {value: color.value, quantity: color.quantity}}));
-          }
-          if(this.item.sizes.length > 0){
+
+          }else if(this.item.sizes.length > 0){
             if(this.item.sizes[0].number) this.colorSizeIndex = 1;
             if(this.item.sizes[0].code) this.colorSizeIndex = 2;
             this.setValue(this.postItemForm, 'sizes', this.item.sizes.map((size: any) => {return {code: size.code, number: size.number, quantity: size.quantity}}));
-          }
-          if (this.item.colorSizes.length > 0) {
+
+          }else if (this.item.colorSizes.length > 0) {
             this.colorSizeIndex = 3;
             this.item.colorSizes.forEach((color: any) => {
               this.postItemForm.get('colorSizes').value.push({ value: color.value, sizes: color.sizes.map((size: any) => {
                 return {code: size.code, number: size.number, quantity: size.quantity, index: size.code? 0 : 1}
               }), index: color.sizes.length > 0 && color.sizes[0].code? 0 : 1});
             })
-          }
 
+          }else{
+            this.colorSizeIndex = 4;
+            this.setValue(this.postItemForm, 'quantity', this.item.quantity);
+          }
         }
       });
     }
@@ -168,10 +173,10 @@ export class AddUpdateItemComponent implements OnInit {
   }
 
   /* ---------------- Color, Sizes, Color Sizes Section */
-  public colorSizeIndex: number = -1;
+  public colorSizeIndex: number = 4;
   public setColorSizeIndex(index: number) {
     this.colorSizeIndex = index;
-    this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes'], [[], [], []]);
+    this.globalService.clearFormValue(this.postItemForm, ['colors', 'sizes', 'colorSizes', 'quantity'], [[], [], [], 1]);
     this.globalService.clearFormValue(this.inputForm, ['color', 'sizeNumber', 'sizeCode'], ['', 0, '']);
   }
 
@@ -260,6 +265,7 @@ export class AddUpdateItemComponent implements OnInit {
       if(this.colorSizeIndex == 0 && this.postItemForm.get('colors').value.length > 0) isFormValid = true;
       else if((this.colorSizeIndex == 1 || this.colorSizeIndex == 2) && this.postItemForm.get('sizes').value.length > 0) isFormValid = true;
       else if(this.colorSizeIndex == 3 && this.postItemForm.get('colorSizes').value.length > 0) isFormValid = true;
+      else if(this.colorSizeIndex == 4) isFormValid = true;
       else isFormValid = false
     }
 
@@ -282,6 +288,7 @@ export class AddUpdateItemComponent implements OnInit {
                   discount: this.postItemForm.get('discount').value,
                   notes: this.postItemForm.get('notes').value,
                   categories: this.postItemForm.get('categories').value.map((category: any) => category.id),
+                  quantity: this.postItemForm.get('quantity').value,
                   colors: this.postItemForm.get('colors').value,
                   sizes: this.postItemForm.get('sizes').value,
                   colorSizes: this.postItemForm.get('colorSizes').value

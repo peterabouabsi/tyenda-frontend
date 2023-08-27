@@ -6,9 +6,10 @@ export interface AddUpdateItemForm{
   discount: number;
   notes: string[];
   categories: string[];
-  colors: ColorForm[];
-  sizes: SizeForm[];
-  colorSizes: ColorSizeForm[]
+  quantity?: number;
+  colors?: ColorForm[];
+  sizes?: SizeForm[];
+  colorSizes?: ColorSizeForm[]
 }
 
 interface ColorForm{

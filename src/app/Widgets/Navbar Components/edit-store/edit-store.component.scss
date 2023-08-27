@@ -1,0 +1,123 @@
+.dialog-container {
+  height: 630px;
+  overflow: hidden;
+
+  .content-container {
+    overflow-y: scroll;
+
+    .left-container {
+      width: 400px;
+      height: 100%;
+
+      .images-container {
+        .background-image-container {
+          width: 100%;
+          height: auto;
+          max-height: 12rem;
+          min-height: 10rem;
+
+          img {
+            max-height: 12rem;
+            min-height: 10rem;
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+          }
+
+          input {
+            opacity: 0;
+            cursor: pointer;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            &::file-selector-button {
+              height: 100%;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .profile-image-container {
+          img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          input {
+            opacity: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+            left: 0;
+            top: 0;
+            height: 100%;
+
+            &::file-selector-button {
+              height: 100%;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .inputs-container {
+        .input-form {
+          height: auto;
+
+          ::ng-deep app-text-area .field-container .input {
+            min-height: 130px;
+          }
+        }
+      }
+    }
+
+    .right-container {
+      width: 400px;
+      height: 100%;
+      height: fit-content;
+
+      .inputs-container {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .button-container {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: var(--white);
+  }
+}
+
+@media (max-width: 900px) {
+  .dialog-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    .content-container {
+      display: block;
+      height: 100%;
+
+      .left-container, .right-container {
+        width: 100%;
+        .images-container{
+          .profile-image-container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .right-container{
+        padding-bottom: 10rem;
+      }
+      }
+    }
+}

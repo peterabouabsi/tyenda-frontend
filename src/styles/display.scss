@@ -189,3 +189,11 @@ $base-px: 1px;
     }
   }
 }
+
+@media (max-width: 400px) {
+  div.cdk-overlay-pane{
+    width: 95% !important;
+    max-width: none !important;
+    max-height: 86% !important;
+  }
+}

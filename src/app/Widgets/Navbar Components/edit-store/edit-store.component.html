@@ -1,1 +1,99 @@
-<p>edit-store works!</p>
+<div class="dialog-container padding-tb-30 padding-lr-50 relative">
+  <div class="text-container flex justify-center align-center">
+    <p class="title text-center font-bold size-medium black">Edit Profile</p>
+  </div>
+  <div class="content-container flex justify-start align-start margin-tb-30">
+    <div class="left-container padding-lr-10">
+      <div class="images-container">
+        <div class="background-image-container relative">
+          <img [src]="backgroundImage" alt="">
+          <input type="file" class="absolute" accept="image/*" (change)="null"/>
+        </div>
+        <div class="profile-image-container margin-t-20 relative">
+          <img [src]="profileImage" alt="">
+          <input type="file" class="absolute" accept="image/*" (change)="null"/>
+        </div>
+      </div>
+      <div class="inputs-container">
+        <div class="input-form margin-tb-10">
+          <p class="text text-start font-regular size-small gray margin-b-6">Description</p>
+          <app-text-area
+            [placeholder]="'Description'"
+            [formControl]="editProfileForm.controls['description']"
+            (onInputEvent)="setValue('description', $event)">
+          </app-text-area>
+        </div>
+      </div>
+    </div>
+    <div class="right-container padding-lr-10">
+      <div class="inputs-container">
+        <p class="text text-start font-regular size-small gray margin-b-6">Store Info</p>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Store name'"
+            [formControl]="editProfileForm.controls['name']"
+            (onInputEvent)="setValue('name', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Store email'"
+            [formControl]="editProfileForm.controls['email']"
+            (onInputEvent)="setValue('email', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Store website'"
+            [formControl]="editProfileForm.controls['website']"
+            (onInputEvent)="setValue('website', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Phone number'"
+            [formControl]="editProfileForm.controls['phone']"
+            (onInputEvent)="setValue('phone', $event)">
+          </app-text-field>
+        </div>
+
+        <p class="text text-start font-regular size-small gray margin-t-20 margin-b-6">Owner Info</p>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Owner name'"
+            [formControl]="editProfileForm.controls['ownerName']"
+            (onInputEvent)="setValue('ownerName', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-10">
+          <app-text-field
+            [placeholder]="'Owner email'"
+            [formControl]="editProfileForm.controls['ownerEmail']"
+            (onInputEvent)="setValue('ownerEmail', $event)">
+          </app-text-field>
+        </div>
+        <div class="input-form padding-b-10">
+          <app-select-field
+            [data]="categories"
+            [placeholder]="'Select Category'"
+            [formControl]="categoryFormControl"
+            (onSelectEvent)="setValueList('categories', $event, false, null)">
+          </app-select-field>
+          <div class="chips-container flex justify-start align-start flex-wrap padding-tb-10">
+            <app-selector-chip
+              class="margin-r-10 margin-tb-10"
+              [color]="'blue'"
+              [value]="category.value"
+              (onDelete)="onChipDelete('categories', index)"
+              *ngFor="let category of editProfileForm.controls['categories'].value; let index = index">
+            </app-selector-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container flex justify-space-between align-center padding-tb-20 padding-lr-20 absolute">
+    <app-button [value]="'Cancel'" [color]="'gray'" (click)="closeEditProfile()"></app-button>
+    <app-button-loader #saveProfileButton [value]="'Save'" [config]="saveProfileButtonConfig" (click)="saveProfile()"></app-button-loader>
+  </div>
+</div>

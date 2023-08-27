@@ -1,4 +1,4 @@
-<div class="dialog-container padding-tb-30 padding-lr-50">
+<div class="dialog-container padding-tb-30 padding-lr-50 relative">
   <div class="text-container flex justify-center align-center">
     <p class="title text-center font-bold size-medium black">Edit Profile</p>
   </div>
@@ -60,10 +60,10 @@
           </app-text-field>
         </div>
       </div>
-      <div class="button-container flex justify-space-between align-center">
-        <app-button [value]="'Cancel'" [color]="'gray'" (click)="closeEditProfile()"></app-button>
-        <app-button-loader #saveProfileButton [value]="'Save'" [config]="saveProfileButtonConfig" (click)="saveProfile()"></app-button-loader>
-      </div>
+    </div>
+    <div class="button-container flex justify-space-between align-center padding-tb-20 padding-lr-20 absolute">
+      <app-button [value]="'Cancel'" [color]="'gray'" (click)="closeEditProfile()"></app-button>
+      <app-button-loader #saveProfileButton [value]="'Save'" [config]="saveProfileButtonConfig" (click)="saveProfile()"></app-button-loader>
     </div>
   </div>
 </div>

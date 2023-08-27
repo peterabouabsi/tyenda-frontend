@@ -14,6 +14,7 @@ import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
 import { ChangePwdComponent } from '../change-pwd/change-pwd.component';
 import { ToastrComponent } from '../../Other Components/toastr/toastr.component';
 import { AlertComponent } from '../../Other Components/alert/alert.component';
+import { EditStoreComponent } from '../edit-store/edit-store.component';
 
 //Views
 import { ViewModerateNotification } from 'src/app/Shared/Models/Views/Notification/ViewModerateNotification.view';
@@ -73,8 +74,10 @@ export class NavbarStoreComponent implements OnInit{
 
   /*Profile Options*/
   public editProfile(){
-    this.onFocusOut();
-    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'profile']);
+    this.globalService.openDialog(EditStoreComponent, {}, (dialog: any, response: any) => {
+      if(response){
+      }
+    });
   }
   public changePassword(){
     this.globalService.openDialog(ChangePwdComponent, {}, (dialog: any, response: any) => {

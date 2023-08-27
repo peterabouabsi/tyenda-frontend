@@ -50,7 +50,6 @@ import { StoreMainComponent } from '../Pages/Store/store-main.component';
   import { StoreItemsComponent } from '../Pages/Store/Pages/Items/store-items.component';
   import { StoreItemComponent } from '../Pages/Store/Pages/Item/store-item.component';
   import { AddUpdateItemComponent } from '../Pages/Store/Pages/Add-Update Item/add-update-item.component';
-  import { MyStoreProfileComponent } from '../Pages/Store/Pages/Profile/my-store-profile.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -83,7 +82,6 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Store Pages
       HomeStoreComponent,
       OrdersStoreComponent,
-      MyStoreProfileComponent,
       StoreItemsComponent,
       StoreItemComponent,
       AddUpdateItemComponent,
@@ -122,7 +120,6 @@ import { OrderComponent } from '../Pages/Order/order.component';
       //Store Pages
       HomeStoreComponent,
       OrdersStoreComponent,
-      MyStoreProfileComponent,
       StoreItemsComponent,
       StoreItemComponent,
       AddUpdateItemComponent,
