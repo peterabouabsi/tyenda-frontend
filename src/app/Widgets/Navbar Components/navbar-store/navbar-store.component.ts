@@ -74,7 +74,7 @@ export class NavbarStoreComponent implements OnInit{
   /*Profile Options*/
   public editProfile(){
     this.onFocusOut();
-    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'profile/edit-profile']);
+    this.router.navigate([Constants.APP_MAIN_ROUTE_STORE+'profile']);
   }
   public changePassword(){
     this.globalService.openDialog(ChangePwdComponent, {}, (dialog: any, response: any) => {

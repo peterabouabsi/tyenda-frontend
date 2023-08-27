@@ -38,7 +38,7 @@ import { ApplicationComponent } from './Pages/application/Pages/application.comp
     import { StoreItemsComponent } from './Pages/application/Pages/Store/Pages/Items/store-items.component';
     import { StoreItemComponent } from './Pages/application/Pages/Store/Pages/Item/store-item.component';
     import { AddUpdateItemComponent } from './Pages/application/Pages/Store/Pages/Add-Update Item/add-update-item.component';
-    //
+    import { MyStoreProfileComponent } from './Pages/application/Pages/Store/Pages/Profile/my-store-profile.component';
 
   import { StoreProfileComponent } from './Pages/application/Pages/Store Profile/store-profile.component';
   import { OrderComponent } from './Pages/application/Pages/Order/order.component';
@@ -92,6 +92,7 @@ const routes: Routes = [
       {path: 'item/:itemId', resolve: {itemName: ItemNameResolver}, component: StoreItemComponent, title: 'Tyenda'},
       {path: 'add-update-item', component: AddUpdateItemComponent, title: 'Tyenda | Add Update Item'},
       {path: 'order/:orderId', resolve: {orderRef: OrderReferenceResolver}, component: OrderComponent},
+      {path: 'profile', title: 'Tyenda - Profile', component: MyStoreProfileComponent},
       {path: 'profile/:storeId', resolve: {storeName: StoreNameResolver}, component: StoreProfileComponent},
     ]}
   ]},

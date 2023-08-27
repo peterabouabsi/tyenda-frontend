@@ -38,6 +38,9 @@ export class GlobalService {
   public getProfile() {
     return this.apiService.get('/Account/Profile');
   }
+  public getStore(storeId: string){
+    return this.apiService.get('/Store/Profile/'+(storeId? '?storeId='+storeId : ''));
+  }
   public updateProfile(form: UpdateProfileForm) {
     return this.apiService.post('/Account/Update()', form);
   }

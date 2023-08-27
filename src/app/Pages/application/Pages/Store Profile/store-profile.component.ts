@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 //environment
 import { environment } from 'src/environments/environments';
@@ -17,7 +17,6 @@ import { StoreTopItemBasicView } from 'src/app/Shared/Models/Views/Store/StoreTo
 
 //Components
 import { MapViewComponent } from 'src/app/Widgets/Map Components/map-view/map-view.component';
-import { EditStoreComponent } from 'src/app/Widgets/Navbar Components/edit-store/edit-store.component';
 
 //Forms
 import { AddRemoveCartForm } from 'src/app/Shared/Models/Forms/AddRemoveCartForm.form';
@@ -35,17 +34,9 @@ export class StoreProfileComponent implements OnInit {
   public store: StoreAdvancedView;
   public storeTopItems: StoreTopItemBasicView[] = [];
 
-  public onFirstAccess: boolean = true;
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private globalService: GlobalService,
               private storeProfileService: StoreProfileService) {
-
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        if (!this.onFirstAccess) this.readStore();
-      }
-    });
   }
 
   ngOnInit(): void {
@@ -54,10 +45,8 @@ export class StoreProfileComponent implements OnInit {
   }
 
   private readStore() {
-    this.onFirstAccess = false;
-
-    let storeId = this.route.snapshot.params['storeId'] != 'edit-profile' ? this.route.snapshot.params['storeId'] : null;
-    this.storeProfileService.getStore(storeId).subscribe((response: any) => {
+    let storeId = this.route.snapshot.params['storeId'];
+    this.globalService.getStore(storeId).subscribe((response: any) => {
       if (!response.error) {
         this.store = response;
         this.readStoreTopItems();
@@ -119,13 +108,4 @@ export class StoreProfileComponent implements OnInit {
       }
     });
   }
-
-  public editStore(){
-    this.globalService.openDialog(EditStoreComponent, {id: 1}, (dialogRef: any, result: any) => {
-
-    });
-  }
-
-  public uploadVideo(){}
-
 }
