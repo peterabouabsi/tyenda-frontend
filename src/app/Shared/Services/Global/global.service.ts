@@ -18,16 +18,24 @@ import { NotificationService } from 'src/app/Shared/Services/Notification/notifi
 
 //Views
 import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampView.view';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
 
+  public profileImageUpdateSubject = new BehaviorSubject<any>({});
+
   constructor(private router: Router,
               private dialog: MatDialog,
               private notificationService: NotificationService,
               private apiService: ApiService) {
+  }
+
+  //On Profile Update
+  public onProfileImageUpdate(data: any){
+    this.profileImageUpdateSubject.next(data);
   }
 
   //Global HTTP Requests and Data

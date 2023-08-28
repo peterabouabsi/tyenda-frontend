@@ -48,6 +48,8 @@ export class HomeStoreComponent implements OnInit {
     this.getTopCustomers();
     this.getRecentOrders();
     this.getSimilarStores(3);
+
+    this.globalService.profileImageUpdateSubject.asObservable().subscribe(() => {this.readProfileImage()});
   }
 
   private readProfileImage(){

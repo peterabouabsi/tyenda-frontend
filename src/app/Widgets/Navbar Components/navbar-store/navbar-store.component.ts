@@ -78,8 +78,8 @@ export class NavbarStoreComponent implements OnInit{
       if(response){
         this.viewToastr = true;
         if(!response.error){
-          this.profileImage = response.image;
-          alert(this.profileImage)
+          this.readProfileImage();
+          this.globalService.onProfileImageUpdate(this.profileImage);
           setTimeout(() => {this.toastr.onSuccess('Edit Profile', response.message, 5)}, 100);
         }else{
           setTimeout(() => {this.toastr.onDanger('Edit Profile', response.error, 5)}, 100);

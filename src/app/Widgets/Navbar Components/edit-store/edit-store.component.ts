@@ -149,24 +149,25 @@ export class EditStoreComponent implements OnInit{
       if (!response.error) {
         response['message']='Profile updated successfully'
 
-        if(this.selectedProfileImageFile){
-          let formData = new FormData();
-          formData.append('File', this.selectedProfileImageFile);
-          this.globalService.uploadProfileImage(formData, "?folder=Profile").subscribe((responseImage: any) => {
-            if (!responseImage.error) {
-              response['image'] = responseImage.image;
-            }
-          });
-        }
-        if(this.selectedBackgroundImageFile){
-          let formData = new FormData();
-          formData.append('File', this.selectedBackgroundImageFile);
-          this.globalService.uploadProfileImage(formData, "?folder=Background").subscribe(() => {});
-        }
-
-        //Update profile and background image
-        this.saveProfileButton.loading = false;
-        this.dialogRef.close(response);
+        new Promise(async (resolve) => {
+          if(this.selectedProfileImageFile){
+            let formData = new FormData();
+            formData.append('File', this.selectedProfileImageFile);
+            await this.globalService.uploadProfileImage(formData, "?folder=Profile").toPromise();
+          }
+          resolve(true);
+        })
+        .then(async () => {
+          if(this.selectedBackgroundImageFile){
+            let formData = new FormData();
+            formData.append('File', this.selectedBackgroundImageFile);
+            await this.globalService.uploadProfileImage(formData, "?folder=Background").toPromise();
+          }
+        })
+        .then(() => {
+          this.saveProfileButton.loading = false;
+          this.dialogRef.close(response);
+        })
       }
     });
 
