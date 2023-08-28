@@ -14,5 +14,12 @@ interface UpdateCustomerForm {
 }
 
 interface UpdateStoreForm {
-  // Add properties specific to UpdateStoreForm if needed
+  name: string;
+  email: string;
+  website: string;
+  phone: string;
+  ownerName: string;
+  ownerEmail: string;
+  description: string;
+  categoryIds: string[];
 }

@@ -49,8 +49,6 @@ export class EditStoreComponent implements OnInit{
     profileImage: new FormControl(null, [])
   });
 
-  public backgroundImage: string = '';
-  public profileImage: string = '';
   public categories: BasicCategoryView[] = [];
   public categoryFormControl = new FormControl(null, []);
 
@@ -75,9 +73,9 @@ export class EditStoreComponent implements OnInit{
         this.setValue('description', this.store.description);
         this.setValue('ownerName', this.store.ownerName);
         this.setValue('ownerEmail', this.store.ownerEmail);
+        this.setValue('backgroundImage', this.store.backgroundImage? this.fileBaseUrl+this.store.backgroundImage : null);
+        this.setValue('profileImage', this.store.profileImage? this.fileBaseUrl+this.store.profileImage : null);
 
-        this.backgroundImage = this.fileBaseUrl+this.store.backgroundImage;
-        this.profileImage = this.fileBaseUrl+this.store.profileImage;
         this.store.categories.forEach((value: string) => {
           let category = this.categories.find((category) => category.value == value);
           this.setValueList('categories', {id: category.id, value: category.value}, false, false);
@@ -113,37 +111,64 @@ export class EditStoreComponent implements OnInit{
     this.editProfileForm.get(formControlName).value.splice(index, 1);
   }
 
+  public selectedProfileImageFile: any = null;
+  public selectedBackgroundImageFile: any = null;
+  public onProfileImage(formControlName: string, event: any) {
+    let file = event.target.files[0];
+    if(formControlName == 'profileImage') this.selectedProfileImageFile = file;
+    if(formControlName == 'backgroundImage') this.selectedBackgroundImageFile = file;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      let fileBlob = event.target.result;
+      this.setValue(formControlName, fileBlob);
+    };
+    reader.readAsDataURL(file);
+
+  }
+
   public closeEditProfile() {
     this.dialogRef.close();
   }
 
   public saveProfile() {
     let updateProfileForm: UpdateProfileForm = {
-      updateStoreForm: {}
+      updateStoreForm: {
+        name: this.editProfileForm.get('name').value,
+        email: this.editProfileForm.get('email').value,
+        website: this.editProfileForm.get('website').value,
+        phone: this.editProfileForm.get('phone').value,
+        ownerName: this.editProfileForm.get('ownerName').value,
+        ownerEmail: this.editProfileForm.get('ownerEmail').value,
+        description: this.editProfileForm.get('description').value,
+        categoryIds: this.editProfileForm.get('categories').value.map((category: any) => {return category.id})
+      }
     }
 
-    /*
     this.globalService.updateProfile(updateProfileForm).subscribe((response: any) => {
       if (!response.error) {
         response['message']='Profile updated successfully'
+
         if(this.selectedProfileImageFile){
-          //Update profile image
           let formData = new FormData();
           formData.append('File', this.selectedProfileImageFile);
-          this.globalService.uploadProfileImage(formData).subscribe((response: any) => {
-            if (!response.error) {
-              this.setValue('profileImage', this.fileBaseUrl + response.profileImage)
-
-              this.saveProfileButton.loading = false;
-              this.dialogRef.close(response);
+          this.globalService.uploadProfileImage(formData, "?folder=Profile").subscribe((responseImage: any) => {
+            if (!responseImage.error) {
+              response['image'] = responseImage.image;
             }
           });
-        }else{
-          this.saveProfileButton.loading = false;
-          this.dialogRef.close(response);
         }
+        if(this.selectedBackgroundImageFile){
+          let formData = new FormData();
+          formData.append('File', this.selectedBackgroundImageFile);
+          this.globalService.uploadProfileImage(formData, "?folder=Background").subscribe(() => {});
+        }
+
+        //Update profile and background image
+        this.saveProfileButton.loading = false;
+        this.dialogRef.close(response);
       }
     });
-    */
+
   }
 }

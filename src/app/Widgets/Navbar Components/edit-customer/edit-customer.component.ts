@@ -13,6 +13,7 @@ import { ButtonLoaderComponent } from '../../Button Components/button-loader/but
 
 //Services
 import { GlobalService } from 'src/app/Shared/Services/Global/global.service';
+import { EditCustomerService } from './services/edit-customer.service';
 
 //Forms
 import { UpdateProfileForm } from './../../../Shared/Models/Forms/UpdateProfileForm.form';
@@ -40,7 +41,8 @@ export class EditCustomerComponent implements OnInit {
   });
 
   constructor(private dialogRef: MatDialogRef<EditCustomerComponent>,
-              private globalService: GlobalService) {
+              private globalService: GlobalService,
+              private editCustomerService: EditCustomerService) {
   }
 
   ngOnInit(): void {
@@ -48,10 +50,10 @@ export class EditCustomerComponent implements OnInit {
   }
 
   private readCustomerProfile() {
-    this.globalService.getProfile().subscribe((response: any) => {
+    this.editCustomerService.getCustomerProfile().subscribe((response: any) => {
       if (!response.error) {
         for (let key of Object.keys(response)) {
-          this.setValue(key, key == 'profileImage' ? this.fileBaseUrl + response[key] : response[key]);
+          this.setValue(key, key == 'profileImage' ? (response[key]? this.fileBaseUrl + response[key] : null) : response[key]);
         }
       }
     });
@@ -100,7 +102,7 @@ export class EditCustomerComponent implements OnInit {
           formData.append('File', this.selectedProfileImageFile);
           this.globalService.uploadProfileImage(formData).subscribe((response: any) => {
             if (!response.error) {
-              this.setValue('profileImage', this.fileBaseUrl + response.profileImage)
+              this.setValue('profileImage', this.fileBaseUrl + response.image)
 
               this.saveProfileButton.loading = false;
               this.dialogRef.close(response);

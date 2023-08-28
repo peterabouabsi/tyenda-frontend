@@ -76,6 +76,14 @@ export class NavbarStoreComponent implements OnInit{
   public editProfile(){
     this.globalService.openDialog(EditStoreComponent, {}, (dialog: any, response: any) => {
       if(response){
+        this.viewToastr = true;
+        if(!response.error){
+          this.profileImage = response.image;
+          alert(this.profileImage)
+          setTimeout(() => {this.toastr.onSuccess('Edit Profile', response.message, 5)}, 100);
+        }else{
+          setTimeout(() => {this.toastr.onDanger('Edit Profile', response.error, 5)}, 100);
+        }
       }
     });
   }

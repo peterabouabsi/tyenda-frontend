@@ -1,7 +1,5 @@
-import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
 import { Injectable } from '@angular/core';
-import { NavigationExtras, NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 
 //Modules
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +14,7 @@ import { UpdateProfileForm } from '../../Models/Forms/UpdateProfileForm.form';
 
 //Services
 import { ApiService } from './../Api/api.service';
+import { NotificationService } from 'src/app/Shared/Services/Notification/notification.service';
 
 //Views
 import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampView.view';
@@ -26,17 +25,14 @@ import { BasicTimestampView } from '../../Models/Views/Timestamp/BasicTimestampV
 export class GlobalService {
 
   constructor(private router: Router,
-    private dialog: MatDialog,
-    private notificationService: NotificationService,
-    private apiService: ApiService) {
+              private dialog: MatDialog,
+              private notificationService: NotificationService,
+              private apiService: ApiService) {
   }
 
   //Global HTTP Requests and Data
   public getAccountRole() {
     return this.apiService.get('/Account/Role()');
-  }
-  public getProfile() {
-    return this.apiService.get('/Account/Profile');
   }
   public getStore(storeId: string){
     return this.apiService.get('/Store/Profile/'+(storeId? '?storeId='+storeId : ''));
@@ -44,8 +40,8 @@ export class GlobalService {
   public updateProfile(form: UpdateProfileForm) {
     return this.apiService.post('/Account/Update()', form);
   }
-  public uploadProfileImage(formData: FormData) {
-    return this.apiService.post('/Account/Profile/Upload', formData);
+  public uploadProfileImage(formData: FormData, query: string = null) {
+    return this.apiService.post('/Account/Profile/Upload'+(query? query : ''), formData);
   }
   public changePassword(changePasswordForm: ChangePasswordForm) {
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
