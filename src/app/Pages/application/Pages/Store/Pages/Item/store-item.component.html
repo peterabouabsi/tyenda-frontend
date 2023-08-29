@@ -14,14 +14,9 @@
           </div>
         </div>
 
-        <div class="buttons-container flex justify-space-between align-center flex-wrap">
-          <div class="button-container flex justify-start align-center flex-wrap">
-            <app-button [value]="'Comments'" [color]="'gray'" (click)="openCommentsSection()"></app-button>
-          </div>
-          <div class="button-container flex justify-space-between align-center flex-wrap">
-            <app-button class="margin-l-10" [value]="'Edit'" [color]="'gray'" (click)="editItem()"></app-button>
-            <app-button class="margin-l-10" [value]="'Remove'" [color]="'red'" (click)="deleteItem()"></app-button>
-          </div>
+        <div class="buttons-container flex justify-end align-center flex-wrap">
+          <app-button class="margin-l-10" [value]="'Edit'" [color]="'gray'" (click)="editItem()"></app-button>
+          <app-button class="margin-l-10" [value]="'Remove'" [color]="'red'" (click)="deleteItem()"></app-button>
         </div>
 
         <div class="similar-items-container"></div>
@@ -114,6 +109,24 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
+<div class="comments-container fixed">
+  <div class="comments-inner-container relative">
+    <div class="header-container flex justify-space-between align-center" [ngClass]="{'open': isCommentSectionOpened}" (click)="openCommentsSection()">
+      <div class="title-container padding-lr-10">
+        <p class="text text-start font-medium size-small black">Comments ({{comments.length}})</p>
+      </div>
+      <div class="open-close-container flex justify-center align-center">
+        <mat-icon class="icon gray-super-dark" svgIcon="arrow-right"></mat-icon>
+      </div>
+    </div>
+
+    <div class="cards-container padding-lr-10" [ngClass]="{'visible': isCommentSectionOpened}">
+      <div class="card-container" *ngFor="let comment of comments">
+        <app-comment-card [data]="comment" (onDeleteEvent)="deleteComment($event)"></app-comment-card>
+      </div>
+    </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ import { StoreItemService } from './Services/store-item.service';
 
 //Views
 import { ItemAdvancedView } from 'src/app/Shared/Models/Views/Item/ItemAdvancedView.view';
+import { CommentAdvancedView } from 'src/app/Shared/Models/Views/Comment/CommentAdvancedView.view';
 
 //Components
 import { AlertComponent } from 'src/app/Widgets/Other Components/alert/alert.component';
@@ -29,6 +30,7 @@ export class StoreItemComponent implements OnInit {
   /* Global Properties -------------- */
 
   public item: ItemAdvancedView;
+  public comments: CommentAdvancedView[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -38,7 +40,6 @@ export class StoreItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayItemNameOnTabBar();
-
     this.readItemDescription();
   }
 
@@ -51,17 +52,22 @@ export class StoreItemComponent implements OnInit {
     const response = await this.storeItemService.getItemDescription(itemId).toPromise();
     if (!response.error) {
       this.item = response;
+      this.getItemComments();
     }
+  }
+
+  private getItemComments() {
+    this.globalService.getItemComments(this.item.id).subscribe((response: any) => {
+      if (!response.error) {
+        this.comments = response;
+      }
+    });
   }
 
   public activeImageIndex = 0;
   public displaySelectedImage(image: any, index: number) {
     this.item.displayedImage = image;
     this.activeImageIndex = index;
-  }
-
-  public openCommentsSection() {
-    this.globalService.openDialog(null, this.item.id);
   }
 
   public editItem(){
@@ -92,4 +98,18 @@ export class StoreItemComponent implements OnInit {
         ]
       });
   }
+
+  public isCommentSectionOpened: boolean = false;
+  public openCommentsSection() {
+    this.isCommentSectionOpened = !this.isCommentSectionOpened;
+  }
+
+  public deleteComment(commentId: string) {
+    this.globalService.deleteComment(commentId).subscribe((response: any) => {
+      if (!response.error) {
+        this.getItemComments();
+      }
+    });
+  }
+
 }

@@ -17,9 +17,6 @@
         <app-button [value]="item?.isAddedToCart?'Remove from cart' : 'Add to cart'" [color]="'gray'"
           (click)="addRemoveCart()">
         </app-button>
-        &nbsp;
-        <app-button [value]="'Comments'" [color]="'gray'" (click)="openCommentsSection()">
-        </app-button>
       </div>
       <div class="button-container flex justify-center align-center margin-tb-6">
         <app-button [color]="'blue'" [value]="'Order'" (click)="order()">
@@ -97,6 +94,36 @@
     </div>
     <div class="row-data-container">
       <div class="description text-start font-regular size-regular gray-super-dark margin-tb-10" [innerHtml]="item?.description">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comments-container fixed">
+  <div class="comments-inner-container relative">
+    <div class="header-container flex justify-space-between align-center" [ngClass]="{'open': isCommentSectionOpened}" (click)="openCommentsSection()">
+      <div class="title-container padding-lr-10">
+        <p class="text text-start font-medium size-small black">Comments ({{comments.length}})</p>
+      </div>
+      <div class="open-close-container flex justify-center align-center">
+        <mat-icon class="icon gray-super-dark" svgIcon="arrow-right"></mat-icon>
+      </div>
+    </div>
+
+    <div class="cards-container padding-lr-10" [ngClass]="{'visible': isCommentSectionOpened}">
+      <div class="card-container" *ngFor="let comment of comments">
+        <app-comment-card [data]="comment" (onDeleteEvent)="deleteComment($event)"></app-comment-card>
+      </div>
+    </div>
+
+    <div class="input-container absolute relative" [ngClass]="{'visible': isCommentSectionOpened}">
+      <app-text-field
+        [placeholder]="'Add a comment...'"
+        [formControl]="commentForm.controls['comment']"
+        (onInputEvent)="setValue('comment', $event)">
+      </app-text-field>
+      <div class="send-container flex justify-center align-center padding-b-1 absolute" (click)="addComment()">
+        <p class="value text-center font-regular size-small gray-super-dark">Send</p>
       </div>
     </div>
   </div>

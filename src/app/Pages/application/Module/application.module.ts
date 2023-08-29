@@ -36,7 +36,6 @@ import { CustomerMainComponent } from '../Pages/Customer/customer-main.component
   import { CartComponent } from '../Pages/Customer/Pages/Cart/cart.component';
   import { CustomerItemComponent } from '../Pages/Customer/Pages/Item/customer-item.component';
     import { CustomerItemDescriptionComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/customer-item-description.component';
-    import { CustomerItemCommentsComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-description/Components/customer-item-comments/customer-item-comments.component';
     import { CustomerItemOrdersComponent } from '../Pages/Customer/Pages/Item/Components/customer-item-orders/customer-item-orders.component';
   import { RequestOrderComponent } from '../Pages/Customer/Pages/Request Order/request-order.component';
 
@@ -72,7 +71,6 @@ import { OrderComponent } from '../Pages/Order/order.component';
       CartComponent,
       CustomerItemComponent,
         CustomerItemDescriptionComponent,
-        CustomerItemCommentsComponent,
         CustomerItemOrdersComponent,
       RequestOrderComponent,
 
@@ -111,7 +109,6 @@ import { OrderComponent } from '../Pages/Order/order.component';
       CustomerItemComponent,
         CustomerItemDescriptionComponent,
         CustomerItemOrdersComponent,
-        CustomerItemCommentsComponent,
       RequestOrderComponent,
 
     StoreMainComponent,
