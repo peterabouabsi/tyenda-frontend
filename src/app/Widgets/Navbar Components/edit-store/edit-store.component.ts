@@ -77,6 +77,7 @@ export class EditStoreComponent implements OnInit{
         this.setValue('ownerEmail', this.store.ownerEmail);
         this.setValue('backgroundImage', this.store.backgroundImage? this.fileBaseUrl+this.store.backgroundImage : null);
         this.setValue('profileImage', this.store.profileImage? this.fileBaseUrl+this.store.profileImage : null);
+        this.setValue('video', this.store.videoUrl? this.fileBaseUrl+this.store.videoUrl : null);
 
         this.store.categories.forEach((value: string) => {
           let category = this.categories.find((category) => category.value == value);
@@ -129,7 +130,19 @@ export class EditStoreComponent implements OnInit{
       this.setValue(formControlName, fileBlob);
     };
     reader.readAsDataURL(file);
+  }
 
+  public selectedVideoFile: any = null;
+  public onVideo(formControlName: string, event: any) {
+    let file = event.target.files[0];
+    this.selectedVideoFile = file;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      let fileBlob = event.target.result;
+      this.setValue(formControlName, fileBlob);
+    };
+    reader.readAsDataURL(file);
   }
 
   public closeEditProfile() {
@@ -167,6 +180,13 @@ export class EditStoreComponent implements OnInit{
             let formData = new FormData();
             formData.append('File', this.selectedBackgroundImageFile);
             await this.globalService.uploadProfileImage(formData, "?folder=Background").toPromise();
+          }
+        })
+        .then(async () => {
+          if(this.selectedVideoFile){
+            let formData = new FormData();
+            formData.append('File', this.selectedVideoFile);
+            await this.globalService.uploadVideo(formData).toPromise();
           }
         })
         .then(() => {

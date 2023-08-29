@@ -30,12 +30,13 @@
         <div class="upload-video-container flex justify-space-between align-center margin-b-30">
         <div class="my-video-container">
           <app-video
-          [poster]="selectedBackgroundImageFile? selectedBackgroundImageFile : editProfileForm.controls['backgroundImage'].value"
-          [src]="videoFormControl.value">
+          [poster]="editProfileForm.controls['video'].value? editProfileForm.controls['backgroundImage'].value : ''"
+          [src]="editProfileForm.controls['backgroundImage'].value? editProfileForm.controls['video'].value : videoFormControl.value">
         </app-video>
         </div>
-        <div class="button-container flex justify-end align-center">
+        <div class="button-container flex justify-end align-center relative">
           <app-button [color]="'blue'" [value]="'Upload Video'" (click)="null"></app-button>
+          <input type="file" class="absolute" accept="video/*" (change)="onVideo('video', $event)"/>
         </div>
       </div>
 

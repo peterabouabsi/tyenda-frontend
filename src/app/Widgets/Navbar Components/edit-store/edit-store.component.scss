@@ -113,6 +113,21 @@
     left: 0;
     bottom: 0;
     background-color: var(--white);
+    input {
+      opacity: 0;
+      border-radius: 50px;
+      cursor: pointer;
+      width: 116px;
+      height: 70px;
+      left: 0;
+      top: 0;
+      height: 100%;
+
+      &::file-selector-button {
+        height: 100%;
+        cursor: pointer;
+      }
+    }
   }
 }
 

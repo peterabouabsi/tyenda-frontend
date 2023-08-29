@@ -51,6 +51,9 @@ export class GlobalService {
   public uploadProfileImage(formData: FormData, query: string = null) {
     return this.apiService.post('/Account/Profile/Upload'+(query? query : ''), formData);
   }
+  public uploadVideo(formData: FormData, query: string = null) {
+    return this.apiService.post('/Store/Video/Upload()'+(query? query : ''), formData);
+  }
   public changePassword(changePasswordForm: ChangePasswordForm) {
     return this.apiService.post('/Account/ChangePassword()', changePasswordForm);
   }
