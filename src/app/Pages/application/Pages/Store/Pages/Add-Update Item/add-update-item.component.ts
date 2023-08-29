@@ -258,6 +258,28 @@ export class AddUpdateItemComponent implements OnInit {
   }
   //---- Color-Sizes -----
 
+  public deletedImageIds: string[] = [];
+  public onItemImageDelete(id: string = '', index: number = -1){
+    if(index == -1){
+      //Remove initial image
+      if(id){
+        //On Update and deleting existing image
+        this.deletedImageIds.push(id);
+      }
+      this.inputForm.get('initialImage').setValue('');
+      if(!this.item) this.postItemForm.get('initialImage').setValue(null);
+
+    }else{
+      //Remove other image
+      if(id){
+        //On Update and deleting existing image
+        this.deletedImageIds.push(id);
+      }
+      this.inputForm.get('images').value.splice(index, 1);
+      if(!this.item) this.postItemForm.get('images').value.splice(index, 1);
+    }
+  }
+
   public onConfirmationItem: boolean = false;
   public addUpdateItem() {
     let isFormValid = false;
@@ -276,7 +298,7 @@ export class AddUpdateItemComponent implements OnInit {
         message: 'Are you sure you want to confirm item creation?',
         buttons: [
           {
-            value: 'Confirm', color: 'blue', isLoaderButton: true, onButtonClick: (dialogRef: any) => {
+            value: 'Confirm', color: 'blue', isLoaderButton: true, onButtonClick: async (dialogRef: any) => {
               if (this.onConfirmationItem == false) {
                 this.onConfirmationItem = true;
 
@@ -294,6 +316,11 @@ export class AddUpdateItemComponent implements OnInit {
                   colorSizes: this.postItemForm.get('colorSizes').value
                 }
 
+                //Delete Image if so
+                if(this.deletedImageIds){
+                  await this.addUpdateItemService.deleteImage(this.deletedImageIds).toPromise();
+                }
+
                 let initialImage = this.postItemForm.get('initialImage').value;
                 let otherImages = this.postItemForm.get('images').value;
 
@@ -303,8 +330,6 @@ export class AddUpdateItemComponent implements OnInit {
                 else allImages = [initialImage, ...otherImages]
 
                 if (allImages.length > 0 || this.item) {
-                  console.log(allImages);
-
                   this.addUpdateItemService.addUpdate(addUpdateItemForm).subscribe((response: any) => {
                     if(!response.error){
                       let itemId = response.id;

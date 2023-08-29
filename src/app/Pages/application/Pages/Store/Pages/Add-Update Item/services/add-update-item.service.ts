@@ -24,4 +24,8 @@ export class AddUpdateItemService {
   public addUpdateImage(form: FormData){
     return this.apiService.post('/Item/Image/AddUpdate', form);
   }
+  public deleteImage(form: string[]){
+    return this.apiService.post('/Item/Image/Delete()', form);
+  }
+
 }

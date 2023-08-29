@@ -21,6 +21,9 @@
               alt="">
             <input type="file" class="absolute" accept="image/*"
               (input)="onItemImage('initialImage', $event, -1, inputForm.controls['initialImage'].value.id)" />
+            <div class="delete-container flex justify-center align-center padding-3 absolute" *ngIf="inputForm.controls['initialImage'].value">
+              <mat-icon class="icon red" svgIcon="circle-minus" (click)="onItemImageDelete(inputForm.controls['initialImage'].value.id)"></mat-icon>
+            </div>
           </div>
           <div class="other-images-container flex justify-start align-center flex-wrap margin-b-30"
             *ngIf="item || postItemForm.controls['initialImage'].value">
@@ -29,6 +32,9 @@
               <img [src]="image? (image.id? image.url : image) : './assets/Images/no-background-image.png'" alt="">
               <input type="file" class="absolute" accept="image/*"
                 (input)="onItemImage('images', $event, index, image.id)" />
+              <div class="delete-container flex justify-center align-center padding-3 absolute">
+                <mat-icon class="icon red" svgIcon="circle-minus" (click)="onItemImageDelete(image.id, index)"></mat-icon>
+              </div>
             </div>
             <div
               class="add-image-container flex justify-center align-center font-bold size-semi-large blue margin-lr-10 padding-b-4 relative">
