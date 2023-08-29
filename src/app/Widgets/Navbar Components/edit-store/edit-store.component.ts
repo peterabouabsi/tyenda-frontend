@@ -43,6 +43,7 @@ export class EditStoreComponent implements OnInit{
     ownerName: new FormControl('', [Validators.required]),
     ownerEmail: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required]),
+    video: new FormControl(null, []),
     description: new FormControl('', [Validators.required]),
     categories: new FormControl([], []),
     backgroundImage: new FormControl(null, []),
@@ -51,6 +52,7 @@ export class EditStoreComponent implements OnInit{
 
   public categories: BasicCategoryView[] = [];
   public categoryFormControl = new FormControl(null, []);
+  public videoFormControl = new FormControl('', []);
 
   constructor(private dialogRef: MatDialogRef<EditStoreComponent>,
               private globalService: GlobalService) {
@@ -80,6 +82,9 @@ export class EditStoreComponent implements OnInit{
           let category = this.categories.find((category) => category.value == value);
           this.setValueList('categories', {id: category.id, value: category.value}, false, false);
         });
+
+        this.videoFormControl.setValue(this.store.videoUrl? this.fileBaseUrl+this.store.videoUrl : null);
+
       }
     })
   }

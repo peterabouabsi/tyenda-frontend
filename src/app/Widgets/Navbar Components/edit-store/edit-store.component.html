@@ -2,14 +2,14 @@
   <div class="text-container flex justify-center align-center">
     <p class="title text-center font-bold size-medium black">Edit Profile</p>
   </div>
-  <div class="content-container flex justify-start align-start margin-tb-30">
+  <div class="content-container flex justify-start align-start padding-tb-30 margin-tb-30">
     <div class="left-container padding-lr-10">
-      <div class="images-container">
+      <div class="images-container relative">
         <div class="background-image-container relative">
           <img [src]="editProfileForm.controls['backgroundImage'].value? editProfileForm.controls['backgroundImage'].value: './assets/Images/no-background-image.png'" alt="">
           <input type="file" class="absolute" accept="image/*" (change)="onProfileImage('backgroundImage', $event)"/>
         </div>
-        <div class="profile-image-container margin-t-20 relative">
+        <div class="profile-image-container margin-t-20 absolute">
           <img [src]="editProfileForm.controls['profileImage'].value? editProfileForm.controls['profileImage'].value: './assets/Images/no-profile-image.png'" alt="">
           <input type="file" class="absolute" accept="image/*" (change)="onProfileImage('profileImage', $event)"/>
         </div>
@@ -26,6 +26,19 @@
       </div>
     </div>
     <div class="right-container padding-lr-10">
+      <p class="text text-start font-regular size-small gray margin-b-6">Store Video</p>
+        <div class="upload-video-container flex justify-space-between align-center margin-b-30">
+        <div class="my-video-container">
+          <app-video
+          [poster]="selectedBackgroundImageFile? selectedBackgroundImageFile : editProfileForm.controls['backgroundImage'].value"
+          [src]="videoFormControl.value">
+        </app-video>
+        </div>
+        <div class="button-container flex justify-end align-center">
+          <app-button [color]="'blue'" [value]="'Upload Video'" (click)="null"></app-button>
+        </div>
+      </div>
+
       <div class="inputs-container">
         <p class="text text-start font-regular size-small gray margin-b-6">Store Info</p>
         <div class="input-form padding-b-10">

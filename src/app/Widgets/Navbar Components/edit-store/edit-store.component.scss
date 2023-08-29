@@ -40,6 +40,10 @@
         }
 
         .profile-image-container {
+          bottom: 10px;
+          left: 10px;
+          width: fit-content;
+
           img {
             width: 70px;
             height: 70px;
@@ -65,6 +69,7 @@
         }
       }
 
+
       .inputs-container {
         .input-form {
           height: auto;
@@ -78,8 +83,23 @@
 
     .right-container {
       width: 400px;
-      height: 100%;
-      height: fit-content;
+      height: 390px;
+      overflow-y: scroll;
+
+      .upload-video-container {
+        width: 100%;
+        height: auto;
+
+        .my-video-container {
+          width: 200px;
+          height: 100%;
+        }
+
+        .button-container {
+          width: fit-content;
+          height: 100%;
+        }
+      }
 
       .inputs-container {
         width: 100%;
@@ -100,24 +120,49 @@
   .dialog-container {
     padding-left: 20px;
     padding-right: 20px;
+    ::-webkit-scrollbar{
+      display: none;
+    }
     .content-container {
       display: block;
       height: 100%;
 
-      .left-container, .right-container {
+      .left-container,
+      .right-container {
         width: 100%;
-        .images-container{
-          .profile-image-container{
-            width: 100%;
+        .images-container {
+          .profile-image-container {
             display: flex;
             justify-content: center;
             margin-bottom: 10px;
           }
         }
       }
-      .right-container{
-        padding-bottom: 10rem;
+
+      .left-container{
+        height: 70%;
       }
+      .right-container {
+        height: 100%;
+        min-height: none;
+        overflow: initial;
+        margin-bottom: 18rem;
+        margin-top: 1rem;
+        .upload-video-container{
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          .my-video-container{
+            width: 100%;
+            margin-bottom: 10px;
+          }
+          .button-container{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+          }
+        }
       }
     }
+  }
 }
