@@ -24,6 +24,7 @@ import { ApplicationComponent } from '../Pages/application.component';
 import { ChangePwdComponent } from 'src/app/Widgets/Navbar Components/change-pwd/change-pwd.component';
 import { EditCustomerComponent } from 'src/app/Widgets/Navbar Components/edit-customer/edit-customer.component';
 import { EditStoreComponent } from 'src/app/Widgets/Navbar Components/edit-store/edit-store.component';
+import { EditBranchesComponent } from 'src/app/Widgets/Navbar Components/edit-branches/edit-branches.component';
 
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -61,6 +62,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     ChangePwdComponent,
     EditCustomerComponent,
     EditStoreComponent,
+    EditBranchesComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,
@@ -98,6 +100,7 @@ import { OrderComponent } from '../Pages/Order/order.component';
     ChangePwdComponent,
     EditCustomerComponent,
     EditStoreComponent,
+    EditBranchesComponent,
     CustomerMainComponent,
       //Navbar
       NavbarCustomerComponent,

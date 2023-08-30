@@ -15,6 +15,7 @@ import { ChangePwdComponent } from '../change-pwd/change-pwd.component';
 import { ToastrComponent } from '../../Other Components/toastr/toastr.component';
 import { AlertComponent } from '../../Other Components/alert/alert.component';
 import { EditStoreComponent } from '../edit-store/edit-store.component';
+import { EditBranchesComponent } from '../edit-branches/edit-branches.component';
 
 //Views
 import { ViewModerateNotification } from 'src/app/Shared/Models/Views/Notification/ViewModerateNotification.view';
@@ -73,6 +74,18 @@ export class NavbarStoreComponent implements OnInit{
   /*------------------------------------------------*/
 
   /*Profile Options*/
+  public editBranches(){
+    this.globalService.openDialog(EditBranchesComponent, {}, (dialog: any, response: any) => {
+      if(response){
+        this.viewToastr = true;
+        if(!response.error){
+          setTimeout(() => {this.toastr.onSuccess('Edit Branch', response.message, 5)}, 100);
+        }else{
+          setTimeout(() => {this.toastr.onDanger('Edit Branch', response.error, 5)}, 100);
+        }
+      }
+    });
+  }
   public editProfile(){
     this.globalService.openDialog(EditStoreComponent, {}, (dialog: any, response: any) => {
       if(response){
