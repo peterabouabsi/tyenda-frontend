@@ -47,12 +47,13 @@ export class MapComponent implements OnInit {
   }
 
   init() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.initMap(position.coords.latitude, position.coords.longitude);
-    },
-    () => {
+    if(!this.lat || !this.lng){
+      navigator.geolocation.getCurrentPosition(position => {
+        this.initMap(position.coords.latitude, position.coords.longitude);
+      });
+    }else{
       this.initMap(this.lat, this.lng);
-    });
+    }
   }
   initMap(lat: number, lng: number) {
     this.mapLatitudeEvent.emit(lat);
