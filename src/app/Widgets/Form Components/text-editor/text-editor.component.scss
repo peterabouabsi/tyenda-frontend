@@ -14,7 +14,6 @@
 
         .btn {
             border: 1.3px solid var(--gray-dark);
-            background-color: var(--gray-light);
             outline: none;
             border-radius: 50%;
             box-shadow: none;
@@ -24,16 +23,11 @@
             width: 35px;
             height: 35px;
             transition: 0.3s ease-in-out;
-            &.active{
-              background-color: var(--blue);
-              color: var(--white);
-              transition: 0.3s ease-in-out;
-            }
         }
     }
     }
 
-    #content {
+    .content {
         border-radius: 5px;
         border: 1.3px solid var(--gray-light);
         outline: none;
@@ -43,7 +37,7 @@
           border-color: var(--red);
         }
     }
-    #content:focus{
+    .content:focus{
         border: 1.3px solid var(--gray-dark);
     }
 

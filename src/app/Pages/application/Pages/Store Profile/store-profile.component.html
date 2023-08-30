@@ -8,7 +8,7 @@
 
         <div class="profile-info-container flex justify-start align-start padding-tb-15 relative">
           <div class="image-container flex justify-center align-start">
-            <img [src]="store?.profileImage? fileBaseUrl+store?.profileImage : './assets/Images/no-store-image.png'" alt="">
+            <img [src]="store?.profileImage? fileBaseUrl+store?.profileImage : './assets/Images/no-profile-image.png'" alt="">
           </div>
           <div class="info-container flex justify-start align-start flex-column padding-lr-15">
             <p class="title text-start font-extra-bold size-large ellipse-1 black">{{store?.name}}</p>
@@ -171,8 +171,8 @@
             <p class="title text-start font-bold size-medium black">Take a tour of {{store?.name}}</p>
           </div>
           <app-video *ngIf="store?.videoUrl"
-            [src]="store?.videoUrl"
-            [poster]="store?.videoPosterUrl">
+            [src]="fileBaseUrl+store?.videoUrl"
+            [poster]="fileBaseUrl+store?.backgroundImage">
           </app-video>
           <div class="no-video-container flex justify-center align-center flex-column" *ngIf="!store?.videoUrl">
             <p class="value text-center font-medium size-medium gray capitalize">No posted video</p>

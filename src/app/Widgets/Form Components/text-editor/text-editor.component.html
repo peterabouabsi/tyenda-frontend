@@ -6,21 +6,17 @@
     </div>
 
     <div class="style-btns">
-      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark bold" (click)="makeBold(!onBold)"
-        [ngClass]="{'active' : onBold}" *ngIf="isBold" mat-mini-fab aria-label="Bold">
+      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark bold" (click)="makeBold()" *ngIf="isBold" mat-mini-fab aria-label="Bold">
         <mat-icon>format_bold</mat-icon>
       </button>
-      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark italic" (click)="makeItalic(!onItalic)"
-        [ngClass]="{'active' : onItalic}" *ngIf="isItalic" mat-mini-fab aria-label="Italic">
+      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark italic" (click)="makeItalic()" *ngIf="isItalic" mat-mini-fab aria-label="Italic">
         <mat-icon>format_italic</mat-icon>
       </button>
-      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark list"
-        (click)="makeUnorderedList(!onUnorderedList)" [ngClass]="{'active' : onUnorderedList}" *ngIf="isUnorderedList" mat-mini-fab
+      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark list" (click)="makeUnorderedList()" *ngIf="isUnorderedList" mat-mini-fab
         aria-label="Unordered List">
         <mat-icon>format_list_bulleted</mat-icon>
       </button>
-      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark list"
-        (click)="makeOrderedList(!onOrderedList)" [ngClass]="{'active' : onOrderedList}" *ngIf="isOrderedList" mat-mini-fab
+      <button class="btn font-medium size-extra-small padding-t-5 margin-l-10 gray-dark list" (click)="makeOrderedList()" *ngIf="isOrderedList" mat-mini-fab
         aria-label="Ordered List">
         <mat-icon>format_list_numbered</mat-icon>
       </button>
@@ -28,10 +24,9 @@
       <!-- ... -->
     </div>
   </div>
-  <div id="content" #content
+  <div #content
     (input)="modifyText()"
-    class="font-regular size-small padding-20"
+    class="content font-regular size-small padding-20"
     [ngClass]="{'invalid': formIsDirty && !formControl.valid}"
-    [innerHTML]="formControl.value"
     contenteditable="true" spellcheck="false"></div>
 </div>

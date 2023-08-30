@@ -38,7 +38,8 @@
         <app-pager
           [itemPerPage]="itemsData.dataPerPage"
           [config]="{button: {color: 'black', path: '/application/customer/search', queryParams: {type: 'Item'},value: 'View All Items'}, dataCount: itemsData.count}"
-          (onSetPage)="getPagingData('items', $event)">
+          (onSetPage)="getPagingData('items', $event)"
+          *ngIf="itemsData.data.length > 0">
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let item of itemsData.data">
@@ -46,9 +47,10 @@
                 [data]="item">
               </app-item-customer-basic-card>
             </div>
-            <app-empty [value]="'No items found'" *ngIf="itemsData.data.length == 0"></app-empty>
           </div>
         </app-pager>
+
+        <app-empty [value]="'No items found'" *ngIf="itemsData.data.length == 0"></app-empty>
       </div>
 
       <div class="section shadow items-container padding-20 margin-b-50">
@@ -58,7 +60,8 @@
         <app-pager
           [itemPerPage]="storesData.dataPerPage"
           [config]="{button: {color: 'black', path: '/application/customer/search', queryParams: {type: 'Store'}, value: 'View All Stores'}, dataCount: storesData.count}"
-          (onSetPage)="getPagingData('stores', $event)">
+          (onSetPage)="getPagingData('stores', $event)"
+          *ngIf="storesData.data.length > 0">
           <div class="cards-container flex justify-start align-center flex-wrap">
             <div class="card-container flex justify-center align-center padding-lr-10"
               *ngFor="let store of storesData.data">
@@ -67,9 +70,10 @@
                 [onClickRoute]="appMainRouteCustomer+'/store'">
               </app-store-moderate-card>
             </div>
-            <app-empty [value]="'No stores found'" *ngIf="storesData.data.length == 0"></app-empty>
           </div>
         </app-pager>
+
+        <app-empty [value]="'No stores found'" *ngIf="storesData.data.length == 0"></app-empty>
       </div>
 
       <div class="section recent-orders-section shadow items-container padding-20 margin-b-50">

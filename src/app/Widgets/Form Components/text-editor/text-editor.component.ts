@@ -10,7 +10,7 @@ import { TextEditorService } from './Service/text-editor.service';
 })
 export class TextEditorComponent implements OnInit {
 
-  @ViewChild("content") content: ElementRef;
+  @ViewChild("content") content: ElementRef<HTMLElement>;
 
   @Input() placeholder: string = '';
   @Input() formControl: any;
@@ -19,11 +19,6 @@ export class TextEditorComponent implements OnInit {
   @Input() isItalic?: boolean = false;
   @Input() isUnorderedList?: boolean = false;
   @Input() isOrderedList?: boolean = false;
-
-  public onBold: boolean = false;
-  public onItalic: boolean = false;
-  public onUnorderedList: boolean = false;
-  public onOrderedList: boolean = false;
 
   public text: string;
 
@@ -34,21 +29,21 @@ export class TextEditorComponent implements OnInit {
   ngOnInit() {
   }
 
-  makeBold(isActive: boolean = null){
+  ngAfterViewInit(): void {
+    if(this.formControl.value != '') this.content.nativeElement.innerHTML = this.formControl.value;
+  }
+
+  makeBold(){
     this.textEditorService.setBold();
-    if(isActive != null) this.onBold = isActive;
   }
-  makeItalic(isActive: boolean = null){
+  makeItalic(){
     this.textEditorService.setItalic();
-    if(isActive != null) this.onItalic = isActive;
   }
-  makeUnorderedList(isActive: boolean = null){
+  makeUnorderedList(){
     this.textEditorService.setUnorderedList();
-    if(isActive != null) this.onUnorderedList = isActive;
   }
-  makeOrderedList(isActive: boolean = null){
+  makeOrderedList(){
     this.textEditorService.setOrderedList();
-    if(isActive != null) this.onOrderedList = isActive;
   }
 
   public formIsDirty: boolean = false;

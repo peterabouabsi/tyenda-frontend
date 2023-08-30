@@ -29,10 +29,18 @@
       <p class="text text-start font-regular size-small gray margin-b-6">Store Video</p>
         <div class="upload-video-container flex justify-space-between align-center margin-b-30">
         <div class="my-video-container">
-          <app-video
-          [poster]="editProfileForm.controls['video'].value? editProfileForm.controls['backgroundImage'].value : ''"
-          [src]="editProfileForm.controls['backgroundImage'].value? editProfileForm.controls['video'].value : videoFormControl.value">
-        </app-video>
+          <app-video *ngIf="editProfileForm.controls['video'].value"
+            [poster]="editProfileForm.controls['video'].value? editProfileForm.controls['backgroundImage'].value : ''"
+            [src]="editProfileForm.controls['backgroundImage'].value? editProfileForm.controls['video'].value : videoFormControl.value">
+          </app-video>
+          <div class="no-video-container flex justify-center align-center flex-column padding-tb-10" *ngIf="!editProfileForm.controls['video'].value">
+            <p class="value text-center font-medium size-small gray capitalize">No posted video</p>
+            <div class="icon-button-container flex justify-center align-center padding-tb-10">
+              <div class="button-container flex justify-center align-center padding-t-4 padding-l-4">
+                <mat-icon class="icon gray" svgIcon="play"></mat-icon>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="button-container flex justify-end align-center relative">
           <app-button [color]="'blue'" [value]="'Upload Video'" (click)="null"></app-button>
