@@ -86,7 +86,6 @@ export class AddUpdateItemComponent implements OnInit {
           this.setValue(this.postItemForm, 'price', this.item.price);
           this.setValue(this.postItemForm, 'discount', this.item.discount);
           this.setValue(this.postItemForm, 'notes', this.item.notes);
-          this.setValue(this.postItemForm, 'notes', this.item.notes);
 
           let initialImage = this.item.images.shift();
           this.inputForm.get('initialImage').setValue({ id: initialImage.id, url: this.fileBaseUrl+initialImage.url });
@@ -148,7 +147,6 @@ export class AddUpdateItemComponent implements OnInit {
   public onItemImage(formControlName: string, event: any, index: number = -1, imageId: any = undefined) {
     //When New Item
     let file = event.target.files[0];
-    console.log(imageId)
     if (formControlName == 'initialImage') this.setValue(this.postItemForm, formControlName, imageId? {id: imageId, file: file} : file);
     if (formControlName == 'images') {
       if (index == -1) this.postItemForm.get(formControlName).value.push(imageId != undefined? {id: imageId, file: file} : file); //adding image
@@ -165,6 +163,8 @@ export class AddUpdateItemComponent implements OnInit {
       }
     };
     reader.readAsDataURL(file);
+    console.log(this.postItemForm.get('initialImage').value)
+
   }
   public onChipDelete(formControlName: string, index: number) {
     let selectedDataList: any[] = this.postItemForm.get(formControlName).value;

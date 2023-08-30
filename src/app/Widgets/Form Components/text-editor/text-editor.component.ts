@@ -30,7 +30,9 @@ export class TextEditorComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if(this.formControl.value != '') this.content.nativeElement.innerHTML = this.formControl.value;
+    setTimeout(() => {
+      if(this.formControl.value != '') this.content.nativeElement.innerHTML = this.formControl.value;
+    }, 1000);
   }
 
   makeBold(){
