@@ -89,6 +89,7 @@
           </div>
         </div>
       </div>
+      <app-empty *ngIf="searchResultConfig.data.length == 0" [value]="'No orders found'"></app-empty>
     </div>
   </div>
 </div>

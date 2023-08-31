@@ -103,6 +103,7 @@
           </div>
         </div>
       </div>
+      <app-empty *ngIf="itemSearchResultConfig.data.length == 0" [value]="'No items found'"></app-empty>
     </div>
   </div>
 </div>
