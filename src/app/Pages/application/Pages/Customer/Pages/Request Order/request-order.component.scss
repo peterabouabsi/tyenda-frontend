@@ -41,6 +41,7 @@
             height: 30px;
             border-radius: 50px;
             cursor: pointer;
+            border: 1px solid var(--gray-light);
             transition: 0.3s ease-in-out;
 
             &:active{
@@ -73,6 +74,7 @@
               height: 30px;
               border-radius: 50px;
               cursor: pointer;
+              border: 1px solid var(--gray-light);
               &.selected{
                 border: 3px solid var(--blue);
               }
