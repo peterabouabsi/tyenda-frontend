@@ -1,4 +1,4 @@
-<div class="dialog-container padding-tb-30 padding-lr-50 relative">
+<div class="dialog-container padding-tb-10 padding-lr-50 relative">
   <div class="text-container flex justify-center align-center">
     <p class="title text-center font-bold size-medium black">Edit Profile</p>
   </div>
@@ -15,13 +15,23 @@
         </div>
       </div>
       <div class="inputs-container">
-        <div class="input-form margin-tb-10">
-          <p class="text text-start font-regular size-small gray margin-b-6">Description</p>
-          <app-text-area
-            [placeholder]="'Description'"
-            [formControl]="editProfileForm.controls['description']"
-            (onInputEvent)="setValue('description', $event)">
-          </app-text-area>
+        <div class="input-form padding-b-10 margin-t-30">
+          <p class="text text-start font-regular size-small gray margin-b-6">Category</p>
+          <app-select-field
+            [data]="categories"
+            [placeholder]="'Select Category'"
+            [formControl]="categoryFormControl"
+            (onSelectEvent)="setValueList('categories', $event, false, null)">
+          </app-select-field>
+          <div class="chips-container flex justify-start align-start flex-wrap padding-tb-10">
+            <app-selector-chip
+              class="margin-r-10 margin-tb-10"
+              [color]="'blue'"
+              [value]="category.value"
+              (onDelete)="onChipDelete('categories', index)"
+              *ngFor="let category of editProfileForm.controls['categories'].value; let index = index">
+            </app-selector-chip>
+          </div>
         </div>
       </div>
     </div>
@@ -94,22 +104,13 @@
             (onInputEvent)="setValue('ownerEmail', $event)">
           </app-text-field>
         </div>
-        <div class="input-form padding-b-10">
-          <app-select-field
-            [data]="categories"
-            [placeholder]="'Select Category'"
-            [formControl]="categoryFormControl"
-            (onSelectEvent)="setValueList('categories', $event, false, null)">
-          </app-select-field>
-          <div class="chips-container flex justify-start align-start flex-wrap padding-tb-10">
-            <app-selector-chip
-              class="margin-r-10 margin-tb-10"
-              [color]="'blue'"
-              [value]="category.value"
-              (onDelete)="onChipDelete('categories', index)"
-              *ngFor="let category of editProfileForm.controls['categories'].value; let index = index">
-            </app-selector-chip>
-          </div>
+        <div class="input-form description-form margin-tb-10">
+          <p class="text text-start font-regular size-small gray margin-b-6">Description</p>
+          <app-text-area
+            [placeholder]="'Description'"
+            [formControl]="editProfileForm.controls['description']"
+            (onInputEvent)="setValue('description', $event)">
+          </app-text-area>
         </div>
       </div>
     </div>

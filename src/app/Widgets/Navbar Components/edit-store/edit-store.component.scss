@@ -1,5 +1,5 @@
 .dialog-container {
-  height: 630px;
+  height: 660px;
   overflow: hidden;
 
   .content-container {
@@ -8,6 +8,7 @@
     .left-container {
       width: 400px;
       height: 100%;
+      min-height: 500px;
 
       .images-container {
         .background-image-container {
@@ -69,16 +70,6 @@
         }
       }
 
-
-      .inputs-container {
-        .input-form {
-          height: auto;
-
-          ::ng-deep app-text-area .field-container .input {
-            min-height: 130px;
-          }
-        }
-      }
     }
 
     .right-container {
@@ -130,6 +121,15 @@
       .inputs-container {
         width: 100%;
         height: auto;
+
+        .description-form {
+          height: auto;
+
+          ::ng-deep app-text-area .field-container .input {
+            min-height: 300px;
+            height: auto;
+          }
+        }
       }
     }
   }
@@ -139,6 +139,8 @@
     left: 0;
     bottom: 0;
     background-color: var(--white);
+    z-index: 0;
+
     input {
       opacity: 0;
       border-radius: 50px;
@@ -161,9 +163,11 @@
   .dialog-container {
     padding-left: 20px;
     padding-right: 20px;
-    ::-webkit-scrollbar{
+
+    ::-webkit-scrollbar {
       display: none;
     }
+
     .content-container {
       display: block;
       height: 100%;
@@ -171,6 +175,7 @@
       .left-container,
       .right-container {
         width: 100%;
+
         .images-container {
           .profile-image-container {
             display: flex;
@@ -180,24 +185,40 @@
         }
       }
 
-      .left-container{
+      .left-container {
         height: 70%;
       }
+
       .right-container {
         height: 100%;
         min-height: none;
         overflow: initial;
         margin-bottom: 18rem;
         margin-top: 1rem;
-        .upload-video-container{
+
+        .inputs-container {
+          .description-form {
+            ::ng-deep app-text-area .field-container {
+              height: fit-content;
+            }
+            ::ng-deep app-text-area .field-container .input {
+              margin-bottom: 10rem;
+            }
+
+          }
+        }
+
+        .upload-video-container {
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          .my-video-container{
+
+          .my-video-container {
             width: 100%;
             margin-bottom: 10px;
           }
-          .button-container{
+
+          .button-container {
             width: 100%;
             justify-content: center;
             align-items: center;

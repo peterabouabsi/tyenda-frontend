@@ -5,7 +5,7 @@
       <app-select-field [placeholder]="'Select category'" [data]="categories" [formControl]="storeCategoryForm.controls['category']" (onSelectEvent)="setValue('category', $event)"></app-select-field>
     </div>
     <div class="chips-container margin-t-10 flex justify-start align-start flex-wrap">
-      <div class="chip-container padding-r-3" *ngFor="let category of selectedCategory; let i = index">
+      <div class="chip-container margin-tb-10 padding-r-3" *ngFor="let category of selectedCategory; let i = index">
         <app-selector-chip [data]="category" (onDelete)="deleteCategory(i)"></app-selector-chip>
       </div>
     </div>
