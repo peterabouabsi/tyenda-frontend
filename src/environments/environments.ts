@@ -7,5 +7,5 @@ export const environment = {
   oneSignal: {
     appId: 'f96b8dc9-d261-4b3b-b48c-9ac4c7ff9ef9'
   },
-  googleOAuthClientId: '677712129576-t9rhnfjj52t86hhs6ib4rl610ebdlu7j.apps.googleusercontent.com'
+  googleOAuthClientId: '786157648837-ndo2ch57bd59vp7uobf9dgfpht3lpmqr.apps.googleusercontent.com'
 };
