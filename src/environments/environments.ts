@@ -5,7 +5,7 @@ export const environment = {
   fileBaseUrl: "https://localhost:5001/files/",
   mapTile: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
   oneSignal: {
-    appId: 'f96b8dc9-d261-4b3b-b48c-9ac4c7ff9ef9'
+    appId: '08e77151-9912-4fe7-9185-9c9160f5e9cd'
   },
   googleOAuthClientId: '786157648837-ndo2ch57bd59vp7uobf9dgfpht3lpmqr.apps.googleusercontent.com'
 };
