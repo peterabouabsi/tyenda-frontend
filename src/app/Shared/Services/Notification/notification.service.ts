@@ -25,18 +25,14 @@ export class NotificationService {
   public setTag(tag: any = {}){
     this.oneSignal.User.addTags(tag);
   }
+  public removeTag() {
+    this.oneSignal.User.removeTag('account_id');
+  }
 
   public subscribe() {
     let permission = this.oneSignal.Notifications.permission;
     if (!permission) {
       this.oneSignal.Notifications.requestPermission().then(() => {});
-    } else {
-      this.oneSignal.User.PushSubscription.optIn().then(() => {});
     }
-  }
-  public unsubscribe() {
-    this.oneSignal.User.PushSubscription.optOut().then(() => {
-      this.oneSignal.User.removeTag('account_id');
-    });
   }
 }

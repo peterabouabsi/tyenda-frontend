@@ -132,7 +132,7 @@ export class GlobalService {
     let response = await this.apiService.post('/Account/logout()', logoutForm).toPromise();
     if (!response.error) {
       this.clearStorage();
-      this.notificationService.unsubscribe();
+      this.notificationService.removeTag();
     }
   }
 
